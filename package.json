@@ -1,0 +1,17 @@
+{
+  "name": "vodafone-station-cli",
+  "version": "1.0.0",
+  "description": "Access your Arris TG3442DE (aka Vodafone Station) from the comfort of the command line.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Dobroslav Totev",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "tslib": "^2.1.0",
+    "typescript": "^4.1.5"
+  }
+}
