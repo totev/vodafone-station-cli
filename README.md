@@ -1,3 +1,4 @@
+![ci-status](https://github.com/totev/vodafone-station-cli/actions/workflows/main.yml/badge.svg)
 # vodafone-station-cli
 
 Access your Arris TG3442DE (aka Vodafone Station) from the comfort of the command line.
