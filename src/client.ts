@@ -153,3 +153,27 @@ export async function login(password: string) {
   await addCredentialToCookie();
   return csrfNonce;
 }
+
+export async function restart(csrfNonce: string) {
+  try {
+    const { data } = await axios.post(
+      "php/ajaxSet_status_restart.php",
+      {
+        RestartReset: "Restart",
+      },
+      {
+        headers: {
+          csrfNonce,
+          Referer: `http://${URL}/?status_docsis&mid=StatusDocsis`,
+          "X-Requested-With": "XMLHttpRequest",
+          Connection: "keep-alive",
+        },
+      }
+    );
+    console.info("Router is restarting");
+    return data;
+  } catch (error) {
+    console.error("Could not restart router.", error);
+    throw error;
+  }
+}

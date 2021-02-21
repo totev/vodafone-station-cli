@@ -1,4 +1,5 @@
 ![ci-status](https://github.com/totev/vodafone-station-cli/actions/workflows/main.yml/badge.svg)
+
 # vodafone-station-cli
 
 Access your Arris TG3442DE (aka Vodafone Station) from the comfort of the command line.
@@ -24,7 +25,14 @@ csrfNonce: SOME_NONCE
 
 ```
 yarn install
-npx ts-node src/index.ts --password "ROUTER_PASSWORD"
+npx ts-node src/index.ts --password "ROUTER_PASSWORD" --docsis
+```
+
+## Restart router
+
+```
+yarn install
+npx ts-node src/index.ts --password "ROUTER_PASSWORD" --restart
 ```
 
 ## Useful related projects:
