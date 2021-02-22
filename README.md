@@ -22,12 +22,17 @@ csrfNonce: SOME_NONCE
 ```
 
 ## DOCSIS status
+
 You can get the current docsis status as reported by the modem in a JSON format.
+
 ```
 yarn install
 npx ts-node src/index.ts --password "ROUTER_PASSWORD" --docsis
 ```
-Result:
+
+<details>
+  <summary>Result JSON</summary>
+
 ```json
 {
 	"downstream": [
@@ -368,6 +373,7 @@ Result:
 	"ofdmChannels": 1
 }
 ```
+</details>
 
 ## Restart router
 
@@ -378,7 +384,7 @@ npx ts-node src/index.ts --password "ROUTER_PASSWORD" --restart
 
 ## Useful related projects:
 
-- [https://github.com/nox-x/TG3442DE-Teardown]
-- [https://github.com/cbruegg/packetloss-watchdog]
-- [https://github.com/Fluepke/vodafone-station-exporter]
-- [https://github.com/bitwiseshiftleft/sjcl]
+- https://github.com/nox-x/TG3442DE-Teardown
+- https://github.com/cbruegg/packetloss-watchdog
+- https://github.com/Fluepke/vodafone-station-exporter
+- https://github.com/bitwiseshiftleft/sjcl
