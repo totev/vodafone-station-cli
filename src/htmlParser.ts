@@ -24,6 +24,7 @@ export interface DocsisStatus {
   downstreamChannels: number;
   upstreamChannels: number;
   ofdmChannels: number;
+  time: string;
 }
 
 export interface DocsisChannelStatus {
@@ -36,7 +37,10 @@ export interface DocsisChannelStatus {
   SNRLevel: string;
 }
 
-export function extractDocsisStatus(html: string): DocsisStatus {
+export function extractDocsisStatus(
+  html: string,
+  date: Date = new Date()
+): DocsisStatus {
   const docsisMatcher = {
     dsData: /json_dsData = (?<dsData>.*?);/gm,
     usData: /json_usData = (?<usData>.*?);/gm,
@@ -59,6 +63,7 @@ export function extractDocsisStatus(html: string): DocsisStatus {
     downstreamChannels: Number.parseInt(downstreamChannels, 10),
     upstreamChannels: Number.parseInt(upstreamChannels, 10),
     ofdmChannels: Number.parseInt(ofdmChannels, 10),
+    time: date.toISOString(),
   };
 }
 

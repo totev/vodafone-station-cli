@@ -28,7 +28,12 @@ describe("htmlParser", () => {
       path.join(__dirname, "./__fixtures__/status_docsis_data.php.html"),
       "utf8"
     );
-    expect(extractDocsisStatus(fixtureDocsisData)).toMatchSnapshot();
+    expect(
+      extractDocsisStatus(
+        fixtureDocsisData,
+        new Date("2021-02-26T09:19:56.042Z")
+      )
+    ).toMatchSnapshot();
   });
   test("extractCredentialString", () => {
     const fixture = fs.readFileSync(

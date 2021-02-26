@@ -303,6 +303,7 @@ Object {
   ],
   "downstreamChannels": 33,
   "ofdmChannels": 1,
+  "time": "2021-02-26T09:19:56.042Z",
   "upstream": Array [
     Object {
       "ChannelID": "4",
