@@ -5,10 +5,6 @@ Access your Arris TG3442DE (aka Vodafone Station) from the comfort of the comman
 
 ![ci-status](https://github.com/totev/vodafone-station-cli/actions/workflows/main.yml/badge.svg)
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
-[![Version](https://img.shields.io/npm/v/vodafone-station-cli.svg)](https://npmjs.org/package/vodafone-station-cli)
-[![Codecov](https://codecov.io/gh/totev/vodafone-station-cli/branch/master/graph/badge.svg)](https://codecov.io/gh/totev/vodafone-station-cli)
-[![Downloads/week](https://img.shields.io/npm/dw/vodafone-station-cli.svg)](https://npmjs.org/package/vodafone-station-cli)
-[![License](https://img.shields.io/npm/l/vodafone-station-cli.svg)](https://github.com/totev/vodafone-station-cli/blob/master/package.json)
 
 # Supported hardware
 
