@@ -17,6 +17,8 @@ Currently only the following hardware/software is supported:
 A full login and logout sequence is being done on every command execution.
 
 <!-- toc -->
+* [Supported hardware](#supported-hardware)
+* [Notes](#notes)
 * [Usage](#usage)
 * [Commands](#commands)
 <!-- tocstop -->
