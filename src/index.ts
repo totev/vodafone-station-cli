@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { writeFile } from "fs/promises";
+import { promises as fsp } from "fs";
 import { fetchDocsisStatus, login, logout, restart } from "./client";
 const yargs = require("yargs/yargs");
 const { hideBin } = require("yargs/helpers");
@@ -24,7 +24,7 @@ export async function printDocsisStatus(password: string) {
     const reportFile = `reports/${Date.now()}_doscsisReport.json`;
     console.log("Writing docsis report as json to file: ", reportFile);
     const data = new Uint8Array(Buffer.from(docsisStatusJSON));
-    await writeFile(reportFile, data);
+    await fsp.writeFile(reportFile, data);
   } catch (error) {
     console.error("Something went wrong.", error);
   } finally {
