@@ -55,8 +55,9 @@ JSON data
     const docsisStatus = await this.getDocsisStatus(password);
     const docsisStatusJSON = JSON.stringify(docsisStatus, undefined, 4);
 
-    this.log(docsisStatusJSON);
-    if (flags.file) {
+    if (!flags.file) {
+      this.log(docsisStatusJSON);
+    } else {
       await this.writeDocsisStatus(docsisStatusJSON);
     }
   }
