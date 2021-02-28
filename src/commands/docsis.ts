@@ -35,7 +35,7 @@ JSON data
   }
 
   async writeDocsisStatus(docsisStatusJson: string): Promise<void> {
-    const reportFile = `reports/${Date.now()}_doscsisReport.json`;
+    const reportFile = `reports/${Date.now()}_docsisStatus.json`;
     this.log("Writing docsis report as json to file: ", reportFile);
     const data = new Uint8Array(Buffer.from(docsisStatusJson));
     return fsp.writeFile(reportFile, data);
