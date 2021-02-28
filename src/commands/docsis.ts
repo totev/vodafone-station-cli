@@ -15,7 +15,6 @@ JSON data
   static flags = {
     password: flags.string({
       char: "p",
-      required: true,
       description: "router/modem password",
     }),
     file: flags.boolean({
@@ -45,7 +44,15 @@ JSON data
   async run() {
     const { flags } = this.parse(Docsis);
 
-    const docsisStatus = await this.getDocsisStatus(flags.password);
+    const password = process.env.VODAFONE_ROUTER_PASSWORD ?? flags.password;
+    if (!password || password === "") {
+      this.log(
+        "You must provide a password either using -p or by setting the environment variable VODAFONE_ROUTER_PASSWORD"
+      );
+      this.exit();
+    }
+
+    const docsisStatus = await this.getDocsisStatus(password);
     const docsisStatusJSON = JSON.stringify(docsisStatus, undefined, 4);
 
     this.log(docsisStatusJSON);
