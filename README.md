@@ -29,7 +29,7 @@ $ npm install -g vodafone-station-cli
 $ vodafone-station-cli COMMAND
 running command...
 $ vodafone-station-cli (-v|--version|version)
-vodafone-station-cli/1.0.0 darwin-x64 node-v14.15.5
+vodafone-station-cli/1.0.0 darwin-arm64 node-v15.10.0
 $ vodafone-station-cli --help [COMMAND]
 USAGE
   $ vodafone-station-cli COMMAND
@@ -38,28 +38,27 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`vodafone-station-cli hello [FILE]`](#vodafone-station-cli-hello-file)
+* [`vodafone-station-cli docsis`](#vodafone-station-cli-docsis)
 * [`vodafone-station-cli help [COMMAND]`](#vodafone-station-cli-help-command)
 
-## `vodafone-station-cli hello [FILE]`
+## `vodafone-station-cli docsis`
 
-describe the command here
+Get the current docsis status as reported by the modem in a JSON format.
 
 ```
 USAGE
-  $ vodafone-station-cli hello [FILE]
+  $ vodafone-station-cli docsis
 
 OPTIONS
-  -f, --force
-  -h, --help       show CLI help
-  -n, --name=name  name to print
+  -f, --file               write out a report file
+  -p, --password=password  router/modem password
 
 EXAMPLE
-  $ vodafone-station-cli hello
-  hello world from ./src/hello.ts!
+  $ vodafone-station-cli docsis -p PASSWORD
+  JSON data
 ```
 
-_See code: [src/commands/hello.ts](https://github.com/totev/vodafone-station-cli/blob/v1.0.0/src/commands/hello.ts)_
+_See code: [src/commands/docsis.ts](https://github.com/totev/vodafone-station-cli/blob/v1.0.0/src/commands/docsis.ts)_
 
 ## `vodafone-station-cli help [COMMAND]`
 

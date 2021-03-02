@@ -21,3 +21,8 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: yarn install --frozen-lockfile
       - run: yarn test
+      - run: yarn build:standalone
+      - uses: actions/upload-artifact@v2
+        with:
+          name: vodafone-station-cli
+          path: dist/**/*.tar.gz
