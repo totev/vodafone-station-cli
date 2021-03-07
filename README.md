@@ -6,6 +6,13 @@ Access your Arris TG3442DE (aka Vodafone Station) from the comfort of the comman
 ![ci-status](https://github.com/totev/vodafone-station-cli/actions/workflows/main.yml/badge.svg)
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
 
+<!-- toc -->
+* [Supported hardware](#supported-hardware)
+* [Notes](#notes)
+* [Usage](#usage)
+* [Commands](#commands)
+<!-- tocstop -->
+
 # Supported hardware
 
 Currently only the following hardware/software is supported:
@@ -15,13 +22,8 @@ Currently only the following hardware/software is supported:
 # Notes
 
 A full login and logout sequence is being done on every command execution.
+You can provide a password either by setting the environment variable `VODAFONE_ROUTER_PASSWORD` in your shell, in a local `.env` file or by using the `-f` flag.
 
-<!-- toc -->
-* [Supported hardware](#supported-hardware)
-* [Notes](#notes)
-* [Usage](#usage)
-* [Commands](#commands)
-<!-- tocstop -->
 # Usage
 <!-- usage -->
 ```sh-session
