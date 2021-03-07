@@ -29,7 +29,7 @@ $ npm install -g vodafone-station-cli
 $ vodafone-station-cli COMMAND
 running command...
 $ vodafone-station-cli (-v|--version|version)
-vodafone-station-cli/1.0.0 darwin-arm64 node-v15.10.0
+vodafone-station-cli/1.0.0 darwin-arm64 node-v15.11.0
 $ vodafone-station-cli --help [COMMAND]
 USAGE
   $ vodafone-station-cli COMMAND
@@ -40,6 +40,7 @@ USAGE
 <!-- commands -->
 * [`vodafone-station-cli docsis`](#vodafone-station-cli-docsis)
 * [`vodafone-station-cli help [COMMAND]`](#vodafone-station-cli-help-command)
+* [`vodafone-station-cli restart`](#vodafone-station-cli-restart)
 
 ## `vodafone-station-cli docsis`
 
@@ -76,6 +77,23 @@ OPTIONS
 ```
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v3.2.2/src/commands/help.ts)_
+
+## `vodafone-station-cli restart`
+
+Restart the router/modem
+
+```
+USAGE
+  $ vodafone-station-cli restart
+
+OPTIONS
+  -p, --password=password  router/modem password
+
+EXAMPLE
+  $ vodafone-station-cli restart -p PASSWORD
+```
+
+_See code: [src/commands/restart.ts](https://github.com/totev/vodafone-station-cli/blob/v1.0.0/src/commands/restart.ts)_
 <!-- commandsstop -->
 
 
