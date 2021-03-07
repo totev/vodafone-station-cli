@@ -13,13 +13,14 @@
     "@oclif/plugin-help": "^3",
     "axios": "^0.21.1",
     "axios-cookiejar-support": "^1.0.1",
+    "dotenv": "^8.2.0",
     "node-fetch": "^2.6.1",
     "sjcl": "^1.0.8",
-    "tough-cookie": "^4.0.0",
-    "yargs": "^16.2.0"
+    "tough-cookie": "^4.0.0"
   },
   "devDependencies": {
     "@oclif/dev-cli": "^1",
+    "@types/dotenv": "^8.2.0",
     "@types/jest": "^26.0.20",
     "@types/node": "^10",
     "@types/sjcl": "^1.0.29",
@@ -56,13 +57,13 @@
   },
   "repository": "totev/vodafone-station-cli",
   "scripts": {
-    "build:standalone":"oclif-dev pack",
+    "build:standalone": "oclif-dev pack",
     "postpack": "rm -f oclif.manifest.json",
     "posttest": "eslint . --ext .ts --config .eslintrc",
     "prepack": "rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
     "test": "jest",
     "version": "oclif-dev readme && git add README.md",
-    "lint":"eslint . --ext .ts --config .eslintrc"
+    "lint": "eslint . --ext .ts --config .eslintrc"
   },
   "types": "lib/index.d.ts"
 }

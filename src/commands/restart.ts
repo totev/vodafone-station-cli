@@ -1,4 +1,5 @@
-import {Command, flags} from '@oclif/command'
+import {flags} from '@oclif/command'
+import Command from '../base-command'
 import {login, logout, restart} from '../client'
 
 export default class Restart extends Command {

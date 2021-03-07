@@ -1,6 +1,7 @@
-import {Command, flags} from '@oclif/command'
-import {fetchDocsisStatus, login, logout} from '../client'
+import {flags} from '@oclif/command'
 import {promises as fsp} from 'fs'
+import {fetchDocsisStatus, login, logout} from '../client'
+import Command from '../base-command'
 
 export default class Docsis extends Command {
   static description =
