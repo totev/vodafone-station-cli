@@ -3,6 +3,7 @@ import {promises as fsp} from 'fs'
 import Command from '../base-command'
 import {CliClient} from '../client'
 import {discoverModemIp} from '../discovery'
+import {OclifLogger} from '../logger'
 
 export default class Docsis extends Command {
   static description =
@@ -26,7 +27,7 @@ JSON data
   };
 
   async getDocsisStatus(password: string) {
-    const cliClient = new CliClient(await discoverModemIp())
+    const cliClient = new CliClient(await discoverModemIp(), new OclifLogger(this.log, this.warn, this.debug, this.error))
     try {
       const csrfNonce = await cliClient.login(password)
       return cliClient.fetchDocsisStatus(csrfNonce)

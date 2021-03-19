@@ -6,9 +6,9 @@ export async function discoverModemIp(): Promise<string> {
   try {
     const result = await Promise.any([axios.head(`http://${BRIDGED_MODEM_IP}`), axios.head(`http://${ROUTER_IP}`)])
     const hostIp = result.request?.host
-    console.debug(`Found potential router/modem under ${hostIp}`)
     return hostIp
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error('Could not find a router/modem under the known addresses', error)
     throw error
   }

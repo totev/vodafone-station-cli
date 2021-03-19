@@ -9,6 +9,7 @@ import {
   extractCryptoVars,
   extractDocsisStatus,
 } from './html-parser'
+import {Log} from './logger'
 
 // axios cookie support
 axiosCookieJarSupport(axios)
@@ -32,7 +33,7 @@ export class CliClient {
 
   private readonly httpClient: AxiosInstance
 
-  constructor(private readonly modemIp: string) {
+  constructor(private readonly modemIp: string, private readonly logger: Log) {
     this.cookieJar = new CookieJar()
     this.httpClient = this.initAxios()
   }
@@ -48,16 +49,16 @@ export class CliClient {
   async  login(password: string) {
     const cryptoVars = await this.getCurrentCryptoVars()
     const encPw = this.encryptPassword(password, cryptoVars)
-    console.debug('Encrypted password: ', encPw)
+    this.logger.debug('Encrypted password: ', encPw)
     const serverSetPassword = await this.createServerRecord(encPw)
-    console.debug('ServerSetPassword: ', serverSetPassword)
+    this.logger.debug('ServerSetPassword: ', serverSetPassword)
 
     const csrfNonce = this.loginPasswordCheck(
       serverSetPassword.encryptData,
       cryptoVars,
       deriveKey(password, cryptoVars.salt)
     )
-    console.debug('Csrf nonce: ', csrfNonce)
+    this.logger.debug('Csrf nonce: ', csrfNonce)
 
     await this.addCredentialToCookie()
     return csrfNonce
@@ -69,10 +70,10 @@ export class CliClient {
         headers: {Accept: 'text/html,application/xhtml+xml,application/xml'},
       })
       const cryptoVars = extractCryptoVars(data)
-      console.debug('Parsed crypto vars: ', cryptoVars)
+      this.logger.debug('Parsed crypto vars: ', cryptoVars)
       return cryptoVars
     } catch (error) {
-      console.error('Could not get the index page from the router', error)
+      this.logger.error('Could not get the index page from the router', error)
       throw error
     }
   }
@@ -115,14 +116,14 @@ export class CliClient {
       // { p_status: 'Lockout', p_waitTime: 1 }
       return data
     } catch (error) {
-      console.error('Could not set password on remote router.', error)
+      this.logger.error('Could not set password on remote router.', error)
       throw error
     }
   }
 
   async addCredentialToCookie() {
     const credential = await this.fetchCredential()
-    console.debug('Credential: ', credential)
+    this.logger.debug('Credential: ', credential)
     // set obligatory static cookie
     this.cookieJar.setCookie(`credential= ${credential}`, `http://${this.modemIp}`)
   }
@@ -132,7 +133,7 @@ export class CliClient {
       const {data} = await this.httpClient.get('/base_95x.js')
       return extractCredentialString(data)
     } catch (error) {
-      console.error('Could not fetch credential.', error)
+      this.logger.error('Could not fetch credential.', error)
       throw error
     }
   }
@@ -151,8 +152,7 @@ export class CliClient {
       })
       return extractDocsisStatus(data)
     } catch (error) {
-      console.error('Could not fetch remote docsis status'
-      )
+      this.logger.error('Could not fetch remote docsis status', error)
       throw error
     }
   }
@@ -173,21 +173,21 @@ export class CliClient {
           },
         }
       )
-      console.info('Router is restarting')
+      this.logger.log('Router is restarting')
       return data
     } catch (error) {
-      console.error('Could not restart router.', error)
+      this.logger.error('Could not restart router.', error)
       throw error
     }
   }
 
   async  logout(): Promise<boolean> {
     try {
-      console.info('Logging out...')
+      this.logger.log('Logging out...')
       await this.httpClient.post('/php/logout.php')
       return true
     } catch (error) {
-      console.error('Could not do a full session logout', error)
+      this.logger.error('Could not do a full session logout', error)
       throw error
     }
   }

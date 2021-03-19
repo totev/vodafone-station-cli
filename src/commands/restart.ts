@@ -2,6 +2,7 @@ import {flags} from '@oclif/command'
 import Command from '../base-command'
 import {CliClient} from '../client'
 import {discoverModemIp} from '../discovery'
+import {OclifLogger} from '../logger'
 
 export default class Restart extends Command {
   static description =
@@ -19,7 +20,7 @@ export default class Restart extends Command {
   };
 
   async restartRouter(password: string) {
-    const cliClient = new CliClient(await discoverModemIp())
+    const cliClient = new CliClient(await discoverModemIp(), new OclifLogger(this.log, this.warn, this.debug, this.error))
     try {
       const csrfNonce = await cliClient.login(password)
       await cliClient.restart(csrfNonce)
