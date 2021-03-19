@@ -1,6 +1,7 @@
 import {flags} from '@oclif/command'
 import Command from '../base-command'
-import {login, logout, restart} from '../client'
+import {CliClient} from '../client'
+import {discoverModemIp} from '../discovery'
 
 export default class Restart extends Command {
   static description =
@@ -18,13 +19,14 @@ export default class Restart extends Command {
   };
 
   async restartRouter(password: string) {
+    const cliClient = new CliClient(await discoverModemIp())
     try {
-      const csrfNonce = await login(password)
-      await restart(csrfNonce)
+      const csrfNonce = await cliClient.login(password)
+      await cliClient.restart(csrfNonce)
     } catch (error) {
       this.log('Something went wrong.', error)
     } finally {
-      await logout()
+      await cliClient.logout()
     }
   }
 
@@ -40,5 +42,6 @@ export default class Restart extends Command {
     }
     this.log('Restarting router...')
     await this.restartRouter(password)
+    this.exit()
   }
 }

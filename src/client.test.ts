@@ -1,5 +1,5 @@
 import {CryptoVars} from './html-parser'
-import {encryptPassword} from './client'
+import {CliClient} from './client'
 
 describe('client', () => {
   test('should encrypt', () => {
@@ -15,6 +15,7 @@ describe('client', () => {
       sessionId: '01a91cedd129fd8c6f18e3a1b58d096f',
       nonce: 'WslSZgE7NuQr+1BMqiYEOBMzQlo=',
     }
-    expect(encryptPassword('test', given)).toEqual(expected)
+    const cliClient = new CliClient('0.0.0.0')
+    expect(cliClient.encryptPassword('test', given)).toEqual(expected)
   })
 })

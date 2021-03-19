@@ -1,7 +1,8 @@
 import {flags} from '@oclif/command'
 import {promises as fsp} from 'fs'
-import {fetchDocsisStatus, login, logout} from '../client'
 import Command from '../base-command'
+import {CliClient} from '../client'
+import {discoverModemIp} from '../discovery'
 
 export default class Docsis extends Command {
   static description =
@@ -25,13 +26,14 @@ JSON data
   };
 
   async getDocsisStatus(password: string) {
+    const cliClient = new CliClient(await discoverModemIp())
     try {
-      const csrfNonce = await login(password)
-      return fetchDocsisStatus(csrfNonce)
+      const csrfNonce = await cliClient.login(password)
+      return cliClient.fetchDocsisStatus(csrfNonce)
     } catch (error) {
       this.error('Something went wrong.', error)
     } finally {
-      await logout()
+      await cliClient.logout()
     }
   }
 
@@ -61,5 +63,6 @@ JSON data
     } else {
       this.log(docsisStatusJSON)
     }
+    this.exit()
   }
 }
