@@ -27,6 +27,12 @@ export function deriveKey(password: string, salt: string) {
   return sjcl.codec.hex.fromBits(derivedKeyBits)
 }
 
+export function deriveKeyTechnicolor(password: string, salt: string): string {
+  const derivedKeyBits = sjcl.misc.pbkdf2(password, salt,     SJCL_ITERATIONS,
+    SJCL_KEYSIZEBITS)
+  return sjcl.codec.hex.fromBits(derivedKeyBits)
+}
+
 export function encrypt(
   derivedKey: string,
   plainText: string,
