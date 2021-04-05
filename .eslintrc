@@ -1,7 +1,13 @@
 {
   "extends": [
     "oclif",
-    "oclif-typescript"
+    "oclif-typescript",
   ],
-  "rules": {}
+  "rules": {
+    "no-useless-constructor": "off",
+    "indent": [
+      "warn",
+      2
+    ]
+  }
 }
