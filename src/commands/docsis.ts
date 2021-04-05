@@ -3,6 +3,7 @@ import {promises as fsp} from 'fs'
 import Command from '../base-command'
 import {CliClient} from '../client'
 import {discoverModemIp} from '../discovery'
+import {DocsisStatus} from '../html-parser'
 import {OclifLogger} from '../logger'
 
 export default class Docsis extends Command {
@@ -26,13 +27,14 @@ JSON data
     }),
   };
 
-  async getDocsisStatus(password: string) {
+  async getDocsisStatus(password: string): Promise<DocsisStatus> {
     const cliClient = new CliClient(await discoverModemIp(), new OclifLogger(this.log, this.warn, this.debug, this.error))
     try {
       const csrfNonce = await cliClient.login(password)
       return cliClient.fetchDocsisStatus(csrfNonce)
     } catch (error) {
       this.error('Something went wrong.', error)
+      throw new Error('Could not fetch docsis status from modem')
     } finally {
       await cliClient.logout()
     }
@@ -45,7 +47,7 @@ JSON data
     return fsp.writeFile(reportFile, data)
   }
 
-  async run() {
+  async run(): Promise<void> {
     const {flags} = this.parse(Docsis)
 
     const password = process.env.VODAFONE_ROUTER_PASSWORD ?? flags.password

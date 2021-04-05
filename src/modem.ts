@@ -13,9 +13,7 @@ export interface GenericModem{
 
 export abstract class Modem implements GenericModem {
   protected readonly cookieJar: CookieJar
-
   protected readonly httpClient: AxiosInstance
-
   static USERNAME = 'admin'
 
   constructor(protected readonly modemIp: string, protected readonly logger: Log) {
@@ -31,7 +29,7 @@ export abstract class Modem implements GenericModem {
     throw new Error('Method not implemented.')
   }
 
-  initAxios(): AxiosInstance {
+  private initAxios(): AxiosInstance {
     return axios.create({
       withCredentials: true,
       jar: this.cookieJar,

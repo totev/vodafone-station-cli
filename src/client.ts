@@ -100,8 +100,8 @@ export class CliClient {
     cryptoVars: CryptoVars,
     key: string
   ): string {
-    const csrf_nonce = decrypt(key, encryptedData, cryptoVars.iv, 'nonce')
-    return csrf_nonce
+    const csrfNonce = decrypt(key, encryptedData, cryptoVars.iv, 'nonce')
+    return csrfNonce
   }
 
   async  createServerRecord(

@@ -9,7 +9,7 @@ export default class Discover extends Command {
     '$ vodafone-station-cli discover',
   ];
 
-  async discoverModem() {
+  async discoverModem(): Promise<void> {
     try {
       const modemIp = await discoverModemIp()
       this.log(`Possibly found modem under the following IP: ${modemIp}`)
@@ -20,7 +20,7 @@ export default class Discover extends Command {
     }
   }
 
-  async run() {
+  async run(): Promise<void> {
     await this.discoverModem()
     this.exit()
   }
