@@ -14,7 +14,8 @@ export default class Discover extends Command {
       const modemIp = await discoverModemIp()
       this.log(`Possibly found modem under the following IP: ${modemIp}`)
       const modem = new ModemDiscovery(modemIp, this.logger)
-      await modem.tryTechnicolor()
+      const discoveredModem = await modem.discover()
+      this.log(`Discovered modem: ${JSON.stringify(discoveredModem)}`)
     } catch (error) {
       this.log('Something went wrong.', error)
     }

@@ -33,7 +33,7 @@ export class Technicolor extends Modem {
     super(modemIp, logger)
   }
 
-  async login(password: string) {
+  async login(password: string): Promise<void> {
     try {
       const {data: salt} = await this.httpClient.post<TechnicolorSaltResponse>('/api/v1/session/login', `username=${Modem.USERNAME}&password=seeksalthash`, {
         headers: {

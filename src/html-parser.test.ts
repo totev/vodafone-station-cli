@@ -4,6 +4,7 @@ import {
   extractCredentialString,
   extractCryptoVars,
   extractDocsisStatus,
+  extractFirmwareVersion,
 } from './html-parser'
 
 describe('htmlParser', () => {
@@ -43,5 +44,9 @@ describe('htmlParser', () => {
     expect(extractCredentialString(fixture)).toEqual(
       'someRandomCatchyHash37f1f79255b66b5c02348e3dc6ff5fcd559654e2'
     )
+  })
+
+  test('extractFirmwareVersion', () => {
+    expect(extractFirmwareVersion(fixtureIndex)).toBe('01.02.068.11.EURO.PC20')
   })
 })

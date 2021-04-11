@@ -7,6 +7,12 @@ export class Arris extends Modem {
   }
 
   async logout(): Promise<void> {
-    throw new Error('Not implemented!')
+    try {
+      this.logger.log('Logging out...')
+      return  this.httpClient.post('/php/logout.php')
+    } catch (error) {
+      this.logger.error('Could not do a full session logout', error)
+      throw error
+    }
   }
 }
