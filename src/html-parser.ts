@@ -1,3 +1,5 @@
+import {DocsisChannelStatus, DocsisStatus} from './modem'
+
 const nonceMatcher = /var csp_nonce = "(?<nonce>.*?)";/gm
 const ivMatcher = /var myIv = ["|'](?<iv>.*?)["|'];/gm
 const saltMatcher = /var mySalt = ["|'](?<salt>.*?)["|'];/gm
@@ -21,25 +23,6 @@ export function extractCryptoVars(html: string): CryptoVars {
 
 export function extractFirmwareVersion(html: string): string|undefined {
   return swVersionMatcher.exec(html)?.groups?.swVersion
-}
-
-export interface DocsisStatus {
-  downstream: DocsisChannelStatus[];
-  upstream: DocsisChannelStatus[];
-  downstreamChannels: number;
-  upstreamChannels: number;
-  ofdmChannels: number;
-  time: string;
-}
-
-export interface DocsisChannelStatus {
-  ChannelID: string;
-  ChannelType: string;
-  Frequency: string;
-  LockStatus: string;
-  Modulation: string;
-  PowerLevel: string;
-  SNRLevel: string;
 }
 
 export function extractDocsisStatus(

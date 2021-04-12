@@ -1,10 +1,9 @@
 import {flags} from '@oclif/command'
 import {promises as fsp} from 'fs'
 import Command from '../base-command'
-import {CliClient} from '../client'
-import {discoverModemIp} from '../discovery'
-import {DocsisStatus} from '../html-parser'
-import {OclifLogger} from '../logger'
+import {discoverModemIp, ModemDiscovery} from '../discovery'
+import {DocsisStatus} from '../modem'
+import {modemFactory} from '../modem/factory'
 
 export default class Docsis extends Command {
   static description =
@@ -28,15 +27,17 @@ JSON data
   };
 
   async getDocsisStatus(password: string): Promise<DocsisStatus> {
-    const cliClient = new CliClient(await discoverModemIp(), new OclifLogger(this.log, this.warn, this.debug, this.error))
+    const modemIp = await discoverModemIp()
+    const discoveredModem = await new ModemDiscovery(modemIp, this.logger).discover()
+    const modem = modemFactory(discoveredModem)
     try {
-      const csrfNonce = await cliClient.login(password)
-      return cliClient.fetchDocsisStatus(csrfNonce)
+      await modem.login(password)
+      return modem.docsis()
     } catch (error) {
       this.error('Something went wrong.', error)
       throw new Error('Could not fetch docsis status from modem')
     } finally {
-      await cliClient.logout()
+      await modem.logout()
     }
   }
 

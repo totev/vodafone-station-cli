@@ -1,6 +1,6 @@
-import {deriveKeyTechnicolor} from './crypto'
-import {Log} from './logger'
-import {Modem} from './modem'
+import {deriveKeyTechnicolor} from '../crypto'
+import {Log} from '../logger'
+import {DocsisStatus, Modem} from '../modem'
 
 export interface TechnicolorConfiguration{
     error: string | 'ok';
@@ -52,13 +52,16 @@ export class Technicolor extends Modem {
         },
       })
       this.logger.log('fam status', loginResponse)
-      const {data: docsisStatus} = await this.httpClient.get('/api/v1/sta_docsis_status')
-      this.logger.log(`bam: ${JSON.stringify(docsisStatus)}`)
     } catch (error) {
       this.logger.warn(`Something went wrong with the login ${error}`)
     } finally {
       await this.logout()
     }
+  }
+
+  async docsis(): Promise<DocsisStatus> {
+    const {data: docsisStatus} = await this.httpClient.get('/api/v1/sta_docsis_status')
+    return docsisStatus
   }
 
   async logout(): Promise<void> {
