@@ -2,9 +2,13 @@ import {deriveKeyTechnicolor} from '../crypto'
 import {Log} from '../logger'
 import {DocsisStatus, Modem} from '../modem'
 
-export interface TechnicolorConfiguration{
-    error: string | 'ok';
-    message: string;
+export interface TechnicolorBaseResponse{
+  error: string | 'ok' | 'error';
+  message: string;
+  data?: {[key: string]: unknown};
+}
+
+export interface TechnicolorConfiguration extends TechnicolorBaseResponse{
     data: {
         LanMode: 'router' | 'modem';
         DeviceMode: 'Ipv4' | 'Ipv4';
@@ -15,17 +19,13 @@ export interface TechnicolorConfiguration{
     };
 }
 
-export interface TechnicolorSaltResponse{
-    error: string | 'ok';
+export interface TechnicolorSaltResponse  extends TechnicolorBaseResponse{
     salt: string;
     saltwebui: string;
-    message?: string;
 }
 
-export interface TechnicolorLoginResponse{
-    error: 'error';
-    message: string;
-    data: any[];
+export interface TechnicolorTokenResponse  extends TechnicolorBaseResponse{
+    token: string;
 }
 
 export class Technicolor extends Modem {
@@ -46,16 +46,15 @@ export class Technicolor extends Modem {
       }
 
       const derivedKey = deriveKeyTechnicolor(deriveKeyTechnicolor(password, salt.salt), salt.saltwebui)
-      const {data: loginResponse} = await this.httpClient.post<TechnicolorLoginResponse>('/api/v1/session/login', `username=${Modem.USERNAME}&password=${derivedKey}`, {
+      this.logger.debug('Derived key', derivedKey)
+      const {data: loginResponse} = await this.httpClient.post<TechnicolorBaseResponse>('/api/v1/session/login', `username=${Modem.USERNAME}&password=${derivedKey}`, {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
         },
       })
-      this.logger.log('fam status', loginResponse)
+      this.logger.debug('Login status', loginResponse)
     } catch (error) {
       this.logger.warn(`Something went wrong with the login ${error}`)
-    } finally {
-      await this.logout()
     }
   }
 
@@ -65,7 +64,26 @@ export class Technicolor extends Modem {
   }
 
   async logout(): Promise<void> {
-    this.logger.debug('Logging out...')
+    this.logger.debug('Logging outB...')
     return this.httpClient.post('api/v1/session/logout')
   }
+
+  async restart(): Promise<unknown> {
+    const {data: tokenResponse} = await this.httpClient.get<TechnicolorTokenResponse>('api/v1/session/init_page')
+    this.logger.debug('Token response: ', tokenResponse)
+    const {data: restartResponse} = await this.httpClient.post<TechnicolorBaseResponse>('api/v1/sta_restart',
+      'restart=Router%2CWifi%2CVoIP%2CDect%2CMoCA', {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+          'X-CSRF-TOKEN': tokenResponse.token,
+        },
+      })
+
+    if (restartResponse?.error === 'error') {
+      this.logger.debug(restartResponse)
+      throw new Error(`Could not restart router: ${restartResponse.message}`)
+    }
+    return restartResponse
+  }
 }
+

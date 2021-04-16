@@ -1,6 +1,6 @@
 {
   "name": "vodafone-station-cli",
-  "description": "Access your Arris TG3442DE (aka Vodafone Station) from the comfort of the command line.",
+  "description": "Access your Vodafone Station from the comfort of the command line.",
   "version": "1.0.0",
   "author": "Dobroslav Totev",
   "bin": {

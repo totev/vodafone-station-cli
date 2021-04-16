@@ -24,7 +24,8 @@ export default class Restart extends Command {
     const modem = modemFactory(discoveredModem)
     try {
       await modem.login(password)
-      return modem.restart()
+      const restart = await modem.restart()
+      return restart
     } catch (error) {
       this.log('Something went wrong.', error)
     } finally {
@@ -35,14 +36,14 @@ export default class Restart extends Command {
   async run(): Promise<void> {
     const {flags} = this.parse(Restart)
 
-    const password = process.env.VODAFONE_ROUTER_PASSWORD ?? flags.password
+    const password = flags.password ?? process.env.VODAFONE_ROUTER_PASSWORD
     if (!password || password === '') {
       this.log(
         'You must provide a password either using -p or by setting the environment variable VODAFONE_ROUTER_PASSWORD'
       )
       this.exit()
     }
-    this.log('Restarting router...')
+    this.log('Restarting router... this could take some time...')
     await this.restartRouter(password)
     this.exit()
   }

@@ -32,7 +32,8 @@ JSON data
     const modem = modemFactory(discoveredModem)
     try {
       await modem.login(password)
-      return modem.docsis()
+      const docsisData = await modem.docsis()
+      return docsisData
     } catch (error) {
       this.error('Something went wrong.', error)
       throw new Error('Could not fetch docsis status from modem')
@@ -51,7 +52,7 @@ JSON data
   async run(): Promise<void> {
     const {flags} = this.parse(Docsis)
 
-    const password = process.env.VODAFONE_ROUTER_PASSWORD ?? flags.password
+    const password = flags.password ?? process.env.VODAFONE_ROUTER_PASSWORD
     if (!password || password === '') {
       this.log(
         'You must provide a password either using -p or by setting the environment variable VODAFONE_ROUTER_PASSWORD'
