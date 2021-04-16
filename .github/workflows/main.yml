@@ -29,5 +29,6 @@ jobs:
         with:
           files: dist/**/*.tar.gz
           draft: true
+          body_path: CHANGELOG.md
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
