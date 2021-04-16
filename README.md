@@ -32,7 +32,7 @@ $ npm install -g vodafone-station-cli
 $ vodafone-station-cli COMMAND
 running command...
 $ vodafone-station-cli (-v|--version|version)
-vodafone-station-cli/1.0.0 darwin-arm64 node-v15.11.0
+vodafone-station-cli/1.1.0 darwin-arm64 node-v15.14.0
 $ vodafone-station-cli --help [COMMAND]
 USAGE
   $ vodafone-station-cli COMMAND
@@ -41,9 +41,24 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
+* [`vodafone-station-cli discover`](#vodafone-station-cli-discover)
 * [`vodafone-station-cli docsis`](#vodafone-station-cli-docsis)
 * [`vodafone-station-cli help [COMMAND]`](#vodafone-station-cli-help-command)
 * [`vodafone-station-cli restart`](#vodafone-station-cli-restart)
+
+## `vodafone-station-cli discover`
+
+Try to discover a cable modem in the network
+
+```
+USAGE
+  $ vodafone-station-cli discover
+
+EXAMPLE
+  $ vodafone-station-cli discover
+```
+
+_See code: [src/commands/discover.ts](https://github.com/totev/vodafone-station-cli/blob/v1.1.0/src/commands/discover.ts)_
 
 ## `vodafone-station-cli docsis`
 
@@ -62,7 +77,7 @@ EXAMPLE
   JSON data
 ```
 
-_See code: [src/commands/docsis.ts](https://github.com/totev/vodafone-station-cli/blob/v1.0.0/src/commands/docsis.ts)_
+_See code: [src/commands/docsis.ts](https://github.com/totev/vodafone-station-cli/blob/v1.1.0/src/commands/docsis.ts)_
 
 ## `vodafone-station-cli help [COMMAND]`
 
@@ -96,7 +111,7 @@ EXAMPLE
   $ vodafone-station-cli restart -p PASSWORD
 ```
 
-_See code: [src/commands/restart.ts](https://github.com/totev/vodafone-station-cli/blob/v1.0.0/src/commands/restart.ts)_
+_See code: [src/commands/restart.ts](https://github.com/totev/vodafone-station-cli/blob/v1.1.0/src/commands/restart.ts)_
 <!-- commandsstop -->
 
 
