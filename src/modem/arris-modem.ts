@@ -1,20 +1,7 @@
-import axios, {AxiosInstance} from 'axios'
-import axiosCookieJarSupport from 'axios-cookiejar-support'
-import {CookieJar} from 'tough-cookie'
-import {decrypt, deriveKey, encrypt} from './crypto'
-import {
-  CryptoVars,
-  DocsisStatus,
-  extractCredentialString,
-  extractCryptoVars,
-  extractDocsisStatus,
-} from './html-parser'
-import {Log} from './logger'
-
-// axios cookie support
-axiosCookieJarSupport(axios)
-
-const USERNAME = 'admin'
+import {decrypt, deriveKey, encrypt} from '../crypto'
+import {CryptoVars, extractCredentialString, extractCryptoVars, extractDocsisStatus} from '../html-parser'
+import {Log} from '../logger'
+import {DocsisStatus, Modem} from '../modem'
 
 export interface SetPasswordRequest {
   AuthData: string;
@@ -28,25 +15,23 @@ export interface SetPasswordResponse {
   p_waitTime?: number;
 }
 
-export class CliClient {
-  private readonly cookieJar: CookieJar
-
-  private readonly httpClient: AxiosInstance
-
-  constructor(private readonly modemIp: string, private readonly logger: Log) {
-    this.cookieJar = new CookieJar()
-    this.httpClient = this.initAxios()
+export class Arris extends Modem {
+  private csrfNonce = ''
+  constructor(readonly modemIp: string, readonly logger: Log) {
+    super(modemIp, logger)
   }
 
-  initAxios(): AxiosInstance {
-    return axios.create({
-      withCredentials: true,
-      jar: this.cookieJar,
-      baseURL: `http://${this.modemIp}`,
-    })
+  async logout(): Promise<void> {
+    try {
+      this.logger.log('Logging out...')
+      return  this.httpClient.post('/php/logout.php')
+    } catch (error) {
+      this.logger.error('Could not do a full session logout', error)
+      throw error
+    }
   }
 
-  async  login(password: string) {
+  async login(password: string): Promise<void> {
     const cryptoVars = await this.getCurrentCryptoVars()
     const encPw = this.encryptPassword(password, cryptoVars)
     this.logger.debug('Encrypted password: ', encPw)
@@ -61,7 +46,7 @@ export class CliClient {
     this.logger.debug('Csrf nonce: ', csrfNonce)
 
     await this.addCredentialToCookie()
-    return csrfNonce
+    this.csrfNonce = csrfNonce
   }
 
   async  getCurrentCryptoVars(): Promise<CryptoVars> {
@@ -90,7 +75,7 @@ export class CliClient {
 
     return {
       EncryptData: encryptData,
-      Name: USERNAME,
+      Name: Modem.USERNAME,
       AuthData: authData,
     }
   }
@@ -100,8 +85,8 @@ export class CliClient {
     cryptoVars: CryptoVars,
     key: string
   ): string {
-    const csrf_nonce = decrypt(key, encryptedData, cryptoVars.iv, 'nonce')
-    return csrf_nonce
+    const csrfNonce = decrypt(key, encryptedData, cryptoVars.iv, 'nonce')
+    return csrfNonce
   }
 
   async  createServerRecord(
@@ -121,7 +106,7 @@ export class CliClient {
     }
   }
 
-  async addCredentialToCookie() {
+  async addCredentialToCookie(): Promise<void> {
     const credential = await this.fetchCredential()
     this.logger.debug('Credential: ', credential)
     // set obligatory static cookie
@@ -138,13 +123,14 @@ export class CliClient {
     }
   }
 
-  async fetchDocsisStatus(
-    csrfNonce: string
-  ): Promise<DocsisStatus> {
+  async docsis(): Promise<DocsisStatus> {
+    if (!this.csrfNonce) {
+      throw new Error('A valid csrfNonce is required in order to query the modem.')
+    }
     try {
       const {data} = await this.httpClient.get('/php/status_docsis_data.php', {
         headers: {
-          csrfNonce,
+          csrfNonce: this.csrfNonce,
           Referer: `http://${this.modemIp}/?status_docsis&mid=StatusDocsis`,
           'X-Requested-With': 'XMLHttpRequest',
           Connection: 'keep-alive',
@@ -157,7 +143,7 @@ export class CliClient {
     }
   }
 
-  async restart(csrfNonce: string) {
+  async restart(): Promise<unknown> {
     try {
       const {data} = await this.httpClient.post(
         'php/ajaxSet_status_restart.php',
@@ -166,7 +152,7 @@ export class CliClient {
         },
         {
           headers: {
-            csrfNonce,
+            csrfNonce: this.csrfNonce,
             Referer: `http://${this.modemIp}/?status_docsis&mid=StatusDocsis`,
             'X-Requested-With': 'XMLHttpRequest',
             Connection: 'keep-alive',
@@ -180,16 +166,4 @@ export class CliClient {
       throw error
     }
   }
-
-  async  logout(): Promise<boolean> {
-    try {
-      this.logger.log('Logging out...')
-      await this.httpClient.post('/php/logout.php')
-      return true
-    } catch (error) {
-      this.logger.error('Could not do a full session logout', error)
-      throw error
-    }
-  }
 }
-

@@ -1,7 +1,15 @@
 {
   "extends": [
     "oclif",
-    "oclif-typescript"
+    "oclif-typescript",
+    "plugin:@typescript-eslint/recommended"
   ],
-  "rules": {}
+  "rules": {
+    "no-useless-constructor": "off",
+    "indent": [
+      "warn",
+      2
+    ],
+    "lines-between-class-members": "off"
+  }
 }

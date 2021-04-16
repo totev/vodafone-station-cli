@@ -1,8 +1,8 @@
-import {CliClient} from './client'
-import {CryptoVars} from './html-parser'
-import {ConsoleLogger} from './logger'
+import {CryptoVars} from '../html-parser'
+import {ConsoleLogger} from '../logger'
+import {Arris} from './arris-modem'
 
-describe('client', () => {
+describe('Arris', () => {
   test('should encrypt', () => {
     const expected = {
       EncryptData:
@@ -16,7 +16,7 @@ describe('client', () => {
       sessionId: '01a91cedd129fd8c6f18e3a1b58d096f',
       nonce: 'WslSZgE7NuQr+1BMqiYEOBMzQlo=',
     }
-    const cliClient = new CliClient('0.0.0.0', new ConsoleLogger())
-    expect(cliClient.encryptPassword('test', given)).toEqual(expected)
+    const arrisModem = new Arris('0.0.0.0', new ConsoleLogger())
+    expect(arrisModem.encryptPassword('test', given)).toEqual(expected)
   })
 })

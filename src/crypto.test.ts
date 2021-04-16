@@ -1,4 +1,4 @@
-import {decrypt, deriveKey, encrypt} from './crypto'
+import {decrypt, deriveKey, deriveKeyTechnicolor, encrypt} from './crypto'
 import {CryptoVars} from './html-parser'
 
 describe('crypto', () => {
@@ -13,6 +13,22 @@ describe('crypto', () => {
   test('deriveKey', () => {
     expect(deriveKey('test', cryptoVars.salt)).toEqual(testPasswordAsKey)
   })
+
+  test('deriveKey from technicolor', () => {
+    const password = 'as'
+    const salt = 'HSts76GJOAB'
+    const expected = 'bcdf6051836bf84744229389ccc96896'
+    expect(deriveKeyTechnicolor(password, salt)).toBe(expected)
+  })
+
+  test('deriveKey from technicolor 2times with saltwebui', () => {
+    const password = 'test'
+    const salt = 'HSts76GJOAB'
+    const saltwebui = 'KoD4Sga9fw1K'
+    const expected = 'd1f11af69dddb4e66ca029ccba4571d4'
+    expect(deriveKeyTechnicolor(deriveKeyTechnicolor(password, salt), saltwebui)).toBe(expected)
+  })
+
   test('encrypt', () => {
     expect(
       encrypt(testPasswordAsKey, 'textToEncrypt', cryptoVars.iv, 'authData')
