@@ -16,7 +16,7 @@ export function prepareParameters(
   }
 }
 
-export function deriveKey(password: string, salt: string) {
+export function deriveKey(password: string, salt: string): string {
   const derivedKeyBits = sjcl.misc.pbkdf2(
     password,
     sjcl.codec.hex.toBits(salt),

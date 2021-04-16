@@ -45,7 +45,7 @@ export class ConsoleLogger implements Log {
     console.warn(input)
   }
 
-  log(message?: string, ...args: any[]): void{
+  log(message?: string, ...args: any[]): void {
     console.log(message, args)
   }
 }

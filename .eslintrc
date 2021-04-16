@@ -10,6 +10,7 @@
       "warn",
       2
     ],
-    "lines-between-class-members": "off"
+    "lines-between-class-members": "off",
+    "comma-dangle": "off"
   }
 }
