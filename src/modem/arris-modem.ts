@@ -1,8 +1,19 @@
-import {SetPasswordRequest, SetPasswordResponse} from '../client'
 import {decrypt, deriveKey, encrypt} from '../crypto'
 import {CryptoVars, extractCredentialString, extractCryptoVars, extractDocsisStatus} from '../html-parser'
 import {Log} from '../logger'
 import {DocsisStatus, Modem} from '../modem'
+
+export interface SetPasswordRequest {
+  AuthData: string;
+  EncryptData: string;
+  Name: string;
+}
+
+export interface SetPasswordResponse {
+  p_status: string;
+  encryptData: string;
+  p_waitTime?: number;
+}
 
 export class Arris extends Modem {
   private csrfNonce = ''
@@ -128,6 +139,30 @@ export class Arris extends Modem {
       return extractDocsisStatus(data)
     } catch (error) {
       this.logger.error('Could not fetch remote docsis status', error)
+      throw error
+    }
+  }
+
+  async restart(): Promise<unknown> {
+    try {
+      const {data} = await this.httpClient.post(
+        'php/ajaxSet_status_restart.php',
+        {
+          RestartReset: 'Restart',
+        },
+        {
+          headers: {
+            csrfNonce: this.csrfNonce,
+            Referer: `http://${this.modemIp}/?status_docsis&mid=StatusDocsis`,
+            'X-Requested-With': 'XMLHttpRequest',
+            Connection: 'keep-alive',
+          },
+        }
+      )
+      this.logger.log('Router is restarting')
+      return data
+    } catch (error) {
+      this.logger.error('Could not restart router.', error)
       throw error
     }
   }

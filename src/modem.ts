@@ -28,6 +28,7 @@ export interface GenericModem{
   logout(): Promise<void>;
   login(password: string): Promise<void>;
   docsis(): Promise<DocsisStatus>;
+  restart(): Promise<unknown>;
 }
 
 export abstract class Modem implements GenericModem {
@@ -38,6 +39,9 @@ export abstract class Modem implements GenericModem {
   constructor(protected readonly modemIp: string, protected readonly logger: Log) {
     this.cookieJar = new CookieJar()
     this.httpClient = this.initAxios()
+  }
+  restart(): Promise<unknown> {
+    throw new Error('Method not implemented.')
   }
 
   docsis(): Promise<DocsisStatus> {

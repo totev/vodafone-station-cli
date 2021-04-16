@@ -1,8 +1,7 @@
 import {flags} from '@oclif/command'
 import Command from '../base-command'
-import {CliClient} from '../client'
-import {discoverModemIp} from '../discovery'
-import {OclifLogger} from '../logger'
+import {discoverModemIp, ModemDiscovery} from '../discovery'
+import {modemFactory} from '../modem/factory'
 
 export default class Restart extends Command {
   static description =
@@ -19,19 +18,21 @@ export default class Restart extends Command {
     }),
   };
 
-  async restartRouter(password: string) {
-    const cliClient = new CliClient(await discoverModemIp(), new OclifLogger(this.log, this.warn, this.debug, this.error))
+  async restartRouter(password: string): Promise<unknown> {
+    const modemIp = await discoverModemIp()
+    const discoveredModem = await new ModemDiscovery(modemIp, this.logger).discover()
+    const modem = modemFactory(discoveredModem)
     try {
-      const csrfNonce = await cliClient.login(password)
-      await cliClient.restart(csrfNonce)
+      await modem.login(password)
+      return modem.restart()
     } catch (error) {
       this.log('Something went wrong.', error)
     } finally {
-      await cliClient.logout()
+      await modem.logout()
     }
   }
 
-  async run() {
+  async run(): Promise<void> {
     const {flags} = this.parse(Restart)
 
     const password = process.env.VODAFONE_ROUTER_PASSWORD ?? flags.password
