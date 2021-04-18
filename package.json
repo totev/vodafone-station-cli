@@ -20,23 +20,22 @@
   },
   "devDependencies": {
     "@oclif/dev-cli": "^1",
-    "@types/dotenv": "^8.2.0",
     "@types/jest": "^26.0.20",
-    "@types/node": "^10",
+    "@types/node": "^14.14.41",
     "@types/sjcl": "^1.0.29",
     "@types/tough-cookie": "^4.0.0",
-    "eslint": "^5.13",
+    "eslint": "^7.24.0",
     "eslint-config-oclif": "^3.1",
-    "eslint-config-oclif-typescript": "^0.1",
-    "globby": "^10",
+    "eslint-config-oclif-typescript": "^0.2.0",
+    "globby": "^11.0.3",
     "jest": "^26.6.3",
     "ts-jest": "^26.5.1",
-    "ts-node": "^8",
-    "tslib": "^1",
-    "typescript": "^3.3"
+    "ts-node": "^9.1.1",
+    "tslib": "^2.2.0",
+    "typescript": "^4.2.4"
   },
   "engines": {
-    "node": ">=12.0.0"
+    "node": ">=14.0.0"
   },
   "files": [
     "/bin",
