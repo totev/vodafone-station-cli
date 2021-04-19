@@ -1,7 +1,7 @@
 import {decrypt, deriveKey, encrypt} from '../crypto'
 import {CryptoVars, extractCredentialString, extractCryptoVars, extractDocsisStatus} from '../html-parser'
 import {Log} from '../logger'
-import {DocsisStatus, Modem} from '../modem'
+import {DocsisStatus, Modem} from './modem'
 
 export interface SetPasswordRequest {
   AuthData: string;

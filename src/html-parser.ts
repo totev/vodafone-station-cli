@@ -1,4 +1,4 @@
-import {DocsisChannelStatus, DocsisStatus} from './modem'
+import type {DocsisChannelStatus, DocsisStatus} from './modem/modem'
 
 const nonceMatcher = /var csp_nonce = "(?<nonce>.*?)";/gm
 const ivMatcher = /var myIv = ["|'](?<iv>.*?)["|'];/gm

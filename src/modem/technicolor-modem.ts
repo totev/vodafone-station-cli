@@ -1,6 +1,6 @@
 import {deriveKeyTechnicolor} from '../crypto'
 import {Log} from '../logger'
-import {DocsisStatus, Modem} from '../modem'
+import {DocsisStatus, Modem} from './modem'
 
 export interface TechnicolorBaseResponse{
   error: string | 'ok' | 'error';

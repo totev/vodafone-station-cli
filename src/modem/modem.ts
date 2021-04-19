@@ -1,7 +1,7 @@
 import axios, {AxiosInstance} from 'axios'
 import axiosCookieJarSupport from 'axios-cookiejar-support'
 import {CookieJar} from 'tough-cookie'
-import {Log} from './logger'
+import {Log} from '../logger'
 // axios cookie support
 axiosCookieJarSupport(axios)
 

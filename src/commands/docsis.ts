@@ -2,7 +2,7 @@ import {flags} from '@oclif/command'
 import {promises as fsp} from 'fs'
 import Command from '../base-command'
 import {discoverModemIp, ModemDiscovery} from '../discovery'
-import {DocsisStatus} from '../modem'
+import type {DocsisStatus} from '../modem/modem'
 import {modemFactory} from '../modem/factory'
 
 export default class Docsis extends Command {
