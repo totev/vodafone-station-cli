@@ -1,5 +1,5 @@
 import {Arris} from './arris-modem'
-import {ModemInformation} from '../discovery'
+import {ModemInformation} from './discovery'
 import {ConsoleLogger, Log} from '../logger'
 import type {Modem} from './modem'
 import {Technicolor} from './technicolor-modem'

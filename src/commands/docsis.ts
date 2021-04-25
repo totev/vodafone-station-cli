@@ -1,7 +1,7 @@
 import {flags} from '@oclif/command'
 import {promises as fsp} from 'fs'
 import Command from '../base-command'
-import {discoverModemIp, ModemDiscovery} from '../discovery'
+import {discoverModemIp, ModemDiscovery} from '../modem/discovery'
 import type {DocsisStatus} from '../modem/modem'
 import {modemFactory} from '../modem/factory'
 

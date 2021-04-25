@@ -64,7 +64,7 @@ export class Technicolor extends Modem {
   }
 
   async logout(): Promise<void> {
-    this.logger.debug('Logging outB...')
+    this.logger.debug('Logging out...')
     return this.httpClient.post('api/v1/session/logout')
   }
 

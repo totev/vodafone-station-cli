@@ -1,5 +1,5 @@
 import Command from '../base-command'
-import {discoverModemIp, ModemDiscovery} from '../discovery'
+import {discoverModemIp, ModemDiscovery} from '../modem/discovery'
 
 export default class Discover extends Command {
   static description =

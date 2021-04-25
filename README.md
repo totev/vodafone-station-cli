@@ -121,3 +121,6 @@ _See code: [src/commands/restart.ts](https://github.com/totev/vodafone-station-c
 - https://github.com/cbruegg/packetloss-watchdog
 - https://github.com/Fluepke/vodafone-station-exporter
 - https://github.com/bitwiseshiftleft/sjcl
+
+Cable connection information/meaning:
+- https://motorolacable.com/whitepapers/cable-connection

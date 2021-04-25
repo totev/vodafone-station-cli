@@ -1,6 +1,6 @@
 import {flags} from '@oclif/command'
 import Command from '../base-command'
-import {discoverModemIp, ModemDiscovery} from '../discovery'
+import {discoverModemIp, ModemDiscovery} from '../modem/discovery'
 import {modemFactory} from '../modem/factory'
 
 export default class Restart extends Command {
