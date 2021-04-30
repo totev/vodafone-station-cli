@@ -132,7 +132,6 @@ export class Arris extends Modem {
         headers: {
           csrfNonce: this.csrfNonce,
           Referer: `http://${this.modemIp}/?status_docsis&mid=StatusDocsis`,
-          'X-Requested-With': 'XMLHttpRequest',
           Connection: 'keep-alive',
         },
       })
@@ -154,7 +153,6 @@ export class Arris extends Modem {
           headers: {
             csrfNonce: this.csrfNonce,
             Referer: `http://${this.modemIp}/?status_docsis&mid=StatusDocsis`,
-            'X-Requested-With': 'XMLHttpRequest',
             Connection: 'keep-alive',
           },
         }
