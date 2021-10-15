@@ -1,7 +1,26 @@
-import {decrypt, deriveKey, encrypt} from '../crypto'
-import {CryptoVars, extractCredentialString, extractCryptoVars, extractDocsisStatus} from '../html-parser'
 import {Log} from '../logger'
-import {DocsisStatus, Modem} from './modem'
+import {DocsisStatus, HumanizedDocsisChannelStatus, Modem} from './modem'
+import {decrypt, deriveKey, encrypt} from './tools/crypto'
+import {CryptoVars, extractCredentialString, extractCryptoVars, extractDocsisStatus} from './tools/html-parser'
+
+export interface ArrisDocsisStatus {
+  downstream: ArrisDocsisChannelStatus[];
+  upstream: ArrisDocsisChannelStatus[];
+  downstreamChannels: number;
+  upstreamChannels: number;
+  ofdmChannels: number;
+  time: string;
+}
+
+export interface ArrisDocsisChannelStatus {
+  ChannelID: string;
+  ChannelType: string;
+  Frequency: string|number;
+  Modulation: string;
+  PowerLevel: string;
+  SNRLevel?: string | number;
+  LockStatus: string;
+}
 
 export interface SetPasswordRequest {
   AuthData: string;
@@ -13,6 +32,25 @@ export interface SetPasswordResponse {
   p_status: string;
   encryptData: string;
   p_waitTime?: number;
+}
+
+export function normalizeDocsisStatus(arrisDocsisStatus: ArrisDocsisStatus): DocsisStatus {
+  const result: DocsisStatus = {
+    downstream: [],
+    downstreamOfdma:[]
+  }  as unknown as DocsisStatus
+  result.downstream = arrisDocsisStatus.downstream.map(downstream => {
+    return {
+      channelId: downstream.ChannelID,
+      channelType: downstream.ChannelType,
+      frequency: downstream.Frequency as number,
+      modulation: downstream.Modulation,
+      powerLevel: parseFloat(downstream.PowerLevel.split('/')[1]),
+      lockStatus: downstream.LockStatus,
+      snr: parseInt(`${downstream.SNRLevel ?? 0}`, 10)
+    }
+  })
+  return result
 }
 
 export class Arris extends Modem {
@@ -135,7 +173,7 @@ export class Arris extends Modem {
           Connection: 'keep-alive',
         },
       })
-      return extractDocsisStatus(data)
+      return normalizeDocsisStatus(extractDocsisStatus(data))
     } catch (error) {
       this.logger.error('Could not fetch remote docsis status', error)
       throw error
@@ -165,3 +203,4 @@ export class Arris extends Modem {
     }
   }
 }
+

@@ -1,4 +1,4 @@
-import {deriveKeyTechnicolor} from '../crypto'
+import {deriveKeyTechnicolor} from './tools/crypto'
 import {Log} from '../logger'
 import {DocsisStatus, Modem} from './modem'
 

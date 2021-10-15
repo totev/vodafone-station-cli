@@ -1,4 +1,4 @@
-import type {DocsisChannelStatus, DocsisStatus} from './modem/modem'
+import type {ArrisDocsisChannelStatus, ArrisDocsisStatus} from '../arris-modem'
 
 const nonceMatcher = /var csp_nonce = "(?<nonce>.*?)";/gm
 const ivMatcher = /var myIv = ["|'](?<iv>.*?)["|'];/gm
@@ -28,7 +28,7 @@ export function extractFirmwareVersion(html: string): string|undefined {
 export function extractDocsisStatus(
   html: string,
   date: Date = new Date()
-): DocsisStatus {
+): ArrisDocsisStatus {
   const docsisMatcher = {
     dsData: /json_dsData = (?<dsData>.*?);/gm,
     usData: /json_usData = (?<usData>.*?);/gm,
@@ -46,8 +46,8 @@ export function extractDocsisStatus(
   const ofdmChannels =
     docsisMatcher.ofdmChannels.exec(html)?.groups?.ofdmChannels ?? '0'
   return {
-    downstream: JSON.parse(downstream) as DocsisChannelStatus[],
-    upstream: JSON.parse(upstream) as DocsisChannelStatus[],
+    downstream: JSON.parse(downstream) as ArrisDocsisChannelStatus[],
+    upstream: JSON.parse(upstream) as ArrisDocsisChannelStatus[],
     downstreamChannels: Number.parseInt(downstreamChannels, 10),
     upstreamChannels: Number.parseInt(upstreamChannels, 10),
     ofdmChannels: Number.parseInt(ofdmChannels, 10),

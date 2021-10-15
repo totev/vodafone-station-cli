@@ -1,7 +1,7 @@
-import {CryptoVars} from '../html-parser'
 import {ConsoleLogger} from '../logger'
-import {Arris} from './arris-modem'
-
+import {Arris, normalizeDocsisStatus} from './arris-modem'
+import {CryptoVars} from './tools/html-parser'
+import fixtureDocsisStatus from './__fixtures__/docsisStatus_arris.json'
 describe('Arris', () => {
   test('should encrypt', () => {
     const expected = {
@@ -18,5 +18,13 @@ describe('Arris', () => {
     }
     const arrisModem = new Arris('0.0.0.0', new ConsoleLogger())
     expect(arrisModem.encryptPassword('test', given)).toEqual(expected)
+  })
+
+  describe('normalizeDocsisStatus', () => {
+    test('should ', () => {
+      const fam = normalizeDocsisStatus(fixtureDocsisStatus)
+      console.log(fam)
+      expect(fam).toBeTruthy()
+    })
   })
 })

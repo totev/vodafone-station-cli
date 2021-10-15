@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {extractFirmwareVersion} from '../html-parser'
+import {extractFirmwareVersion} from './tools/html-parser'
 import {Log} from '../logger'
 import {TechnicolorConfiguration} from './technicolor-modem'
 const BRIDGED_MODEM_IP = '192.168.100.1'
