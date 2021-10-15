@@ -4,6 +4,7 @@ import {Log} from '../logger'
 import {TechnicolorConfiguration} from './technicolor-modem'
 const BRIDGED_MODEM_IP = '192.168.100.1'
 const ROUTER_IP = '192.168.0.1'
+axios.defaults.timeout = 1000
 
 export async function discoverModemIp(): Promise<string> {
   try {
