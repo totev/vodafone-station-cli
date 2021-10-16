@@ -2,12 +2,9 @@
 
 export interface Log{
     log(message?: string, ...args: any[]): void;
-    warn(input: string | Error): void;
+    warn(input: string | Error | unknown): void;
     debug(...args: any[]): void;
-    error(input: string | Error, options: {
-        code?: string;
-        exit: false;
-    }): void;
+    error(input: string | Error | unknown, ...options: any[]): void;
 }
 
 export class OclifLogger implements Log {

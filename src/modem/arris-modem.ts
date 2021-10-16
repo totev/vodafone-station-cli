@@ -14,7 +14,7 @@ export interface ArrisDocsisStatus {
 
 export interface ArrisDocsisChannelStatus {
   ChannelID: string;
-  ChannelType: string;
+  ChannelType: 'OFDM' | 'SC-QAM' | string;
   Frequency: string|number;
   Modulation: string;
   PowerLevel: string;
@@ -37,19 +37,37 @@ export interface SetPasswordResponse {
 export function normalizeDocsisStatus(arrisDocsisStatus: ArrisDocsisStatus): DocsisStatus {
   const result: DocsisStatus = {
     downstream: [],
-    downstreamOfdma:[]
-  }  as unknown as DocsisStatus
-  result.downstream = arrisDocsisStatus.downstream.map(downstream => {
-    return {
-      channelId: downstream.ChannelID,
-      channelType: downstream.ChannelType,
-      frequency: downstream.Frequency as number,
-      modulation: downstream.Modulation,
-      powerLevel: parseFloat(downstream.PowerLevel.split('/')[1]),
-      lockStatus: downstream.LockStatus,
-      snr: parseInt(`${downstream.SNRLevel ?? 0}`, 10)
-    }
-  })
+    downstreamOfdma: []
+  } as unknown as DocsisStatus
+  result.downstream = arrisDocsisStatus.downstream
+    .filter(downstream => downstream.ChannelType === 'SC-QAM')
+    .map(downstream => {
+      return {
+        channelId: downstream.ChannelID,
+        channelType: downstream.ChannelType,
+        frequency: downstream.Frequency as number,
+        modulation: downstream.Modulation,
+        powerLevel: parseFloat(downstream.PowerLevel.split('/')[1]),
+        lockStatus: downstream.LockStatus,
+        snr: parseInt(`${downstream.SNRLevel ?? 0}`, 10)
+      }
+    })
+
+  result.downstreamOfdma = arrisDocsisStatus.downstream
+    .filter(downstream => downstream.ChannelType === 'OFDM')
+    .map(ofdma => {
+      const frequency = String(ofdma.Frequency).split('~')
+      return {
+        channelId: ofdma.ChannelID,
+        channelType: ofdma.ChannelType,
+        frequencyStart: Number(frequency[0]),
+        frequencyEnd: Number(frequency[1]),
+        modulation: ofdma.Modulation,
+        powerLevel: parseFloat(ofdma.PowerLevel.split('/')[1]),
+        lockStatus: ofdma.LockStatus,
+        snr: parseInt(`${ofdma.SNRLevel ?? 0}`, 10)
+      }
+    })
   return result
 }
 

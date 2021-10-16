@@ -21,10 +21,9 @@ describe('Arris', () => {
   })
 
   describe('normalizeDocsisStatus', () => {
-    test('should ', () => {
-      const fam = normalizeDocsisStatus(fixtureDocsisStatus)
-      console.log(fam)
-      expect(fam).toBeTruthy()
+    test('should work with ofdm in download', () => {
+      const status = normalizeDocsisStatus(fixtureDocsisStatus)
+      expect(status).toMatchSnapshot()
     })
   })
 })
