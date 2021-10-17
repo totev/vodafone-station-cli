@@ -1,5 +1,5 @@
 import {Log} from '../logger'
-import {DocsisChannelType, DocsisStatus, HumanizedDocsisChannelStatus, Modem} from './modem'
+import {DocsisChannelType, DocsisStatus, HumanizedDocsis31ChannelStatus, HumanizedDocsisChannelStatus, Modem} from './modem'
 import {deriveKeyTechnicolor} from './tools/crypto'
 
 export interface TechnicolorBaseResponse{
@@ -61,8 +61,21 @@ export function normalizeChannelStatus(channelStatus: TechnicolorDocsisChannelSt
     lockStatus: channelStatus.locked,
     snr: parseFloat(`${channelStatus.SNR ?? 0}`),
     frequency: parseInt(`${channelStatus.CentralFrequency ?? 0}`, 10),
-    powerLevel: parseFloat(channelStatus.power.split('/')[0]),
+    powerLevel: parseFloat(channelStatus.power),
 
+  }
+}
+
+export function normalizeOfdmChannelStatus(channelStatus: TechnicolorDocsis31ChannelStatus): HumanizedDocsis31ChannelStatus {
+  return {
+    channelId: channelStatus.channelid_ofdm,
+    lockStatus: channelStatus.locked_ofdm,
+    channelType: channelStatus.ChannelType,
+    modulation: channelStatus.FFT_ofdm,
+    powerLevel: parseFloat(channelStatus.power_ofdm),
+    frequencyStart: parseInt(channelStatus.start_frequency, 10),
+    frequencyEnd: parseInt(channelStatus.end_frequency, 10),
+    snr: parseFloat(channelStatus.SNR_ofdm)
   }
 }
 

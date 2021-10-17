@@ -1,4 +1,5 @@
-import {normalizeChannelStatus} from './technicolor-modem'
+
+import {normalizeChannelStatus, normalizeOfdmChannelStatus} from './technicolor-modem'
 
 test('normalizeChannelStatus with SC-QAM channel', () => {
   const nativeStatus =
@@ -23,5 +24,36 @@ test('normalizeChannelStatus with SC-QAM channel', () => {
       snr: 38.8,
       frequency: 602
     },
+  )
+})
+
+test('normalizeOfdmChannelStatus with OFDM channel', () => {
+  /* eslint-disable @typescript-eslint/camelcase */
+  const nativeStatus =
+    {
+      __id: '1',
+      channelid_ofdm: '33',
+      start_frequency: '151 MHz',
+      end_frequency: '324 MHz',
+      CentralFrequency_ofdm: '288 MHz',
+      bandwidth: '171 MHz',
+      power_ofdm: '-3.2 dBmV',
+      SNR_ofdm: '39.55 dB',
+      FFT_ofdm: 'qam256/qam1024',
+      locked_ofdm: 'Locked',
+      ChannelType: 'OFDM'
+    } as const
+  const status = normalizeOfdmChannelStatus(nativeStatus)
+  expect(status).toEqual(
+    {
+      channelId: '33',
+      channelType: 'OFDM',
+      modulation: 'qam256/qam1024',
+      powerLevel: -3.2,
+      lockStatus: 'Locked',
+      snr: 39.55,
+      frequencyStart: 151,
+      frequencyEnd: 324
+    }
   )
 })
