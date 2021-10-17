@@ -1,6 +1,6 @@
 import {normalizeChannelStatus} from './technicolor-modem'
 
-test('should work with ofdm in download', () => {
+test('normalizeChannelStatus with SC-QAM channel', () => {
   const nativeStatus =
     {
       __id: '1',
