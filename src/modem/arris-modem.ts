@@ -1,5 +1,5 @@
 import {Log} from '../logger'
-import {DocsisStatus, HumanizedDocsis31ChannelStatus, HumanizedDocsisChannelStatus, Modem} from './modem'
+import {DocsisStatus, HumanizedDocsis31ChannelStatus, HumanizedDocsisChannelStatus, Modem, DocsisChannelType} from './modem'
 import {decrypt, deriveKey, encrypt} from './tools/crypto'
 import {CryptoVars, extractCredentialString, extractCryptoVars, extractDocsisStatus} from './tools/html-parser'
 
@@ -14,7 +14,7 @@ export interface ArrisDocsisStatus {
 
 export interface ArrisDocsisChannelStatus {
   ChannelID: string;
-  ChannelType: 'OFDM' | 'OFDMA' | 'SC-QAM';
+  ChannelType: DocsisChannelType;
   Frequency: string|number;
   Modulation: string;
   PowerLevel: string;

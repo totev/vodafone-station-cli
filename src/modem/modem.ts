@@ -5,15 +5,18 @@ import {Log} from '../logger'
 // axios cookie support
 axiosCookieJarSupport(axios)
 
+export type DocsisChannelType = 'OFDM' | 'OFDMA' | 'SC-QAM'
+
 export interface HumanizedDocsisChannelStatus{
   channelId: string;
-  channelType: string;
+  channelType: DocsisChannelType;
   snr: number; // dB
   frequency: number; // MHz
   modulation: string;
   lockStatus: string;
   powerLevel: number; // dBmV
 }
+
 export interface HumanizedDocsis31ChannelStatus extends Omit<HumanizedDocsisChannelStatus, 'frequency'>{
   frequencyStart: number;// MHz
   frequencyEnd: number;// MHz
