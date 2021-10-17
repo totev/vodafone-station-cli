@@ -1,6 +1,6 @@
-import {deriveKeyTechnicolor} from './tools/crypto'
 import {Log} from '../logger'
-import {DocsisStatus, Modem} from './modem'
+import {DocsisChannelType, DocsisStatus, HumanizedDocsisChannelStatus, Modem} from './modem'
+import {deriveKeyTechnicolor} from './tools/crypto'
 
 export interface TechnicolorBaseResponse{
   error: string | 'ok' | 'error';
@@ -26,6 +26,44 @@ export interface TechnicolorSaltResponse  extends TechnicolorBaseResponse{
 
 export interface TechnicolorTokenResponse  extends TechnicolorBaseResponse{
     token: string;
+}
+
+export interface TechnicolorDocsisChannelStatus {
+  __id: string;
+  channelid: string;
+  CentralFrequency: string; // MHz
+  power: string; // dBmV
+  SNR: string; // dB
+  FFT: string; // modulation
+  locked: string;
+  ChannelType: DocsisChannelType;
+}
+
+export interface TechnicolorDocsis31ChannelStatus {
+    __id: string;
+    channelid_ofdm: string;
+    start_frequency: string; // MHz
+    end_frequency: string; // MHz
+    CentralFrequency_ofdm: string; // MHz
+    bandwidth: string; // MHz
+    power_ofdm: string; // dBmV
+    SNR_ofdm: string; // dB
+    FFT_ofdm:  string; // 'qam256/qam1024'
+    locked_ofdm: string;
+    ChannelType: DocsisChannelType;
+}
+
+export function normalizeChannelStatus(channelStatus: TechnicolorDocsisChannelStatus): HumanizedDocsisChannelStatus {
+  return {
+    channelId: channelStatus.channelid,
+    channelType: channelStatus.ChannelType,
+    modulation: channelStatus.FFT,
+    lockStatus: channelStatus.locked,
+    snr: parseFloat(`${channelStatus.SNR ?? 0}`),
+    frequency: parseInt(`${channelStatus.CentralFrequency ?? 0}`, 10),
+    powerLevel: parseFloat(channelStatus.power.split('/')[0]),
+
+  }
 }
 
 export class Technicolor extends Modem {
