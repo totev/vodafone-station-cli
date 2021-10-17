@@ -1,5 +1,5 @@
 import {Log} from '../logger'
-import {DocsisStatus, HumanizedDocsisChannelStatus, Modem} from './modem'
+import {DocsisStatus, HumanizedDocsis31ChannelStatus, HumanizedDocsisChannelStatus, Modem} from './modem'
 import {decrypt, deriveKey, encrypt} from './tools/crypto'
 import {CryptoVars, extractCredentialString, extractCryptoVars, extractDocsisStatus} from './tools/html-parser'
 
@@ -14,7 +14,7 @@ export interface ArrisDocsisStatus {
 
 export interface ArrisDocsisChannelStatus {
   ChannelID: string;
-  ChannelType: 'OFDM' | 'SC-QAM' | string;
+  ChannelType: 'OFDM' | 'OFDMA' | 'SC-QAM';
   Frequency: string|number;
   Modulation: string;
   PowerLevel: string;
@@ -34,40 +34,52 @@ export interface SetPasswordResponse {
   p_waitTime?: number;
 }
 
+export function normalizeChannelStatus(channelStatus: ArrisDocsisChannelStatus): HumanizedDocsisChannelStatus | HumanizedDocsis31ChannelStatus {
+  const frequency: Record<string, number> = {}
+  if (channelStatus.ChannelType === 'SC-QAM') {
+    frequency.frequency = channelStatus.Frequency as number
+  }
+
+  if (['OFDM', 'OFDMA'].includes(channelStatus.ChannelType)) {
+    const ofdmaFrequency = String(channelStatus.Frequency).split('~')
+    frequency.frequencyStart = Number(ofdmaFrequency[0])
+    frequency.frequencyEnd = Number(ofdmaFrequency[1])
+  }
+
+  return {
+    channelId: channelStatus.ChannelID,
+    channelType: channelStatus.ChannelType,
+    modulation: channelStatus.Modulation,
+    powerLevel: parseFloat(channelStatus.PowerLevel.split('/')[1]),
+    lockStatus: channelStatus.LockStatus,
+    snr: parseInt(`${channelStatus.SNRLevel ?? 0}`, 10),
+    ...frequency
+  } as HumanizedDocsisChannelStatus | HumanizedDocsis31ChannelStatus
+}
+
 export function normalizeDocsisStatus(arrisDocsisStatus: ArrisDocsisStatus): DocsisStatus {
   const result: DocsisStatus = {
     downstream: [],
-    downstreamOfdma: []
-  } as unknown as DocsisStatus
+    downstreamOfdm: [],
+    upstream: [],
+    upstreamOfdma: [],
+    time: arrisDocsisStatus.time
+  }
   result.downstream = arrisDocsisStatus.downstream
     .filter(downstream => downstream.ChannelType === 'SC-QAM')
-    .map(downstream => {
-      return {
-        channelId: downstream.ChannelID,
-        channelType: downstream.ChannelType,
-        frequency: downstream.Frequency as number,
-        modulation: downstream.Modulation,
-        powerLevel: parseFloat(downstream.PowerLevel.split('/')[1]),
-        lockStatus: downstream.LockStatus,
-        snr: parseInt(`${downstream.SNRLevel ?? 0}`, 10)
-      }
-    })
+    .map(normalizeChannelStatus) as HumanizedDocsisChannelStatus[]
 
-  result.downstreamOfdma = arrisDocsisStatus.downstream
+  result.downstreamOfdm = arrisDocsisStatus.downstream
     .filter(downstream => downstream.ChannelType === 'OFDM')
-    .map(ofdma => {
-      const frequency = String(ofdma.Frequency).split('~')
-      return {
-        channelId: ofdma.ChannelID,
-        channelType: ofdma.ChannelType,
-        frequencyStart: Number(frequency[0]),
-        frequencyEnd: Number(frequency[1]),
-        modulation: ofdma.Modulation,
-        powerLevel: parseFloat(ofdma.PowerLevel.split('/')[1]),
-        lockStatus: ofdma.LockStatus,
-        snr: parseInt(`${ofdma.SNRLevel ?? 0}`, 10)
-      }
-    })
+    .map(normalizeChannelStatus) as HumanizedDocsis31ChannelStatus[]
+
+  result.upstream = arrisDocsisStatus.upstream
+    .filter(upstream => upstream.ChannelType === 'SC-QAM')
+    .map(normalizeChannelStatus) as HumanizedDocsisChannelStatus[]
+
+  result.upstreamOfdma = arrisDocsisStatus.upstream
+    .filter(upstream => upstream.ChannelType === 'OFDMA')
+    .map(normalizeChannelStatus) as HumanizedDocsis31ChannelStatus[]
   return result
 }
 

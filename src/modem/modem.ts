@@ -21,9 +21,10 @@ export interface HumanizedDocsis31ChannelStatus extends Omit<HumanizedDocsisChan
 
 export interface DocsisStatus{
   downstream: HumanizedDocsisChannelStatus[];
-  downstreamOfdma: HumanizedDocsis31ChannelStatus[];
+  downstreamOfdm: HumanizedDocsis31ChannelStatus[];
   upstream: HumanizedDocsisChannelStatus[];
-  time: Date;
+  upstreamOfdma: HumanizedDocsis31ChannelStatus[];
+  time: string;
 }
 
 export interface GenericModem{
