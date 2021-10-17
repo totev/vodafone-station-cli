@@ -58,12 +58,11 @@ export class ModemDiscovery {
 
   async discover(): Promise<ModemInformation> {
     try {
-      const discovery = await Promise.allSettled([this.tryArris(), this.tryTechnicolor()])
-      const maybeModem = discovery.find(fam => fam.status === 'fulfilled') as PromiseFulfilledResult<ModemInformation> | undefined
+      const maybeModem = await Promise.any([this.tryArris(), this.tryTechnicolor()])
       if (!maybeModem) {
         throw new Error('Modem discovery was unsuccessful')
       }
-      return maybeModem.value
+      return maybeModem
     } catch (error) {
       this.logger.warn('Could not find a router/modem under the known addresses')
       throw error
