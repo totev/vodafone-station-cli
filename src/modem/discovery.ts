@@ -45,7 +45,7 @@ export class ModemDiscovery {
       headers: {Accept: 'text/html,application/xhtml+xml,application/xml',
       },
     })
-    const firmwareVersion = extractFirmwareVersion(data)
+    const firmwareVersion = extractFirmwareVersion(data as string)
     if (!firmwareVersion) {
       throw new Error('Unable to parse firmware version.')
     }
