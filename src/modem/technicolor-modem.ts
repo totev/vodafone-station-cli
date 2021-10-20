@@ -28,6 +28,36 @@ export interface TechnicolorTokenResponse  extends TechnicolorBaseResponse{
     token: string;
 }
 
+export interface TechnicolorDocsisStatus {
+  error: string;
+  message: string;
+  data: {
+    downstream: TechnicolorDocsisChannelStatus[];
+    ofdm_downstream: TechnicolorDocsis31ChannelStatus[];
+    upstream: TechnicolorDocsisUpstreamChannelStatus[];
+    ofdma_upstream: TechnicolorDocsis31UpstreamChannelStatus[];
+  };
+}
+
+export interface TechnicolorDocsisUpstreamChannelStatus extends Omit<TechnicolorDocsisChannelStatus, 'channelid'|'locked'|'SNR'>{
+        channelidup: string;
+        CentralFrequency: string;
+        RangingStatus: string;
+}
+
+export interface TechnicolorDocsis31UpstreamChannelStatus{
+    __id: string; // '1',
+    channelidup: string; // '9',
+    start_frequency: string; // '29.800000 MHz',
+    end_frequency: string; // '64.750000 MHz',
+    power: string; // '44.0 dBmV',
+    CentralFrequency: string; // '46 MHz',
+    bandwidth: string; // '35 MHz',
+    FFT: string; // 'qpsk',
+    ChannelType: string; // 'OFDMA',
+    RangingStatus: string;// 'Completed'
+}
+
 export interface TechnicolorDocsisChannelStatus {
   __id: string;
   channelid: string;
@@ -62,7 +92,29 @@ export function normalizeChannelStatus(channelStatus: TechnicolorDocsisChannelSt
     snr: parseFloat(`${channelStatus.SNR ?? 0}`),
     frequency: parseInt(`${channelStatus.CentralFrequency ?? 0}`, 10),
     powerLevel: parseFloat(channelStatus.power),
-
+  }
+}
+export function normalizeUpstreamChannelStatus(channelStatus: TechnicolorDocsisUpstreamChannelStatus): HumanizedDocsisChannelStatus {
+  return {
+    channelId: channelStatus.channelidup,
+    channelType: channelStatus.ChannelType,
+    modulation: channelStatus.FFT,
+    lockStatus: channelStatus.RangingStatus,
+    snr: 0,
+    frequency: parseInt(`${channelStatus.CentralFrequency ?? 0}`, 10),
+    powerLevel: parseFloat(channelStatus.power),
+  }
+}
+export function normalizeUpstreamOfdmaChannelStatus(channelStatus: TechnicolorDocsis31UpstreamChannelStatus): HumanizedDocsis31ChannelStatus {
+  return {
+    channelId: channelStatus.channelidup,
+    lockStatus: channelStatus.RangingStatus,
+    channelType: channelStatus.ChannelType as DocsisChannelType,
+    modulation: channelStatus.FFT,
+    powerLevel: parseFloat(channelStatus.power),
+    frequencyStart: parseFloat(channelStatus.start_frequency),
+    frequencyEnd: parseFloat(channelStatus.end_frequency),
+    snr: 0
   }
 }
 
@@ -76,6 +128,16 @@ export function normalizeOfdmChannelStatus(channelStatus: TechnicolorDocsis31Cha
     frequencyStart: parseInt(channelStatus.start_frequency, 10),
     frequencyEnd: parseInt(channelStatus.end_frequency, 10),
     snr: parseFloat(channelStatus.SNR_ofdm)
+  }
+}
+
+export function normalizeDocsisStatus(channelStatus: TechnicolorDocsisStatus): DocsisStatus {
+  return {
+    downstream: channelStatus.data.downstream.map(normalizeChannelStatus),
+    downstreamOfdm: channelStatus.data.ofdm_downstream.map(normalizeOfdmChannelStatus),
+    upstream: channelStatus.data.upstream.map(normalizeUpstreamChannelStatus),
+    upstreamOfdma: channelStatus.data.ofdma_upstream.map(normalizeUpstreamOfdmaChannelStatus),
+    time: new Date().toISOString()
   }
 }
 
@@ -111,7 +173,7 @@ export class Technicolor extends Modem {
 
   async docsis(): Promise<DocsisStatus> {
     const {data: docsisStatus} = await this.httpClient.get('/api/v1/sta_docsis_status')
-    return docsisStatus
+    return normalizeDocsisStatus(docsisStatus)
   }
 
   async logout(): Promise<void> {

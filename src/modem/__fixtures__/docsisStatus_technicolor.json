@@ -1,0 +1,382 @@
+{
+    "error": "ok",
+    "message": "all values retrieved",
+    "data": {
+        "ofdm_downstream": [
+            {
+                "__id": "1",
+                "channelid_ofdm": "33",
+                "start_frequency": "151 MHz",
+                "end_frequency": "324 MHz",
+                "CentralFrequency_ofdm": "288 MHz",
+                "bandwidth": "171 MHz",
+                "power_ofdm": "-3.0 dBmV",
+                "SNR_ofdm": "39.55 dB",
+                "FFT_ofdm": "qam256/qam1024",
+                "locked_ofdm": "Locked",
+                "ChannelType": "OFDM"
+            }
+        ],
+        "downstream": [
+            {
+                "__id": "1",
+                "channelid": "5",
+                "CentralFrequency": "602 MHz",
+                "power": "-4.0 dBmV",
+                "SNR": "38.8 dB",
+                "FFT": "256 QAM",
+                "locked": "Locked",
+                "ChannelType": "SC-QAM"
+            },
+            {
+                "__id": "2",
+                "channelid": "1",
+                "CentralFrequency": "114 MHz",
+                "power": "-5.4 dBmV",
+                "SNR": "36.5 dB",
+                "FFT": "256 QAM",
+                "locked": "Locked",
+                "ChannelType": "SC-QAM"
+            },
+            {
+                "__id": "3",
+                "channelid": "2",
+                "CentralFrequency": "130 MHz",
+                "power": "-5.4 dBmV",
+                "SNR": "36.8 dB",
+                "FFT": "256 QAM",
+                "locked": "Locked",
+                "ChannelType": "SC-QAM"
+            },
+            {
+                "__id": "4",
+                "channelid": "3",
+                "CentralFrequency": "138 MHz",
+                "power": "-5.5 dBmV",
+                "SNR": "36.9 dB",
+                "FFT": "256 QAM",
+                "locked": "Locked",
+                "ChannelType": "SC-QAM"
+            },
+            {
+                "__id": "5",
+                "channelid": "4",
+                "CentralFrequency": "146 MHz",
+                "power": "-5.2 dBmV",
+                "SNR": "37.2 dB",
+                "FFT": "256 QAM",
+                "locked": "Locked",
+                "ChannelType": "SC-QAM"
+            },
+            {
+                "__id": "6",
+                "channelid": "6",
+                "CentralFrequency": "618 MHz",
+                "power": "-3.8 dBmV",
+                "SNR": "38.9 dB",
+                "FFT": "256 QAM",
+                "locked": "Locked",
+                "ChannelType": "SC-QAM"
+            },
+            {
+                "__id": "7",
+                "channelid": "7",
+                "CentralFrequency": "626 MHz",
+                "power": "-3.9 dBmV",
+                "SNR": "38.9 dB",
+                "FFT": "256 QAM",
+                "locked": "Locked",
+                "ChannelType": "SC-QAM"
+            },
+            {
+                "__id": "8",
+                "channelid": "8",
+                "CentralFrequency": "642 MHz",
+                "power": "-4.9 dBmV",
+                "SNR": "38.5 dB",
+                "FFT": "256 QAM",
+                "locked": "Locked",
+                "ChannelType": "SC-QAM"
+            },
+            {
+                "__id": "9",
+                "channelid": "9",
+                "CentralFrequency": "650 MHz",
+                "power": "-4.8 dBmV",
+                "SNR": "38.4 dB",
+                "FFT": "256 QAM",
+                "locked": "Locked",
+                "ChannelType": "SC-QAM"
+            },
+            {
+                "__id": "10",
+                "channelid": "10",
+                "CentralFrequency": "658 MHz",
+                "power": "-4.1 dBmV",
+                "SNR": "39.1 dB",
+                "FFT": "256 QAM",
+                "locked": "Locked",
+                "ChannelType": "SC-QAM"
+            },
+            {
+                "__id": "11",
+                "channelid": "11",
+                "CentralFrequency": "666 MHz",
+                "power": "-4.1 dBmV",
+                "SNR": "38.7 dB",
+                "FFT": "256 QAM",
+                "locked": "Locked",
+                "ChannelType": "SC-QAM"
+            },
+            {
+                "__id": "12",
+                "channelid": "12",
+                "CentralFrequency": "674 MHz",
+                "power": "-3.1 dBmV",
+                "SNR": "39.0 dB",
+                "FFT": "256 QAM",
+                "locked": "Locked",
+                "ChannelType": "SC-QAM"
+            },
+            {
+                "__id": "13",
+                "channelid": "13",
+                "CentralFrequency": "682 MHz",
+                "power": "-2.8 dBmV",
+                "SNR": "39.7 dB",
+                "FFT": "256 QAM",
+                "locked": "Locked",
+                "ChannelType": "SC-QAM"
+            },
+            {
+                "__id": "14",
+                "channelid": "14",
+                "CentralFrequency": "690 MHz",
+                "power": "-1.8 dBmV",
+                "SNR": "40.4 dB",
+                "FFT": "256 QAM",
+                "locked": "Locked",
+                "ChannelType": "SC-QAM"
+            },
+            {
+                "__id": "15",
+                "channelid": "15",
+                "CentralFrequency": "698 MHz",
+                "power": "-7.7 dBmV",
+                "SNR": "34.6 dB",
+                "FFT": "64 QAM",
+                "locked": "Locked",
+                "ChannelType": "SC-QAM"
+            },
+            {
+                "__id": "16",
+                "channelid": "16",
+                "CentralFrequency": "706 MHz",
+                "power": "-6.8 dBmV",
+                "SNR": "35.4 dB",
+                "FFT": "64 QAM",
+                "locked": "Locked",
+                "ChannelType": "SC-QAM"
+            },
+            {
+                "__id": "17",
+                "channelid": "17",
+                "CentralFrequency": "714 MHz",
+                "power": "-7.1 dBmV",
+                "SNR": "35.0 dB",
+                "FFT": "64 QAM",
+                "locked": "Locked",
+                "ChannelType": "SC-QAM"
+            },
+            {
+                "__id": "18",
+                "channelid": "18",
+                "CentralFrequency": "722 MHz",
+                "power": "-7.2 dBmV",
+                "SNR": "35.0 dB",
+                "FFT": "64 QAM",
+                "locked": "Locked",
+                "ChannelType": "SC-QAM"
+            },
+            {
+                "__id": "19",
+                "channelid": "19",
+                "CentralFrequency": "730 MHz",
+                "power": "-6.9 dBmV",
+                "SNR": "35.1 dB",
+                "FFT": "64 QAM",
+                "locked": "Locked",
+                "ChannelType": "SC-QAM"
+            },
+            {
+                "__id": "20",
+                "channelid": "20",
+                "CentralFrequency": "738 MHz",
+                "power": "-5.9 dBmV",
+                "SNR": "35.7 dB",
+                "FFT": "64 QAM",
+                "locked": "Locked",
+                "ChannelType": "SC-QAM"
+            },
+            {
+                "__id": "21",
+                "channelid": "21",
+                "CentralFrequency": "746 MHz",
+                "power": "-5.6 dBmV",
+                "SNR": "35.8 dB",
+                "FFT": "64 QAM",
+                "locked": "Locked",
+                "ChannelType": "SC-QAM"
+            },
+            {
+                "__id": "22",
+                "channelid": "22",
+                "CentralFrequency": "754 MHz",
+                "power": "-6.7 dBmV",
+                "SNR": "35.0 dB",
+                "FFT": "64 QAM",
+                "locked": "Locked",
+                "ChannelType": "SC-QAM"
+            },
+            {
+                "__id": "23",
+                "channelid": "23",
+                "CentralFrequency": "762 MHz",
+                "power": "-6.4 dBmV",
+                "SNR": "35.1 dB",
+                "FFT": "64 QAM",
+                "locked": "Locked",
+                "ChannelType": "SC-QAM"
+            },
+            {
+                "__id": "24",
+                "channelid": "24",
+                "CentralFrequency": "770 MHz",
+                "power": "-6.3 dBmV",
+                "SNR": "35.1 dB",
+                "FFT": "64 QAM",
+                "locked": "Locked",
+                "ChannelType": "SC-QAM"
+            },
+            {
+                "__id": "25",
+                "channelid": "25",
+                "CentralFrequency": "778 MHz",
+                "power": "-6.0 dBmV",
+                "SNR": "35.7 dB",
+                "FFT": "64 QAM",
+                "locked": "Locked",
+                "ChannelType": "SC-QAM"
+            },
+            {
+                "__id": "26",
+                "channelid": "26",
+                "CentralFrequency": "786 MHz",
+                "power": "-6.2 dBmV",
+                "SNR": "35.2 dB",
+                "FFT": "64 QAM",
+                "locked": "Locked",
+                "ChannelType": "SC-QAM"
+            },
+            {
+                "__id": "27",
+                "channelid": "27",
+                "CentralFrequency": "794 MHz",
+                "power": "-6.5 dBmV",
+                "SNR": "34.8 dB",
+                "FFT": "64 QAM",
+                "locked": "Locked",
+                "ChannelType": "SC-QAM"
+            },
+            {
+                "__id": "28",
+                "channelid": "28",
+                "CentralFrequency": "802 MHz",
+                "power": "-7.1 dBmV",
+                "SNR": "34.7 dB",
+                "FFT": "64 QAM",
+                "locked": "Locked",
+                "ChannelType": "SC-QAM"
+            },
+            {
+                "__id": "29",
+                "channelid": "29",
+                "CentralFrequency": "810 MHz",
+                "power": "-6.9 dBmV",
+                "SNR": "34.9 dB",
+                "FFT": "64 QAM",
+                "locked": "Locked",
+                "ChannelType": "SC-QAM"
+            },
+            {
+                "__id": "30",
+                "channelid": "30",
+                "CentralFrequency": "818 MHz",
+                "power": "-6.7 dBmV",
+                "SNR": "35.0 dB",
+                "FFT": "64 QAM",
+                "locked": "Locked",
+                "ChannelType": "SC-QAM"
+            },
+            {
+                "__id": "31",
+                "channelid": "31",
+                "CentralFrequency": "826 MHz",
+                "power": "-7.2 dBmV",
+                "SNR": "35.0 dB",
+                "FFT": "64 QAM",
+                "locked": "Locked",
+                "ChannelType": "SC-QAM"
+            },
+            {
+                "__id": "32",
+                "channelid": "32",
+                "CentralFrequency": "834 MHz",
+                "power": "-7.8 dBmV",
+                "SNR": "34.2 dB",
+                "FFT": "64 QAM",
+                "locked": "Locked",
+                "ChannelType": "SC-QAM"
+            }
+        ],
+        "ofdma_upstream": [],
+        "upstream": [
+            {
+                "__id": "1",
+                "channelidup": "1",
+                "CentralFrequency": "51.0 MHz",
+                "power": "49.8 dBmV",
+                "ChannelType": "SC-QAM",
+                "FFT": "qam64",
+                "RangingStatus": "Completed"
+            },
+            {
+                "__id": "2",
+                "channelidup": "2",
+                "CentralFrequency": "44.6 MHz",
+                "power": "51.8 dBmV",
+                "ChannelType": "SC-QAM",
+                "FFT": "qam64",
+                "RangingStatus": "Completed"
+            },
+            {
+                "__id": "3",
+                "channelidup": "3",
+                "CentralFrequency": "37.2 MHz",
+                "power": "51.8 dBmV",
+                "ChannelType": "SC-QAM",
+                "FFT": "qam64",
+                "RangingStatus": "Completed"
+            },
+            {
+                "__id": "4",
+                "channelidup": "4",
+                "CentralFrequency": "30.8 MHz",
+                "power": "51.8 dBmV",
+                "ChannelType": "SC-QAM",
+                "FFT": "qam32",
+                "RangingStatus": "Completed"
+            }
+        ]
+    }
+}

@@ -1,5 +1,8 @@
+/*  eslint-disable  @typescript-eslint/camelcase  */
+import {normalizeChannelStatus, normalizeDocsisStatus, normalizeOfdmChannelStatus, normalizeUpstreamChannelStatus, normalizeUpstreamOfdmaChannelStatus, TechnicolorDocsisStatus} from './technicolor-modem'
+import fixtureDocsisStatus from './__fixtures__/docsisStatus_technicolor.json'
 
-import {normalizeChannelStatus, normalizeOfdmChannelStatus} from './technicolor-modem'
+import fixtureDocsis31Status from './__fixtures__/docsisStatus_ofdma_technicolor.json'
 
 test('normalizeChannelStatus with SC-QAM channel', () => {
   const nativeStatus =
@@ -28,7 +31,6 @@ test('normalizeChannelStatus with SC-QAM channel', () => {
 })
 
 test('normalizeOfdmChannelStatus with OFDM channel', () => {
-  /* eslint-disable @typescript-eslint/camelcase */
   const nativeStatus =
     {
       __id: '1',
@@ -43,6 +45,7 @@ test('normalizeOfdmChannelStatus with OFDM channel', () => {
       locked_ofdm: 'Locked',
       ChannelType: 'OFDM'
     } as const
+
   const status = normalizeOfdmChannelStatus(nativeStatus)
   expect(status).toEqual(
     {
@@ -56,4 +59,65 @@ test('normalizeOfdmChannelStatus with OFDM channel', () => {
       frequencyEnd: 324
     }
   )
+})
+
+test('normalizeUpstreamChannelStatus', () => {
+  const nativeStatus =             {
+    __id: '1',
+    channelidup: '1',
+    CentralFrequency: '51.0 MHz',
+    power: '49.8 dBmV',
+    ChannelType: 'SC-QAM',
+    FFT: 'qam64',
+    RangingStatus: 'Completed'
+  } as const
+  expect(normalizeUpstreamChannelStatus(nativeStatus)).toEqual(
+    {
+      channelId: '1',
+      channelType: 'SC-QAM',
+      frequency: 51,
+      lockStatus: 'Completed',
+      modulation: 'qam64',
+      powerLevel: 49.8,
+      snr: 0,
+    },
+  )
+})
+
+test('normalizeUpstreamOfdmaChannelStatus', () => {
+  const nativeStatus =            {
+    __id: '1',
+    channelidup: '9',
+    start_frequency: '29.800000 MHz',
+    end_frequency: '64.750000 MHz',
+    power: '44.0 dBmV',
+    CentralFrequency: '46 MHz',
+    bandwidth: '35 MHz',
+    FFT: 'qpsk',
+    ChannelType: 'OFDMA',
+    RangingStatus: 'Completed'
+  } as const
+  expect(normalizeUpstreamOfdmaChannelStatus(nativeStatus)).toEqual(
+    {
+      channelId: '9',
+      channelType: 'OFDMA',
+      frequencyEnd: 64.75,
+      frequencyStart: 29.8,
+      lockStatus: 'Completed',
+      modulation: 'qpsk',
+      powerLevel: 44,
+      snr: 0,
+    },
+  )
+})
+
+describe('normalizeDocsisStatus', () => {
+  test('should work with ofdm in download', () => {
+    const {time, ...status} = normalizeDocsisStatus(fixtureDocsisStatus as TechnicolorDocsisStatus)
+    expect(status).toMatchSnapshot()
+  })
+  test('should work with ofdm in download and ofdam in upload', () => {
+    const {time, ...status} = normalizeDocsisStatus(fixtureDocsis31Status as TechnicolorDocsisStatus)
+    expect(status).toMatchSnapshot()
+  })
 })
