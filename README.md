@@ -17,7 +17,7 @@ Access your Arris TG3442DE or Technicolor CGA4322DE (aka Vodafone Station) from 
 
 Currently the following hardware/software is supported:
 
-- Arris TG3442DE running `AR01.02.068.11_092320_711.PC20.10`
+- Arris TG3442DE running `AR01.02.068.11_092320_711.PC20.10`, `01.02.068.13.EURO.PC20`
 - Technicolor CGA4322DE running `1.0.9-IMS-KDG`
 
 # Notes

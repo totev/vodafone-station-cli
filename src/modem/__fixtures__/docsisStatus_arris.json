@@ -1,0 +1,339 @@
+{
+    "downstream": [
+        {
+            "ChannelType": "OFDM",
+            "Modulation": "1024QAM",
+            "Frequency": "151~324",
+            "ChannelID": "33",
+            "PowerLevel": "-4.1/55.9",
+            "SNRLevel": "39",
+            "LockStatus": "Locked"
+        },
+        {
+            "ChannelType": "SC-QAM",
+            "Frequency": 130,
+            "PowerLevel": "-6.7/53.3",
+            "SNRLevel": 35.1,
+            "Modulation": "256QAM",
+            "ChannelID": "2",
+            "LockStatus": "Locked"
+        },
+        {
+            "ChannelType": "SC-QAM",
+            "Frequency": 138,
+            "PowerLevel": "-6.4/53.6",
+            "SNRLevel": 35.1,
+            "Modulation": "256QAM",
+            "ChannelID": "3",
+            "LockStatus": "Locked"
+        },
+        {
+            "ChannelType": "SC-QAM",
+            "Frequency": 146,
+            "PowerLevel": "-6.7/53.3",
+            "SNRLevel": 35.8,
+            "Modulation": "256QAM",
+            "ChannelID": "4",
+            "LockStatus": "Locked"
+        },
+        {
+            "ChannelType": "SC-QAM",
+            "Frequency": 602,
+            "PowerLevel": "-3.7/56.3",
+            "SNRLevel": 38.6,
+            "Modulation": "256QAM",
+            "ChannelID": "5",
+            "LockStatus": "Locked"
+        },
+        {
+            "ChannelType": "SC-QAM",
+            "Frequency": 618,
+            "PowerLevel": "-3.8/56.2",
+            "SNRLevel": 38.6,
+            "Modulation": "256QAM",
+            "ChannelID": "6",
+            "LockStatus": "Locked"
+        },
+        {
+            "ChannelType": "SC-QAM",
+            "Frequency": 626,
+            "PowerLevel": "-3.6/56.4",
+            "SNRLevel": 38.6,
+            "Modulation": "256QAM",
+            "ChannelID": "7",
+            "LockStatus": "Locked"
+        },
+        {
+            "ChannelType": "SC-QAM",
+            "Frequency": 642,
+            "PowerLevel": "-4.2/55.8",
+            "SNRLevel": 38.6,
+            "Modulation": "256QAM",
+            "ChannelID": "8",
+            "LockStatus": "Locked"
+        },
+        {
+            "ChannelType": "SC-QAM",
+            "Frequency": 650,
+            "PowerLevel": "-4.8/55.2",
+            "SNRLevel": 38.6,
+            "Modulation": "256QAM",
+            "ChannelID": "9",
+            "LockStatus": "Locked"
+        },
+        {
+            "ChannelType": "SC-QAM",
+            "Frequency": 658,
+            "PowerLevel": "-4.6/55.4",
+            "SNRLevel": 39,
+            "Modulation": "256QAM",
+            "ChannelID": "10",
+            "LockStatus": "Locked"
+        },
+        {
+            "ChannelType": "SC-QAM",
+            "Frequency": 666,
+            "PowerLevel": "-4.4/55.6",
+            "SNRLevel": 37.6,
+            "Modulation": "256QAM",
+            "ChannelID": "11",
+            "LockStatus": "Locked"
+        },
+        {
+            "ChannelType": "SC-QAM",
+            "Frequency": 674,
+            "PowerLevel": "-3.1/56.9",
+            "SNRLevel": 38.6,
+            "Modulation": "256QAM",
+            "ChannelID": "12",
+            "LockStatus": "Locked"
+        },
+        {
+            "ChannelType": "SC-QAM",
+            "Frequency": 682,
+            "PowerLevel": "-2.7/57.3",
+            "SNRLevel": 39,
+            "Modulation": "256QAM",
+            "ChannelID": "13",
+            "LockStatus": "Locked"
+        },
+        {
+            "ChannelType": "SC-QAM",
+            "Frequency": 690,
+            "PowerLevel": "-2/58",
+            "SNRLevel": 39,
+            "Modulation": "256QAM",
+            "ChannelID": "14",
+            "LockStatus": "Locked"
+        },
+        {
+            "ChannelType": "SC-QAM",
+            "Frequency": 698,
+            "PowerLevel": "-8/52",
+            "SNRLevel": 34.9,
+            "Modulation": "64QAM",
+            "ChannelID": "15",
+            "LockStatus": "Locked"
+        },
+        {
+            "ChannelType": "SC-QAM",
+            "Frequency": 706,
+            "PowerLevel": "-7/53",
+            "SNRLevel": 35.5,
+            "Modulation": "64QAM",
+            "ChannelID": "16",
+            "LockStatus": "Locked"
+        },
+        {
+            "ChannelType": "SC-QAM",
+            "Frequency": 714,
+            "PowerLevel": "-6.8/53.2",
+            "SNRLevel": 35,
+            "Modulation": "64QAM",
+            "ChannelID": "17",
+            "LockStatus": "Locked"
+        },
+        {
+            "ChannelType": "SC-QAM",
+            "Frequency": 722,
+            "PowerLevel": "-7.1/52.9",
+            "SNRLevel": 34.9,
+            "Modulation": "64QAM",
+            "ChannelID": "18",
+            "LockStatus": "Locked"
+        },
+        {
+            "ChannelType": "SC-QAM",
+            "Frequency": 730,
+            "PowerLevel": "-7.1/52.9",
+            "SNRLevel": 35,
+            "Modulation": "64QAM",
+            "ChannelID": "19",
+            "LockStatus": "Locked"
+        },
+        {
+            "ChannelType": "SC-QAM",
+            "Frequency": 738,
+            "PowerLevel": "-6.1/53.9",
+            "SNRLevel": 35.7,
+            "Modulation": "64QAM",
+            "ChannelID": "20",
+            "LockStatus": "Locked"
+        },
+        {
+            "ChannelType": "SC-QAM",
+            "Frequency": 746,
+            "PowerLevel": "-5.6/54.4",
+            "SNRLevel": 36.3,
+            "Modulation": "64QAM",
+            "ChannelID": "21",
+            "LockStatus": "Locked"
+        },
+        {
+            "ChannelType": "SC-QAM",
+            "Frequency": 754,
+            "PowerLevel": "-6.2/53.8",
+            "SNRLevel": 35.5,
+            "Modulation": "64QAM",
+            "ChannelID": "22",
+            "LockStatus": "Locked"
+        },
+        {
+            "ChannelType": "SC-QAM",
+            "Frequency": 762,
+            "PowerLevel": "-5.9/54.1",
+            "SNRLevel": 35.5,
+            "Modulation": "64QAM",
+            "ChannelID": "23",
+            "LockStatus": "Locked"
+        },
+        {
+            "ChannelType": "SC-QAM",
+            "Frequency": 770,
+            "PowerLevel": "-6.2/53.8",
+            "SNRLevel": 35,
+            "Modulation": "64QAM",
+            "ChannelID": "24",
+            "LockStatus": "Locked"
+        },
+        {
+            "ChannelType": "SC-QAM",
+            "Frequency": 778,
+            "PowerLevel": "-5.9/54.1",
+            "SNRLevel": 36.3,
+            "Modulation": "64QAM",
+            "ChannelID": "25",
+            "LockStatus": "Locked"
+        },
+        {
+            "ChannelType": "SC-QAM",
+            "Frequency": 786,
+            "PowerLevel": "-5.7/54.3",
+            "SNRLevel": 35.5,
+            "Modulation": "64QAM",
+            "ChannelID": "26",
+            "LockStatus": "Locked"
+        },
+        {
+            "ChannelType": "SC-QAM",
+            "Frequency": 794,
+            "PowerLevel": "-5.9/54.1",
+            "SNRLevel": 35.5,
+            "Modulation": "64QAM",
+            "ChannelID": "27",
+            "LockStatus": "Locked"
+        },
+        {
+            "ChannelType": "SC-QAM",
+            "Frequency": 802,
+            "PowerLevel": "-6.4/53.6",
+            "SNRLevel": 35.5,
+            "Modulation": "64QAM",
+            "ChannelID": "28",
+            "LockStatus": "Locked"
+        },
+        {
+            "ChannelType": "SC-QAM",
+            "Frequency": 810,
+            "PowerLevel": "-6.5/53.5",
+            "SNRLevel": 35.7,
+            "Modulation": "64QAM",
+            "ChannelID": "29",
+            "LockStatus": "Locked"
+        },
+        {
+            "ChannelType": "SC-QAM",
+            "Frequency": 818,
+            "PowerLevel": "-6.3/53.7",
+            "SNRLevel": 35,
+            "Modulation": "64QAM",
+            "ChannelID": "30",
+            "LockStatus": "Locked"
+        },
+        {
+            "ChannelType": "SC-QAM",
+            "Frequency": 826,
+            "PowerLevel": "-6.8/53.2",
+            "SNRLevel": 35.5,
+            "Modulation": "64QAM",
+            "ChannelID": "31",
+            "LockStatus": "Locked"
+        },
+        {
+            "ChannelType": "SC-QAM",
+            "Frequency": 834,
+            "PowerLevel": "-7.9/52.1",
+            "SNRLevel": 34.9,
+            "Modulation": "64QAM",
+            "ChannelID": "32",
+            "LockStatus": "Locked"
+        },
+        {
+            "ChannelType": "SC-QAM",
+            "Frequency": 114,
+            "PowerLevel": "-6.5/53.5",
+            "SNRLevel": 34.3,
+            "Modulation": "256QAM",
+            "ChannelID": "1",
+            "LockStatus": "Locked"
+        }
+    ],
+    "upstream": [
+        {
+            "Frequency": 31,
+            "PowerLevel": "52.3/112.3",
+            "ChannelType": "SC-QAM",
+            "ChannelID": "4",
+            "Modulation": "64QAM",
+            "LockStatus": "ACTIVE"
+        },
+        {
+            "Frequency": 51,
+            "PowerLevel": "52.3/112.3",
+            "ChannelType": "SC-QAM",
+            "ChannelID": "1",
+            "Modulation": "64QAM",
+            "LockStatus": "ACTIVE"
+        },
+        {
+            "Frequency": 37,
+            "PowerLevel": "52.3/112.3",
+            "ChannelType": "SC-QAM",
+            "ChannelID": "3",
+            "Modulation": "32QAM",
+            "LockStatus": "ACTIVE"
+        },
+        {
+            "Frequency": 45,
+            "PowerLevel": "52.3/112.3",
+            "ChannelType": "SC-QAM",
+            "ChannelID": "2",
+            "Modulation": "64QAM",
+            "LockStatus": "ACTIVE"
+        }
+    ],
+    "downstreamChannels": 33,
+    "upstreamChannels": 4,
+    "ofdmChannels": 1,
+    "time": "2021-04-11T13:38:36.163Z"
+}

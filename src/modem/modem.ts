@@ -5,23 +5,29 @@ import {Log} from '../logger'
 // axios cookie support
 axiosCookieJarSupport(axios)
 
-export interface DocsisStatus {
-  downstream: DocsisChannelStatus[];
-  upstream: DocsisChannelStatus[];
-  downstreamChannels: number;
-  upstreamChannels: number;
-  ofdmChannels: number;
-  time: string;
+export type DocsisChannelType = 'OFDM' | 'OFDMA' | 'SC-QAM'
+
+export interface HumanizedDocsisChannelStatus{
+  channelId: string;
+  channelType: DocsisChannelType;
+  snr: number; // dB
+  frequency: number; // MHz
+  modulation: string;
+  lockStatus: string;
+  powerLevel: number; // dBmV
 }
 
-export interface DocsisChannelStatus {
-  ChannelID: string;
-  ChannelType: string;
-  Frequency: string;
-  LockStatus: string;
-  Modulation: string;
-  PowerLevel: string;
-  SNRLevel: string;
+export interface HumanizedDocsis31ChannelStatus extends Omit<HumanizedDocsisChannelStatus, 'frequency'>{
+  frequencyStart: number;// MHz
+  frequencyEnd: number;// MHz
+}
+
+export interface DocsisStatus{
+  downstream: HumanizedDocsisChannelStatus[];
+  downstreamOfdm: HumanizedDocsis31ChannelStatus[];
+  upstream: HumanizedDocsisChannelStatus[];
+  upstreamOfdma: HumanizedDocsis31ChannelStatus[];
+  time: string;
 }
 
 export interface GenericModem{
@@ -64,6 +70,7 @@ export abstract class Modem implements GenericModem {
       headers: {
         'X-Requested-With': 'XMLHttpRequest',
       },
+      timeout: 30000
     })
   }
 }

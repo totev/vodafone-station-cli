@@ -1,7 +1,26 @@
-import {decrypt, deriveKey, encrypt} from '../crypto'
-import {CryptoVars, extractCredentialString, extractCryptoVars, extractDocsisStatus} from '../html-parser'
 import {Log} from '../logger'
-import {DocsisStatus, Modem} from './modem'
+import {DocsisStatus, HumanizedDocsis31ChannelStatus, HumanizedDocsisChannelStatus, Modem, DocsisChannelType} from './modem'
+import {decrypt, deriveKey, encrypt} from './tools/crypto'
+import {CryptoVars, extractCredentialString, extractCryptoVars, extractDocsisStatus} from './tools/html-parser'
+
+export interface ArrisDocsisStatus {
+  downstream: ArrisDocsisChannelStatus[];
+  upstream: ArrisDocsisChannelStatus[];
+  downstreamChannels: number;
+  upstreamChannels: number;
+  ofdmChannels: number;
+  time: string;
+}
+
+export interface ArrisDocsisChannelStatus {
+  ChannelID: string;
+  ChannelType: DocsisChannelType;
+  Frequency: string|number;
+  Modulation: string;
+  PowerLevel: string;
+  SNRLevel?: string | number;
+  LockStatus: string;
+}
 
 export interface SetPasswordRequest {
   AuthData: string;
@@ -13,6 +32,55 @@ export interface SetPasswordResponse {
   p_status: string;
   encryptData: string;
   p_waitTime?: number;
+}
+
+export function normalizeChannelStatus(channelStatus: ArrisDocsisChannelStatus): HumanizedDocsisChannelStatus | HumanizedDocsis31ChannelStatus {
+  const frequency: Record<string, number> = {}
+  if (channelStatus.ChannelType === 'SC-QAM') {
+    frequency.frequency = channelStatus.Frequency as number
+  }
+
+  if (['OFDM', 'OFDMA'].includes(channelStatus.ChannelType)) {
+    const ofdmaFrequency = String(channelStatus.Frequency).split('~')
+    frequency.frequencyStart = Number(ofdmaFrequency[0])
+    frequency.frequencyEnd = Number(ofdmaFrequency[1])
+  }
+
+  return {
+    channelId: channelStatus.ChannelID,
+    channelType: channelStatus.ChannelType,
+    modulation: channelStatus.Modulation,
+    powerLevel: parseFloat(channelStatus.PowerLevel.split('/')[1]),
+    lockStatus: channelStatus.LockStatus,
+    snr: parseInt(`${channelStatus.SNRLevel ?? 0}`, 10),
+    ...frequency
+  } as HumanizedDocsisChannelStatus | HumanizedDocsis31ChannelStatus
+}
+
+export function normalizeDocsisStatus(arrisDocsisStatus: ArrisDocsisStatus): DocsisStatus {
+  const result: DocsisStatus = {
+    downstream: [],
+    downstreamOfdm: [],
+    upstream: [],
+    upstreamOfdma: [],
+    time: arrisDocsisStatus.time
+  }
+  result.downstream = arrisDocsisStatus.downstream
+    .filter(downstream => downstream.ChannelType === 'SC-QAM')
+    .map(normalizeChannelStatus) as HumanizedDocsisChannelStatus[]
+
+  result.downstreamOfdm = arrisDocsisStatus.downstream
+    .filter(downstream => downstream.ChannelType === 'OFDM')
+    .map(normalizeChannelStatus) as HumanizedDocsis31ChannelStatus[]
+
+  result.upstream = arrisDocsisStatus.upstream
+    .filter(upstream => upstream.ChannelType === 'SC-QAM')
+    .map(normalizeChannelStatus) as HumanizedDocsisChannelStatus[]
+
+  result.upstreamOfdma = arrisDocsisStatus.upstream
+    .filter(upstream => upstream.ChannelType === 'OFDMA')
+    .map(normalizeChannelStatus) as HumanizedDocsis31ChannelStatus[]
+  return result
 }
 
 export class Arris extends Modem {
@@ -135,7 +203,7 @@ export class Arris extends Modem {
           Connection: 'keep-alive',
         },
       })
-      return extractDocsisStatus(data)
+      return normalizeDocsisStatus(extractDocsisStatus(data))
     } catch (error) {
       this.logger.error('Could not fetch remote docsis status', error)
       throw error
@@ -165,3 +233,4 @@ export class Arris extends Modem {
     }
   }
 }
+

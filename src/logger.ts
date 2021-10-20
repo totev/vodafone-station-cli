@@ -1,13 +1,10 @@
 /* eslint-disable no-console */
 
 export interface Log{
-    log(message?: string, ...args: any[]): void;
-    warn(input: string | Error): void;
-    debug(...args: any[]): void;
-    error(input: string | Error, options: {
-        code?: string;
-        exit: false;
-    }): void;
+    log(message?: string, ...args: unknown[]): void;
+    warn(input: string | Error | unknown): void;
+    debug(...args: unknown[]): void;
+    error(input: string | Error | unknown, ...options: unknown[]): void;
 }
 
 export class OclifLogger implements Log {
@@ -19,7 +16,7 @@ export class OclifLogger implements Log {
     this.delegateError(input, options)
   }
 
-  log(message?: string, ...args: any[]): void {
+  log(message?: string, ...args: unknown[]): void {
     this.delegateLog(message, args)
   }
 
@@ -27,7 +24,7 @@ export class OclifLogger implements Log {
     this.delegateWarn(input)
   }
 
-  debug(...args: any[]): void {
+  debug(...args: unknown[]): void {
     this.delegateDebug(args)
   }
 }
@@ -37,7 +34,7 @@ export class ConsoleLogger implements Log {
     console.log(input, options)
   }
 
-  debug(...args: any[]): void {
+  debug(...args: unknown[]): void {
     console.debug(args)
   }
 
@@ -45,7 +42,7 @@ export class ConsoleLogger implements Log {
     console.warn(input)
   }
 
-  log(message?: string, ...args: any[]): void {
+  log(message?: string, ...args: unknown[]): void {
     console.log(message, args)
   }
 }

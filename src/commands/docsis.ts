@@ -35,7 +35,7 @@ JSON data
       const docsisData = await modem.docsis()
       return docsisData
     } catch (error) {
-      this.error('Something went wrong.', error)
+      this.error('Something went wrong.', error as Error)
       throw new Error('Could not fetch docsis status from modem')
     } finally {
       await modem.logout()

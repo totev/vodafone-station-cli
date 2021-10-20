@@ -1,6 +1,8 @@
-import {CryptoVars} from '../html-parser'
 import {ConsoleLogger} from '../logger'
-import {Arris} from './arris-modem'
+import {Arris, ArrisDocsisStatus, normalizeDocsisStatus} from './arris-modem'
+import {CryptoVars} from './tools/html-parser'
+import fixtureDocsisStatus from './__fixtures__/docsisStatus_arris.json'
+import fixtureDocsisStatusOfdma from './__fixtures__/docsisStatus_ofdm_arris.json'
 
 describe('Arris', () => {
   test('should encrypt', () => {
@@ -18,5 +20,16 @@ describe('Arris', () => {
     }
     const arrisModem = new Arris('0.0.0.0', new ConsoleLogger())
     expect(arrisModem.encryptPassword('test', given)).toEqual(expected)
+  })
+
+  describe('normalizeDocsisStatus', () => {
+    test('should work with ofdm in download', () => {
+      const status = normalizeDocsisStatus(fixtureDocsisStatus as ArrisDocsisStatus)
+      expect(status).toMatchSnapshot()
+    })
+    test('should work with ofdm in download and in upload', () => {
+      const status = normalizeDocsisStatus(fixtureDocsisStatusOfdma as ArrisDocsisStatus)
+      expect(status).toMatchSnapshot()
+    })
   })
 })

@@ -4,11 +4,17 @@ const SJCL_ITERATIONS = 1000
 const SJCL_KEYSIZEBITS = 128
 const SJCL_TAGLENGTH = 128
 
+export interface BitParams {
+    prf: sjcl.SjclCipher;
+    iv: sjcl.BitArray;
+    authData: sjcl.BitArray;
+}
+
 export function prepareParameters(
   derivedKey: string,
   ivHex: string,
   authData: string
-) {
+): BitParams {
   return {
     prf: new sjcl.cipher.aes(sjcl.codec.hex.toBits(derivedKey)),
     iv: sjcl.codec.hex.toBits(ivHex),
