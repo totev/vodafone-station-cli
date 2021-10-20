@@ -122,7 +122,7 @@ export class Arris extends Modem {
       const {data} = await this.httpClient.get('/', {
         headers: {Accept: 'text/html,application/xhtml+xml,application/xml'},
       })
-      const cryptoVars = extractCryptoVars(data)
+      const cryptoVars = extractCryptoVars(data as string)
       this.logger.debug('Parsed crypto vars: ', cryptoVars)
       return cryptoVars
     } catch (error) {
@@ -184,7 +184,7 @@ export class Arris extends Modem {
   async  fetchCredential(): Promise<string> {
     try {
       const {data} = await this.httpClient.get('/base_95x.js')
-      return extractCredentialString(data)
+      return extractCredentialString(data as string)
     } catch (error) {
       this.logger.error('Could not fetch credential.', error)
       throw error
@@ -203,7 +203,7 @@ export class Arris extends Modem {
           Connection: 'keep-alive',
         },
       })
-      return normalizeDocsisStatus(extractDocsisStatus(data))
+      return normalizeDocsisStatus(extractDocsisStatus(data as string))
     } catch (error) {
       this.logger.error('Could not fetch remote docsis status', error)
       throw error

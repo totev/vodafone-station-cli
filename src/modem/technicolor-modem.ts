@@ -173,7 +173,7 @@ export class Technicolor extends Modem {
 
   async docsis(): Promise<DocsisStatus> {
     const {data: docsisStatus} = await this.httpClient.get('/api/v1/sta_docsis_status')
-    return normalizeDocsisStatus(docsisStatus)
+    return normalizeDocsisStatus(docsisStatus as TechnicolorDocsisStatus)
   }
 
   async logout(): Promise<void> {

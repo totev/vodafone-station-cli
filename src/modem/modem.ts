@@ -1,9 +1,7 @@
 import axios, {AxiosInstance} from 'axios'
-import axiosCookieJarSupport from 'axios-cookiejar-support'
-import {CookieJar} from 'tough-cookie'
+import { CookieJar } from 'tough-cookie'
+import { wrapper } from 'axios-cookiejar-support';
 import {Log} from '../logger'
-// axios cookie support
-axiosCookieJarSupport(axios)
 
 export type DocsisChannelType = 'OFDM' | 'OFDMA' | 'SC-QAM'
 
@@ -63,7 +61,7 @@ export abstract class Modem implements GenericModem {
   }
 
   private initAxios(): AxiosInstance {
-    return axios.create({
+    return wrapper(axios.create({
       withCredentials: true,
       jar: this.cookieJar,
       baseURL: `http://${this.modemIp}`,
@@ -71,7 +69,7 @@ export abstract class Modem implements GenericModem {
         'X-Requested-With': 'XMLHttpRequest',
       },
       timeout: 30000
-    })
+    }))
   }
 }
 
