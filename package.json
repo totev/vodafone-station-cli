@@ -11,10 +11,9 @@
     "@oclif/command": "^1",
     "@oclif/config": "^1",
     "@oclif/plugin-help": "^3",
-    "axios": "^0.21.1",
-    "axios-cookiejar-support": "^1.0.1",
-    "dotenv": "^8.2.0",
-    "node-fetch": "^2.6.1",
+    "axios": "^0.23.0",
+    "axios-cookiejar-support": "^2.0.3",
+    "dotenv": "^10.0.0",
     "sjcl": "^1.0.8",
     "tough-cookie": "^4.0.0"
   },
