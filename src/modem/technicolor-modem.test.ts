@@ -1,4 +1,3 @@
-/*  eslint-disable  @typescript-eslint/camelcase  */
 import {normalizeChannelStatus, normalizeDocsisStatus, normalizeOfdmChannelStatus, normalizeUpstreamChannelStatus, normalizeUpstreamOfdmaChannelStatus, TechnicolorDocsisStatus} from './technicolor-modem'
 import fixtureDocsisStatus from './__fixtures__/docsisStatus_technicolor.json'
 

@@ -11,6 +11,7 @@
       2
     ],
     "lines-between-class-members": "off",
-    "comma-dangle": "off"
+    "comma-dangle": "off",
+    "@typescript-eslint/camelcase": "off"
   }
 }
