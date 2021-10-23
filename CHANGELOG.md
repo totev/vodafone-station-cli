@@ -1,3 +1,8 @@
+v1.1.2
+---
+- Bugfixes related to parallel promise resolution
+- Updated telegraf configuration
+
 v1.1.1
 ---
 - Added support for Technicolor modems
