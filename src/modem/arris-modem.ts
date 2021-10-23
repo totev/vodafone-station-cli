@@ -167,9 +167,12 @@ export class Arris extends Modem {
       )
       // TODO handle wrong password case
       // { p_status: 'Lockout', p_waitTime: 1 }
+      if (data.p_status === 'Lockout') {
+        throw new Error(`Remote user locked out for: ${data.p_waitTime}s`)
+      }
       return data
     } catch (error) {
-      this.logger.error('Could not set password on remote router.', error)
+      this.logger.error('Could not pass password on remote router.', error)
       throw error
     }
   }

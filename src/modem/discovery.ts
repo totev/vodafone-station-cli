@@ -1,19 +1,23 @@
-import axios from 'axios'
-import {extractFirmwareVersion} from './tools/html-parser'
-import {Log} from '../logger'
-import {TechnicolorConfiguration} from './technicolor-modem'
+import axios, { AxiosResponse } from 'axios'
+import { Log } from '../logger'
+import { TechnicolorConfiguration } from './technicolor-modem'
+import { extractFirmwareVersion } from './tools/html-parser'
 const BRIDGED_MODEM_IP = '192.168.100.1'
 const ROUTER_IP = '192.168.0.1'
 axios.defaults.timeout = 1000
 
 export async function discoverModemIp(): Promise<string> {
   try {
-    const result = await Promise.any([axios.head(`http://${BRIDGED_MODEM_IP}`), axios.head(`http://${ROUTER_IP}`)])
-    const hostIp = result.request?.host
-    return hostIp
+    const results = await Promise.allSettled([axios.head(`http://${BRIDGED_MODEM_IP}`), axios.head(`http://${ROUTER_IP}`)])
+    const maybeResult = results.find(result => result.status === "fulfilled") as { value: AxiosResponse }
+      | undefined;
+    if (maybeResult?.value.request?.host) {
+      return maybeResult?.value.request?.host;
+    }
+    throw new Error();
   } catch (error) {
     // eslint-disable-next-line no-console
-    console.error('Could not find a router/modem under the known addresses', error)
+    console.error('Could not find a router/modem under the known addresses.')
     throw error
   }
 }

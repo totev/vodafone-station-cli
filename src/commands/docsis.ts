@@ -35,8 +35,8 @@ JSON data
       const docsisData = await modem.docsis()
       return docsisData
     } catch (error) {
-      this.error('Something went wrong.', error as Error)
-      throw new Error('Could not fetch docsis status from modem')
+      console.error(`Could not fetch docsis status from modem.`,error)
+      throw error;
     } finally {
       await modem.logout()
     }
@@ -60,14 +60,19 @@ JSON data
       this.exit()
     }
 
-    const docsisStatus = await this.getDocsisStatus(password)
-    const docsisStatusJSON = JSON.stringify(docsisStatus, undefined, 4)
+    try {
+      
+      const docsisStatus = await this.getDocsisStatus(password)
+      const docsisStatusJSON = JSON.stringify(docsisStatus, undefined, 4)
 
-    if (flags.file) {
-      await this.writeDocsisStatus(docsisStatusJSON)
-    } else {
-      this.log(docsisStatusJSON)
+      if (flags.file) {
+        await this.writeDocsisStatus(docsisStatusJSON)
+      } else {
+        this.log(docsisStatusJSON)
+      }
+      this.exit()
+    } catch (error) {
+      this.error(error as Error,{message:"Something went wrong"})
     }
-    this.exit()
   }
 }
