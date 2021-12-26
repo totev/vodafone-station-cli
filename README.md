@@ -22,6 +22,7 @@ Currently the following hardware/software is supported:
 
 <details>
   <summary>Docsis data format</summary>
+
 ```json
 {
     "downstream": [
