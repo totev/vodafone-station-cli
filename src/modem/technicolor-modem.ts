@@ -166,6 +166,12 @@ export class Technicolor extends Modem {
         },
       })
       this.logger.debug('Login status', loginResponse)
+      const {data: messageResponse} = await this.httpClient.get<TechnicolorBaseResponse>('/api/v1/session/menu', {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+        },
+      })
+      this.logger.debug('Message status', messageResponse)
     } catch (error) {
       this.logger.warn(`Something went wrong with the login ${error}`)
     }
