@@ -1,7 +1,7 @@
 vodafone-station-cli
 ====================
 
-Access your Arris TG3442DE or Technicolor CGA4322DE (aka Vodafone Station) from the comfort of the command line.
+Access your Arris TG3442DE or Technicolor CGA4322DE, CGA6444VF (aka Vodafone Station) from the comfort of the command line.
 
 ![ci-status](https://github.com/totev/vodafone-station-cli/actions/workflows/main.yml/badge.svg)
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
@@ -19,6 +19,7 @@ Currently the following hardware/software is supported:
 
 - Arris TG3442DE running `AR01.02.068.11_092320_711.PC20.10`, `01.02.068.13.EURO.PC20`
 - Technicolor CGA4322DE running `1.0.9-IMS-KDG`
+- Technicolor CGA6444VF running firmware `19.3B57-1.0.41`
 
 <details>
   <summary>Docsis data format</summary>
