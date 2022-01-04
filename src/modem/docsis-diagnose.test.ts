@@ -92,4 +92,36 @@ describe('diagnoseDownstream', () => {
   `('downstreamDeviation($input)', ({ input, expected }) => {
     expect(downstreamDeviation(input)).toBe(expected);
   });
+
+  
+  test.each([
+    [-60,	 SofortigeBeseitigung],
+    [-50,	 SofortigeBeseitigung],
+    [-6,	 SofortigeBeseitigung],
+    [-5.9, BeseitigungBinnenMonatsfrist],
+    [-5,	 BeseitigungBinnenMonatsfrist],
+    [-4,	 BeseitigungBinnenMonatsfrist],
+    [-3.9, TolerierteAbweichung],
+    [-2.5, TolerierteAbweichung],
+    [-2,	 TolerierteAbweichung],
+    [-1.9,	 Vorgabekonform],
+    [-1,	   Vorgabekonform],
+    [1,	   Vorgabekonform],
+    [0,	   Vorgabekonform],
+    [5,	   Vorgabekonform],
+    [15,	   Vorgabekonform],
+    [15.1,	 TolerierteAbweichung],
+    [18,	   TolerierteAbweichung],
+    [19.99, TolerierteAbweichung],
+    [20,	   TolerierteAbweichung],
+    [20.1,	 BeseitigungBinnenMonatsfrist],
+    [21,	   BeseitigungBinnenMonatsfrist],
+    [22,	   BeseitigungBinnenMonatsfrist],
+    [22.1,	 SofortigeBeseitigung],
+    [100,	 SofortigeBeseitigung],
+  ])
+  ('downstreamDeviation1024QAM(%d)', (input, expected ) => {
+    expect(downstreamDeviation({powerLevel:input, modulation:"1024QAM"})).toBe(expected);
+  });
+  
 });

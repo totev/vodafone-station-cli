@@ -70,6 +70,16 @@ export class DownstreamDeviation256QAM implements Deviation {
   }
 }
 
+export class DownstreamDeviation1024QAM implements Deviation {
+  modulation = "1024QAM" as const
+  delegate = new DownstreamDeviation64QAM()
+    
+  check(powerLevel: number): Diagnose {
+    const adjustedPowerLevel = powerLevel - 8 <= -60 ? powerLevel : powerLevel - 8;
+    return this.delegate.check(adjustedPowerLevel)
+  }
+}
+
 
 export const SofortigeBeseitigung: Diagnose = {
   description : "SofortigeBeseitigung",
@@ -98,6 +108,8 @@ export function downstreamDeviationFactory(modulation: Modulation): Deviation {
     return new DownstreamDeviation64QAM();
   case "256QAM":
     return new DownstreamDeviation256QAM();
+  case "1024QAM":
+    return new DownstreamDeviation1024QAM();
   default:
     throw new Error(`Unsupported modulation ${modulation}`)
   }}
