@@ -87,6 +87,14 @@ export class DownstreamDeviation2048QAM implements Deviation {
     const adjustedPowerLevel = powerLevel - 10<= -60 ? powerLevel : powerLevel -10;
     return this.delegate.check(adjustedPowerLevel)
   }
+}export class DownstreamDeviation4096QAM implements Deviation {
+  modulation = "4096QAM" as const
+  delegate = new DownstreamDeviation64QAM()
+    
+  check(powerLevel: number): Diagnose {
+    const adjustedPowerLevel = powerLevel - 12<= -60 ? powerLevel : powerLevel -12;
+    return this.delegate.check(adjustedPowerLevel)
+  }
 }
 
 
@@ -120,7 +128,9 @@ export function downstreamDeviationFactory(modulation: Modulation): Deviation {
   case "1024QAM":
     return new DownstreamDeviation1024QAM();
   case "2048QAM":
-    return new DownstreamDeviation2048QAM();
+      return new DownstreamDeviation2048QAM();
+    case "4096QAM":
+    return new DownstreamDeviation4096QAM();
   default:
     throw new Error(`Unsupported modulation ${modulation}`)
   }}
