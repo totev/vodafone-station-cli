@@ -20,6 +20,9 @@ export interface HumanizedDocsisChannelStatus{
 export interface DiagnosedDocsisChannelStatus extends HumanizedDocsisChannelStatus{
   diagnose: Diagnose
 }
+export interface DiagnosedDocsis31ChannelStatus extends HumanizedDocsis31ChannelStatus{
+  diagnose: Diagnose
+}
 
 export interface Diagnose{
   deviation: boolean

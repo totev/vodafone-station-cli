@@ -1,4 +1,4 @@
-import type { Diagnose, DiagnosedDocsisChannelStatus, DocsisStatus, HumanizedDocsisChannelStatus, Modulation } from "./modem";
+import type { Diagnose, DiagnosedDocsis31ChannelStatus, DiagnosedDocsisChannelStatus, DocsisStatus, HumanizedDocsisChannelStatus, Modulation } from "./modem";
 
 
 export const enum StatusClassification{
@@ -13,11 +13,16 @@ export interface Deviation{
 // based on https://www.vodafonekabelforum.de/viewtopic.php?t=32353
 export default class DocsisDiagnose{
   constructor(private docsisStatus:DocsisStatus) {
-  
   }
 
   checkDownstream(): DiagnosedDocsisChannelStatus[]{
     return this.docsisStatus.downstream
+      .map(channel => {
+        return { ...channel, diagnose: downstreamDeviation(channel) }
+      })
+  }
+  checkOfdmDownstream(): DiagnosedDocsis31ChannelStatus[]{
+    return this.docsisStatus.downstreamOfdm
       .map(channel => {
         return { ...channel, diagnose: downstreamDeviation(channel) }
       })
@@ -128,8 +133,8 @@ export function downstreamDeviationFactory(modulation: Modulation): Deviation {
   case "1024QAM":
     return new DownstreamDeviation1024QAM();
   case "2048QAM":
-      return new DownstreamDeviation2048QAM();
-    case "4096QAM":
+    return new DownstreamDeviation2048QAM();
+  case "4096QAM":
     return new DownstreamDeviation4096QAM();
   default:
     throw new Error(`Unsupported modulation ${modulation}`)

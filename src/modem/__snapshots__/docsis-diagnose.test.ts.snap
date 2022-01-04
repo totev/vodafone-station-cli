@@ -452,3 +452,23 @@ Array [
   },
 ]
 `;
+
+exports[`checkOfdmDownstream 1`] = `
+Array [
+  Object {
+    "channelId": "33",
+    "channelType": "OFDM",
+    "diagnose": Object {
+      "color": "red",
+      "description": "SofortigeBeseitigung",
+      "deviation": true,
+    },
+    "frequencyEnd": 324,
+    "frequencyStart": 151,
+    "lockStatus": "Locked",
+    "modulation": "1024QAM",
+    "powerLevel": 56.1,
+    "snr": 39,
+  },
+]
+`;

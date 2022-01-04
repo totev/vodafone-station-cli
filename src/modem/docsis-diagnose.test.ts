@@ -11,8 +11,13 @@ test('checkDownstream', () => {
   const diagnoser = new DocsisDiagnose(fixtureDocsisStatus as DocsisStatus);
   const result = diagnoser.checkDownstream() 
   expect(result).toHaveLength(32);
-  console.log(result);
-  
+  expect(result).toMatchSnapshot();
+});
+
+test('checkOfdmDownstream', () => {
+  const diagnoser = new DocsisDiagnose(fixtureDocsisStatus as DocsisStatus);
+  const result = diagnoser.checkOfdmDownstream() 
+  expect(result).toHaveLength(1);
   expect(result).toMatchSnapshot();
 });
 
