@@ -1,5 +1,5 @@
 import {Log} from '../logger'
-import {DocsisChannelType, DocsisStatus, HumanizedDocsis31ChannelStatus, HumanizedDocsisChannelStatus, Modem} from './modem'
+import {DocsisChannelType, DocsisStatus, HumanizedDocsis31ChannelStatus, HumanizedDocsisChannelStatus, Modem, Modulation} from './modem'
 import {deriveKeyTechnicolor} from './tools/crypto'
 
 export interface TechnicolorBaseResponse{
@@ -87,7 +87,7 @@ export function normalizeChannelStatus(channelStatus: TechnicolorDocsisChannelSt
   return {
     channelId: channelStatus.channelid,
     channelType: channelStatus.ChannelType,
-    modulation: channelStatus.FFT,
+    modulation: channelStatus.FFT as Modulation,
     lockStatus: channelStatus.locked,
     snr: parseFloat(`${channelStatus.SNR ?? 0}`),
     frequency: parseInt(`${channelStatus.CentralFrequency ?? 0}`, 10),
@@ -98,7 +98,7 @@ export function normalizeUpstreamChannelStatus(channelStatus: TechnicolorDocsisU
   return {
     channelId: channelStatus.channelidup,
     channelType: channelStatus.ChannelType,
-    modulation: channelStatus.FFT,
+    modulation: channelStatus.FFT as Modulation,
     lockStatus: channelStatus.RangingStatus,
     snr: 0,
     frequency: parseInt(`${channelStatus.CentralFrequency ?? 0}`, 10),
@@ -110,7 +110,7 @@ export function normalizeUpstreamOfdmaChannelStatus(channelStatus: TechnicolorDo
     channelId: channelStatus.channelidup,
     lockStatus: channelStatus.RangingStatus,
     channelType: channelStatus.ChannelType as DocsisChannelType,
-    modulation: channelStatus.FFT,
+    modulation: channelStatus.FFT as Modulation,
     powerLevel: parseFloat(channelStatus.power),
     frequencyStart: parseFloat(channelStatus.start_frequency),
     frequencyEnd: parseFloat(channelStatus.end_frequency),
@@ -123,7 +123,7 @@ export function normalizeOfdmChannelStatus(channelStatus: TechnicolorDocsis31Cha
     channelId: channelStatus.channelid_ofdm,
     lockStatus: channelStatus.locked_ofdm,
     channelType: channelStatus.ChannelType,
-    modulation: channelStatus.FFT_ofdm,
+    modulation: channelStatus.FFT_ofdm as Modulation,
     powerLevel: parseFloat(channelStatus.power_ofdm),
     frequencyStart: parseInt(channelStatus.start_frequency, 10),
     frequencyEnd: parseInt(channelStatus.end_frequency, 10),

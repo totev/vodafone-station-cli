@@ -398,6 +398,8 @@ You can provide a password either by setting the environment variable `VODAFONE_
 Cable connection information/meaning:
 - https://motorolacable.com/whitepapers/cable-connection
 
+Diagnose is based on the guidelines/values provided by Meister Voda:
+- https://www.vodafonekabelforum.de/viewtopic.php?t=32353
 # Usage
 <!-- usage -->
 ```sh-session

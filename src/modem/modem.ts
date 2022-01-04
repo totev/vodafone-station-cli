@@ -1,18 +1,30 @@
-import axios, {AxiosInstance} from 'axios'
-import { CookieJar } from 'tough-cookie'
+import axios, { AxiosInstance } from 'axios';
 import { wrapper } from 'axios-cookiejar-support';
-import {Log} from '../logger'
+import { CookieJar } from 'tough-cookie';
+import { Log } from '../logger';
 
 export type DocsisChannelType = 'OFDM' | 'OFDMA' | 'SC-QAM'
+
+export type Modulation = "64QAM" | "256QAM" | "1024QAM" | "2048QAM" | "4096QAM"
 
 export interface HumanizedDocsisChannelStatus{
   channelId: string;
   channelType: DocsisChannelType;
   snr: number; // dB
   frequency: number; // MHz
-  modulation: string;
+  modulation: Modulation;
   lockStatus: string;
   powerLevel: number; // dBmV
+}
+
+export interface DiagnosedDocsisChannelStatus extends HumanizedDocsisChannelStatus{
+  diagnose: Diagnose
+}
+
+export interface Diagnose{
+  deviation: boolean
+  color: "red" | "green" | "yellow"
+  description: string;
 }
 
 export interface HumanizedDocsis31ChannelStatus extends Omit<HumanizedDocsisChannelStatus, 'frequency'>{
