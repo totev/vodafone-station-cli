@@ -19,8 +19,7 @@ export default class DocsisDiagnose{
   checkDownstream(): DiagnosedDocsisChannelStatus[]{
     return this.docsisStatus.downstream
       .map(channel => {
-        downstreamDeviation(channel)
-        return [] as any
+        return { ...channel, diagnose: downstreamDeviation(channel) }
       })
   }
 
@@ -61,6 +60,17 @@ export class DownstreamDeviation64QAM implements Deviation{
   }
 }
 
+export class DownstreamDeviation256QAM implements Deviation {
+  modulation = "256QAM" as const
+  delegate = new DownstreamDeviation64QAM()
+    
+  check(powerLevel: number): Diagnose {
+    const adjustedPowerLevel = powerLevel - 6 <= -60 ? powerLevel : powerLevel - 6;
+    return this.delegate.check(adjustedPowerLevel)
+  }
+}
+
+
 export const SofortigeBeseitigung: Diagnose = {
   description : "SofortigeBeseitigung",
   deviation: true,
@@ -86,6 +96,8 @@ export function downstreamDeviationFactory(modulation: Modulation): Deviation {
   switch (modulation) {
   case "64QAM":
     return new DownstreamDeviation64QAM();
+  case "256QAM":
+    return new DownstreamDeviation256QAM();
   default:
     throw new Error(`Unsupported modulation ${modulation}`)
   }}
