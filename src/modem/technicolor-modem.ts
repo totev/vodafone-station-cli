@@ -151,6 +151,7 @@ export class Technicolor extends Modem {
       const {data: salt} = await this.httpClient.post<TechnicolorSaltResponse>('/api/v1/session/login', `username=${Modem.USERNAME}&password=seeksalthash`, {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+          'Referer': 'http://${this.modemIp}/',
       })
       this.logger.debug('Salt', salt)
 
@@ -163,12 +164,14 @@ export class Technicolor extends Modem {
       const {data: loginResponse} = await this.httpClient.post<TechnicolorBaseResponse>('/api/v1/session/login', `username=${Modem.USERNAME}&password=${derivedKey}`, {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+          'Referer': 'http://${this.modemIp}/',
         },
       })
       this.logger.debug('Login status', loginResponse)
       const {data: messageResponse} = await this.httpClient.get<TechnicolorBaseResponse>('/api/v1/session/menu', {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+          'Referer': 'http://${this.modemIp}/',
         },
       })
       this.logger.debug('Message status', messageResponse)
@@ -178,7 +181,12 @@ export class Technicolor extends Modem {
   }
 
   async docsis(): Promise<DocsisStatus> {
-    const {data: docsisStatus} = await this.httpClient.get('/api/v1/sta_docsis_status')
+    const {data: docsisStatus} = await this.httpClient.get('/api/v1/sta_docsis_status', {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+          'Referer': 'http://${this.modemIp}/',
+        },
+      })
     return normalizeDocsisStatus(docsisStatus as TechnicolorDocsisStatus)
   }
 
@@ -195,6 +203,7 @@ export class Technicolor extends Modem {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
           'X-CSRF-TOKEN': tokenResponse.token,
+          'Referer': 'http://${this.modemIp}/',
         },
       })
 
