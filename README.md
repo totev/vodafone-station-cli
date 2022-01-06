@@ -386,7 +386,7 @@ Currently the following hardware/software is supported:
 # Notes
 
 A full login and logout sequence is being done on every command execution.
-You can provide a password either by setting the environment variable `VODAFONE_ROUTER_PASSWORD` in your shell, in a local `.env` file or by using the `-f` flag.
+You can provide a password either by setting the environment variable `VODAFONE_ROUTER_PASSWORD` in your shell, in a local `.env` file or by using the `-p` flag.
 
 # Useful related projects:
 
