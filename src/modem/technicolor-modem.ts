@@ -150,8 +150,9 @@ export class Technicolor extends Modem {
     try {
       const {data: salt} = await this.httpClient.post<TechnicolorSaltResponse>('/api/v1/session/login', `username=${Modem.USERNAME}&password=seeksalthash`, {
         headers: {
-          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
           'Referer': 'http://${this.modemIp}/',
+        }
       })
       this.logger.debug('Salt', salt)
 
