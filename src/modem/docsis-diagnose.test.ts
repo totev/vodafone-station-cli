@@ -1,5 +1,5 @@
-import DocsisDiagnose, { BeseitigungBinnenMonatsfrist, downstreamDeviation, DownstreamDeviation64QAM, downstreamDeviationFactory, SofortigeBeseitigung, TolerierteAbweichung, Vorgabekonform } from "./docsis-diagnose";
-import type { Diagnose, DocsisStatus, Modulation } from "./modem";
+import DocsisDiagnose, { BeseitigungBinnenMonatsfrist, downstreamDeviation, DownstreamDeviation64QAM, downstreamDeviationFactory, SofortigeBeseitigung, TolerierteAbweichung, upstreamDeviation, Vorgabekonform } from "./docsis-diagnose";
+import type { DocsisStatus, Modulation } from "./modem";
 import fixtureDocsisStatus from './__fixtures__/docsisStatus_normalized.json';
 
 test('constructor', () => {
@@ -34,6 +34,39 @@ test('detectDeviations', () => {
 });
 
 
+describe('diagnoseUpstream', () => {
+  test.each([
+    [-70,	 SofortigeBeseitigung],
+    [-56,	 SofortigeBeseitigung],
+    [-35,	 SofortigeBeseitigung],
+    [-4,	 SofortigeBeseitigung],
+    [0,	 SofortigeBeseitigung],
+    [10,	 SofortigeBeseitigung],
+    [35,	 SofortigeBeseitigung],
+    [35.1, BeseitigungBinnenMonatsfrist],
+    [36, BeseitigungBinnenMonatsfrist],
+    [37, BeseitigungBinnenMonatsfrist],
+    [37.1, TolerierteAbweichung],
+    [40, TolerierteAbweichung],
+    [41, TolerierteAbweichung],
+    [41.1, Vorgabekonform],
+    [45, Vorgabekonform],
+    [47, Vorgabekonform],
+    [47.1, TolerierteAbweichung],
+    [49, TolerierteAbweichung],
+    [51, TolerierteAbweichung],
+    [51.1, BeseitigungBinnenMonatsfrist],
+    [52, BeseitigungBinnenMonatsfrist],
+    [53, BeseitigungBinnenMonatsfrist],
+    [53.1,	 SofortigeBeseitigung],
+    [60,	 SofortigeBeseitigung],
+    [70,	 SofortigeBeseitigung],
+  ])
+  ('upstreamDeviationDeviationSCQAM(%d)', (input, expected ) => {
+    expect(upstreamDeviation({powerLevel:input, channelType:"SC-QAM"})).toBe(expected);
+  });
+
+});
 describe('diagnoseDownstream', () => {
 
   test.each`

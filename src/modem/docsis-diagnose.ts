@@ -1,4 +1,4 @@
-import type { Diagnose, DiagnosedDocsis31ChannelStatus, DiagnosedDocsisChannelStatus, DocsisStatus, HumanizedDocsisChannelStatus, Modulation } from "./modem";
+import type { Diagnose, DiagnosedDocsis31ChannelStatus, DiagnosedDocsisChannelStatus, DocsisChannelType, DocsisStatus, HumanizedDocsisChannelStatus, Modulation } from "./modem";
 
 
 export const enum StatusClassification{
@@ -6,6 +6,7 @@ export const enum StatusClassification{
 }
 
 export interface Deviation{
+  channelType?: DocsisChannelType
   modulation: Modulation;
   check(powerLevel: number):Diagnose;
 }
@@ -35,6 +36,31 @@ export default class DocsisDiagnose{
 
 export function diagnoseDownstream(status: HumanizedDocsisChannelStatus): any{
   return 
+}
+
+
+export class UpstreamDeviationSCQAM implements Deviation{
+  modulation = "64QAM" as const
+  channelType = "SC-QAM" as const
+  
+  check(powerLevel: number): Diagnose {
+    if (powerLevel <= 35)
+      return SofortigeBeseitigung
+    if (35 < powerLevel && powerLevel <= 37)
+      return BeseitigungBinnenMonatsfrist;
+    if (37 < powerLevel && powerLevel <= 41)
+      return TolerierteAbweichung;
+    if (41 < powerLevel && powerLevel <= 47)
+      return Vorgabekonform;
+    if (47 < powerLevel && powerLevel <= 51)
+      return TolerierteAbweichung;
+    if (51 < powerLevel && powerLevel <= 53)
+      return BeseitigungBinnenMonatsfrist;
+    if ( 53 < powerLevel)
+      return SofortigeBeseitigung
+    
+    throw new Error(`PowerLevel is not within supported range. PowerLevel: ${powerLevel}`);
+  }
 }
 
 export function downstreamDeviation({ modulation, powerLevel }:{modulation: Modulation, powerLevel: number}): Diagnose {
@@ -92,7 +118,8 @@ export class DownstreamDeviation2048QAM implements Deviation {
     const adjustedPowerLevel = powerLevel - 10<= -60 ? powerLevel : powerLevel -10;
     return this.delegate.check(adjustedPowerLevel)
   }
-}export class DownstreamDeviation4096QAM implements Deviation {
+}
+export class DownstreamDeviation4096QAM implements Deviation {
   modulation = "4096QAM" as const
   delegate = new DownstreamDeviation64QAM()
     
@@ -138,4 +165,21 @@ export function downstreamDeviationFactory(modulation: Modulation): Deviation {
     return new DownstreamDeviation4096QAM();
   default:
     throw new Error(`Unsupported modulation ${modulation}`)
+  }
+}
+  
+export function upstreamDeviationFactory(channelType: DocsisChannelType): Deviation {
+  switch (channelType) {
+  case "SC-QAM":
+    return new UpstreamDeviationSCQAM();
+  case "OFDMA":
+    throw new Error(`Not yet implemented!`)
+
+  default:
+    throw new Error(`Unsupported channel type ${channelType}`)
   }}
+
+export function upstreamDeviation({ channelType, powerLevel }:{channelType: DocsisChannelType, powerLevel: number}): Diagnose {
+  const deviation = upstreamDeviationFactory(channelType);
+  return deviation.check(powerLevel);
+}
