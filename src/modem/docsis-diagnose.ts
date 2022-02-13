@@ -68,7 +68,7 @@ export class UpstreamDeviationOFDMA implements Deviation{
   modulation = "64QAM" as const
   channelType = "OFDMA" as const
 
- check(powerLevel: number): Diagnose {
+  check(powerLevel: number): Diagnose {
     if (powerLevel <= 38)
       return SofortigeBeseitigung
     if (38 < powerLevel && powerLevel <= 40)
