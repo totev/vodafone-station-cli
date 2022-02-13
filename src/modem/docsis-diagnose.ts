@@ -63,6 +63,31 @@ export class UpstreamDeviationSCQAM implements Deviation{
   }
 }
 
+
+export class UpstreamDeviationOFDMA implements Deviation{
+  modulation = "64QAM" as const
+  channelType = "OFDMA" as const
+
+ check(powerLevel: number): Diagnose {
+    if (powerLevel <= 38)
+      return SofortigeBeseitigung
+    if (38 < powerLevel && powerLevel <= 40)
+      return BeseitigungBinnenMonatsfrist;
+    if (40 < powerLevel && powerLevel <= 44)
+      return TolerierteAbweichung;
+    if (44 < powerLevel && powerLevel <= 47)
+      return Vorgabekonform;
+    if (47 < powerLevel && powerLevel <= 48)
+      return TolerierteAbweichung;
+    if (48 < powerLevel && powerLevel <= 50)
+      return BeseitigungBinnenMonatsfrist;
+    if ( 50 < powerLevel)
+      return SofortigeBeseitigung
+    
+    throw new Error(`PowerLevel is not within supported range. PowerLevel: ${powerLevel}`);
+  }
+}
+
 export function downstreamDeviation({ modulation, powerLevel }:{modulation: Modulation, powerLevel: number}): Diagnose {
   const deviation = downstreamDeviationFactory(modulation);
   return deviation.check(powerLevel);
@@ -173,8 +198,7 @@ export function upstreamDeviationFactory(channelType: DocsisChannelType): Deviat
   case "SC-QAM":
     return new UpstreamDeviationSCQAM();
   case "OFDMA":
-    throw new Error(`Not yet implemented!`)
-
+    return new UpstreamDeviationOFDMA()
   default:
     throw new Error(`Unsupported channel type ${channelType}`)
   }}

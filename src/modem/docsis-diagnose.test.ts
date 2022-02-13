@@ -65,8 +65,43 @@ describe('diagnoseUpstream', () => {
   ('upstreamDeviationDeviationSCQAM(%d)', (input, expected ) => {
     expect(upstreamDeviation({powerLevel:input, channelType:"SC-QAM"})).toBe(expected);
   });
-
+  
+  test.each([
+    [-60,	 SofortigeBeseitigung],
+    [-50,	 SofortigeBeseitigung],
+    [-30,	 SofortigeBeseitigung],
+    [-4,	 SofortigeBeseitigung],
+    [0,	 SofortigeBeseitigung],
+    [10,	 SofortigeBeseitigung],
+    [20,	 SofortigeBeseitigung],
+    [30,	 SofortigeBeseitigung],
+    [38,	 SofortigeBeseitigung],
+    [38.1, BeseitigungBinnenMonatsfrist],
+    [39, BeseitigungBinnenMonatsfrist],
+    [39.9, BeseitigungBinnenMonatsfrist],
+    [40, BeseitigungBinnenMonatsfrist],
+    [40.1, TolerierteAbweichung],
+    [41, TolerierteAbweichung],
+    [42, TolerierteAbweichung],
+    [44, TolerierteAbweichung],
+    [44.1, Vorgabekonform],
+    [45, Vorgabekonform],
+    [47, Vorgabekonform],
+    [47.1, TolerierteAbweichung],
+    [47.55, TolerierteAbweichung],
+    [48, TolerierteAbweichung],
+    [48.1, BeseitigungBinnenMonatsfrist],
+    [49, BeseitigungBinnenMonatsfrist],
+    [50, BeseitigungBinnenMonatsfrist],
+    [50.1,	 SofortigeBeseitigung],
+    [60,	 SofortigeBeseitigung],
+    [70,	 SofortigeBeseitigung],
+  ])
+  ('upstreamDeviationDeviationOFDMA(%d)', (input, expected ) => {
+    expect(upstreamDeviation({powerLevel:input, channelType:"OFDMA"})).toBe(expected);
+  });
 });
+
 describe('diagnoseDownstream', () => {
 
   test.each`
