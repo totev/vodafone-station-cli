@@ -28,6 +28,18 @@ export default class DocsisDiagnose{
         return { ...channel, diagnose: downstreamDeviation(channel) }
       })
   }
+  checkUpstream(): DiagnosedDocsisChannelStatus[]{
+    return this.docsisStatus.upstream
+      .map(channel => {
+        return { ...channel, diagnose: upstreamDeviation(channel) }
+      })
+  }
+  checkOfdmaUpstream(): DiagnosedDocsis31ChannelStatus[]{
+    return this.docsisStatus.upstreamOfdma
+      .map(channel => {
+        return { ...channel, diagnose: upstreamDeviation(channel) }
+      })
+  }
 
   detectDeviations(): boolean{
     return true

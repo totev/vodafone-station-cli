@@ -472,3 +472,84 @@ Array [
   },
 ]
 `;
+
+exports[`checkOfdmaUpstream 1`] = `
+Array [
+  Object {
+    "channelId": "9",
+    "channelType": "OFDMA",
+    "diagnose": Object {
+      "color": "red",
+      "description": "SofortigeBeseitigung",
+      "deviation": true,
+    },
+    "frequencyEnd": 64.8,
+    "frequencyStart": 29.8,
+    "lockStatus": "SUCCESS",
+    "modulation": "16_QAM",
+    "powerLevel": 106.2,
+    "snr": 0,
+  },
+]
+`;
+
+exports[`checkUpstream 1`] = `
+Array [
+  Object {
+    "channelId": "3",
+    "channelType": "SC-QAM",
+    "diagnose": Object {
+      "color": "red",
+      "description": "SofortigeBeseitigung",
+      "deviation": true,
+    },
+    "frequency": 37,
+    "lockStatus": "Locked",
+    "modulation": "64QAM",
+    "powerLevel": 110.3,
+    "snr": 0,
+  },
+  Object {
+    "channelId": "4",
+    "channelType": "SC-QAM",
+    "diagnose": Object {
+      "color": "red",
+      "description": "SofortigeBeseitigung",
+      "deviation": true,
+    },
+    "frequency": 31,
+    "lockStatus": "Locked",
+    "modulation": "32QAM",
+    "powerLevel": 110.3,
+    "snr": 0,
+  },
+  Object {
+    "channelId": "1",
+    "channelType": "SC-QAM",
+    "diagnose": Object {
+      "color": "red",
+      "description": "SofortigeBeseitigung",
+      "deviation": true,
+    },
+    "frequency": 51,
+    "lockStatus": "Locked",
+    "modulation": "64QAM",
+    "powerLevel": 110.3,
+    "snr": 0,
+  },
+  Object {
+    "channelId": "2",
+    "channelType": "SC-QAM",
+    "diagnose": Object {
+      "color": "red",
+      "description": "SofortigeBeseitigung",
+      "deviation": true,
+    },
+    "frequency": 45,
+    "lockStatus": "Locked",
+    "modulation": "64QAM",
+    "powerLevel": 110.3,
+    "snr": 0,
+  },
+]
+`;

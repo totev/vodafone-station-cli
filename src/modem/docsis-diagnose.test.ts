@@ -1,5 +1,5 @@
-import DocsisDiagnose, { BeseitigungBinnenMonatsfrist, downstreamDeviation, DownstreamDeviation64QAM, downstreamDeviationFactory, SofortigeBeseitigung, TolerierteAbweichung, upstreamDeviation, Vorgabekonform } from "./docsis-diagnose";
-import type { DocsisStatus, Modulation } from "./modem";
+import DocsisDiagnose, { BeseitigungBinnenMonatsfrist, downstreamDeviation, DownstreamDeviation64QAM, downstreamDeviationFactory, SofortigeBeseitigung, TolerierteAbweichung, upstreamDeviation, upstreamDeviationFactory, UpstreamDeviationOFDMA, UpstreamDeviationSCQAM, Vorgabekonform } from "./docsis-diagnose";
+import type { DocsisChannelType, DocsisStatus, Modulation } from "./modem";
 import fixtureDocsisStatus from './__fixtures__/docsisStatus_normalized.json';
 
 test('constructor', () => {
@@ -21,11 +21,28 @@ test('checkOfdmDownstream', () => {
   expect(result).toMatchSnapshot();
 });
 
-test('deviationFactory unsupported modulation', () => {
-  expect(()=>downstreamDeviationFactory("8192AM" as Modulation)).toThrowError()
+test('checkUpstream', () => {
+  const diagnoser = new DocsisDiagnose(fixtureDocsisStatus as DocsisStatus);
+  const result = diagnoser.checkUpstream() 
+  expect(result).toHaveLength(4);
+  expect(result).toMatchSnapshot();
 });
-test('deviationFactory supported modulation', () => {
+
+test('checkOfdmaUpstream', () => {
+  const diagnoser = new DocsisDiagnose(fixtureDocsisStatus as DocsisStatus);
+  const result = diagnoser.checkOfdmaUpstream() 
+  expect(result).toHaveLength(1);
+  expect(result).toMatchSnapshot();
+});
+
+test('deviationFactory unsupported modulation/type', () => {
+  expect(()=>downstreamDeviationFactory("8192AM" as Modulation)).toThrowError()
+  expect(()=>upstreamDeviationFactory("OFDM" as DocsisChannelType)).toThrowError()
+});
+test('deviationFactory supported modulation/type', () => {
   expect(downstreamDeviationFactory("64QAM" as Modulation)).toStrictEqual(new DownstreamDeviation64QAM())
+  expect(upstreamDeviationFactory("SC-QAM" as const)).toStrictEqual(new UpstreamDeviationSCQAM())
+  expect(upstreamDeviationFactory("OFDMA" as const)).toStrictEqual(new UpstreamDeviationOFDMA())
 });
 
 test('detectDeviations', () => {
