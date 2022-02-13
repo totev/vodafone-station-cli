@@ -42,7 +42,14 @@ export default class DocsisDiagnose{
   }
 
   detectDeviations(): boolean{
-    return true
+    return !![
+      this.checkDownstream(),
+      this.checkOfdmDownstream(),
+      this.checkUpstream(),
+      this.checkOfdmaUpstream()
+    ]
+      .flat()
+      .find(({diagnose}) => diagnose.deviation)
   }
 }
 
@@ -100,7 +107,7 @@ export class UpstreamDeviationOFDMA implements Deviation{
   }
 }
 
-export function downstreamDeviation({ modulation, powerLevel }:{modulation: Modulation, powerLevel: number}): Diagnose {
+export function  downstreamDeviation({ modulation, powerLevel }:{modulation: Modulation, powerLevel: number}): Diagnose {
   const deviation = downstreamDeviationFactory(modulation);
   return deviation.check(powerLevel);
 }

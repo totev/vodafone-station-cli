@@ -1,6 +1,7 @@
 import DocsisDiagnose, { BeseitigungBinnenMonatsfrist, downstreamDeviation, DownstreamDeviation64QAM, downstreamDeviationFactory, SofortigeBeseitigung, TolerierteAbweichung, upstreamDeviation, upstreamDeviationFactory, UpstreamDeviationOFDMA, UpstreamDeviationSCQAM, Vorgabekonform } from "./docsis-diagnose";
 import type { DocsisChannelType, DocsisStatus, Modulation } from "./modem";
 import fixtureDocsisStatus from './__fixtures__/docsisStatus_normalized.json';
+import fixtureDocsisStatusMinimal from './__fixtures__/docsisStatus_normalized_minimal.json';
 
 test('constructor', () => {
   const diagnoser = new DocsisDiagnose(fixtureDocsisStatus as DocsisStatus);
@@ -45,9 +46,14 @@ test('deviationFactory supported modulation/type', () => {
   expect(upstreamDeviationFactory("OFDMA" as const)).toStrictEqual(new UpstreamDeviationOFDMA())
 });
 
-test('detectDeviations', () => {
+test('detectDeviations with deviations', () => {
   const diagnoser = new DocsisDiagnose(fixtureDocsisStatus as DocsisStatus);
   expect(diagnoser.detectDeviations()).toBeTruthy();
+});
+
+test('detectDeviations without deviations', () => {
+  const diagnoser = new DocsisDiagnose(fixtureDocsisStatusMinimal as DocsisStatus);
+  expect(diagnoser.detectDeviations()).toBeFalsy();
 });
 
 

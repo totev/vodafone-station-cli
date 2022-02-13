@@ -1,0 +1,58 @@
+{
+  "downstream": [
+    {
+      "channelId": "6",
+      "channelType": "SC-QAM",
+      "modulation": "256QAM",
+      "powerLevel": 5.3,
+      "lockStatus": "Locked",
+      "snr": 39,
+      "frequency": 618
+    },
+    {
+      "channelId": "27",
+      "channelType": "SC-QAM",
+      "modulation": "64QAM",
+      "powerLevel": 5,
+      "lockStatus": "Locked",
+      "snr": 34,
+      "frequency": 794
+    }
+  ],
+  "downstreamOfdm": [
+    {
+      "channelId": "33",
+      "channelType": "OFDM",
+      "modulation": "1024QAM",
+      "powerLevel": 10,
+      "lockStatus": "Locked",
+      "snr": 39,
+      "frequencyStart": 151,
+      "frequencyEnd": 324
+    }
+  ],
+  "upstream": [
+    {
+      "channelId": "1",
+      "channelType": "SC-QAM",
+      "modulation": "64QAM",
+      "powerLevel": 45,
+      "lockStatus": "Locked",
+      "snr": 0,
+      "frequency": 51
+    }
+  ],
+  "upstreamOfdma": [
+    {
+      "channelId": "9",
+      "channelType": "OFDMA",
+      "modulation": "16_QAM",
+      "powerLevel": 45,
+      "lockStatus": "SUCCESS",
+      "snr": 0,
+      "frequencyStart": 29.8,
+      "frequencyEnd": 64.8
+    }
+  ],
+  "time": "2022-01-03T10:59:05.635Z"
+}
