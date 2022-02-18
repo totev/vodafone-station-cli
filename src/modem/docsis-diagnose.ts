@@ -240,7 +240,7 @@ export function checkSignalToNoise(snr: number, modulation: Modulation): Diagnos
     snrOffsetForModulation = 12;
     break;
   case "2048QAM":
-    snrOffsetForModulation = 0;
+    snrOffsetForModulation = 15;
     break;
   case "4096QAM":
     snrOffsetForModulation = 0;
