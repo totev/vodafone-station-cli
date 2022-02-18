@@ -1,4 +1,4 @@
-import DocsisDiagnose, { BeseitigungBinnenMonatsfrist, downstreamDeviation, DownstreamDeviation64QAM, downstreamDeviationFactory, SofortigeBeseitigung, TolerierteAbweichung, upstreamDeviation, upstreamDeviationFactory, UpstreamDeviationOFDMA, UpstreamDeviationSCQAM, Vorgabekonform } from "./docsis-diagnose";
+import DocsisDiagnose, { BeseitigungBinnenMonatsfrist, checkSignalToNoise, downstreamDeviation, DownstreamDeviation64QAM, downstreamDeviationFactory, SofortigeBeseitigung, TolerierteAbweichung, upstreamDeviation, upstreamDeviationFactory, UpstreamDeviationOFDMA, UpstreamDeviationSCQAM, Vorgabekonform } from "./docsis-diagnose";
 import type { DocsisChannelType, DocsisStatus, Modulation } from "./modem";
 import fixtureDocsisStatus from './__fixtures__/docsisStatus_normalized.json';
 import fixtureDocsisStatusMinimal from './__fixtures__/docsisStatus_normalized_minimal.json';
@@ -281,4 +281,32 @@ describe('diagnoseDownstream', () => {
     expect(downstreamDeviation({powerLevel:input, modulation:"4096QAM"})).toBe(expected);
   });
   
+});
+
+describe('signalToNoise', () => {
+
+
+  test.each([
+    [-50,	 SofortigeBeseitigung],
+    [-10,	 SofortigeBeseitigung],
+    [-1,	 SofortigeBeseitigung],
+    [0,	 SofortigeBeseitigung],
+    [10,	 SofortigeBeseitigung],
+    [20,	 SofortigeBeseitigung],
+    [24,	 SofortigeBeseitigung],
+    [24.1, BeseitigungBinnenMonatsfrist],
+    [25, BeseitigungBinnenMonatsfrist],
+    [26, BeseitigungBinnenMonatsfrist],
+    [26.1, TolerierteAbweichung],
+    [26.6, TolerierteAbweichung],
+    [27,	 TolerierteAbweichung],
+    [27.1,	 Vorgabekonform],
+    [28,	   Vorgabekonform],
+    [30,	   Vorgabekonform],
+    [35,	   Vorgabekonform],
+  ])
+  ('checkSignalToNoise64QAM(%d)', (input, expected ) => {
+    expect(checkSignalToNoise(input,"64QAM")).toBe(expected);
+  });
+
 });

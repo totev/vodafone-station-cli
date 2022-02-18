@@ -226,3 +226,37 @@ export function upstreamDeviation({ channelType, powerLevel }:{channelType: Docs
   const deviation = upstreamDeviationFactory(channelType);
   return deviation.check(powerLevel);
 }
+
+export function checkSignalToNoise(snr: number, modulation: Modulation): Diagnose {
+  let snrOffsetForModulation;
+  switch (modulation) {
+  case "64QAM":
+    snrOffsetForModulation = 0;
+    break;
+  case "256QAM":
+    snrOffsetForModulation = 0;
+    break;
+  case "1024QAM":
+    snrOffsetForModulation = 0;
+    break;
+  case "2048QAM":
+    snrOffsetForModulation = 0;
+    break;
+  case "4096QAM":
+    snrOffsetForModulation = 0;
+    break;
+  default:
+    throw new Error(`Unsupported modulation ${modulation}`)
+  }
+  
+  if (snr <= 24)
+    return SofortigeBeseitigung
+  if (24 < snr && snr <= 26)
+    return BeseitigungBinnenMonatsfrist;
+  if (26 < snr && snr <= 27)
+    return TolerierteAbweichung;
+  if (27 < snr)
+    return Vorgabekonform;
+    
+  throw new Error(`SignalToNoiseRation is not within supported range. SNR: ${snr}`);
+}
