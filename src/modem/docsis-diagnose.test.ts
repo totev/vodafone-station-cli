@@ -285,7 +285,6 @@ describe('diagnoseDownstream', () => {
 
 describe('signalToNoise', () => {
 
-
   test.each([
     [-50,	 SofortigeBeseitigung],
     [-10,	 SofortigeBeseitigung],
@@ -307,6 +306,31 @@ describe('signalToNoise', () => {
   ])
   ('checkSignalToNoise64QAM(%d)', (input, expected ) => {
     expect(checkSignalToNoise(input,"64QAM")).toBe(expected);
+  });
+
+  test.each([
+    [-50,	 SofortigeBeseitigung],
+    [-10,	 SofortigeBeseitigung],
+    [-1,	 SofortigeBeseitigung],
+    [0,	 SofortigeBeseitigung],
+    [10,	 SofortigeBeseitigung],
+    [20,	 SofortigeBeseitigung],
+    [24,	 SofortigeBeseitigung],
+    [29.9,	 SofortigeBeseitigung],
+    [30,	 SofortigeBeseitigung],
+    [30.1, BeseitigungBinnenMonatsfrist],
+    [31, BeseitigungBinnenMonatsfrist],
+    [32, BeseitigungBinnenMonatsfrist],
+    [32.1, TolerierteAbweichung],
+    [32.6, TolerierteAbweichung],
+    [33,	 TolerierteAbweichung],
+    [33.1,	 Vorgabekonform],
+    [34,	   Vorgabekonform],
+    [40,	   Vorgabekonform],
+    [45,	   Vorgabekonform],
+  ])
+  ('checkSignalToNoise256QAM(%d)', (input, expected ) => {
+    expect(checkSignalToNoise(input,"256QAM")).toBe(expected);
   });
 
 });

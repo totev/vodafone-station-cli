@@ -234,7 +234,7 @@ export function checkSignalToNoise(snr: number, modulation: Modulation): Diagnos
     snrOffsetForModulation = 0;
     break;
   case "256QAM":
-    snrOffsetForModulation = 0;
+    snrOffsetForModulation = 6;
     break;
   case "1024QAM":
     snrOffsetForModulation = 0;
@@ -248,14 +248,16 @@ export function checkSignalToNoise(snr: number, modulation: Modulation): Diagnos
   default:
     throw new Error(`Unsupported modulation ${modulation}`)
   }
+
+  const adjustedSNR = snr - snrOffsetForModulation;
   
-  if (snr <= 24)
+  if (adjustedSNR <= 24)
     return SofortigeBeseitigung
-  if (24 < snr && snr <= 26)
+  if (24 < adjustedSNR && adjustedSNR <= 26)
     return BeseitigungBinnenMonatsfrist;
-  if (26 < snr && snr <= 27)
+  if (26 < adjustedSNR && adjustedSNR <= 27)
     return TolerierteAbweichung;
-  if (27 < snr)
+  if (27 < adjustedSNR)
     return Vorgabekonform;
     
   throw new Error(`SignalToNoiseRation is not within supported range. SNR: ${snr}`);
