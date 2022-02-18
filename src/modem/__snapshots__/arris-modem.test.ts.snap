@@ -9,7 +9,7 @@ Object {
       "frequency": 130,
       "lockStatus": "Locked",
       "modulation": "256QAM",
-      "powerLevel": 53.3,
+      "powerLevel": -6.7,
       "snr": 35,
     },
     Object {
@@ -18,7 +18,7 @@ Object {
       "frequency": 138,
       "lockStatus": "Locked",
       "modulation": "256QAM",
-      "powerLevel": 53.6,
+      "powerLevel": -6.4,
       "snr": 35,
     },
     Object {
@@ -27,7 +27,7 @@ Object {
       "frequency": 146,
       "lockStatus": "Locked",
       "modulation": "256QAM",
-      "powerLevel": 53.3,
+      "powerLevel": -6.7,
       "snr": 35,
     },
     Object {
@@ -36,7 +36,7 @@ Object {
       "frequency": 602,
       "lockStatus": "Locked",
       "modulation": "256QAM",
-      "powerLevel": 56.3,
+      "powerLevel": -3.7,
       "snr": 38,
     },
     Object {
@@ -45,7 +45,7 @@ Object {
       "frequency": 618,
       "lockStatus": "Locked",
       "modulation": "256QAM",
-      "powerLevel": 56.2,
+      "powerLevel": -3.8,
       "snr": 38,
     },
     Object {
@@ -54,7 +54,7 @@ Object {
       "frequency": 626,
       "lockStatus": "Locked",
       "modulation": "256QAM",
-      "powerLevel": 56.4,
+      "powerLevel": -3.6,
       "snr": 38,
     },
     Object {
@@ -63,7 +63,7 @@ Object {
       "frequency": 642,
       "lockStatus": "Locked",
       "modulation": "256QAM",
-      "powerLevel": 55.8,
+      "powerLevel": -4.2,
       "snr": 38,
     },
     Object {
@@ -72,7 +72,7 @@ Object {
       "frequency": 650,
       "lockStatus": "Locked",
       "modulation": "256QAM",
-      "powerLevel": 55.2,
+      "powerLevel": -4.8,
       "snr": 38,
     },
     Object {
@@ -81,7 +81,7 @@ Object {
       "frequency": 658,
       "lockStatus": "Locked",
       "modulation": "256QAM",
-      "powerLevel": 55.4,
+      "powerLevel": -4.6,
       "snr": 39,
     },
     Object {
@@ -90,7 +90,7 @@ Object {
       "frequency": 666,
       "lockStatus": "Locked",
       "modulation": "256QAM",
-      "powerLevel": 55.6,
+      "powerLevel": -4.4,
       "snr": 37,
     },
     Object {
@@ -99,7 +99,7 @@ Object {
       "frequency": 674,
       "lockStatus": "Locked",
       "modulation": "256QAM",
-      "powerLevel": 56.9,
+      "powerLevel": -3.1,
       "snr": 38,
     },
     Object {
@@ -108,7 +108,7 @@ Object {
       "frequency": 682,
       "lockStatus": "Locked",
       "modulation": "256QAM",
-      "powerLevel": 57.3,
+      "powerLevel": -2.7,
       "snr": 39,
     },
     Object {
@@ -117,7 +117,7 @@ Object {
       "frequency": 690,
       "lockStatus": "Locked",
       "modulation": "256QAM",
-      "powerLevel": 58,
+      "powerLevel": -2,
       "snr": 39,
     },
     Object {
@@ -126,7 +126,7 @@ Object {
       "frequency": 698,
       "lockStatus": "Locked",
       "modulation": "64QAM",
-      "powerLevel": 52,
+      "powerLevel": -8,
       "snr": 34,
     },
     Object {
@@ -135,7 +135,7 @@ Object {
       "frequency": 706,
       "lockStatus": "Locked",
       "modulation": "64QAM",
-      "powerLevel": 53,
+      "powerLevel": -7,
       "snr": 35,
     },
     Object {
@@ -144,7 +144,7 @@ Object {
       "frequency": 714,
       "lockStatus": "Locked",
       "modulation": "64QAM",
-      "powerLevel": 53.2,
+      "powerLevel": -6.8,
       "snr": 35,
     },
     Object {
@@ -153,7 +153,7 @@ Object {
       "frequency": 722,
       "lockStatus": "Locked",
       "modulation": "64QAM",
-      "powerLevel": 52.9,
+      "powerLevel": -7.1,
       "snr": 34,
     },
     Object {
@@ -162,7 +162,7 @@ Object {
       "frequency": 730,
       "lockStatus": "Locked",
       "modulation": "64QAM",
-      "powerLevel": 52.9,
+      "powerLevel": -7.1,
       "snr": 35,
     },
     Object {
@@ -171,7 +171,7 @@ Object {
       "frequency": 738,
       "lockStatus": "Locked",
       "modulation": "64QAM",
-      "powerLevel": 53.9,
+      "powerLevel": -6.1,
       "snr": 35,
     },
     Object {
@@ -180,7 +180,7 @@ Object {
       "frequency": 746,
       "lockStatus": "Locked",
       "modulation": "64QAM",
-      "powerLevel": 54.4,
+      "powerLevel": -5.6,
       "snr": 36,
     },
     Object {
@@ -189,7 +189,7 @@ Object {
       "frequency": 754,
       "lockStatus": "Locked",
       "modulation": "64QAM",
-      "powerLevel": 53.8,
+      "powerLevel": -6.2,
       "snr": 35,
     },
     Object {
@@ -198,7 +198,7 @@ Object {
       "frequency": 762,
       "lockStatus": "Locked",
       "modulation": "64QAM",
-      "powerLevel": 54.1,
+      "powerLevel": -5.9,
       "snr": 35,
     },
     Object {
@@ -207,7 +207,7 @@ Object {
       "frequency": 770,
       "lockStatus": "Locked",
       "modulation": "64QAM",
-      "powerLevel": 53.8,
+      "powerLevel": -6.2,
       "snr": 35,
     },
     Object {
@@ -216,7 +216,7 @@ Object {
       "frequency": 778,
       "lockStatus": "Locked",
       "modulation": "64QAM",
-      "powerLevel": 54.1,
+      "powerLevel": -5.9,
       "snr": 36,
     },
     Object {
@@ -225,7 +225,7 @@ Object {
       "frequency": 786,
       "lockStatus": "Locked",
       "modulation": "64QAM",
-      "powerLevel": 54.3,
+      "powerLevel": -5.7,
       "snr": 35,
     },
     Object {
@@ -234,7 +234,7 @@ Object {
       "frequency": 794,
       "lockStatus": "Locked",
       "modulation": "64QAM",
-      "powerLevel": 54.1,
+      "powerLevel": -5.9,
       "snr": 35,
     },
     Object {
@@ -243,7 +243,7 @@ Object {
       "frequency": 802,
       "lockStatus": "Locked",
       "modulation": "64QAM",
-      "powerLevel": 53.6,
+      "powerLevel": -6.4,
       "snr": 35,
     },
     Object {
@@ -252,7 +252,7 @@ Object {
       "frequency": 810,
       "lockStatus": "Locked",
       "modulation": "64QAM",
-      "powerLevel": 53.5,
+      "powerLevel": -6.5,
       "snr": 35,
     },
     Object {
@@ -261,7 +261,7 @@ Object {
       "frequency": 818,
       "lockStatus": "Locked",
       "modulation": "64QAM",
-      "powerLevel": 53.7,
+      "powerLevel": -6.3,
       "snr": 35,
     },
     Object {
@@ -270,7 +270,7 @@ Object {
       "frequency": 826,
       "lockStatus": "Locked",
       "modulation": "64QAM",
-      "powerLevel": 53.2,
+      "powerLevel": -6.8,
       "snr": 35,
     },
     Object {
@@ -279,7 +279,7 @@ Object {
       "frequency": 834,
       "lockStatus": "Locked",
       "modulation": "64QAM",
-      "powerLevel": 52.1,
+      "powerLevel": -7.9,
       "snr": 34,
     },
     Object {
@@ -288,7 +288,7 @@ Object {
       "frequency": 114,
       "lockStatus": "Locked",
       "modulation": "256QAM",
-      "powerLevel": 53.5,
+      "powerLevel": -6.5,
       "snr": 34,
     },
   ],
@@ -300,7 +300,7 @@ Object {
       "frequencyStart": 151,
       "lockStatus": "Locked",
       "modulation": "1024QAM",
-      "powerLevel": 55.9,
+      "powerLevel": -4.1,
       "snr": 39,
     },
   ],
@@ -312,7 +312,7 @@ Object {
       "frequency": 31,
       "lockStatus": "ACTIVE",
       "modulation": "64QAM",
-      "powerLevel": 112.3,
+      "powerLevel": 52.3,
       "snr": 0,
     },
     Object {
@@ -321,7 +321,7 @@ Object {
       "frequency": 51,
       "lockStatus": "ACTIVE",
       "modulation": "64QAM",
-      "powerLevel": 112.3,
+      "powerLevel": 52.3,
       "snr": 0,
     },
     Object {
@@ -330,7 +330,7 @@ Object {
       "frequency": 37,
       "lockStatus": "ACTIVE",
       "modulation": "32QAM",
-      "powerLevel": 112.3,
+      "powerLevel": 52.3,
       "snr": 0,
     },
     Object {
@@ -339,7 +339,7 @@ Object {
       "frequency": 45,
       "lockStatus": "ACTIVE",
       "modulation": "64QAM",
-      "powerLevel": 112.3,
+      "powerLevel": 52.3,
       "snr": 0,
     },
   ],
@@ -356,7 +356,7 @@ Object {
       "frequency": 602,
       "lockStatus": "Locked",
       "modulation": "256QAM",
-      "powerLevel": 56.6,
+      "powerLevel": -3.4,
       "snr": 38,
     },
     Object {
@@ -365,7 +365,7 @@ Object {
       "frequency": 114,
       "lockStatus": "Locked",
       "modulation": "256QAM",
-      "powerLevel": 55.3,
+      "powerLevel": -4.7,
       "snr": 35,
     },
     Object {
@@ -374,7 +374,7 @@ Object {
       "frequency": 130,
       "lockStatus": "Locked",
       "modulation": "256QAM",
-      "powerLevel": 55,
+      "powerLevel": -5,
       "snr": 36,
     },
     Object {
@@ -383,7 +383,7 @@ Object {
       "frequency": 138,
       "lockStatus": "Locked",
       "modulation": "256QAM",
-      "powerLevel": 55.1,
+      "powerLevel": -4.9,
       "snr": 36,
     },
     Object {
@@ -392,7 +392,7 @@ Object {
       "frequency": 826,
       "lockStatus": "Locked",
       "modulation": "64QAM",
-      "powerLevel": 53.8,
+      "powerLevel": -6.2,
       "snr": 35,
     },
     Object {
@@ -401,7 +401,7 @@ Object {
       "frequency": 834,
       "lockStatus": "Locked",
       "modulation": "64QAM",
-      "powerLevel": 52.8,
+      "powerLevel": -7.2,
       "snr": 34,
     },
     Object {
@@ -410,7 +410,7 @@ Object {
       "frequency": 818,
       "lockStatus": "Locked",
       "modulation": "64QAM",
-      "powerLevel": 54.1,
+      "powerLevel": -5.9,
       "snr": 35,
     },
     Object {
@@ -419,7 +419,7 @@ Object {
       "frequency": 810,
       "lockStatus": "Locked",
       "modulation": "64QAM",
-      "powerLevel": 53.6,
+      "powerLevel": -6.4,
       "snr": 35,
     },
     Object {
@@ -428,7 +428,7 @@ Object {
       "frequency": 626,
       "lockStatus": "Locked",
       "modulation": "256QAM",
-      "powerLevel": 57.1,
+      "powerLevel": -2.9,
       "snr": 38,
     },
     Object {
@@ -437,7 +437,7 @@ Object {
       "frequency": 618,
       "lockStatus": "Locked",
       "modulation": "256QAM",
-      "powerLevel": 56.6,
+      "powerLevel": -3.4,
       "snr": 39,
     },
     Object {
@@ -446,7 +446,7 @@ Object {
       "frequency": 786,
       "lockStatus": "Locked",
       "modulation": "64QAM",
-      "powerLevel": 54.4,
+      "powerLevel": -5.6,
       "snr": 34,
     },
     Object {
@@ -455,7 +455,7 @@ Object {
       "frequency": 794,
       "lockStatus": "Locked",
       "modulation": "64QAM",
-      "powerLevel": 54.4,
+      "powerLevel": -5.6,
       "snr": 35,
     },
     Object {
@@ -464,7 +464,7 @@ Object {
       "frequency": 802,
       "lockStatus": "Locked",
       "modulation": "64QAM",
-      "powerLevel": 54,
+      "powerLevel": -6,
       "snr": 34,
     },
     Object {
@@ -473,7 +473,7 @@ Object {
       "frequency": 146,
       "lockStatus": "Locked",
       "modulation": "256QAM",
-      "powerLevel": 54.8,
+      "powerLevel": -5.2,
       "snr": 36,
     },
     Object {
@@ -482,7 +482,7 @@ Object {
       "frequency": 778,
       "lockStatus": "Locked",
       "modulation": "64QAM",
-      "powerLevel": 54.3,
+      "powerLevel": -5.7,
       "snr": 35,
     },
     Object {
@@ -491,7 +491,7 @@ Object {
       "frequency": 650,
       "lockStatus": "Locked",
       "modulation": "256QAM",
-      "powerLevel": 57.7,
+      "powerLevel": -2.3,
       "snr": 39,
     },
     Object {
@@ -500,7 +500,7 @@ Object {
       "frequency": 658,
       "lockStatus": "Locked",
       "modulation": "256QAM",
-      "powerLevel": 57.6,
+      "powerLevel": -2.4,
       "snr": 39,
     },
     Object {
@@ -509,7 +509,7 @@ Object {
       "frequency": 666,
       "lockStatus": "Locked",
       "modulation": "256QAM",
-      "powerLevel": 57.3,
+      "powerLevel": -2.7,
       "snr": 38,
     },
     Object {
@@ -518,7 +518,7 @@ Object {
       "frequency": 754,
       "lockStatus": "Locked",
       "modulation": "64QAM",
-      "powerLevel": 53.6,
+      "powerLevel": -6.4,
       "snr": 35,
     },
     Object {
@@ -527,7 +527,7 @@ Object {
       "frequency": 762,
       "lockStatus": "Locked",
       "modulation": "64QAM",
-      "powerLevel": 53.8,
+      "powerLevel": -6.2,
       "snr": 35,
     },
     Object {
@@ -536,7 +536,7 @@ Object {
       "frequency": 770,
       "lockStatus": "Locked",
       "modulation": "64QAM",
-      "powerLevel": 53.7,
+      "powerLevel": -6.3,
       "snr": 35,
     },
     Object {
@@ -545,7 +545,7 @@ Object {
       "frequency": 642,
       "lockStatus": "Locked",
       "modulation": "256QAM",
-      "powerLevel": 57.6,
+      "powerLevel": -2.4,
       "snr": 39,
     },
     Object {
@@ -554,7 +554,7 @@ Object {
       "frequency": 746,
       "lockStatus": "Locked",
       "modulation": "64QAM",
-      "powerLevel": 54.6,
+      "powerLevel": -5.4,
       "snr": 35,
     },
     Object {
@@ -563,7 +563,7 @@ Object {
       "frequency": 674,
       "lockStatus": "Locked",
       "modulation": "256QAM",
-      "powerLevel": 58,
+      "powerLevel": -2,
       "snr": 39,
     },
     Object {
@@ -572,7 +572,7 @@ Object {
       "frequency": 682,
       "lockStatus": "Locked",
       "modulation": "256QAM",
-      "powerLevel": 58.1,
+      "powerLevel": -1.9,
       "snr": 39,
     },
     Object {
@@ -581,7 +581,7 @@ Object {
       "frequency": 698,
       "lockStatus": "Locked",
       "modulation": "64QAM",
-      "powerLevel": 52.2,
+      "powerLevel": -7.8,
       "snr": 34,
     },
     Object {
@@ -590,7 +590,7 @@ Object {
       "frequency": 706,
       "lockStatus": "Locked",
       "modulation": "64QAM",
-      "powerLevel": 53.2,
+      "powerLevel": -6.8,
       "snr": 35,
     },
     Object {
@@ -599,7 +599,7 @@ Object {
       "frequency": 722,
       "lockStatus": "Locked",
       "modulation": "64QAM",
-      "powerLevel": 53,
+      "powerLevel": -7,
       "snr": 35,
     },
     Object {
@@ -608,7 +608,7 @@ Object {
       "frequency": 690,
       "lockStatus": "Locked",
       "modulation": "256QAM",
-      "powerLevel": 58.5,
+      "powerLevel": -1.5,
       "snr": 39,
     },
     Object {
@@ -617,7 +617,7 @@ Object {
       "frequency": 714,
       "lockStatus": "Locked",
       "modulation": "64QAM",
-      "powerLevel": 53.2,
+      "powerLevel": -6.8,
       "snr": 35,
     },
     Object {
@@ -626,7 +626,7 @@ Object {
       "frequency": 730,
       "lockStatus": "Locked",
       "modulation": "64QAM",
-      "powerLevel": 53.1,
+      "powerLevel": -6.9,
       "snr": 34,
     },
     Object {
@@ -635,7 +635,7 @@ Object {
       "frequency": 738,
       "lockStatus": "Locked",
       "modulation": "64QAM",
-      "powerLevel": 54,
+      "powerLevel": -6,
       "snr": 35,
     },
   ],
@@ -647,7 +647,7 @@ Object {
       "frequencyStart": 151,
       "lockStatus": "Locked",
       "modulation": "1024QAM",
-      "powerLevel": 56.2,
+      "powerLevel": -3.8,
       "snr": 40,
     },
   ],
@@ -659,7 +659,7 @@ Object {
       "frequency": 37,
       "lockStatus": "ACTIVE",
       "modulation": "32QAM",
-      "powerLevel": 111,
+      "powerLevel": 51,
       "snr": 0,
     },
     Object {
@@ -668,7 +668,7 @@ Object {
       "frequency": 51,
       "lockStatus": "ACTIVE",
       "modulation": "32QAM",
-      "powerLevel": 109,
+      "powerLevel": 49,
       "snr": 0,
     },
     Object {
@@ -677,7 +677,7 @@ Object {
       "frequency": 31,
       "lockStatus": "ACTIVE",
       "modulation": "32QAM",
-      "powerLevel": 111,
+      "powerLevel": 51,
       "snr": 0,
     },
     Object {
@@ -686,7 +686,7 @@ Object {
       "frequency": 45,
       "lockStatus": "ACTIVE",
       "modulation": "32QAM",
-      "powerLevel": 111,
+      "powerLevel": 51,
       "snr": 0,
     },
   ],
@@ -698,7 +698,7 @@ Object {
       "frequencyStart": 29.8,
       "lockStatus": "SUCCESS",
       "modulation": "16_QAM",
-      "powerLevel": 107,
+      "powerLevel": 47,
       "snr": 0,
     },
   ],

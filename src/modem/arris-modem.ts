@@ -50,7 +50,7 @@ export function normalizeChannelStatus(channelStatus: ArrisDocsisChannelStatus):
     channelId: channelStatus.ChannelID,
     channelType: channelStatus.ChannelType,
     modulation: channelStatus.Modulation,
-    powerLevel: parseFloat(channelStatus.PowerLevel.split('/')[1]),
+    powerLevel: parseFloat(channelStatus.PowerLevel.split('/')[0]),
     lockStatus: channelStatus.LockStatus,
     snr: parseInt(`${channelStatus.SNRLevel ?? 0}`, 10),
     ...frequency
