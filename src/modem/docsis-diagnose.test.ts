@@ -332,5 +332,29 @@ describe('signalToNoise', () => {
   ('checkSignalToNoise256QAM(%d)', (input, expected ) => {
     expect(checkSignalToNoise(input,"256QAM")).toBe(expected);
   });
+  test.each([
+    [-50,	 SofortigeBeseitigung],
+    [-10,	 SofortigeBeseitigung],
+    [-1,	 SofortigeBeseitigung],
+    [0,	 SofortigeBeseitigung],
+    [10,	 SofortigeBeseitigung],
+    [20,	 SofortigeBeseitigung],
+    [24,	 SofortigeBeseitigung],
+    [35.9,	 SofortigeBeseitigung],
+    [36,	 SofortigeBeseitigung],
+    [36.1, BeseitigungBinnenMonatsfrist],
+    [37.99, BeseitigungBinnenMonatsfrist],
+    [38, BeseitigungBinnenMonatsfrist],
+    [38.1, TolerierteAbweichung],
+    [38.6, TolerierteAbweichung],
+    [39,	 TolerierteAbweichung],
+    [39.1,	 Vorgabekonform],
+    [40,	   Vorgabekonform],
+    [47,	   Vorgabekonform],
+    [50,	   Vorgabekonform],
+  ])
+  ('checkSignalToNoise1024QAM(%d)', (input, expected ) => {
+    expect(checkSignalToNoise(input,"1024QAM")).toBe(expected);
+  });
 
 });
