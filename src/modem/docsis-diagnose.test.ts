@@ -305,7 +305,7 @@ describe('signalToNoise', () => {
     [35,	   Vorgabekonform],
   ])
   ('checkSignalToNoise64QAM(%d)', (input, expected ) => {
-    expect(checkSignalToNoise(input,"64QAM")).toBe(expected);
+    expect(checkSignalToNoise({ snr: input, modulation: "64QAM" })).toBe(expected);
   });
 
   test.each([
@@ -330,7 +330,7 @@ describe('signalToNoise', () => {
     [45,	   Vorgabekonform],
   ])
   ('checkSignalToNoise256QAM(%d)', (input, expected ) => {
-    expect(checkSignalToNoise(input,"256QAM")).toBe(expected);
+    expect(checkSignalToNoise({ snr: input, modulation: "256QAM" })).toBe(expected);
   });
 
   test.each([
@@ -355,7 +355,7 @@ describe('signalToNoise', () => {
     [50,	   Vorgabekonform],
   ])
   ('checkSignalToNoise1024QAM(%d)', (input, expected ) => {
-    expect(checkSignalToNoise(input,"1024QAM")).toBe(expected);
+    expect(checkSignalToNoise({ snr: input, modulation: "1024QAM" })).toBe(expected);
   });
 
   test.each([
@@ -379,8 +379,8 @@ describe('signalToNoise', () => {
     [47,	   Vorgabekonform],
     [50,	   Vorgabekonform],
   ])
-  ('checkSignalToNoise2048QAM(%d)', (input, expected ) => {
-    expect(checkSignalToNoise(input,"2048QAM")).toBe(expected);
+  ('checkSignalToNoise2048QAM(%d)', (input, expected) => {
+    expect(checkSignalToNoise({ snr: input, modulation: "2048QAM" })).toBe(expected);
   });
 
   test.each([
@@ -407,7 +407,7 @@ describe('signalToNoise', () => {
     [50,	   Vorgabekonform],
   ])
   ('checkSignalToNoise4096QAM(%d)', (input, expected ) => {
-    expect(checkSignalToNoise(input,"4096QAM")).toBe(expected);
+    expect(checkSignalToNoise({ snr: input, modulation: "4096QAM"})).toBe(expected);
   });
 
 });

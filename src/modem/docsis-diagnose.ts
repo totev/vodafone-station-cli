@@ -22,6 +22,20 @@ export default class DocsisDiagnose{
         return { ...channel, diagnose: downstreamDeviation(channel) }
       })
   }
+
+  checkDownstreamSNR(): DiagnosedDocsisChannelStatus[]{
+    return this.docsisStatus.downstream
+      .map(channel => {
+        return { ...channel, diagnose: checkSignalToNoise(channel) }
+      })
+  }
+
+  checkOfdmDownstreamSNR(): DiagnosedDocsis31ChannelStatus[]{
+    return this.docsisStatus.downstreamOfdm
+      .map(channel => {
+        return { ...channel, diagnose: checkSignalToNoise(channel) }
+      })
+  }
   checkOfdmDownstream(): DiagnosedDocsis31ChannelStatus[]{
     return this.docsisStatus.downstreamOfdm
       .map(channel => {
@@ -44,7 +58,9 @@ export default class DocsisDiagnose{
   detectDeviations(): boolean{
     return !![
       this.checkDownstream(),
+      this.checkDownstreamSNR(),
       this.checkOfdmDownstream(),
+      this.checkOfdmDownstreamSNR(),
       this.checkUpstream(),
       this.checkOfdmaUpstream()
     ]
@@ -227,7 +243,7 @@ export function upstreamDeviation({ channelType, powerLevel }:{channelType: Docs
   return deviation.check(powerLevel);
 }
 
-export function checkSignalToNoise(snr: number, modulation: Modulation): Diagnose {
+export function checkSignalToNoise({snr, modulation }:{ snr: number, modulation: Modulation }): Diagnose {
   let snrOffsetForModulation;
   switch (modulation) {
   case "64QAM":
