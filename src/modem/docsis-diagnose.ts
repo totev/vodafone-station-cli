@@ -1,4 +1,4 @@
-import type { Diagnose, DiagnosedDocsis31ChannelStatus, DiagnosedDocsisChannelStatus, DocsisChannelType, DocsisStatus, HumanizedDocsisChannelStatus, Modulation } from "./modem";
+import type { Diagnose, DiagnosedDocsis31ChannelStatus, DiagnosedDocsisChannelStatus, DiagnosedDocsisStatus, DocsisChannelType, DocsisStatus, HumanizedDocsisChannelStatus, Modulation } from "./modem";
 
 
 export const enum StatusClassification{
@@ -13,7 +13,18 @@ export interface Deviation{
 
 // based on https://www.vodafonekabelforum.de/viewtopic.php?t=32353
 export default class DocsisDiagnose{
+
   constructor(private docsisStatus:DocsisStatus) {
+  }
+
+  get diagnose(): DiagnosedDocsisStatus{
+    return {
+      time: this.docsisStatus.time,
+      downstream: this.checkDownstream(),
+      downstreamOfdm: this.checkOfdmDownstream(),
+      upstream: this.checkUpstream(),
+      upstreamOfdma: this.checkOfdmaUpstream()
+    }
   }
 
   checkDownstream(): DiagnosedDocsisChannelStatus[]{

@@ -43,6 +43,14 @@ export interface DocsisStatus{
   time: string;
 }
 
+export interface DiagnosedDocsisStatus{
+  downstream: DiagnosedDocsisChannelStatus[];
+  downstreamOfdm: HumanizedDocsis31ChannelStatus[];
+  upstream: DiagnosedDocsisChannelStatus[];
+  upstreamOfdma: HumanizedDocsis31ChannelStatus[];
+  time: string;
+}
+
 export interface GenericModem{
   logout(): Promise<void>;
   login(password: string): Promise<void>;

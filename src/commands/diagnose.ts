@@ -40,8 +40,8 @@ export default class Diagnose extends Command {
       if (diagnoser.detectDeviations()) {
         this.logger.warn("Docsis connection connection quality deviation found!")
       }
-      
-      const diagnosedDocsisStatusJSON = JSON.stringify(diagnoser, undefined, 4)
+
+      const diagnosedDocsisStatusJSON = JSON.stringify(diagnoser.diagnose, undefined, 4)
 
       this.log(diagnosedDocsisStatusJSON)
 
