@@ -243,7 +243,7 @@ export function checkSignalToNoise(snr: number, modulation: Modulation): Diagnos
     snrOffsetForModulation = 15;
     break;
   case "4096QAM":
-    snrOffsetForModulation = 0;
+    snrOffsetForModulation = 18;
     break;
   default:
     throw new Error(`Unsupported modulation ${modulation}`)
