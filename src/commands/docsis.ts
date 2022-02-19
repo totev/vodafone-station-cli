@@ -6,7 +6,6 @@ import type {DocsisStatus} from '../modem/modem'
 import {modemFactory} from '../modem/factory'
 import {Log } from '../logger'
 
-
 export async function getDocsisStatus(password: string, logger:Log): Promise<DocsisStatus> {
   const modemIp = await discoverModemIp()
   const discoveredModem = await new ModemDiscovery(modemIp, logger).discover()

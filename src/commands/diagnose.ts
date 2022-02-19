@@ -5,7 +5,7 @@ import { getDocsisStatus } from "./docsis";
 
 export default class Diagnose extends Command {
   static description =
-    'Diagnose the state and quality of the docsis connection.';
+    'Diagnose the quality of the docsis connection.';
 
   static examples = [
     '$ vodafone-station-cli diagnose',
@@ -17,7 +17,6 @@ export default class Diagnose extends Command {
       description: 'router/modem password',
     }),
   };
-
 
   async run(): Promise<void> {
     const {flags} = this.parse(Diagnose)
@@ -31,10 +30,8 @@ export default class Diagnose extends Command {
     }
 
     try {
-
       const docsisStatus = await getDocsisStatus(password, this.logger)
       const diagnoser = new DocsisDiagnose(docsisStatus)
-
 
       if (diagnoser.hasDeviations()) {
         this.logger.warn("Docsis connection connection quality deviation found!")
@@ -43,7 +40,6 @@ export default class Diagnose extends Command {
       }
 
       this.log(diagnoser.printDeviationsConsole())
-
     } catch (error) {
       this.error(error as Error,{message:"Something went wrong"})
     }
