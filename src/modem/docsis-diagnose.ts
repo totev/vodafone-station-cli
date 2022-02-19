@@ -98,7 +98,12 @@ export default class DocsisDiagnose{
         .map(upstream =>
           colorize(upstream.diagnose.color, `ch${upstream.channelId}pl`)
         ).join(", ")
-    return `Legend: pl = power level| snr = signal to noise ration\nDOWN: ${[...down, ...downSnr].join(", ")}\nUP: ${up}`
+    
+    return [
+      "Legend: pl = power level| snr = signal to noise ration",
+      `DOWN: ${[...down, ...downSnr].join(", ")}`,
+      `UP: ${up}`
+    ].join("\n");
   }
 }
 
