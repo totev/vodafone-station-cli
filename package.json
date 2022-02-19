@@ -43,7 +43,13 @@
     "/oclif.manifest.json"
   ],
   "homepage": "https://github.com/totev/vodafone-station-cli",
-  "keywords": [],
+  "keywords": [
+    "vodafone",
+    "station",
+    "cli",
+    "docsis",
+    "cable-modem"
+  ],
   "license": "MIT",
   "main": "src/index.ts",
   "oclif": {
