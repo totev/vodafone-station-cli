@@ -67,7 +67,6 @@
     "build:standalone": "oclif pack tarballs",
     "lint": "eslint . --ext .ts --config .eslintrc",
     "postpack": "shx rm -f oclif.manifest.json",
-    "posttest": "yarn lint",
     "prepack": "yarn build && oclif manifest && oclif readme",
     "test": "jest",
     "version": "oclif-dev readme && git add README.md"

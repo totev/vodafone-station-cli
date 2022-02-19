@@ -23,7 +23,9 @@ jobs:
       - run: yarn install --frozen-lockfile
       - run: yarn lint
       - run: yarn test
-      - run: yarn build:standalone
+      - name: Build tarballs
+        if: startsWith(github.ref, 'refs/tags/')
+        run: yarn build:standalone
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
