@@ -1,8 +1,13 @@
+v1.2.2
+---
+- Respect log level
+
+**Full Changelog**: https://github.com/totev/vodafone-station-cli/compare/v1.2.1...v1.2.2
+
 v1.2.1
 ---
 - Updated to the newest oclif version
 - Cleaned up logging outputs
-- Respect log level
 
 **Full Changelog**: https://github.com/totev/vodafone-station-cli/compare/v1.2.0...v1.2.1
 
