@@ -31,7 +31,7 @@
     "@oclif/config": "^1",
     "@oclif/plugin-help": "^5",
     "@oclif/plugin-plugins": "^2.0.1",
-    "axios": "^0.23.0",
+    "axios": "^0.26.0",
     "axios-cookiejar-support": "^2.0.3",
     "dotenv": "^10.0.0",
     "sjcl": "^1.0.8",
