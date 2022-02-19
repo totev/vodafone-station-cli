@@ -8,6 +8,7 @@ Access your Arris TG3442DE or Technicolor CGA4322DE, CGA6444VF (aka Vodafone Sta
 [![latest version](https://img.shields.io/github/v/release/totev/vodafone-station-cli.svg)](https://github.com/totev/vodafone-station-cli/releases)
 
 <!-- toc -->
+* [Demo](#demo)
 * [Supported hardware](#supported-hardware)
 * [Notes](#notes)
 * [Useful related projects:](#useful-related-projects)
@@ -15,6 +16,13 @@ Access your Arris TG3442DE or Technicolor CGA4322DE, CGA6444VF (aka Vodafone Sta
 * [Usage](#usage)
 * [Commands](#commands)
 <!-- tocstop -->
+
+# Demo
+<p align="center">
+
+![](./usage.svg)
+
+</p>
 
 # Supported hardware
 
