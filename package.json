@@ -1,7 +1,7 @@
 {
   "name": "vodafone-station-cli",
   "description": "Access your Vodafone Station from the comfort of the command line.",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "author": "Dobroslav Totev",
   "bin": {
     "vodafone-station-cli": "./bin/run"
@@ -27,8 +27,8 @@
     "cable-modem"
   ],
   "dependencies": {
-    "@oclif/core": "^1",
     "@oclif/config": "^1",
+    "@oclif/core": "^1",
     "@oclif/plugin-help": "^5",
     "@oclif/plugin-plugins": "^2.0.1",
     "axios": "^0.26.0",
@@ -69,7 +69,7 @@
     "postpack": "shx rm -f oclif.manifest.json",
     "prepack": "yarn build && oclif manifest && oclif readme",
     "test": "jest",
-    "version": "oclif-dev readme && git add README.md"
+    "version": "oclif readme && git add README.md"
   },
   "engines": {
     "node": ">=16.0.0"
