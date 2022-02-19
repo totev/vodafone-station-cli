@@ -4,6 +4,23 @@ import Command from '../base-command'
 import {discoverModemIp, ModemDiscovery} from '../modem/discovery'
 import type {DocsisStatus} from '../modem/modem'
 import {modemFactory} from '../modem/factory'
+import {Log } from '../logger'
+
+export async function getDocsisStatus(password: string, logger:Log): Promise<DocsisStatus> {
+  const modemIp = await discoverModemIp()
+  const discoveredModem = await new ModemDiscovery(modemIp, logger).discover()
+  const modem = modemFactory(discoveredModem)
+  try {
+    await modem.login(password)
+    const docsisData = await modem.docsis()
+    return docsisData
+  } catch (error) {
+    console.error(`Could not fetch docsis status from modem.`,error)
+    throw error;
+  } finally {
+    await modem.logout()
+  }
+}
 
 export default class Docsis extends Command {
   static description =
@@ -26,22 +43,6 @@ JSON data
     }),
   };
 
-  async getDocsisStatus(password: string): Promise<DocsisStatus> {
-    const modemIp = await discoverModemIp()
-    const discoveredModem = await new ModemDiscovery(modemIp, this.logger).discover()
-    const modem = modemFactory(discoveredModem)
-    try {
-      await modem.login(password)
-      const docsisData = await modem.docsis()
-      return docsisData
-    } catch (error) {
-      console.error(`Could not fetch docsis status from modem.`,error)
-      throw error;
-    } finally {
-      await modem.logout()
-    }
-  }
-
   async writeDocsisStatus(docsisStatusJson: string): Promise<void> {
     const reportFile = `./reports/${Date.now()}_docsisStatus.json`
     this.log('Writing docsis report as json to file: ', reportFile)
@@ -62,7 +63,7 @@ JSON data
 
     try {
       
-      const docsisStatus = await this.getDocsisStatus(password)
+      const docsisStatus = await getDocsisStatus(password, this.logger)
       const docsisStatusJSON = JSON.stringify(docsisStatus, undefined, 4)
 
       if (flags.file) {

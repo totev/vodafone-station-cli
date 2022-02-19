@@ -1,8 +1,12 @@
+v1.2.0
+---
+- Added basic diagnosing functionality based on the docsis values from [vodafonekabelforum.de](https://www.vodafonekabelforum.de/viewtopic.php?t=32353)
+
+**Full Changelog**: https://github.com/totev/vodafone-station-cli/compare/v1.1.3...v1.1.5
+
 v1.1.5
 ---
 - Fixed the powerLevel parsing for arris modems - was dB(μV) but should have been dB(mV)
-
-**Full Changelog**: https://github.com/totev/vodafone-station-cli/compare/v1.1.3...v1.1.4
 
 v1.1.4
 ---

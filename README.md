@@ -10,6 +10,7 @@ Access your Arris TG3442DE or Technicolor CGA4322DE, CGA6444VF (aka Vodafone Sta
 <!-- toc -->
 * [Supported hardware](#supported-hardware)
 * [Notes](#notes)
+* [Useful related projects:](#useful-related-projects)
 * [Usage](#usage)
 * [Commands](#commands)
 <!-- tocstop -->
@@ -399,6 +400,9 @@ You can provide a password either by setting the environment variable `VODAFONE_
 Cable connection information/meaning:
 - https://motorolacable.com/whitepapers/cable-connection
 
+The Diagnose module is based on the guidelines/values provided by Meister Voda:
+- https://www.vodafonekabelforum.de/viewtopic.php?t=32353
+
 # Usage
 <!-- usage -->
 ```sh-session
@@ -406,7 +410,7 @@ $ npm install -g vodafone-station-cli
 $ vodafone-station-cli COMMAND
 running command...
 $ vodafone-station-cli (-v|--version|version)
-vodafone-station-cli/1.1.0 darwin-arm64 node-v15.14.0
+vodafone-station-cli/1.2.0 darwin-arm64 node-v17.5.0
 $ vodafone-station-cli --help [COMMAND]
 USAGE
   $ vodafone-station-cli COMMAND
@@ -415,10 +419,28 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
+* [`vodafone-station-cli diagnose`](#vodafone-station-cli-diagnose)
 * [`vodafone-station-cli discover`](#vodafone-station-cli-discover)
 * [`vodafone-station-cli docsis`](#vodafone-station-cli-docsis)
 * [`vodafone-station-cli help [COMMAND]`](#vodafone-station-cli-help-command)
 * [`vodafone-station-cli restart`](#vodafone-station-cli-restart)
+
+## `vodafone-station-cli diagnose`
+
+Diagnose the quality of the docsis connection.
+
+```
+USAGE
+  $ vodafone-station-cli diagnose
+
+OPTIONS
+  -p, --password=password  router/modem password
+
+EXAMPLE
+  $ vodafone-station-cli diagnose
+```
+
+_See code: [src/commands/diagnose.ts](https://github.com/totev/vodafone-station-cli/blob/v1.2.0/src/commands/diagnose.ts)_
 
 ## `vodafone-station-cli discover`
 
@@ -432,7 +454,7 @@ EXAMPLE
   $ vodafone-station-cli discover
 ```
 
-_See code: [src/commands/discover.ts](https://github.com/totev/vodafone-station-cli/blob/v1.1.0/src/commands/discover.ts)_
+_See code: [src/commands/discover.ts](https://github.com/totev/vodafone-station-cli/blob/v1.2.0/src/commands/discover.ts)_
 
 ## `vodafone-station-cli docsis`
 
@@ -451,7 +473,7 @@ EXAMPLE
   JSON data
 ```
 
-_See code: [src/commands/docsis.ts](https://github.com/totev/vodafone-station-cli/blob/v1.1.0/src/commands/docsis.ts)_
+_See code: [src/commands/docsis.ts](https://github.com/totev/vodafone-station-cli/blob/v1.2.0/src/commands/docsis.ts)_
 
 ## `vodafone-station-cli help [COMMAND]`
 
@@ -468,7 +490,7 @@ OPTIONS
   --all  see all commands in CLI
 ```
 
-_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v3.2.2/src/commands/help.ts)_
+_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v3.2.3/src/commands/help.ts)_
 
 ## `vodafone-station-cli restart`
 
@@ -485,7 +507,5 @@ EXAMPLE
   $ vodafone-station-cli restart -p PASSWORD
 ```
 
-_See code: [src/commands/restart.ts](https://github.com/totev/vodafone-station-cli/blob/v1.1.0/src/commands/restart.ts)_
+_See code: [src/commands/restart.ts](https://github.com/totev/vodafone-station-cli/blob/v1.2.0/src/commands/restart.ts)_
 <!-- commandsstop -->
-
-
