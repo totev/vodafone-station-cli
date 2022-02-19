@@ -21,7 +21,7 @@ export default class Restart extends Command {
   async restartRouter(password: string): Promise<unknown> {
     const modemIp = await discoverModemIp()
     const discoveredModem = await new ModemDiscovery(modemIp, this.logger).discover()
-    const modem = modemFactory(discoveredModem)
+    const modem = modemFactory(discoveredModem, this.logger)
     try {
       await modem.login(password)
       const restart = await modem.restart()

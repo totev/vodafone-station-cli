@@ -9,13 +9,13 @@ import {Log } from '../logger'
 export async function getDocsisStatus(password: string, logger:Log): Promise<DocsisStatus> {
   const modemIp = await discoverModemIp()
   const discoveredModem = await new ModemDiscovery(modemIp, logger).discover()
-  const modem = modemFactory(discoveredModem)
+  const modem = modemFactory(discoveredModem, logger)
   try {
     await modem.login(password)
     const docsisData = await modem.docsis()
     return docsisData
   } catch (error) {
-    console.error(`Could not fetch docsis status from modem.`,error)
+    logger.error(`Could not fetch docsis status from modem.`,error)
     throw error;
   } finally {
     await modem.logout()
@@ -51,8 +51,7 @@ JSON data
   }
 
   async run(): Promise<void> {
-    const {flags} = await this.parse(Docsis)
-
+    const { flags } = await this.parse(Docsis)
     const password = flags.password ?? process.env.VODAFONE_ROUTER_PASSWORD
     if (!password || password === '') {
       this.log(
@@ -62,7 +61,6 @@ JSON data
     }
 
     try {
-      
       const docsisStatus = await getDocsisStatus(password!, this.logger)
       const docsisStatusJSON = JSON.stringify(docsisStatus, undefined, 4)
 

@@ -27,6 +27,10 @@ export class OclifLogger implements Log {
   debug(...args: unknown[]): void {
     this.delegateDebug(args)
   }
+
+  jsonEnabled() {
+    return true;
+  }
 }
 
 export class ConsoleLogger implements Log {

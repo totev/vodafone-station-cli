@@ -406,6 +406,7 @@ The Diagnose module is based on the guidelines/values provided by Meister Voda:
 
 # Local usage
 Clone this repository, install the dependencies via *yarn* and run `./bin/dev help`.
+If you are interested in seeing a more verbose version of what is going on during execution, enable debug logging on a per command basis like so `env DEBUG=\* ./bin/dev docsis`.
 
 # Usage
 <!-- usage -->
