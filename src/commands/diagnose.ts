@@ -1,4 +1,4 @@
-import { flags } from '@oclif/command';
+import { Flags } from '@oclif/core';
 import Command from '../base-command';
 import DocsisDiagnose from "../modem/docsis-diagnose";
 import { getDocsisStatus } from "./docsis";
@@ -12,14 +12,14 @@ export default class Diagnose extends Command {
   ];
 
   static flags = {
-    password: flags.string({
+    password: Flags.string({
       char: 'p',
       description: 'router/modem password',
     }),
   };
 
   async run(): Promise<void> {
-    const {flags} = this.parse(Diagnose)
+    const {flags} = await this.parse(Diagnose)
 
     const password = flags.password ?? process.env.VODAFONE_ROUTER_PASSWORD
     if (!password || password === '') {
@@ -30,7 +30,7 @@ export default class Diagnose extends Command {
     }
 
     try {
-      const docsisStatus = await getDocsisStatus(password, this.logger)
+      const docsisStatus = await getDocsisStatus(password!, this.logger)
       const diagnoser = new DocsisDiagnose(docsisStatus)
 
       if (diagnoser.hasDeviations()) {

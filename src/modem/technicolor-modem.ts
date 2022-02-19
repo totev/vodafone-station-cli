@@ -183,11 +183,11 @@ export class Technicolor extends Modem {
 
   async docsis(): Promise<DocsisStatus> {
     const {data: docsisStatus} = await this.httpClient.get('/api/v1/sta_docsis_status', {
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-          'Referer': 'http://${this.modemIp}/',
-        },
-      })
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+        'Referer': 'http://${this.modemIp}/',
+      },
+    })
     return normalizeDocsisStatus(docsisStatus as TechnicolorDocsisStatus)
   }
 

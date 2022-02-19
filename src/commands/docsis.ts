@@ -1,4 +1,4 @@
-import {flags} from '@oclif/command'
+import { Flags} from '@oclif/core'
 import {promises as fsp} from 'fs'
 import Command from '../base-command'
 import {discoverModemIp, ModemDiscovery} from '../modem/discovery'
@@ -33,11 +33,11 @@ JSON data
   ];
 
   static flags = {
-    password: flags.string({
+    password: Flags.string({
       char: 'p',
       description: 'router/modem password',
     }),
-    file: flags.boolean({
+    file: Flags.boolean({
       char: 'f',
       description: 'write out a report file',
     }),
@@ -51,7 +51,7 @@ JSON data
   }
 
   async run(): Promise<void> {
-    const {flags} = this.parse(Docsis)
+    const {flags} = await this.parse(Docsis)
 
     const password = flags.password ?? process.env.VODAFONE_ROUTER_PASSWORD
     if (!password || password === '') {
@@ -63,7 +63,7 @@ JSON data
 
     try {
       
-      const docsisStatus = await getDocsisStatus(password, this.logger)
+      const docsisStatus = await getDocsisStatus(password!, this.logger)
       const docsisStatusJSON = JSON.stringify(docsisStatus, undefined, 4)
 
       if (flags.file) {

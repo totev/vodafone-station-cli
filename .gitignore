@@ -84,6 +84,7 @@ reports/
 typings/
 yarn-debug.log*
 yarn-error.log*
+oclif.manifest.json
 
 # Generated reports
 reports/

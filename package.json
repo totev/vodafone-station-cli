@@ -6,43 +6,19 @@
   "bin": {
     "vodafone-station-cli": "./bin/run"
   },
+  "homepage": "https://github.com/totev/vodafone-station-cli",
+  "license": "MIT",
+  "main": "dist/index.js",
   "bugs": "https://github.com/totev/vodafone-station-cli/issues",
-  "dependencies": {
-    "@oclif/command": "^1",
-    "@oclif/config": "^1",
-    "@oclif/plugin-help": "^3",
-    "axios": "^0.23.0",
-    "axios-cookiejar-support": "^2.0.3",
-    "dotenv": "^10.0.0",
-    "sjcl": "^1.0.8",
-    "tough-cookie": "^4.0.0"
-  },
-  "devDependencies": {
-    "@oclif/dev-cli": "^1",
-    "@types/jest": "^27.0.2",
-    "@types/node": "^16.11.1",
-    "@types/sjcl": "^1.0.30",
-    "@types/tough-cookie": "^4.0.0",
-    "@typescript-eslint/eslint-plugin": "^5.1.0",
-    "@typescript-eslint/parser": "^5.1.0",
-    "eslint": "^8.0.1",
-    "globby": "^11.0.0",
-    "jest": "^27.3.1",
-    "ts-jest": "^27.0.7",
-    "ts-node": "^10.3.0",
-    "tslib": "^2.3.1",
-    "typescript": "^4.4.4"
-  },
-  "engines": {
-    "node": ">=16.0.0"
-  },
+  "repository": "totev/vodafone-station-cli",
   "files": [
     "/bin",
-    "/lib",
+    "/dist",
+    "!/dist/**/__fixtures__/**/*",
+    "!/dist/**/*.test.*",
     "/npm-shrinkwrap.json",
     "/oclif.manifest.json"
   ],
-  "homepage": "https://github.com/totev/vodafone-station-cli",
   "keywords": [
     "vodafone",
     "station",
@@ -50,24 +26,53 @@
     "docsis",
     "cable-modem"
   ],
-  "license": "MIT",
-  "main": "src/index.ts",
+  "dependencies": {
+    "@oclif/core": "^1",
+    "@oclif/config": "^1",
+    "@oclif/plugin-help": "^5",
+    "@oclif/plugin-plugins": "^2.0.1",
+    "axios": "^0.23.0",
+    "axios-cookiejar-support": "^2.0.3",
+    "dotenv": "^10.0.0",
+    "sjcl": "^1.0.8",
+    "tough-cookie": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.0.2",
+    "@types/node": "^16.11.1",
+    "@types/sjcl": "^1.0.30",
+    "@types/tough-cookie": "^4.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.1.0",
+    "@typescript-eslint/parser": "^5.1.0",
+    "eslint": "^8.9.0",
+    "globby": "^11",
+    "jest": "^27.3.1",
+    "oclif": "^2",
+    "shx": "^0.3.3",
+    "ts-jest": "^27.0.7",
+    "ts-node": "^10.5.0",
+    "tslib": "^2.3.1",
+    "typescript": "^4.4.4"
+  },
   "oclif": {
-    "commands": "./lib/commands",
     "bin": "vodafone-station-cli",
+    "dirname": "vodafone-station-cli",
+    "commands": "./dist/commands",
     "plugins": [
       "@oclif/plugin-help"
     ]
   },
-  "repository": "totev/vodafone-station-cli",
   "scripts": {
-    "build:standalone": "oclif-dev pack",
-    "postpack": "rm -f oclif.manifest.json",
-    "posttest": "eslint . --ext .ts --config .eslintrc",
-    "prepack": "rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
+    "build": "shx rm -rf dist && tsc -b",
+    "build:standalone": "oclif pack tarballs",
+    "lint": "eslint . --ext .ts --config .eslintrc",
+    "postpack": "shx rm -f oclif.manifest.json",
+    "prepack": "yarn build && oclif manifest && oclif readme",
     "test": "jest",
-    "version": "oclif-dev readme && git add README.md",
-    "lint": "eslint . --ext .ts --config .eslintrc"
+    "version": "oclif-dev readme && git add README.md"
   },
-  "types": "lib/index.d.ts"
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "types": "dist/index.d.ts"
 }
