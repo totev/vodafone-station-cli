@@ -1,8 +1,16 @@
+v1.2.1
+---
+- Updated to the newest oclif version
+- Cleaned up logging outputs
+- Respect log level
+
+**Full Changelog**: https://github.com/totev/vodafone-station-cli/compare/v1.2.0...v1.2.1
+
 v1.2.0
 ---
 - Added basic diagnosing functionality based on the docsis values from [vodafonekabelforum.de](https://www.vodafonekabelforum.de/viewtopic.php?t=32353)
 
-**Full Changelog**: https://github.com/totev/vodafone-station-cli/compare/v1.1.3...v1.1.5
+**Full Changelog**: https://github.com/totev/vodafone-station-cli/compare/v1.1.5...v1.1.5
 
 v1.1.5
 ---
