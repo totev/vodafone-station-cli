@@ -14,6 +14,8 @@
   "files": [
     "/bin",
     "/dist",
+    "!/dist/**/__fixtures__/**/*",
+    "!/dist/**/*.test.*",
     "/npm-shrinkwrap.json",
     "/oclif.manifest.json"
   ],
@@ -62,6 +64,7 @@
   },
   "scripts": {
     "build": "shx rm -rf dist && tsc -b",
+    "build:standalone": "oclif pack tarballs",
     "lint": "eslint . --ext .ts --config .eslintrc",
     "postpack": "shx rm -f oclif.manifest.json",
     "posttest": "yarn lint",
