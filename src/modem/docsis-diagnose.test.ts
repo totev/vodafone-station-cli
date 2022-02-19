@@ -1,4 +1,4 @@
-import DocsisDiagnose, { BeseitigungBinnenMonatsfrist, checkSignalToNoise, downstreamDeviation, DownstreamDeviation64QAM, downstreamDeviationFactory, SofortigeBeseitigung, TolerierteAbweichung, upstreamDeviation, upstreamDeviationFactory, UpstreamDeviationOFDMA, UpstreamDeviationSCQAM, Vorgabekonform } from "./docsis-diagnose";
+import DocsisDiagnose, { FixWithinOneMonth, checkSignalToNoise, downstreamDeviation, DownstreamDeviation64QAM, downstreamDeviationFactory, FixImmediately, ToleratedDeviation, upstreamDeviation, upstreamDeviationFactory, UpstreamDeviationOFDMA, UpstreamDeviationSCQAM, CompliesToSpecifications } from "./docsis-diagnose";
 import type { DocsisChannelType, DocsisStatus, Modulation } from "./modem";
 import fixtureDocsisStatusArris from './__fixtures__/docsisStatus_arris_normalized.json';
 import fixtureDocsisStatus from './__fixtures__/docsisStatus_normalized.json';
@@ -60,66 +60,66 @@ test('hasDeviations without deviations', () => {
 
 describe('diagnoseUpstream', () => {
   test.each([
-    [-70,	 SofortigeBeseitigung],
-    [-56,	 SofortigeBeseitigung],
-    [-35,	 SofortigeBeseitigung],
-    [-4,	 SofortigeBeseitigung],
-    [0,	 SofortigeBeseitigung],
-    [10,	 SofortigeBeseitigung],
-    [35,	 SofortigeBeseitigung],
-    [35.1, BeseitigungBinnenMonatsfrist],
-    [36, BeseitigungBinnenMonatsfrist],
-    [37, BeseitigungBinnenMonatsfrist],
-    [37.1, TolerierteAbweichung],
-    [40, TolerierteAbweichung],
-    [41, TolerierteAbweichung],
-    [41.1, Vorgabekonform],
-    [45, Vorgabekonform],
-    [47, Vorgabekonform],
-    [47.1, TolerierteAbweichung],
-    [49, TolerierteAbweichung],
-    [51, TolerierteAbweichung],
-    [51.1, BeseitigungBinnenMonatsfrist],
-    [52, BeseitigungBinnenMonatsfrist],
-    [53, BeseitigungBinnenMonatsfrist],
-    [53.1,	 SofortigeBeseitigung],
-    [60,	 SofortigeBeseitigung],
-    [70,	 SofortigeBeseitigung],
+    [-70,	 FixImmediately],
+    [-56,	 FixImmediately],
+    [-35,	 FixImmediately],
+    [-4,	 FixImmediately],
+    [0,	 FixImmediately],
+    [10,	 FixImmediately],
+    [35,	 FixImmediately],
+    [35.1, FixWithinOneMonth],
+    [36, FixWithinOneMonth],
+    [37, FixWithinOneMonth],
+    [37.1, ToleratedDeviation],
+    [40, ToleratedDeviation],
+    [41, ToleratedDeviation],
+    [41.1, CompliesToSpecifications],
+    [45, CompliesToSpecifications],
+    [47, CompliesToSpecifications],
+    [47.1, ToleratedDeviation],
+    [49, ToleratedDeviation],
+    [51, ToleratedDeviation],
+    [51.1, FixWithinOneMonth],
+    [52, FixWithinOneMonth],
+    [53, FixWithinOneMonth],
+    [53.1,	 FixImmediately],
+    [60,	 FixImmediately],
+    [70,	 FixImmediately],
   ])
   ('upstreamDeviationDeviationSCQAM(%d)', (input, expected ) => {
     expect(upstreamDeviation({powerLevel:input, channelType:"SC-QAM"})).toBe(expected);
   });
   
   test.each([
-    [-60,	 SofortigeBeseitigung],
-    [-50,	 SofortigeBeseitigung],
-    [-30,	 SofortigeBeseitigung],
-    [-4,	 SofortigeBeseitigung],
-    [0,	 SofortigeBeseitigung],
-    [10,	 SofortigeBeseitigung],
-    [20,	 SofortigeBeseitigung],
-    [30,	 SofortigeBeseitigung],
-    [38,	 SofortigeBeseitigung],
-    [38.1, BeseitigungBinnenMonatsfrist],
-    [39, BeseitigungBinnenMonatsfrist],
-    [39.9, BeseitigungBinnenMonatsfrist],
-    [40, BeseitigungBinnenMonatsfrist],
-    [40.1, TolerierteAbweichung],
-    [41, TolerierteAbweichung],
-    [42, TolerierteAbweichung],
-    [44, TolerierteAbweichung],
-    [44.1, Vorgabekonform],
-    [45, Vorgabekonform],
-    [47, Vorgabekonform],
-    [47.1, TolerierteAbweichung],
-    [47.55, TolerierteAbweichung],
-    [48, TolerierteAbweichung],
-    [48.1, BeseitigungBinnenMonatsfrist],
-    [49, BeseitigungBinnenMonatsfrist],
-    [50, BeseitigungBinnenMonatsfrist],
-    [50.1,	 SofortigeBeseitigung],
-    [60,	 SofortigeBeseitigung],
-    [70,	 SofortigeBeseitigung],
+    [-60,	 FixImmediately],
+    [-50,	 FixImmediately],
+    [-30,	 FixImmediately],
+    [-4,	 FixImmediately],
+    [0,	 FixImmediately],
+    [10,	 FixImmediately],
+    [20,	 FixImmediately],
+    [30,	 FixImmediately],
+    [38,	 FixImmediately],
+    [38.1, FixWithinOneMonth],
+    [39, FixWithinOneMonth],
+    [39.9, FixWithinOneMonth],
+    [40, FixWithinOneMonth],
+    [40.1, ToleratedDeviation],
+    [41, ToleratedDeviation],
+    [42, ToleratedDeviation],
+    [44, ToleratedDeviation],
+    [44.1, CompliesToSpecifications],
+    [45, CompliesToSpecifications],
+    [47, CompliesToSpecifications],
+    [47.1, ToleratedDeviation],
+    [47.55, ToleratedDeviation],
+    [48, ToleratedDeviation],
+    [48.1, FixWithinOneMonth],
+    [49, FixWithinOneMonth],
+    [50, FixWithinOneMonth],
+    [50.1,	 FixImmediately],
+    [60,	 FixImmediately],
+    [70,	 FixImmediately],
   ])
   ('upstreamDeviationDeviationOFDMA(%d)', (input, expected ) => {
     expect(upstreamDeviation({powerLevel:input, channelType:"OFDMA"})).toBe(expected);
@@ -130,122 +130,122 @@ describe('diagnoseDownstream', () => {
 
   test.each`
     input	| expected
-    ${{modulation:"64QAM", powerLevel:-60}}	| ${SofortigeBeseitigung}
-    ${{modulation:"64QAM", powerLevel:-50}}	| ${SofortigeBeseitigung}
-    ${{modulation:"64QAM", powerLevel:-14}}	| ${SofortigeBeseitigung}
-    ${{modulation:"64QAM", powerLevel:-13.9}}	| ${BeseitigungBinnenMonatsfrist}
-    ${{modulation:"64QAM", powerLevel:-13}}	| ${BeseitigungBinnenMonatsfrist}
-    ${{modulation:"64QAM", powerLevel:-12}}	| ${BeseitigungBinnenMonatsfrist}
-    ${{modulation:"64QAM", powerLevel:-11.9}}	| ${TolerierteAbweichung}
-    ${{modulation:"64QAM", powerLevel:-10.5}}	| ${TolerierteAbweichung}
-    ${{modulation:"64QAM", powerLevel:-10}}	| ${TolerierteAbweichung}
-    ${{modulation:"64QAM", powerLevel:-9.9}}	| ${Vorgabekonform}
-    ${{modulation:"64QAM", powerLevel:-9}}	| ${Vorgabekonform}
-    ${{modulation:"64QAM", powerLevel:-8}}	| ${Vorgabekonform}
-    ${{modulation:"64QAM", powerLevel:-7}}	| ${Vorgabekonform}
-    ${{modulation:"64QAM", powerLevel:0}}	| ${Vorgabekonform}
-    ${{modulation:"64QAM", powerLevel:5}}	| ${Vorgabekonform}
-    ${{modulation:"64QAM", powerLevel:7}}	| ${Vorgabekonform}
-    ${{modulation:"64QAM", powerLevel:7.1}}	| ${TolerierteAbweichung}
-    ${{modulation:"64QAM", powerLevel:10}}	| ${TolerierteAbweichung}
-    ${{modulation:"64QAM", powerLevel:11.99}}	| ${TolerierteAbweichung}
-    ${{modulation:"64QAM", powerLevel:12}}	| ${TolerierteAbweichung}
-    ${{modulation:"64QAM", powerLevel:12.1}}	| ${BeseitigungBinnenMonatsfrist}
-    ${{modulation:"64QAM", powerLevel:13}}	| ${BeseitigungBinnenMonatsfrist}
-    ${{modulation:"64QAM", powerLevel:14}}	| ${BeseitigungBinnenMonatsfrist}
-    ${{modulation:"64QAM", powerLevel:14.1}}	| ${SofortigeBeseitigung}
-    ${{modulation:"64QAM", powerLevel:100}}	| ${SofortigeBeseitigung}
+    ${{modulation:"64QAM", powerLevel:-60}}	| ${FixImmediately}
+    ${{modulation:"64QAM", powerLevel:-50}}	| ${FixImmediately}
+    ${{modulation:"64QAM", powerLevel:-14}}	| ${FixImmediately}
+    ${{modulation:"64QAM", powerLevel:-13.9}}	| ${FixWithinOneMonth}
+    ${{modulation:"64QAM", powerLevel:-13}}	| ${FixWithinOneMonth}
+    ${{modulation:"64QAM", powerLevel:-12}}	| ${FixWithinOneMonth}
+    ${{modulation:"64QAM", powerLevel:-11.9}}	| ${ToleratedDeviation}
+    ${{modulation:"64QAM", powerLevel:-10.5}}	| ${ToleratedDeviation}
+    ${{modulation:"64QAM", powerLevel:-10}}	| ${ToleratedDeviation}
+    ${{modulation:"64QAM", powerLevel:-9.9}}	| ${CompliesToSpecifications}
+    ${{modulation:"64QAM", powerLevel:-9}}	| ${CompliesToSpecifications}
+    ${{modulation:"64QAM", powerLevel:-8}}	| ${CompliesToSpecifications}
+    ${{modulation:"64QAM", powerLevel:-7}}	| ${CompliesToSpecifications}
+    ${{modulation:"64QAM", powerLevel:0}}	| ${CompliesToSpecifications}
+    ${{modulation:"64QAM", powerLevel:5}}	| ${CompliesToSpecifications}
+    ${{modulation:"64QAM", powerLevel:7}}	| ${CompliesToSpecifications}
+    ${{modulation:"64QAM", powerLevel:7.1}}	| ${ToleratedDeviation}
+    ${{modulation:"64QAM", powerLevel:10}}	| ${ToleratedDeviation}
+    ${{modulation:"64QAM", powerLevel:11.99}}	| ${ToleratedDeviation}
+    ${{modulation:"64QAM", powerLevel:12}}	| ${ToleratedDeviation}
+    ${{modulation:"64QAM", powerLevel:12.1}}	| ${FixWithinOneMonth}
+    ${{modulation:"64QAM", powerLevel:13}}	| ${FixWithinOneMonth}
+    ${{modulation:"64QAM", powerLevel:14}}	| ${FixWithinOneMonth}
+    ${{modulation:"64QAM", powerLevel:14.1}}	| ${FixImmediately}
+    ${{modulation:"64QAM", powerLevel:100}}	| ${FixImmediately}
   `('downstreamDeviation($input)', ({ input, expected }) => {
     expect(downstreamDeviation(input)).toBe(expected);
   });
 
   test.each`
     input	| expected
-    ${{modulation:"256QAM", powerLevel:-60}}	| ${SofortigeBeseitigung}
-    ${{modulation:"256QAM", powerLevel:-50}}	| ${SofortigeBeseitigung}
-    ${{modulation:"256QAM", powerLevel:-8}}	| ${SofortigeBeseitigung}
-    ${{modulation:"256QAM", powerLevel:-7.9}}	| ${BeseitigungBinnenMonatsfrist}
-    ${{modulation:"256QAM", powerLevel:-7}}	| ${BeseitigungBinnenMonatsfrist}
-    ${{modulation:"256QAM", powerLevel:-6}}	| ${BeseitigungBinnenMonatsfrist}
-    ${{modulation:"256QAM", powerLevel:-5.9}}	| ${TolerierteAbweichung}
-    ${{modulation:"256QAM", powerLevel:-4.5}}	| ${TolerierteAbweichung}
-    ${{modulation:"256QAM", powerLevel:-4}}	| ${TolerierteAbweichung}
-    ${{modulation:"256QAM", powerLevel:-3.9}}	| ${Vorgabekonform}
-    ${{modulation:"256QAM", powerLevel:-3}}	| ${Vorgabekonform}
-    ${{modulation:"256QAM", powerLevel:-2}}	| ${Vorgabekonform}
-    ${{modulation:"256QAM", powerLevel:-1}}	| ${Vorgabekonform}
-    ${{modulation:"256QAM", powerLevel:0}}	| ${Vorgabekonform}
-    ${{modulation:"256QAM", powerLevel:11}}	| ${Vorgabekonform}
-    ${{modulation:"256QAM", powerLevel:13}}	| ${Vorgabekonform}
-    ${{modulation:"256QAM", powerLevel:13.1}}	| ${TolerierteAbweichung}
-    ${{modulation:"256QAM", powerLevel:16}}	| ${TolerierteAbweichung}
-    ${{modulation:"256QAM", powerLevel:17.99}}	| ${TolerierteAbweichung}
-    ${{modulation:"256QAM", powerLevel:18}}	| ${TolerierteAbweichung}
-    ${{modulation:"256QAM", powerLevel:18.1}}	| ${BeseitigungBinnenMonatsfrist}
-    ${{modulation:"256QAM", powerLevel:19}}	| ${BeseitigungBinnenMonatsfrist}
-    ${{modulation:"256QAM", powerLevel:20}}	| ${BeseitigungBinnenMonatsfrist}
-    ${{modulation:"256QAM", powerLevel:20.1}}	| ${SofortigeBeseitigung}
-    ${{modulation:"256QAM", powerLevel:100}}	| ${SofortigeBeseitigung}
+    ${{modulation:"256QAM", powerLevel:-60}}	| ${FixImmediately}
+    ${{modulation:"256QAM", powerLevel:-50}}	| ${FixImmediately}
+    ${{modulation:"256QAM", powerLevel:-8}}	| ${FixImmediately}
+    ${{modulation:"256QAM", powerLevel:-7.9}}	| ${FixWithinOneMonth}
+    ${{modulation:"256QAM", powerLevel:-7}}	| ${FixWithinOneMonth}
+    ${{modulation:"256QAM", powerLevel:-6}}	| ${FixWithinOneMonth}
+    ${{modulation:"256QAM", powerLevel:-5.9}}	| ${ToleratedDeviation}
+    ${{modulation:"256QAM", powerLevel:-4.5}}	| ${ToleratedDeviation}
+    ${{modulation:"256QAM", powerLevel:-4}}	| ${ToleratedDeviation}
+    ${{modulation:"256QAM", powerLevel:-3.9}}	| ${CompliesToSpecifications}
+    ${{modulation:"256QAM", powerLevel:-3}}	| ${CompliesToSpecifications}
+    ${{modulation:"256QAM", powerLevel:-2}}	| ${CompliesToSpecifications}
+    ${{modulation:"256QAM", powerLevel:-1}}	| ${CompliesToSpecifications}
+    ${{modulation:"256QAM", powerLevel:0}}	| ${CompliesToSpecifications}
+    ${{modulation:"256QAM", powerLevel:11}}	| ${CompliesToSpecifications}
+    ${{modulation:"256QAM", powerLevel:13}}	| ${CompliesToSpecifications}
+    ${{modulation:"256QAM", powerLevel:13.1}}	| ${ToleratedDeviation}
+    ${{modulation:"256QAM", powerLevel:16}}	| ${ToleratedDeviation}
+    ${{modulation:"256QAM", powerLevel:17.99}}	| ${ToleratedDeviation}
+    ${{modulation:"256QAM", powerLevel:18}}	| ${ToleratedDeviation}
+    ${{modulation:"256QAM", powerLevel:18.1}}	| ${FixWithinOneMonth}
+    ${{modulation:"256QAM", powerLevel:19}}	| ${FixWithinOneMonth}
+    ${{modulation:"256QAM", powerLevel:20}}	| ${FixWithinOneMonth}
+    ${{modulation:"256QAM", powerLevel:20.1}}	| ${FixImmediately}
+    ${{modulation:"256QAM", powerLevel:100}}	| ${FixImmediately}
   `('downstreamDeviation($input)', ({ input, expected }) => {
     expect(downstreamDeviation(input)).toBe(expected);
   });
 
   
   test.each([
-    [-60,	 SofortigeBeseitigung],
-    [-50,	 SofortigeBeseitigung],
-    [-6,	 SofortigeBeseitigung],
-    [-5.9, BeseitigungBinnenMonatsfrist],
-    [-5,	 BeseitigungBinnenMonatsfrist],
-    [-4,	 BeseitigungBinnenMonatsfrist],
-    [-3.9, TolerierteAbweichung],
-    [-2.5, TolerierteAbweichung],
-    [-2,	 TolerierteAbweichung],
-    [-1.9,	 Vorgabekonform],
-    [-1,	   Vorgabekonform],
-    [1,	   Vorgabekonform],
-    [0,	   Vorgabekonform],
-    [5,	   Vorgabekonform],
-    [15,	   Vorgabekonform],
-    [15.1,	 TolerierteAbweichung],
-    [18,	   TolerierteAbweichung],
-    [19.99, TolerierteAbweichung],
-    [20,	   TolerierteAbweichung],
-    [20.1,	 BeseitigungBinnenMonatsfrist],
-    [21,	   BeseitigungBinnenMonatsfrist],
-    [22,	   BeseitigungBinnenMonatsfrist],
-    [22.1,	 SofortigeBeseitigung],
-    [100,	 SofortigeBeseitigung],
+    [-60,	 FixImmediately],
+    [-50,	 FixImmediately],
+    [-6,	 FixImmediately],
+    [-5.9, FixWithinOneMonth],
+    [-5,	 FixWithinOneMonth],
+    [-4,	 FixWithinOneMonth],
+    [-3.9, ToleratedDeviation],
+    [-2.5, ToleratedDeviation],
+    [-2,	 ToleratedDeviation],
+    [-1.9,	 CompliesToSpecifications],
+    [-1,	   CompliesToSpecifications],
+    [1,	   CompliesToSpecifications],
+    [0,	   CompliesToSpecifications],
+    [5,	   CompliesToSpecifications],
+    [15,	   CompliesToSpecifications],
+    [15.1,	 ToleratedDeviation],
+    [18,	   ToleratedDeviation],
+    [19.99, ToleratedDeviation],
+    [20,	   ToleratedDeviation],
+    [20.1,	 FixWithinOneMonth],
+    [21,	   FixWithinOneMonth],
+    [22,	   FixWithinOneMonth],
+    [22.1,	 FixImmediately],
+    [100,	 FixImmediately],
   ])
   ('downstreamDeviation1024QAM(%d)', (input, expected ) => {
     expect(downstreamDeviation({powerLevel:input, modulation:"1024QAM"})).toBe(expected);
   });
   
   test.each([
-    [-56,	 SofortigeBeseitigung],
-    [-48,	 SofortigeBeseitigung],
-    [-4,	 SofortigeBeseitigung],
-    [-3.9, BeseitigungBinnenMonatsfrist],
-    [-3,	 BeseitigungBinnenMonatsfrist],
-    [-2,	 BeseitigungBinnenMonatsfrist],
-    [-1.9, TolerierteAbweichung],
-    [-0.5, TolerierteAbweichung],
-    [0,	 TolerierteAbweichung],
-    [0.1,	 Vorgabekonform],
-    [1,	   Vorgabekonform],
-    [7,	   Vorgabekonform],
-    [8,	   Vorgabekonform],
-    [13,	   Vorgabekonform],
-    [17,	   Vorgabekonform],
-    [17.1,	 TolerierteAbweichung],
-    [20,	   TolerierteAbweichung],
-    [21.99, TolerierteAbweichung],
-    [22,	   TolerierteAbweichung],
-    [22.1,	 BeseitigungBinnenMonatsfrist],
-    [23,	   BeseitigungBinnenMonatsfrist],
-    [24,	   BeseitigungBinnenMonatsfrist],
-    [24.1,	 SofortigeBeseitigung],
-    [102,	 SofortigeBeseitigung],
+    [-56,	 FixImmediately],
+    [-48,	 FixImmediately],
+    [-4,	 FixImmediately],
+    [-3.9, FixWithinOneMonth],
+    [-3,	 FixWithinOneMonth],
+    [-2,	 FixWithinOneMonth],
+    [-1.9, ToleratedDeviation],
+    [-0.5, ToleratedDeviation],
+    [0,	 ToleratedDeviation],
+    [0.1,	 CompliesToSpecifications],
+    [1,	   CompliesToSpecifications],
+    [7,	   CompliesToSpecifications],
+    [8,	   CompliesToSpecifications],
+    [13,	   CompliesToSpecifications],
+    [17,	   CompliesToSpecifications],
+    [17.1,	 ToleratedDeviation],
+    [20,	   ToleratedDeviation],
+    [21.99, ToleratedDeviation],
+    [22,	   ToleratedDeviation],
+    [22.1,	 FixWithinOneMonth],
+    [23,	   FixWithinOneMonth],
+    [24,	   FixWithinOneMonth],
+    [24.1,	 FixImmediately],
+    [102,	 FixImmediately],
   ])
   ('downstreamDeviation2048QAM(%d)', (input, expected ) => {
     expect(downstreamDeviation({powerLevel:input, modulation:"2048QAM"})).toBe(expected);
@@ -253,30 +253,30 @@ describe('diagnoseDownstream', () => {
 
 
   test.each([
-    [-54,	 SofortigeBeseitigung],
-    [-46,	 SofortigeBeseitigung],
-    [-2,	 SofortigeBeseitigung],
-    [-1.9, BeseitigungBinnenMonatsfrist],
-    [-1,	 BeseitigungBinnenMonatsfrist],
-    [0,	 BeseitigungBinnenMonatsfrist],
-    [0.1, TolerierteAbweichung],
-    [1.5, TolerierteAbweichung],
-    [2,	 TolerierteAbweichung],
-    [2.1,	 Vorgabekonform],
-    [3,	   Vorgabekonform],
-    [9,	   Vorgabekonform],
-    [10,	   Vorgabekonform],
-    [15,	   Vorgabekonform],
-    [19,	   Vorgabekonform],
-    [19.1,	 TolerierteAbweichung],
-    [22,	   TolerierteAbweichung],
-    [23.99, TolerierteAbweichung],
-    [24,	   TolerierteAbweichung],
-    [24.1,	 BeseitigungBinnenMonatsfrist],
-    [25,	   BeseitigungBinnenMonatsfrist],
-    [26,	   BeseitigungBinnenMonatsfrist],
-    [26.1,	 SofortigeBeseitigung],
-    [104,	 SofortigeBeseitigung],
+    [-54,	 FixImmediately],
+    [-46,	 FixImmediately],
+    [-2,	 FixImmediately],
+    [-1.9, FixWithinOneMonth],
+    [-1,	 FixWithinOneMonth],
+    [0,	 FixWithinOneMonth],
+    [0.1, ToleratedDeviation],
+    [1.5, ToleratedDeviation],
+    [2,	 ToleratedDeviation],
+    [2.1,	 CompliesToSpecifications],
+    [3,	   CompliesToSpecifications],
+    [9,	   CompliesToSpecifications],
+    [10,	   CompliesToSpecifications],
+    [15,	   CompliesToSpecifications],
+    [19,	   CompliesToSpecifications],
+    [19.1,	 ToleratedDeviation],
+    [22,	   ToleratedDeviation],
+    [23.99, ToleratedDeviation],
+    [24,	   ToleratedDeviation],
+    [24.1,	 FixWithinOneMonth],
+    [25,	   FixWithinOneMonth],
+    [26,	   FixWithinOneMonth],
+    [26.1,	 FixImmediately],
+    [104,	 FixImmediately],
   ])
   ('downstreamDeviation4096QAM(%d)', (input, expected ) => {
     expect(downstreamDeviation({powerLevel:input, modulation:"4096QAM"})).toBe(expected);
@@ -287,125 +287,125 @@ describe('diagnoseDownstream', () => {
 describe('signalToNoise', () => {
 
   test.each([
-    [-50,	 SofortigeBeseitigung],
-    [-10,	 SofortigeBeseitigung],
-    [-1,	 SofortigeBeseitigung],
-    [0,	 SofortigeBeseitigung],
-    [10,	 SofortigeBeseitigung],
-    [20,	 SofortigeBeseitigung],
-    [24,	 SofortigeBeseitigung],
-    [24.1, BeseitigungBinnenMonatsfrist],
-    [25, BeseitigungBinnenMonatsfrist],
-    [26, BeseitigungBinnenMonatsfrist],
-    [26.1, TolerierteAbweichung],
-    [26.6, TolerierteAbweichung],
-    [27,	 TolerierteAbweichung],
-    [27.1,	 Vorgabekonform],
-    [28,	   Vorgabekonform],
-    [30,	   Vorgabekonform],
-    [35,	   Vorgabekonform],
+    [-50,	 FixImmediately],
+    [-10,	 FixImmediately],
+    [-1,	 FixImmediately],
+    [0,	 FixImmediately],
+    [10,	 FixImmediately],
+    [20,	 FixImmediately],
+    [24,	 FixImmediately],
+    [24.1, FixWithinOneMonth],
+    [25, FixWithinOneMonth],
+    [26, FixWithinOneMonth],
+    [26.1, ToleratedDeviation],
+    [26.6, ToleratedDeviation],
+    [27,	 ToleratedDeviation],
+    [27.1,	 CompliesToSpecifications],
+    [28,	   CompliesToSpecifications],
+    [30,	   CompliesToSpecifications],
+    [35,	   CompliesToSpecifications],
   ])
   ('checkSignalToNoise64QAM(%d)', (input, expected ) => {
     expect(checkSignalToNoise({ snr: input, modulation: "64QAM" })).toBe(expected);
   });
 
   test.each([
-    [-50,	 SofortigeBeseitigung],
-    [-10,	 SofortigeBeseitigung],
-    [-1,	 SofortigeBeseitigung],
-    [0,	 SofortigeBeseitigung],
-    [10,	 SofortigeBeseitigung],
-    [20,	 SofortigeBeseitigung],
-    [24,	 SofortigeBeseitigung],
-    [29.9,	 SofortigeBeseitigung],
-    [30,	 SofortigeBeseitigung],
-    [30.1, BeseitigungBinnenMonatsfrist],
-    [31, BeseitigungBinnenMonatsfrist],
-    [32, BeseitigungBinnenMonatsfrist],
-    [32.1, TolerierteAbweichung],
-    [32.6, TolerierteAbweichung],
-    [33,	 TolerierteAbweichung],
-    [33.1,	 Vorgabekonform],
-    [34,	   Vorgabekonform],
-    [40,	   Vorgabekonform],
-    [45,	   Vorgabekonform],
+    [-50,	 FixImmediately],
+    [-10,	 FixImmediately],
+    [-1,	 FixImmediately],
+    [0,	 FixImmediately],
+    [10,	 FixImmediately],
+    [20,	 FixImmediately],
+    [24,	 FixImmediately],
+    [29.9,	 FixImmediately],
+    [30,	 FixImmediately],
+    [30.1, FixWithinOneMonth],
+    [31, FixWithinOneMonth],
+    [32, FixWithinOneMonth],
+    [32.1, ToleratedDeviation],
+    [32.6, ToleratedDeviation],
+    [33,	 ToleratedDeviation],
+    [33.1,	 CompliesToSpecifications],
+    [34,	   CompliesToSpecifications],
+    [40,	   CompliesToSpecifications],
+    [45,	   CompliesToSpecifications],
   ])
   ('checkSignalToNoise256QAM(%d)', (input, expected ) => {
     expect(checkSignalToNoise({ snr: input, modulation: "256QAM" })).toBe(expected);
   });
 
   test.each([
-    [-50,	 SofortigeBeseitigung],
-    [-10,	 SofortigeBeseitigung],
-    [-1,	 SofortigeBeseitigung],
-    [0,	 SofortigeBeseitigung],
-    [10,	 SofortigeBeseitigung],
-    [20,	 SofortigeBeseitigung],
-    [24,	 SofortigeBeseitigung],
-    [35.9,	 SofortigeBeseitigung],
-    [36,	 SofortigeBeseitigung],
-    [36.1, BeseitigungBinnenMonatsfrist],
-    [37.99, BeseitigungBinnenMonatsfrist],
-    [38, BeseitigungBinnenMonatsfrist],
-    [38.1, TolerierteAbweichung],
-    [38.6, TolerierteAbweichung],
-    [39,	 TolerierteAbweichung],
-    [39.1,	 Vorgabekonform],
-    [40,	   Vorgabekonform],
-    [47,	   Vorgabekonform],
-    [50,	   Vorgabekonform],
+    [-50,	 FixImmediately],
+    [-10,	 FixImmediately],
+    [-1,	 FixImmediately],
+    [0,	 FixImmediately],
+    [10,	 FixImmediately],
+    [20,	 FixImmediately],
+    [24,	 FixImmediately],
+    [35.9,	 FixImmediately],
+    [36,	 FixImmediately],
+    [36.1, FixWithinOneMonth],
+    [37.99, FixWithinOneMonth],
+    [38, FixWithinOneMonth],
+    [38.1, ToleratedDeviation],
+    [38.6, ToleratedDeviation],
+    [39,	 ToleratedDeviation],
+    [39.1,	 CompliesToSpecifications],
+    [40,	   CompliesToSpecifications],
+    [47,	   CompliesToSpecifications],
+    [50,	   CompliesToSpecifications],
   ])
   ('checkSignalToNoise1024QAM(%d)', (input, expected ) => {
     expect(checkSignalToNoise({ snr: input, modulation: "1024QAM" })).toBe(expected);
   });
 
   test.each([
-    [-50,	 SofortigeBeseitigung],
-    [-10,	 SofortigeBeseitigung],
-    [-1,	 SofortigeBeseitigung],
-    [0,	 SofortigeBeseitigung],
-    [10,	 SofortigeBeseitigung],
-    [20,	 SofortigeBeseitigung],
-    [24,	 SofortigeBeseitigung],
-    [38.9,	 SofortigeBeseitigung],
-    [39,	 SofortigeBeseitigung],
-    [39.1, BeseitigungBinnenMonatsfrist],
-    [39.99, BeseitigungBinnenMonatsfrist],
-    [41, BeseitigungBinnenMonatsfrist],
-    [41.1, TolerierteAbweichung],
-    [41.6, TolerierteAbweichung],
-    [42,	 TolerierteAbweichung],
-    [43.1,	 Vorgabekonform],
-    [45,	   Vorgabekonform],
-    [47,	   Vorgabekonform],
-    [50,	   Vorgabekonform],
+    [-50,	 FixImmediately],
+    [-10,	 FixImmediately],
+    [-1,	 FixImmediately],
+    [0,	 FixImmediately],
+    [10,	 FixImmediately],
+    [20,	 FixImmediately],
+    [24,	 FixImmediately],
+    [38.9,	 FixImmediately],
+    [39,	 FixImmediately],
+    [39.1, FixWithinOneMonth],
+    [39.99, FixWithinOneMonth],
+    [41, FixWithinOneMonth],
+    [41.1, ToleratedDeviation],
+    [41.6, ToleratedDeviation],
+    [42,	 ToleratedDeviation],
+    [43.1,	 CompliesToSpecifications],
+    [45,	   CompliesToSpecifications],
+    [47,	   CompliesToSpecifications],
+    [50,	   CompliesToSpecifications],
   ])
   ('checkSignalToNoise2048QAM(%d)', (input, expected) => {
     expect(checkSignalToNoise({ snr: input, modulation: "2048QAM" })).toBe(expected);
   });
 
   test.each([
-    [-50,	 SofortigeBeseitigung],
-    [-10,	 SofortigeBeseitigung],
-    [-1,	 SofortigeBeseitigung],
-    [0,	 SofortigeBeseitigung],
-    [10,	 SofortigeBeseitigung],
-    [20,	 SofortigeBeseitigung],
-    [30,	 SofortigeBeseitigung],
-    [40,	 SofortigeBeseitigung],
-    [41.9,	 SofortigeBeseitigung],
-    [42,	 SofortigeBeseitigung],
-    [42.1, BeseitigungBinnenMonatsfrist],
-    [42.99, BeseitigungBinnenMonatsfrist],
-    [43, BeseitigungBinnenMonatsfrist],
-    [44, BeseitigungBinnenMonatsfrist],
-    [44.1, TolerierteAbweichung],
-    [44.6, TolerierteAbweichung],
-    [45,	 TolerierteAbweichung],
-    [45.1,	 Vorgabekonform],
-    [46,	   Vorgabekonform],
-    [47,	   Vorgabekonform],
-    [50,	   Vorgabekonform],
+    [-50,	 FixImmediately],
+    [-10,	 FixImmediately],
+    [-1,	 FixImmediately],
+    [0,	 FixImmediately],
+    [10,	 FixImmediately],
+    [20,	 FixImmediately],
+    [30,	 FixImmediately],
+    [40,	 FixImmediately],
+    [41.9,	 FixImmediately],
+    [42,	 FixImmediately],
+    [42.1, FixWithinOneMonth],
+    [42.99, FixWithinOneMonth],
+    [43, FixWithinOneMonth],
+    [44, FixWithinOneMonth],
+    [44.1, ToleratedDeviation],
+    [44.6, ToleratedDeviation],
+    [45,	 ToleratedDeviation],
+    [45.1,	 CompliesToSpecifications],
+    [46,	   CompliesToSpecifications],
+    [47,	   CompliesToSpecifications],
+    [50,	   CompliesToSpecifications],
   ])
   ('checkSignalToNoise4096QAM(%d)', (input, expected ) => {
     expect(checkSignalToNoise({ snr: input, modulation: "4096QAM"})).toBe(expected);

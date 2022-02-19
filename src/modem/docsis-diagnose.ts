@@ -78,7 +78,7 @@ export default class DocsisDiagnose{
       .flat()
       .find(({diagnose}) => diagnose.deviation)
   }
-  
+
   printDeviationsConsole(): any{
     if (this.hasDeviations() === false) {
       return colorize("green", "Hooray no deviations found!")
@@ -131,19 +131,19 @@ export class UpstreamDeviationSCQAM implements Deviation{
   
   check(powerLevel: number): Diagnose {
     if (powerLevel <= 35)
-      return SofortigeBeseitigung
+      return FixImmediately
     if (35 < powerLevel && powerLevel <= 37)
-      return BeseitigungBinnenMonatsfrist;
+      return FixWithinOneMonth;
     if (37 < powerLevel && powerLevel <= 41)
-      return TolerierteAbweichung;
+      return ToleratedDeviation;
     if (41 < powerLevel && powerLevel <= 47)
-      return Vorgabekonform;
+      return CompliesToSpecifications;
     if (47 < powerLevel && powerLevel <= 51)
-      return TolerierteAbweichung;
+      return ToleratedDeviation;
     if (51 < powerLevel && powerLevel <= 53)
-      return BeseitigungBinnenMonatsfrist;
+      return FixWithinOneMonth;
     if ( 53 < powerLevel)
-      return SofortigeBeseitigung
+      return FixImmediately
     
     throw new Error(`PowerLevel is not within supported range. PowerLevel: ${powerLevel}`);
   }
@@ -156,19 +156,19 @@ export class UpstreamDeviationOFDMA implements Deviation{
 
   check(powerLevel: number): Diagnose {
     if (powerLevel <= 38)
-      return SofortigeBeseitigung
+      return FixImmediately
     if (38 < powerLevel && powerLevel <= 40)
-      return BeseitigungBinnenMonatsfrist;
+      return FixWithinOneMonth;
     if (40 < powerLevel && powerLevel <= 44)
-      return TolerierteAbweichung;
+      return ToleratedDeviation;
     if (44 < powerLevel && powerLevel <= 47)
-      return Vorgabekonform;
+      return CompliesToSpecifications;
     if (47 < powerLevel && powerLevel <= 48)
-      return TolerierteAbweichung;
+      return ToleratedDeviation;
     if (48 < powerLevel && powerLevel <= 50)
-      return BeseitigungBinnenMonatsfrist;
+      return FixWithinOneMonth;
     if ( 50 < powerLevel)
-      return SofortigeBeseitigung
+      return FixImmediately
     
     throw new Error(`PowerLevel is not within supported range. PowerLevel: ${powerLevel}`);
   }
@@ -184,19 +184,19 @@ export class DownstreamDeviation64QAM implements Deviation{
   
   check(powerLevel: number): Diagnose {
     if (-60 <= powerLevel && powerLevel <= -14)
-      return SofortigeBeseitigung
+      return FixImmediately
     if (-14 < powerLevel && powerLevel <= -12)
-      return BeseitigungBinnenMonatsfrist;
+      return FixWithinOneMonth;
     if (-12 < powerLevel && powerLevel <= -10)
-      return TolerierteAbweichung;
+      return ToleratedDeviation;
     if (-10 < powerLevel && powerLevel <= 7)
-      return Vorgabekonform;
+      return CompliesToSpecifications;
     if (7 < powerLevel && powerLevel <= 12)
-      return TolerierteAbweichung;
+      return ToleratedDeviation;
     if (12 < powerLevel && powerLevel <= 14)
-      return BeseitigungBinnenMonatsfrist;
+      return FixWithinOneMonth;
     if ( 14.1 <= powerLevel)
-      return SofortigeBeseitigung
+      return FixImmediately
     
     throw new Error(`PowerLevel is not within supported range. PowerLevel: ${powerLevel}`);
   }
@@ -241,23 +241,23 @@ export class DownstreamDeviation4096QAM implements Deviation {
 }
 
 
-export const SofortigeBeseitigung: Diagnose = {
-  description : "SofortigeBeseitigung",
+export const FixImmediately: Diagnose = {
+  description : "Fix immediately",
   deviation: true,
   color:"red",
 }
-export const Vorgabekonform: Diagnose ={
-  description :"Vorgabekonform",
+export const CompliesToSpecifications: Diagnose ={
+  description :"Complies to specifications",
   deviation: false,
   color:"green"
 }
-export const TolerierteAbweichung: Diagnose = {
-  description :"Tolerierte Abweichung",
+export const ToleratedDeviation: Diagnose = {
+  description :"Tolerated deviation",
   deviation: false,
   color:"green"
 }
-export const BeseitigungBinnenMonatsfrist: Diagnose = {
-  description :"Beseitigung binnen Monatsfrist",
+export const FixWithinOneMonth: Diagnose = {
+  description :"Fix within one Month",
   deviation: true,
   color:"yellow"
 }
@@ -319,13 +319,13 @@ export function checkSignalToNoise({snr, modulation }:{ snr: number, modulation:
   const adjustedSNR = snr - snrOffsetForModulation;
   
   if (adjustedSNR <= 24)
-    return SofortigeBeseitigung
+    return FixImmediately
   if (24 < adjustedSNR && adjustedSNR <= 26)
-    return BeseitigungBinnenMonatsfrist;
+    return FixWithinOneMonth;
   if (26 < adjustedSNR && adjustedSNR <= 27)
-    return TolerierteAbweichung;
+    return ToleratedDeviation;
   if (27 < adjustedSNR)
-    return Vorgabekonform;
+    return CompliesToSpecifications;
     
   throw new Error(`SignalToNoiseRation is not within supported range. SNR: ${snr}`);
 }
