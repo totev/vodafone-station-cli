@@ -1,3 +1,18 @@
+v1.1.5
+---
+- Fixed the powerLevel parsing for arris modems - was dB(μV) but should have been dB(mV)
+
+**Full Changelog**: https://github.com/totev/vodafone-station-cli/compare/v1.1.3...v1.1.4
+
+v1.1.4
+---
+- Add HTTP Referrer for Technicolor CGA4322DE Firmware: 2.0.17-IMS-KDG
+
+v1.1.3
+---
+- Added support for Technicolor CGA6444VF
+- Minor bugfixes
+ 
 v1.1.2
 ---
 - Bugfixes related to parallel promise resolution
