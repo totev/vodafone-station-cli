@@ -449,4 +449,3 @@ test('printDeviationsConsole with snr deviations', () => {
   console.log(result);
   expect(result).toContain("snr");
 });
-

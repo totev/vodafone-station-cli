@@ -1,10 +1,5 @@
 import type { Diagnose, DiagnosedDocsis31ChannelStatus, DiagnosedDocsisChannelStatus, DiagnosedDocsisStatus, DocsisChannelType, DocsisStatus, HumanizedDocsisChannelStatus, Modulation } from "./modem";
 
-export const enum StatusClassification{
-  IMMINENT_REPAIR=-1,
-}
-
-
 export interface Deviation{
   channelType?: DocsisChannelType
   modulation: Modulation;
@@ -107,21 +102,17 @@ export default class DocsisDiagnose{
   }
 }
 
-
 export const SEVERITY_COLORS =
 {
   green:  "\x1b[32m",
   yellow: "\x1b[33m",
   red: "\x1b[31m"
 } 
+
 export function colorize(severity: "green"|"yellow"|"red", message: string): string{
   const color = SEVERITY_COLORS[severity] ?? SEVERITY_COLORS["green"]
   const colorStop = '\x1b[0m'
   return `${color}${message}${colorStop}`;
-}
-
-export function diagnoseDownstream(status: HumanizedDocsisChannelStatus): any{
-  return 
 }
 
 
@@ -148,7 +139,6 @@ export class UpstreamDeviationSCQAM implements Deviation{
     throw new Error(`PowerLevel is not within supported range. PowerLevel: ${powerLevel}`);
   }
 }
-
 
 export class UpstreamDeviationOFDMA implements Deviation{
   modulation = "64QAM" as const
@@ -239,7 +229,6 @@ export class DownstreamDeviation4096QAM implements Deviation {
     return this.delegate.check(adjustedPowerLevel)
   }
 }
-
 
 export const FixImmediately: Diagnose = {
   description : "Fix immediately",
