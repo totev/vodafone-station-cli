@@ -1,5 +1,6 @@
 import DocsisDiagnose, { BeseitigungBinnenMonatsfrist, checkSignalToNoise, downstreamDeviation, DownstreamDeviation64QAM, downstreamDeviationFactory, SofortigeBeseitigung, TolerierteAbweichung, upstreamDeviation, upstreamDeviationFactory, UpstreamDeviationOFDMA, UpstreamDeviationSCQAM, Vorgabekonform } from "./docsis-diagnose";
 import type { DocsisChannelType, DocsisStatus, Modulation } from "./modem";
+import fixtureDocsisStatusArris from './__fixtures__/docsisStatus_arris_normalized.json';
 import fixtureDocsisStatus from './__fixtures__/docsisStatus_normalized.json';
 import fixtureDocsisStatusMinimal from './__fixtures__/docsisStatus_normalized_minimal.json';
 
@@ -46,14 +47,14 @@ test('deviationFactory supported modulation/type', () => {
   expect(upstreamDeviationFactory("OFDMA" as const)).toStrictEqual(new UpstreamDeviationOFDMA())
 });
 
-test('detectDeviations with deviations', () => {
+test('hasDeviations with deviations', () => {
   const diagnoser = new DocsisDiagnose(fixtureDocsisStatus as DocsisStatus);
-  expect(diagnoser.detectDeviations()).toBeTruthy();
+  expect(diagnoser.hasDeviations()).toBeTruthy();
 });
 
-test('detectDeviations without deviations', () => {
+test('hasDeviations without deviations', () => {
   const diagnoser = new DocsisDiagnose(fixtureDocsisStatusMinimal as DocsisStatus);
-  expect(diagnoser.detectDeviations()).toBeFalsy();
+  expect(diagnoser.hasDeviations()).toBeFalsy();
 });
 
 
@@ -411,3 +412,41 @@ describe('signalToNoise', () => {
   });
 
 });
+
+test('printDeviationsConsole with pl deviations', () => {
+  const diagnoser = new DocsisDiagnose(fixtureDocsisStatusArris as DocsisStatus);
+  const result = diagnoser.printDeviationsConsole()
+  console.log(result);
+  expect(result).toContain("ch33pl");
+});
+
+test('printDeviationsConsole without deviations', () => {
+  const diagnoser = new DocsisDiagnose(fixtureDocsisStatusMinimal as DocsisStatus);
+  const result = diagnoser.printDeviationsConsole()
+  console.log(result);
+  expect(result).toContain("Hooray");
+});
+
+test('printDeviationsConsole with snr deviations', () => {
+  const fixture = {
+    "downstream": [
+      {
+        "channelId": "2",
+        "channelType": "SC-QAM",
+        "modulation": "256QAM",
+        "powerLevel": -5.6,
+        "lockStatus": "Locked",
+        "snr": 31,
+        "frequency": 130
+      },
+    ],
+    downstreamOfdm: [],
+    upstream:[],
+    upstreamOfdma:[],
+  } as any as DocsisStatus
+  const diagnoser = new DocsisDiagnose(fixture);
+  const result = diagnoser.printDeviationsConsole()
+  console.log(result);
+  expect(result).toContain("snr");
+});
+

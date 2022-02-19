@@ -45,9 +45,9 @@ export interface DocsisStatus{
 
 export interface DiagnosedDocsisStatus{
   downstream: DiagnosedDocsisChannelStatus[];
-  downstreamOfdm: HumanizedDocsis31ChannelStatus[];
+  downstreamOfdm: DiagnosedDocsis31ChannelStatus[];
   upstream: DiagnosedDocsisChannelStatus[];
-  upstreamOfdma: HumanizedDocsis31ChannelStatus[];
+  upstreamOfdma: DiagnosedDocsis31ChannelStatus[];
   time: string;
 }
 

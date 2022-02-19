@@ -1,9 +1,9 @@
 import type { Diagnose, DiagnosedDocsis31ChannelStatus, DiagnosedDocsisChannelStatus, DiagnosedDocsisStatus, DocsisChannelType, DocsisStatus, HumanizedDocsisChannelStatus, Modulation } from "./modem";
 
-
 export const enum StatusClassification{
   IMMINENT_REPAIR=-1,
 }
+
 
 export interface Deviation{
   channelType?: DocsisChannelType
@@ -66,7 +66,7 @@ export default class DocsisDiagnose{
       })
   }
 
-  detectDeviations(): boolean{
+  hasDeviations(): boolean{
     return !![
       this.checkDownstream(),
       this.checkDownstreamSNR(),
@@ -78,6 +78,46 @@ export default class DocsisDiagnose{
       .flat()
       .find(({diagnose}) => diagnose.deviation)
   }
+  
+  printDeviationsConsole(): any{
+    if (this.hasDeviations() === false) {
+      return colorize("green", "Hooray no deviations found!")
+    }
+
+    const down =
+      [...this.checkDownstream(), ...this.checkOfdmDownstream()]
+        .filter(downstream => downstream.diagnose.deviation)
+        .map(down =>
+          colorize(down.diagnose.color, `ch${down.channelId}pl`)
+        )
+    const downSnr =
+      [...this.checkDownstreamSNR(),
+        ...this.checkOfdmDownstreamSNR()]
+        .filter(downstream => downstream.diagnose.deviation)
+        .map(down =>
+          colorize(down.diagnose.color, `ch${down.channelId}snr`)
+        )
+    const up =
+      [...this.diagnose.upstream, ...this.diagnose.upstreamOfdma]
+        .filter(upstream => upstream.diagnose.deviation)
+        .map(upstream =>
+          colorize(upstream.diagnose.color, `ch${upstream.channelId}pl`)
+        ).join(", ")
+    return `Legend: pl = power level| snr = signal to noise ration\nDOWN: ${[...down, ...downSnr].join(", ")}\nUP: ${up}`
+  }
+}
+
+
+export const SEVERITY_COLORS =
+{
+  green:  "\x1b[32m",
+  yellow: "\x1b[33m",
+  red: "\x1b[31m"
+} 
+export function colorize(severity: "green"|"yellow"|"red", message: string): string{
+  const color = SEVERITY_COLORS[severity] ?? SEVERITY_COLORS["green"]
+  const colorStop = '\x1b[0m'
+  return `${color}${message}${colorStop}`;
 }
 
 export function diagnoseDownstream(status: HumanizedDocsisChannelStatus): any{

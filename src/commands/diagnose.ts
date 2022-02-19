@@ -1,9 +1,7 @@
-import Command from '../base-command'
-import {discoverModemIp, ModemDiscovery} from '../modem/discovery'
-import {flags} from '@oclif/command'
-import { modemFactory } from "../modem/factory";
-import {getDocsisStatus} from "./docsis";
+import { flags } from '@oclif/command';
+import Command from '../base-command';
 import DocsisDiagnose from "../modem/docsis-diagnose";
+import { getDocsisStatus } from "./docsis";
 
 export default class Diagnose extends Command {
   static description =
@@ -37,13 +35,14 @@ export default class Diagnose extends Command {
       const docsisStatus = await getDocsisStatus(password, this.logger)
       const diagnoser = new DocsisDiagnose(docsisStatus)
 
-      if (diagnoser.detectDeviations()) {
+
+      if (diagnoser.hasDeviations()) {
         this.logger.warn("Docsis connection connection quality deviation found!")
+        const diagnosedDocsisStatusJSON = JSON.stringify(diagnoser.diagnose, undefined, 4)
+        this.log(diagnosedDocsisStatusJSON)
       }
 
-      const diagnosedDocsisStatusJSON = JSON.stringify(diagnoser.diagnose, undefined, 4)
-
-      this.log(diagnosedDocsisStatusJSON)
+      this.log(diagnoser.printDeviationsConsole())
 
     } catch (error) {
       this.error(error as Error,{message:"Something went wrong"})
