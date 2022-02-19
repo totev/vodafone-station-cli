@@ -403,6 +403,9 @@ Cable connection information/meaning:
 The Diagnose module is based on the guidelines/values provided by Meister Voda:
 - https://www.vodafonekabelforum.de/viewtopic.php?t=32353
 
+# Local usage
+Clone this repository, install the dependencies via *yarn* and run `./bin/dev help`.
+
 # Usage
 <!-- usage -->
 ```sh-session
