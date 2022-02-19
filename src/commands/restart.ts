@@ -1,4 +1,4 @@
-import {flags} from '@oclif/command'
+import {Flags} from '@oclif/core'
 import Command from '../base-command'
 import {discoverModemIp, ModemDiscovery} from '../modem/discovery'
 import {modemFactory} from '../modem/factory'
@@ -12,7 +12,7 @@ export default class Restart extends Command {
   ];
 
   static flags = {
-    password: flags.string({
+    password: Flags.string({
       char: 'p',
       description: 'router/modem password',
     }),
@@ -34,7 +34,7 @@ export default class Restart extends Command {
   }
 
   async run(): Promise<void> {
-    const {flags} = this.parse(Restart)
+    const {flags} = await this.parse(Restart)
 
     const password = flags.password ?? process.env.VODAFONE_ROUTER_PASSWORD
     if (!password || password === '') {
@@ -44,7 +44,7 @@ export default class Restart extends Command {
       this.exit()
     }
     this.log('Restarting router... this could take some time...')
-    await this.restartRouter(password)
+    await this.restartRouter(password!)
     this.exit()
   }
 }
