@@ -28,7 +28,7 @@ export default class Docsis extends Command {
 
   static examples = [
     `$ vodafone-station-cli docsis -p PASSWORD
-JSON data
+{JSON data}
 `,
   ];
 
@@ -39,7 +39,7 @@ JSON data
     }),
     file: Flags.boolean({
       char: 'f',
-      description: 'write out a report file',
+      description: 'write out a report file under ./reports/${CURRENT_UNIX_TIMESTAMP}_docsisStatus.json',
     }),
   };
 
