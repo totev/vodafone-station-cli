@@ -2,7 +2,7 @@ import { Flags} from '@oclif/core'
 import {promises as fsp} from 'fs'
 import Command from '../base-command'
 import {discoverModemIp, ModemDiscovery} from '../modem/discovery'
-import type {DocsisStatus} from '../modem/modem'
+import {compressDocsisStatus, DocsisStatus} from '../modem/modem'
 import {modemFactory} from '../modem/factory'
 import {Log } from '../logger'
 
@@ -41,6 +41,10 @@ export default class Docsis extends Command {
       char: 'f',
       description: 'write out a report file under ./reports/${CURRENT_UNIX_TIMESTAMP}_docsisStatus.json',
     }),
+    web: Flags.boolean({
+      char: 'w',
+      description: 'review the docsis values in a webapp',
+    }),
   };
 
   async writeDocsisStatus(docsisStatusJson: string): Promise<void> {
@@ -69,6 +73,11 @@ export default class Docsis extends Command {
       } else {
         this.log(docsisStatusJSON)
       }
+
+      if (flags.web) {
+        this.log(`Review your docsis state online -> https://smmwio.endofco.de/#docsis=${compressDocsisStatus(docsisStatus)}`)
+      }
+
       this.exit()
     } catch (error) {
       this.error(error as Error,{message:"Something went wrong"})
