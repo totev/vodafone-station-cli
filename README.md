@@ -18,6 +18,15 @@ Access your Arris TG3442DE or Technicolor CGA4322DE, CGA6444VF (aka Vodafone Sta
 * [Commands](#commands)
 <!-- tocstop -->
 
+# Features
+
+* discover your vodafone station's IP in your local network
+* Retrieve the current docsis connection state and transform it into JSON
+* diagnose your docsis connection state to quickly detect abnormalities
+* restart your vodafone station
+* Experimental - see your docsis connection information plotted in a web browser
+* Experimental - share your docsis connection information with others via URL
+
 # Demo
 <p align="center">
 

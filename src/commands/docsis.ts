@@ -43,7 +43,7 @@ export default class Docsis extends Command {
     }),
     web: Flags.boolean({
       char: 'w',
-      description: 'review the docsis values in a webapp',
+      description: 'EXPERIMENTAL review the docsis values in a webapp EXPERIMENTAL',
     }),
   };
 
