@@ -100,7 +100,8 @@ export default class DocsisDiagnose{
         ).join(", ")
     
     return [
-      "Legend: pl = power level| snr = signal to noise ration",
+      "Legend: pl = power level | snr = signal to noise ration",
+      `Colors:  ${colorize(FixWithinOneMonth.color, FixWithinOneMonth.description)} | ${colorize(FixImmediately.color, FixImmediately.description)}`,
       `DOWN: ${[...down, ...downSnr].join(", ")}`,
       `UP: ${up}`
     ].join("\n");
