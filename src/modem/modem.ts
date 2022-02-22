@@ -1,7 +1,6 @@
 import axios, { AxiosInstance } from 'axios';
 import { wrapper } from 'axios-cookiejar-support';
 import { CookieJar } from 'tough-cookie';
-import { brotliCompressSync } from "zlib";
 import { Log } from '../logger';
 
 export type DocsisChannelType = 'OFDM' | 'OFDMA' | 'SC-QAM'
@@ -95,10 +94,4 @@ export abstract class Modem implements GenericModem {
       timeout: 30000
     }))
   }
-}
-
-export function compressDocsisStatus(docsisStatus: DocsisStatus): string{
-  const json  = JSON.stringify(docsisStatus)
-  const compressed = brotliCompressSync(Buffer.from(json, 'utf-8'))
-  return compressed.toString('base64url')
 }

@@ -1,6 +1,7 @@
 import { Flags } from '@oclif/core';
 import Command from '../base-command';
 import DocsisDiagnose from "../modem/docsis-diagnose";
+import { webDiagnoseLink } from "../modem/smmwio";
 import { getDocsisStatus } from "./docsis";
 
 export default class Diagnose extends Command {
@@ -15,6 +16,10 @@ export default class Diagnose extends Command {
     password: Flags.string({
       char: 'p',
       description: 'router/modem password',
+    }),
+    web: Flags.boolean({
+      char: 'w',
+      description: 'EXPERIMENTAL review the docsis values in a webapp EXPERIMENTAL',
     }),
   };
 
@@ -37,6 +42,10 @@ export default class Diagnose extends Command {
         this.logger.warn("Docsis connection connection quality deviation found!")
         const diagnosedDocsisStatusJSON = JSON.stringify(diagnoser.diagnose, undefined, 4)
         this.log(diagnosedDocsisStatusJSON)
+      }
+
+      if (flags.web) {
+        this.log(`Review your docsis state online -> ${webDiagnoseLink(docsisStatus)}`)
       }
 
       this.log(diagnoser.printDeviationsConsole())

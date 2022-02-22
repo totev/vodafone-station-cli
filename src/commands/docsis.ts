@@ -2,9 +2,10 @@ import { Flags} from '@oclif/core'
 import {promises as fsp} from 'fs'
 import Command from '../base-command'
 import {discoverModemIp, ModemDiscovery} from '../modem/discovery'
-import {compressDocsisStatus, DocsisStatus} from '../modem/modem'
+import { DocsisStatus} from '../modem/modem'
 import {modemFactory} from '../modem/factory'
 import {Log } from '../logger'
+import { webDiagnoseLink } from "../modem/smmwio"
 
 export async function getDocsisStatus(password: string, logger:Log): Promise<DocsisStatus> {
   const modemIp = await discoverModemIp()
@@ -75,7 +76,7 @@ export default class Docsis extends Command {
       }
 
       if (flags.web) {
-        this.log(`Review your docsis state online -> https://smmwio.endofco.de/#docsis=${compressDocsisStatus(docsisStatus)}`)
+        this.log(`Review your docsis state online -> ${webDiagnoseLink(docsisStatus)}`)
       }
 
       this.exit()
