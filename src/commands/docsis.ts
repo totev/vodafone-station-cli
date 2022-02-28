@@ -5,7 +5,7 @@ import {discoverModemIp, ModemDiscovery} from '../modem/discovery'
 import { DocsisStatus} from '../modem/modem'
 import {modemFactory} from '../modem/factory'
 import {Log } from '../logger'
-import { webDiagnoseLink } from "../modem/smmwio"
+import { webDiagnoseLink } from "../modem/web-diagnose"
 
 export async function getDocsisStatus(password: string, logger:Log): Promise<DocsisStatus> {
   const modemIp = await discoverModemIp()

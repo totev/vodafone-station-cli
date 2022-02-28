@@ -8,5 +8,5 @@ export function compressDocsisStatus(docsisStatus: DocsisStatus): string{
 }
 
 export function webDiagnoseLink(docsisStatus: DocsisStatus): string{
-  return `https://smmwio.endofco.de/#docsis=${compressDocsisStatus(docsisStatus)}`
+  return `https://docsis-diagnose.totev.dev/#docsis=${compressDocsisStatus(docsisStatus)}`
 }

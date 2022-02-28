@@ -1,6 +1,6 @@
 import { brotliDecompressSync } from "zlib"
 import {  DocsisStatus } from "./modem"
-import { compressDocsisStatus } from "./smmwio"
+import { compressDocsisStatus } from "./web-diagnose"
 import fixtureDocsisStatus from './__fixtures__/docsisStatus_normalized.json'
 
 test('should compress json status with brotli', () => {

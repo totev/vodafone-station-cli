@@ -1,7 +1,7 @@
 import { Flags } from '@oclif/core';
 import Command from '../base-command';
 import DocsisDiagnose from "../modem/docsis-diagnose";
-import { webDiagnoseLink } from "../modem/smmwio";
+import { webDiagnoseLink } from "../modem/web-diagnose";
 import { getDocsisStatus } from "./docsis";
 
 export default class Diagnose extends Command {
