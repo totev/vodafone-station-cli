@@ -95,4 +95,3 @@ export abstract class Modem implements GenericModem {
     }))
   }
 }
-

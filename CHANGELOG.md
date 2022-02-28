@@ -1,3 +1,9 @@
+v1.2.3
+---
+- Add docsis values sharing via https://docsis-diagnose.totev.dev
+
+**Full Changelog**: https://github.com/totev/vodafone-station-cli/compare/v1.2.2...v1.2.3
+
 v1.2.2
 ---
 - Respect log level
