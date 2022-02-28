@@ -19,7 +19,7 @@ export default class Diagnose extends Command {
     }),
     web: Flags.boolean({
       char: 'w',
-      description: 'EXPERIMENTAL review the docsis values in a webapp EXPERIMENTAL',
+      description: 'review the docsis values in a webapp',
     }),
   };
 

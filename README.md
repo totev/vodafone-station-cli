@@ -9,6 +9,7 @@ Access your Arris TG3442DE or Technicolor CGA4322DE, CGA6444VF (aka Vodafone Sta
 [![npm](https://img.shields.io/npm/v/vodafone-station-cli)](https://www.npmjs.com/package/vodafone-station-cli)
 
 <!-- toc -->
+* [Features](#features)
 * [Demo](#demo)
 * [Supported hardware](#supported-hardware)
 * [Notes](#notes)
@@ -24,8 +25,8 @@ Access your Arris TG3442DE or Technicolor CGA4322DE, CGA6444VF (aka Vodafone Sta
 * Retrieve the current docsis connection state and transform it into JSON
 * diagnose your docsis connection state to quickly detect abnormalities
 * restart your vodafone station
-* Experimental - see your docsis connection information plotted in a web browser
-* Experimental - share your docsis connection information with others via URL
+* see your docsis connection information plotted in a web browser
+* share your docsis connection information with others via URL
 
 # Demo
 <p align="center">
@@ -433,7 +434,7 @@ $ npm install -g vodafone-station-cli
 $ vodafone-station-cli COMMAND
 running command...
 $ vodafone-station-cli (--version)
-vodafone-station-cli/1.2.2 darwin-arm64 node-v17.5.0
+vodafone-station-cli/1.2.3 darwin-arm64 node-v17.6.0
 $ vodafone-station-cli --help [COMMAND]
 USAGE
   $ vodafone-station-cli COMMAND
@@ -454,10 +455,11 @@ Diagnose the quality of the docsis connection.
 
 ```
 USAGE
-  $ vodafone-station-cli diagnose [-p <value>]
+  $ vodafone-station-cli diagnose [-p <value>] [-w]
 
 FLAGS
   -p, --password=<value>  router/modem password
+  -w, --web               review the docsis values in a webapp
 
 DESCRIPTION
   Diagnose the quality of the docsis connection.
@@ -466,7 +468,7 @@ EXAMPLES
   $ vodafone-station-cli diagnose
 ```
 
-_See code: [dist/commands/diagnose.ts](https://github.com/totev/vodafone-station-cli/blob/v1.2.2/dist/commands/diagnose.ts)_
+_See code: [dist/commands/diagnose.ts](https://github.com/totev/vodafone-station-cli/blob/v1.2.3/dist/commands/diagnose.ts)_
 
 ## `vodafone-station-cli discover`
 
@@ -483,7 +485,7 @@ EXAMPLES
   $ vodafone-station-cli discover
 ```
 
-_See code: [dist/commands/discover.ts](https://github.com/totev/vodafone-station-cli/blob/v1.2.2/dist/commands/discover.ts)_
+_See code: [dist/commands/discover.ts](https://github.com/totev/vodafone-station-cli/blob/v1.2.3/dist/commands/discover.ts)_
 
 ## `vodafone-station-cli docsis`
 
@@ -491,21 +493,22 @@ Get the current docsis status as reported by the modem in a JSON format.
 
 ```
 USAGE
-  $ vodafone-station-cli docsis [-p <value>] [-f]
+  $ vodafone-station-cli docsis [-p <value>] [-f] [-w]
 
 FLAGS
-  -f, --file              write out a report file
+  -f, --file              write out a report file under ./reports/${CURRENT_UNIX_TIMESTAMP}_docsisStatus.json
   -p, --password=<value>  router/modem password
+  -w, --web               review the docsis values in a webapp
 
 DESCRIPTION
   Get the current docsis status as reported by the modem in a JSON format.
 
 EXAMPLES
   $ vodafone-station-cli docsis -p PASSWORD
-  JSON data
+  {JSON data}
 ```
 
-_See code: [dist/commands/docsis.ts](https://github.com/totev/vodafone-station-cli/blob/v1.2.2/dist/commands/docsis.ts)_
+_See code: [dist/commands/docsis.ts](https://github.com/totev/vodafone-station-cli/blob/v1.2.3/dist/commands/docsis.ts)_
 
 ## `vodafone-station-cli help [COMMAND]`
 
@@ -545,5 +548,5 @@ EXAMPLES
   $ vodafone-station-cli restart -p PASSWORD
 ```
 
-_See code: [dist/commands/restart.ts](https://github.com/totev/vodafone-station-cli/blob/v1.2.2/dist/commands/restart.ts)_
+_See code: [dist/commands/restart.ts](https://github.com/totev/vodafone-station-cli/blob/v1.2.3/dist/commands/restart.ts)_
 <!-- commandsstop -->
