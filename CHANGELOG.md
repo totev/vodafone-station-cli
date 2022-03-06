@@ -1,3 +1,9 @@
+v1.2.4
+---
+- Fix modulation value normalization on technicolor modems #23
+
+**Full Changelog**: https://github.com/totev/vodafone-station-cli/compare/v1.2.3...v1.2.4
+
 v1.2.3
 ---
 - Add docsis values sharing via https://docsis-diagnose.totev.dev
