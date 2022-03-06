@@ -1,7 +1,7 @@
-import {normalizeChannelStatus, normalizeDocsisStatus, normalizeOfdmChannelStatus, normalizeUpstreamChannelStatus, normalizeUpstreamOfdmaChannelStatus, TechnicolorDocsisStatus} from './technicolor-modem'
+import { normalizeChannelStatus, normalizeDocsisStatus, normalizeOfdmChannelStatus, normalizeUpstreamChannelStatus, normalizeUpstreamOfdmaChannelStatus, TechnicolorDocsisStatus } from './technicolor-modem'
+import fixtureDocsis31Status from './__fixtures__/docsisStatus_ofdma_technicolor.json'
 import fixtureDocsisStatus from './__fixtures__/docsisStatus_technicolor.json'
 
-import fixtureDocsis31Status from './__fixtures__/docsisStatus_ofdma_technicolor.json'
 
 test('normalizeChannelStatus with SC-QAM channel', () => {
   const nativeStatus =
@@ -20,7 +20,7 @@ test('normalizeChannelStatus with SC-QAM channel', () => {
     {
       channelId: '5',
       channelType: 'SC-QAM',
-      modulation: '256 QAM',
+      modulation: '256QAM',
       powerLevel: -4,
       lockStatus: 'Locked',
       snr: 38.8,
@@ -50,7 +50,7 @@ test('normalizeOfdmChannelStatus with OFDM channel', () => {
     {
       channelId: '33',
       channelType: 'OFDM',
-      modulation: 'qam256/qam1024',
+      modulation: 'QAM256',
       powerLevel: -3.2,
       lockStatus: 'Locked',
       snr: 39.55,
@@ -67,7 +67,7 @@ test('normalizeUpstreamChannelStatus', () => {
     CentralFrequency: '51.0 MHz',
     power: '49.8 dBmV',
     ChannelType: 'SC-QAM',
-    FFT: 'qam64',
+    FFT: '64qam',
     RangingStatus: 'Completed'
   } as const
   expect(normalizeUpstreamChannelStatus(nativeStatus)).toEqual(
@@ -76,7 +76,7 @@ test('normalizeUpstreamChannelStatus', () => {
       channelType: 'SC-QAM',
       frequency: 51,
       lockStatus: 'Completed',
-      modulation: 'qam64',
+      modulation: '64QAM',
       powerLevel: 49.8,
       snr: 0,
     },
@@ -103,7 +103,7 @@ test('normalizeUpstreamOfdmaChannelStatus', () => {
       frequencyEnd: 64.75,
       frequencyStart: 29.8,
       lockStatus: 'Completed',
-      modulation: 'qpsk',
+      modulation: 'QPSK',
       powerLevel: 44,
       snr: 0,
     },

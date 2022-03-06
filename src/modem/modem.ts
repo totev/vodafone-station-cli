@@ -95,3 +95,17 @@ export abstract class Modem implements GenericModem {
     }))
   }
 }
+
+export function normalizeModulation(modulation: string): Modulation{
+  let normalizedModulation = modulation;
+  if (modulation.match("/")) {
+    return normalizeModulation(modulation.split("/")[0]);
+  }
+  if (modulation.match("-")) {
+    normalizedModulation = modulation.split("-").join("");
+  }
+  if (modulation.match(" ")) {
+    normalizedModulation = modulation.split(" ").join("");
+  }
+  return normalizedModulation.toUpperCase() as Modulation;
+}
