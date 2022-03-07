@@ -39,7 +39,7 @@
     "tough-cookie": "^4.0.0"
   },
   "devDependencies": {
-    "@types/jest": "^27.0.2",
+    "@types/jest": "^27.4.1",
     "@types/node": "^16.11.1",
     "@types/sjcl": "^1.0.30",
     "@types/tough-cookie": "^4.0.0",
