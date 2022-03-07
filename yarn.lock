@@ -1438,10 +1438,10 @@ aws-sdk@^2.1069.0:
     uuid "3.3.2"
     xml2js "0.4.19"
 
-axios-cookiejar-support@^2.0.3:
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/axios-cookiejar-support/-/axios-cookiejar-support-2.0.3.tgz#54fc8911d16555a5d3cfd88ec68776ecbac7184a"
-  integrity sha512-tvMB+0JhxXLjjvePsXzqXhBI4DMlW4ImR4pKKNl+xclwF0IviNV+CkuhubQCCFjPzOXv7PIzOq3z7WFiF9pMpw==
+axios-cookiejar-support@^2.0.4:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/axios-cookiejar-support/-/axios-cookiejar-support-2.0.4.tgz#1c0e92775d8e18ee965a7f32462df57bf15a43f0"
+  integrity sha512-N4MwaEp5zCAv+wIp5OFZOPiD2qXCCnx21mMQu7yvO8E9j6YlZWazEHXpz7iJlk6HhZ8vh09ujYJJ594H+iVKmA==
   dependencies:
     http-cookie-agent "^1.0.2"
 
