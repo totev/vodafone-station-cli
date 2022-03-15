@@ -443,7 +443,72 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
+* [`vodafone-station-cli diagnose`](#vodafone-station-cli-diagnose)
+* [`vodafone-station-cli discover`](#vodafone-station-cli-discover)
+* [`vodafone-station-cli docsis`](#vodafone-station-cli-docsis)
 * [`vodafone-station-cli help [COMMAND]`](#vodafone-station-cli-help-command)
+* [`vodafone-station-cli restart`](#vodafone-station-cli-restart)
+
+## `vodafone-station-cli diagnose`
+
+Diagnose the quality of the docsis connection.
+
+```
+USAGE
+  $ vodafone-station-cli diagnose [-p <value>] [-w]
+
+FLAGS
+  -p, --password=<value>  router/modem password
+  -w, --web               review the docsis values in a webapp
+
+DESCRIPTION
+  Diagnose the quality of the docsis connection.
+
+EXAMPLES
+  $ vodafone-station-cli diagnose
+```
+
+_See code: [dist/commands/diagnose.ts](https://github.com/totev/vodafone-station-cli/blob/v1.2.5/dist/commands/diagnose.ts)_
+
+## `vodafone-station-cli discover`
+
+Try to discover a cable modem in the network
+
+```
+USAGE
+  $ vodafone-station-cli discover
+
+DESCRIPTION
+  Try to discover a cable modem in the network
+
+EXAMPLES
+  $ vodafone-station-cli discover
+```
+
+_See code: [dist/commands/discover.ts](https://github.com/totev/vodafone-station-cli/blob/v1.2.5/dist/commands/discover.ts)_
+
+## `vodafone-station-cli docsis`
+
+Get the current docsis status as reported by the modem in a JSON format.
+
+```
+USAGE
+  $ vodafone-station-cli docsis [-p <value>] [-f] [-w]
+
+FLAGS
+  -f, --file              write out a report file under ./reports/${CURRENT_UNIX_TIMESTAMP}_docsisStatus.json
+  -p, --password=<value>  router/modem password
+  -w, --web               review the docsis values in a webapp
+
+DESCRIPTION
+  Get the current docsis status as reported by the modem in a JSON format.
+
+EXAMPLES
+  $ vodafone-station-cli docsis -p PASSWORD
+  {JSON data}
+```
+
+_See code: [dist/commands/docsis.ts](https://github.com/totev/vodafone-station-cli/blob/v1.2.5/dist/commands/docsis.ts)_
 
 ## `vodafone-station-cli help [COMMAND]`
 
@@ -464,4 +529,24 @@ DESCRIPTION
 ```
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v5.1.11/src/commands/help.ts)_
+
+## `vodafone-station-cli restart`
+
+Restart the router/modem
+
+```
+USAGE
+  $ vodafone-station-cli restart [-p <value>]
+
+FLAGS
+  -p, --password=<value>  router/modem password
+
+DESCRIPTION
+  Restart the router/modem
+
+EXAMPLES
+  $ vodafone-station-cli restart -p PASSWORD
+```
+
+_See code: [dist/commands/restart.ts](https://github.com/totev/vodafone-station-cli/blob/v1.2.5/dist/commands/restart.ts)_
 <!-- commandsstop -->
