@@ -434,7 +434,7 @@ $ npm install -g vodafone-station-cli
 $ vodafone-station-cli COMMAND
 running command...
 $ vodafone-station-cli (--version)
-vodafone-station-cli/1.2.4 darwin-arm64 node-v17.6.0
+vodafone-station-cli/1.2.5 darwin-arm64 node-v17.7.1
 $ vodafone-station-cli --help [COMMAND]
 USAGE
   $ vodafone-station-cli COMMAND

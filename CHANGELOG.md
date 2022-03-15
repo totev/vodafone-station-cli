@@ -1,3 +1,10 @@
+v1.2.5
+---
+- Updated dependencies
+- Fixed technicolor restart issues
+
+**Full Changelog**: https://github.com/totev/vodafone-station-cli/compare/v1.2.4...v1.2.5
+
 v1.2.4
 ---
 - Fix modulation value normalization on technicolor modems #23
