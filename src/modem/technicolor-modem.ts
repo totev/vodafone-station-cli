@@ -1,6 +1,6 @@
-import {Log} from '../logger'
-import {DocsisChannelType, DocsisStatus, HumanizedDocsis31ChannelStatus, HumanizedDocsisChannelStatus, Modem, Modulation, normalizeModulation} from './modem'
-import {deriveKeyTechnicolor} from './tools/crypto'
+import { Log } from '../logger'
+import { DocsisChannelType, DocsisStatus, HumanizedDocsis31ChannelStatus, HumanizedDocsisChannelStatus, Modem, normalizeModulation } from './modem'
+import { deriveKeyTechnicolor } from './tools/crypto'
 
 export interface TechnicolorBaseResponse{
   error: string | 'ok' | 'error';
@@ -151,7 +151,7 @@ export class Technicolor extends Modem {
       const {data: salt} = await this.httpClient.post<TechnicolorSaltResponse>('/api/v1/session/login', `username=${Modem.USERNAME}&password=seeksalthash`, {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-          'Referer': 'http://${this.modemIp}/',
+          'Referer': `http://${this.modemIp}`,
         }
       })
       this.logger.debug('Salt', salt)
@@ -165,14 +165,14 @@ export class Technicolor extends Modem {
       const {data: loginResponse} = await this.httpClient.post<TechnicolorBaseResponse>('/api/v1/session/login', `username=${Modem.USERNAME}&password=${derivedKey}`, {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-          'Referer': 'http://${this.modemIp}/',
+          'Referer': `http://${this.modemIp}`,
         },
       })
       this.logger.debug('Login status', loginResponse)
       const {data: messageResponse} = await this.httpClient.get<TechnicolorBaseResponse>('/api/v1/session/menu', {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-          'Referer': 'http://${this.modemIp}/',
+          'Referer': `http://${this.modemIp}`,
         },
       })
       this.logger.debug('Message status', messageResponse)
@@ -185,7 +185,7 @@ export class Technicolor extends Modem {
     const {data: docsisStatus} = await this.httpClient.get('/api/v1/sta_docsis_status', {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-        'Referer': 'http://${this.modemIp}/',
+        'Referer': `http://${this.modemIp}`,
       },
     })
     return normalizeDocsisStatus(docsisStatus as TechnicolorDocsisStatus)
@@ -197,14 +197,19 @@ export class Technicolor extends Modem {
   }
 
   async restart(): Promise<unknown> {
-    const {data: tokenResponse} = await this.httpClient.get<TechnicolorTokenResponse>('api/v1/session/init_page')
+    const { data: tokenResponse } = await this.httpClient.get<TechnicolorTokenResponse>('api/v1/session/init_page', {
+      headers: {
+        'Referer': `http://${this.modemIp}`,
+      }
+    })
+    
     this.logger.debug('Token response: ', tokenResponse)
     const {data: restartResponse} = await this.httpClient.post<TechnicolorBaseResponse>('api/v1/sta_restart',
-      'restart=Router%2CWifi%2CVoIP%2CDect%2CMoCA', {
+      'restart=Router%2CWifi%2CVoIP%2CDect%2CMoCA&ui_access=reboot_device', {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
           'X-CSRF-TOKEN': tokenResponse.token,
-          'Referer': 'http://${this.modemIp}/',
+          'Referer': `http://${this.modemIp}`,
         },
       })
 
