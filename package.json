@@ -8,16 +8,17 @@
   },
   "homepage": "https://github.com/totev/vodafone-station-cli",
   "license": "MIT",
-  "main": "dist/index.js",
+  "main": "lib/index.js",
   "bugs": "https://github.com/totev/vodafone-station-cli/issues",
   "repository": "totev/vodafone-station-cli",
   "files": [
     "/bin",
-    "/dist",
-    "!/dist/**/__fixtures__/**/*",
-    "!/dist/**/*.test.*",
+    "/src",
+    "!/lib/**/__fixtures__/**/*",
+    "!/lib/**/*.test.*",
     "/npm-shrinkwrap.json",
-    "/oclif.manifest.json"
+    "/oclif.manifest.json",
+    "/yarn.lock"
   ],
   "keywords": [
     "vodafone",
@@ -58,13 +59,13 @@
   "oclif": {
     "bin": "vodafone-station-cli",
     "dirname": "vodafone-station-cli",
-    "commands": "./dist/commands",
+    "commands": "./lib/commands",
     "plugins": [
       "@oclif/plugin-help"
     ]
   },
   "scripts": {
-    "build": "shx rm -rf dist && tsc -b",
+    "build": "shx rm -rf lib && tsc -b",
     "build:standalone": "oclif pack tarballs",
     "lint": "eslint . --ext .ts --config .eslintrc",
     "postpack": "shx rm -f oclif.manifest.json",
@@ -75,5 +76,5 @@
   "engines": {
     "node": ">=16.0.0"
   },
-  "types": "dist/index.d.ts"
+  "types": "lib/index.d.ts"
 }

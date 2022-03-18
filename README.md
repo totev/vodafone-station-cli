@@ -468,7 +468,7 @@ EXAMPLES
   $ vodafone-station-cli diagnose
 ```
 
-_See code: [dist/commands/diagnose.ts](https://github.com/totev/vodafone-station-cli/blob/v1.2.5/dist/commands/diagnose.ts)_
+_See code: [src/commands/diagnose.ts](https://github.com/totev/vodafone-station-cli/blob/v1.2.5/src/commands/diagnose.ts)_
 
 ## `vodafone-station-cli discover`
 
@@ -485,7 +485,7 @@ EXAMPLES
   $ vodafone-station-cli discover
 ```
 
-_See code: [dist/commands/discover.ts](https://github.com/totev/vodafone-station-cli/blob/v1.2.5/dist/commands/discover.ts)_
+_See code: [src/commands/discover.ts](https://github.com/totev/vodafone-station-cli/blob/v1.2.5/src/commands/discover.ts)_
 
 ## `vodafone-station-cli docsis`
 
@@ -508,7 +508,7 @@ EXAMPLES
   {JSON data}
 ```
 
-_See code: [dist/commands/docsis.ts](https://github.com/totev/vodafone-station-cli/blob/v1.2.5/dist/commands/docsis.ts)_
+_See code: [src/commands/docsis.ts](https://github.com/totev/vodafone-station-cli/blob/v1.2.5/src/commands/docsis.ts)_
 
 ## `vodafone-station-cli help [COMMAND]`
 
@@ -548,5 +548,5 @@ EXAMPLES
   $ vodafone-station-cli restart -p PASSWORD
 ```
 
-_See code: [dist/commands/restart.ts](https://github.com/totev/vodafone-station-cli/blob/v1.2.5/dist/commands/restart.ts)_
+_See code: [src/commands/restart.ts](https://github.com/totev/vodafone-station-cli/blob/v1.2.5/src/commands/restart.ts)_
 <!-- commandsstop -->
