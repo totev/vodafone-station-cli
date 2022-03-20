@@ -39,7 +39,6 @@ describe('TablePrinter', () => {
   });
 
   test('print', () => {
-    console.log(printer.print());
     expect(printer.print()).toMatchSnapshot()
   });
 
