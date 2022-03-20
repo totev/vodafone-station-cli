@@ -1,6 +1,7 @@
 import { Flags } from '@oclif/core';
 import Command from '../base-command';
 import DocsisDiagnose from "../modem/docsis-diagnose";
+import { TablePrinter } from "../modem/printer";
 import { webDiagnoseLink } from "../modem/web-diagnose";
 import { getDocsisStatus } from "./docsis";
 
@@ -24,7 +25,7 @@ export default class Diagnose extends Command {
   };
 
   async run(): Promise<void> {
-    const {flags} = await this.parse(Diagnose)
+    const { flags } = await this.parse(Diagnose)
 
     const password = flags.password ?? process.env.VODAFONE_ROUTER_PASSWORD
     if (!password || password === '') {
@@ -37,6 +38,8 @@ export default class Diagnose extends Command {
     try {
       const docsisStatus = await getDocsisStatus(password!, this.logger)
       const diagnoser = new DocsisDiagnose(docsisStatus)
+      const tablePrinter = new TablePrinter(docsisStatus);
+      this.log(tablePrinter.print())
 
       if (diagnoser.hasDeviations()) {
         this.logger.warn("Docsis connection connection quality deviation found!")
@@ -50,7 +53,7 @@ export default class Diagnose extends Command {
 
       this.log(diagnoser.printDeviationsConsole())
     } catch (error) {
-      this.error(error as Error,{message:"Something went wrong"})
+      this.error(error as Error, { message: "Something went wrong" })
     }
   }
 }
