@@ -9,7 +9,7 @@ export class TablePrinter {
     "Power",
     "Frequency",
     "Lock status",
-    "SNR"]
+    "SNR "]
 
   constructor(private docsisStatus: DocsisStatus) { }
 

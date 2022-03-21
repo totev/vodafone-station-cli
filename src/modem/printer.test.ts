@@ -11,7 +11,7 @@ describe('TablePrinter', () => {
   });
 
   test('lineSeparator', () => {
-    const expected = "+----+----------+------------+-------+-----------+-------------+-----+"
+    const expected = "+----+----------+------------+-------+-----------+-------------+------+"
     expect(printer.lineSeparator).toEqual(expected)
   });
 
@@ -25,16 +25,16 @@ describe('TablePrinter', () => {
 
   test('tableHeader', () => {
     const expeced = `
-+----+----------+------------+-------+-----------+-------------+-----+
-| ID | Ch. Type | Modulation | Power | Frequency | Lock status | SNR |
-+----+----------+------------+-------+-----------+-------------+-----+`.trim()
++----+----------+------------+-------+-----------+-------------+------+
+| ID | Ch. Type | Modulation | Power | Frequency | Lock status | SNR  |
++----+----------+------------+-------+-----------+-------------+------+`.trim()
     expect(printer.tableHeader()).toEqual(expeced)
   });
 
   test('tableRow', () => {
     const expeced = `
-| ID | Ch. Type | Modulation | Power | Frequency | Lock status | SNR |
-+----+----------+------------+-------+-----------+-------------+-----+`.trim()
+| ID | Ch. Type | Modulation | Power | Frequency | Lock status | SNR  |
++----+----------+------------+-------+-----------+-------------+------+`.trim()
     expect(printer.tableRow(...printer.head)).toEqual(expeced)
   });
 
