@@ -70,13 +70,4 @@ Upstream\n${header}\n${upstream}\n
 Upstream OFDMA\n${header}\n${upstreamOfdma}
 `
   }
-
-}
-
-export function createTableLine(): string {
-  return "";
-}
-
-export function prettyPrint(docsisStatus: DocsisStatus): string {
-  return ""
 }

@@ -45,7 +45,7 @@ describe('TablePrinter', () => {
 
 });
 
-test('should ', () => {
+test('print with uncompleted lock ', () => {
   const expected = `
 Downstream
 +----+----------+------------+-------+-----------+---------------+------+
@@ -85,8 +85,6 @@ Upstream OFDMA
 
     }]
   } as DocsisStatus)
-  console.log(printer.print());
   
   expect(printer.print()).toStrictEqual(expected)
-
 });
