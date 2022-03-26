@@ -5,7 +5,7 @@ import { Log } from '../logger';
 
 export type DocsisChannelType = 'OFDM' | 'OFDMA' | 'SC-QAM'
 
-export type Modulation = "64QAM" | "256QAM" | "1024QAM" | "2048QAM" | "4096QAM"
+export type Modulation = "16QAM" | "64QAM" | "256QAM" | "1024QAM" | "2048QAM" | "4096QAM"
 
 export interface HumanizedDocsisChannelStatus {
   channelId: string;

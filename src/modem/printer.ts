@@ -8,7 +8,7 @@ export class TablePrinter {
     "Modulation",
     "Power",
     "Frequency",
-    "Lock status",
+    " Lock status ",
     "SNR "]
 
   constructor(private docsisStatus: DocsisStatus) { }
@@ -41,19 +41,19 @@ export class TablePrinter {
   }
 
   docsisStatusToRow(rowObjects: HumanizedDocsisChannelStatus[]): string {
-    return rowObjects.map(channelStatus => {
+    return rowObjects?.map(channelStatus => {
       return [channelStatus.channelId, channelStatus.channelType, channelStatus.modulation, channelStatus.powerLevel, channelStatus.frequency, channelStatus.lockStatus, channelStatus.snr]
     })
       .map(rowValues => this.tableRow(...rowValues))
-      .join("\n")
+      .join("\n") ?? ""
   }
 
   docsis31StatusToRow(rowObjects: HumanizedDocsis31ChannelStatus[]): string {
-    return rowObjects.map(channelStatus => {
+    return rowObjects?.map(channelStatus => {
       return [channelStatus.channelId, channelStatus.channelType, channelStatus.modulation, channelStatus.powerLevel, `${channelStatus.frequencyStart}-${channelStatus.frequencyEnd}`, channelStatus.lockStatus, channelStatus.snr]
     })
       .map(rowValues => this.tableRow(...rowValues))
-      .join("\n")
+      .join("\n") ?? ""
   }
 
   print(): string {
