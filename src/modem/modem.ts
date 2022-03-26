@@ -5,9 +5,9 @@ import { Log } from '../logger';
 
 export type DocsisChannelType = 'OFDM' | 'OFDMA' | 'SC-QAM'
 
-export type Modulation = "64QAM" | "256QAM" | "1024QAM" | "2048QAM" | "4096QAM"
+export type Modulation = "16QAM" | "64QAM" | "256QAM" | "1024QAM" | "2048QAM" | "4096QAM"
 
-export interface HumanizedDocsisChannelStatus{
+export interface HumanizedDocsisChannelStatus {
   channelId: string;
   channelType: DocsisChannelType;
   snr: number; // dB
@@ -17,25 +17,25 @@ export interface HumanizedDocsisChannelStatus{
   powerLevel: number; // dBmV
 }
 
-export interface DiagnosedDocsisChannelStatus extends HumanizedDocsisChannelStatus{
+export interface DiagnosedDocsisChannelStatus extends HumanizedDocsisChannelStatus {
   diagnose: Diagnose
 }
-export interface DiagnosedDocsis31ChannelStatus extends HumanizedDocsis31ChannelStatus{
+export interface DiagnosedDocsis31ChannelStatus extends HumanizedDocsis31ChannelStatus {
   diagnose: Diagnose
 }
 
-export interface Diagnose{
+export interface Diagnose {
   deviation: boolean
   color: "red" | "green" | "yellow"
   description: string;
 }
 
-export interface HumanizedDocsis31ChannelStatus extends Omit<HumanizedDocsisChannelStatus, 'frequency'>{
+export interface HumanizedDocsis31ChannelStatus extends Omit<HumanizedDocsisChannelStatus, 'frequency'> {
   frequencyStart: number;// MHz
   frequencyEnd: number;// MHz
 }
 
-export interface DocsisStatus{
+export interface DocsisStatus {
   downstream: HumanizedDocsisChannelStatus[];
   downstreamOfdm: HumanizedDocsis31ChannelStatus[];
   upstream: HumanizedDocsisChannelStatus[];
@@ -43,7 +43,7 @@ export interface DocsisStatus{
   time: string;
 }
 
-export interface DiagnosedDocsisStatus{
+export interface DiagnosedDocsisStatus {
   downstream: DiagnosedDocsisChannelStatus[];
   downstreamOfdm: DiagnosedDocsis31ChannelStatus[];
   upstream: DiagnosedDocsisChannelStatus[];
@@ -51,7 +51,7 @@ export interface DiagnosedDocsisStatus{
   time: string;
 }
 
-export interface GenericModem{
+export interface GenericModem {
   logout(): Promise<void>;
   login(password: string): Promise<void>;
   docsis(): Promise<DocsisStatus>;
@@ -91,12 +91,12 @@ export abstract class Modem implements GenericModem {
       headers: {
         'X-Requested-With': 'XMLHttpRequest',
       },
-      timeout: 30000
+      timeout: 45000
     }))
   }
 }
 
-export function normalizeModulation(modulation: string): Modulation{
+export function normalizeModulation(modulation: string): Modulation {
   let normalizedModulation = modulation;
   if (modulation.match("/")) {
     return normalizeModulation(modulation.split("/")[0]);

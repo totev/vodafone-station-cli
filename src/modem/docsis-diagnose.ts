@@ -1,4 +1,4 @@
-import type { Diagnose, DiagnosedDocsis31ChannelStatus, DiagnosedDocsisChannelStatus, DiagnosedDocsisStatus, DocsisChannelType, DocsisStatus, HumanizedDocsisChannelStatus, Modulation } from "./modem";
+import type { Diagnose, DiagnosedDocsis31ChannelStatus, DiagnosedDocsisChannelStatus, DiagnosedDocsisStatus, DocsisChannelType, DocsisStatus, Modulation } from "./modem";
 
 export interface Deviation{
   channelType?: DocsisChannelType

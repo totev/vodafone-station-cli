@@ -1,5 +1,11 @@
 v1.2.5
 ---
+- Added a new pretty printer for console output
+
+**Full Changelog**: https://github.com/totev/vodafone-station-cli/compare/v1.2.5...v1.2.6
+
+v1.2.5
+---
 - Updated dependencies
 - Fixed technicolor restart issues
 
