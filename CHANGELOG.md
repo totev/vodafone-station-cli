@@ -1,4 +1,4 @@
-v1.2.5
+v1.2.6
 ---
 - Added a new pretty printer for console output
 
