@@ -91,7 +91,7 @@ export abstract class Modem implements GenericModem {
       headers: {
         'X-Requested-With': 'XMLHttpRequest',
       },
-      timeout: 35000
+      timeout: 45000
     }))
   }
 }
