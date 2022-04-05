@@ -13,8 +13,8 @@
   "repository": "totev/vodafone-station-cli",
   "files": [
     "/bin",
-    "/src",
-    "!/lib/**/__fixtures__/**/*",
+    "/lib",
+    "!/lib/**/__fixtures__/",
     "!/lib/**/*.test.*",
     "/npm-shrinkwrap.json",
     "/oclif.manifest.json",
