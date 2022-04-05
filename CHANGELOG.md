@@ -1,3 +1,10 @@
+v1.2.7
+---
+- Third party dependencies updated
+- Fixed npm package contents
+
+**Full Changelog**: https://github.com/totev/vodafone-station-cli/compare/v1.2.6...v1.2.7
+
 v1.2.6
 ---
 - Added a new pretty printer for console output
