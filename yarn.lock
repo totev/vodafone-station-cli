@@ -1472,12 +1472,12 @@ aws-sdk@^2.1069.0:
     uuid "3.3.2"
     xml2js "0.4.19"
 
-axios-cookiejar-support@^2.0.4:
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/axios-cookiejar-support/-/axios-cookiejar-support-2.0.4.tgz#1c0e92775d8e18ee965a7f32462df57bf15a43f0"
-  integrity sha512-N4MwaEp5zCAv+wIp5OFZOPiD2qXCCnx21mMQu7yvO8E9j6YlZWazEHXpz7iJlk6HhZ8vh09ujYJJ594H+iVKmA==
+axios-cookiejar-support@^2.0.5:
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/axios-cookiejar-support/-/axios-cookiejar-support-2.0.5.tgz#f8370c41de34aaa5b482b5d9d6439fd535b1c4d3"
+  integrity sha512-y5S8feB6SbITWEiisCqFzQWaob+M34vVz8sP5KmQTDovM7HJ8xG9KQIETh0bFRyXUfDzWR5aPzfgkTND0wuYvQ==
   dependencies:
-    http-cookie-agent "^1.0.2"
+    http-cookie-agent "^1.0.6"
 
 axios@^0.26.1:
   version "0.26.1"
@@ -2890,10 +2890,10 @@ http-call@^5.1.2, http-call@^5.2.2:
     parse-json "^4.0.0"
     tunnel-agent "^0.6.0"
 
-http-cookie-agent@^1.0.2:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/http-cookie-agent/-/http-cookie-agent-1.0.4.tgz#5b18eb126c4a5f00160d3b4f264836489e9a0003"
-  integrity sha512-2gSYSE3m38/QMKPPbbS/6lEIm8OTbGA5sY3aBLtr/BUTNOFNeL4WqkdNQM6WmIBT7AWKC20aYfU3uq+cgR+Byg==
+http-cookie-agent@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/http-cookie-agent/-/http-cookie-agent-1.0.6.tgz#4d11436be06e4b2e00ee2e729a2abd79d969e639"
+  integrity sha512-Ei0BDjMfy6MSXATmCZ5nWr935NLYl6eD/BTxVGOIrKAlg4xDtMdk+8a+caq6Qwa4FACn+vACj89pFKlXmHOnkQ==
   dependencies:
     agent-base "^6.0.2"
 
