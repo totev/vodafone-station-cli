@@ -54,7 +54,7 @@
     "ts-jest": "^27.1.5",
     "ts-node": "^10.7.0",
     "tslib": "^2.3.1",
-    "typescript": "^4.6.4"
+    "typescript": "^4.7.2"
   },
   "oclif": {
     "bin": "vodafone-station-cli",
