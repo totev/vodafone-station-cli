@@ -1,3 +1,9 @@
+v1.2.8
+---
+- Updated dependencies
+
+**Full Changelog**: https://github.com/totev/vodafone-station-cli/compare/v1.2.7...v1.2.8
+
 v1.2.7
 ---
 - Third party dependencies updated
