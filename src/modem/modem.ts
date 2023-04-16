@@ -1,11 +1,17 @@
-import axios, { AxiosInstance } from 'axios';
-import { wrapper } from 'axios-cookiejar-support';
-import { CookieJar } from 'tough-cookie';
-import { Log } from '../logger';
+import axios, { AxiosInstance } from "axios";
+import { HttpsCookieAgent } from "http-cookie-agent/http";
+import { CookieJar } from "tough-cookie";
+import { Log } from "../logger";
+import type { Protocol } from "./discovery";
+export type DocsisChannelType = "OFDM" | "OFDMA" | "SC-QAM";
 
-export type DocsisChannelType = 'OFDM' | 'OFDMA' | 'SC-QAM'
-
-export type Modulation = "16QAM" | "64QAM" | "256QAM" | "1024QAM" | "2048QAM" | "4096QAM"
+export type Modulation =
+  | "16QAM"
+  | "64QAM"
+  | "256QAM"
+  | "1024QAM"
+  | "2048QAM"
+  | "4096QAM";
 
 export interface HumanizedDocsisChannelStatus {
   channelId: string;
@@ -17,22 +23,25 @@ export interface HumanizedDocsisChannelStatus {
   powerLevel: number; // dBmV
 }
 
-export interface DiagnosedDocsisChannelStatus extends HumanizedDocsisChannelStatus {
-  diagnose: Diagnose
+export interface DiagnosedDocsisChannelStatus
+  extends HumanizedDocsisChannelStatus {
+  diagnose: Diagnose;
 }
-export interface DiagnosedDocsis31ChannelStatus extends HumanizedDocsis31ChannelStatus {
-  diagnose: Diagnose
+export interface DiagnosedDocsis31ChannelStatus
+  extends HumanizedDocsis31ChannelStatus {
+  diagnose: Diagnose;
 }
 
 export interface Diagnose {
-  deviation: boolean
-  color: "red" | "green" | "yellow"
+  deviation: boolean;
+  color: "red" | "green" | "yellow";
   description: string;
 }
 
-export interface HumanizedDocsis31ChannelStatus extends Omit<HumanizedDocsisChannelStatus, 'frequency'> {
-  frequencyStart: number;// MHz
-  frequencyEnd: number;// MHz
+export interface HumanizedDocsis31ChannelStatus
+  extends Omit<HumanizedDocsisChannelStatus, "frequency"> {
+  frequencyStart: number; // MHz
+  frequencyEnd: number; // MHz
 }
 
 export interface DocsisStatus {
@@ -59,40 +68,58 @@ export interface GenericModem {
 }
 
 export abstract class Modem implements GenericModem {
-  protected readonly cookieJar: CookieJar
-  protected readonly httpClient: AxiosInstance
-  static USERNAME = 'admin'
+  protected readonly cookieJar: CookieJar;
+  protected readonly httpClient: AxiosInstance;
+  static USERNAME = "admin";
 
-  constructor(protected readonly modemIp: string, protected readonly logger: Log) {
-    this.cookieJar = new CookieJar()
-    this.httpClient = this.initAxios()
+  constructor(
+    protected readonly modemIp: string,
+    protected readonly protocol: Protocol,
+    protected readonly logger: Log,
+  ) {
+    this.cookieJar = new CookieJar();
+    this.httpClient = this.initAxios();
+  }
+
+  get baseUrl(): string{
+    return `${this.protocol}://${this.modemIp}`;
   }
   restart(): Promise<unknown> {
-    throw new Error('Method not implemented.')
+    throw new Error("Method not implemented.");
   }
 
   docsis(): Promise<DocsisStatus> {
-    throw new Error('Method not implemented.')
+    throw new Error("Method not implemented.");
   }
 
   login(_password: string): Promise<void> {
-    throw new Error('Method not implemented.')
+    throw new Error("Method not implemented.");
   }
 
   logout(): Promise<void> {
-    throw new Error('Method not implemented.')
+    throw new Error("Method not implemented.");
   }
 
   private initAxios(): AxiosInstance {
-    return wrapper(axios.create({
+    return axios.create({
       withCredentials: true,
       jar: this.cookieJar,
-      baseURL: `http://${this.modemIp}`,
+      baseURL: this.baseUrl,
       headers: {
-        'X-Requested-With': 'XMLHttpRequest',
+        "X-Requested-With": "XMLHttpRequest",
       },
-      timeout: 45000
-    }))
+      timeout: 45000,
+      httpAgent: new HttpsCookieAgent({
+        keepAlive: true,
+        rejectUnauthorized: false, // disable CA checks
+        cookies: { jar: this.cookieJar },
+      }),
+      httpsAgent: new HttpsCookieAgent({
+        keepAlive: true,
+        rejectUnauthorized: false, // the modems have a self signed ssl certificate
+        cookies: { jar: this.cookieJar },
+      }),
+    } as any);
   }
 }
 

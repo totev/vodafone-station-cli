@@ -7,9 +7,9 @@ import {Technicolor} from './technicolor-modem'
 export function modemFactory(modemInfo: ModemInformation, logger: Log = new ConsoleLogger()): Modem {
   switch (modemInfo.deviceType) {
   case 'Arris':
-    return new Arris(modemInfo.ipAddress, logger)
+    return new Arris(modemInfo.ipAddress, modemInfo.protocol, logger);
   case 'Technicolor':
-    return new Technicolor(modemInfo.ipAddress, logger)
+    return new Technicolor(modemInfo.ipAddress, modemInfo.protocol, logger);
   default:
     throw new Error(`Unsupported modem ${modemInfo.deviceType}`)
   }

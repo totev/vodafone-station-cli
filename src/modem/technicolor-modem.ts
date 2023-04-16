@@ -1,4 +1,5 @@
 import { Log } from '../logger'
+import { Protocol } from "./discovery";
 import { DocsisChannelType, DocsisStatus, HumanizedDocsis31ChannelStatus, HumanizedDocsisChannelStatus, Modem, normalizeModulation } from './modem'
 import { deriveKeyTechnicolor } from './tools/crypto'
 
@@ -142,82 +143,117 @@ export function normalizeDocsisStatus(channelStatus: TechnicolorDocsisStatus): D
 }
 
 export class Technicolor extends Modem {
-  constructor(readonly modemIp: string, readonly logger: Log) {
-    super(modemIp, logger)
+  constructor(
+    readonly modemIp: string,
+    readonly protocol: Protocol,
+    readonly logger: Log
+  ) {
+    super(modemIp, protocol, logger);
   }
 
   async login(password: string): Promise<void> {
     try {
-      const {data: salt} = await this.httpClient.post<TechnicolorSaltResponse>('/api/v1/session/login', `username=${Modem.USERNAME}&password=seeksalthash`, {
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-          'Referer': `http://${this.modemIp}`,
-        }
-      })
-      this.logger.debug('Salt', salt)
+      const { data: salt } =
+        await this.httpClient.post<TechnicolorSaltResponse>(
+          "/api/v1/session/login",
+          `username=${Modem.USERNAME}&password=seeksalthash`,
+          {
+            headers: {
+              "Content-Type":
+                "application/x-www-form-urlencoded; charset=UTF-8",
+              Referer: this.baseUrl,
+            },
+          }
+        );
+      this.logger.debug("Salt", salt);
 
-      if (salt.message && salt.message === 'MSG_LOGIN_150') {
-        throw new Error('A user is already logged in')
+      if (salt.message && salt.message === "MSG_LOGIN_150") {
+        throw new Error("A user is already logged in");
       }
 
-      const derivedKey = deriveKeyTechnicolor(deriveKeyTechnicolor(password, salt.salt), salt.saltwebui)
-      this.logger.debug('Derived key', derivedKey)
-      const {data: loginResponse} = await this.httpClient.post<TechnicolorBaseResponse>('/api/v1/session/login', `username=${Modem.USERNAME}&password=${derivedKey}`, {
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-          'Referer': `http://${this.modemIp}`,
-        },
-      })
-      this.logger.debug('Login status', loginResponse)
-      const {data: messageResponse} = await this.httpClient.get<TechnicolorBaseResponse>('/api/v1/session/menu', {
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-          'Referer': `http://${this.modemIp}`,
-        },
-      })
-      this.logger.debug('Message status', messageResponse)
+      const derivedKey = deriveKeyTechnicolor(
+        deriveKeyTechnicolor(password, salt.salt),
+        salt.saltwebui
+      );
+      this.logger.debug("Derived key", derivedKey);
+      const { data: loginResponse } =
+        await this.httpClient.post<TechnicolorBaseResponse>(
+          "/api/v1/session/login",
+          `username=${Modem.USERNAME}&password=${derivedKey}`,
+          {
+            headers: {
+              "Content-Type":
+                "application/x-www-form-urlencoded; charset=UTF-8",
+              Referer: this.baseUrl,
+            },
+          }
+        );
+      this.logger.debug("Login status", loginResponse);
+      const { data: messageResponse } =
+        await this.httpClient.get<TechnicolorBaseResponse>(
+          "/api/v1/session/menu",
+          {
+            headers: {
+              "Content-Type":
+                "application/x-www-form-urlencoded; charset=UTF-8",
+              Referer: this.baseUrl,
+            },
+          }
+        );
+      this.logger.debug("Message status", messageResponse);
     } catch (error) {
-      this.logger.warn(`Something went wrong with the login ${error}`)
+      this.logger.warn(`Something went wrong with the login ${error}`);
     }
   }
 
   async docsis(): Promise<DocsisStatus> {
-    const {data: docsisStatus} = await this.httpClient.get('/api/v1/sta_docsis_status', {
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-        'Referer': `http://${this.modemIp}`,
-      },
-    })
-    return normalizeDocsisStatus(docsisStatus as TechnicolorDocsisStatus)
+    const { data: docsisStatus } = await this.httpClient.get(
+      "/api/v1/sta_docsis_status",
+      {
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+          Referer: this.baseUrl,
+        },
+      }
+    );
+    return normalizeDocsisStatus(docsisStatus as TechnicolorDocsisStatus);
   }
 
   async logout(): Promise<void> {
-    this.logger.debug('Logging out...')
-    return this.httpClient.post('api/v1/session/logout')
+    this.logger.debug("Logging out...");
+    return this.httpClient.post("api/v1/session/logout");
   }
 
   async restart(): Promise<unknown> {
-    const { data: tokenResponse } = await this.httpClient.get<TechnicolorTokenResponse>('api/v1/session/init_page', {
-      headers: {
-        'Referer': `http://${this.modemIp}`,
-      }
-    })
-    
-    this.logger.debug('Token response: ', tokenResponse)
-    const {data: restartResponse} = await this.httpClient.post<TechnicolorBaseResponse>('api/v1/sta_restart',
-      'restart=Router%2CWifi%2CVoIP%2CDect%2CMoCA&ui_access=reboot_device', {
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-          'X-CSRF-TOKEN': tokenResponse.token,
-          'Referer': `http://${this.modemIp}`,
-        },
-      })
+    const { data: tokenResponse } =
+      await this.httpClient.get<TechnicolorTokenResponse>(
+        "api/v1/session/init_page",
+        {
+          headers: {
+            Referer: this.baseUrl,
+          },
+        }
+      );
 
-    if (restartResponse?.error === 'error') {
-      this.logger.debug(restartResponse)
-      throw new Error(`Could not restart router: ${restartResponse.message}`)
+    this.logger.debug("Token response: ", tokenResponse);
+    const { data: restartResponse } =
+      await this.httpClient.post<TechnicolorBaseResponse>(
+        "api/v1/sta_restart",
+        "restart=Router%2CWifi%2CVoIP%2CDect%2CMoCA&ui_access=reboot_device",
+        {
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+            "X-CSRF-TOKEN": tokenResponse.token,
+            Referer: this.baseUrl,
+          },
+        }
+      );
+
+    if (restartResponse?.error === "error") {
+      this.logger.debug(restartResponse);
+      throw new Error(`Could not restart router: ${restartResponse.message}`);
     }
-    return restartResponse
+    return restartResponse;
   }
 }
 

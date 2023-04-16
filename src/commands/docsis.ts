@@ -1,18 +1,18 @@
 import { Flags } from "@oclif/core";
 import { promises as fsp } from "fs";
-import Command from "../base-command";
-import { discoverModemIp, ModemDiscovery } from "../modem/discovery";
-import { DocsisStatus } from "../modem/modem";
-import { modemFactory } from "../modem/factory";
-import { Log } from "../logger";
-import { webDiagnoseLink } from "../modem/web-diagnose";
 import { inspect } from "util";
+import Command from "../base-command";
+import { Log } from "../logger";
+import { discoverModemLocation, ModemDiscovery } from "../modem/discovery";
+import { modemFactory } from "../modem/factory";
+import { DocsisStatus } from "../modem/modem";
+import { webDiagnoseLink } from "../modem/web-diagnose";
 
 export async function getDocsisStatus(
   password: string,
   logger: Log
 ): Promise<DocsisStatus> {
-  const modemIp = await discoverModemIp();
+  const modemIp = await discoverModemLocation();
   const discoveredModem = await new ModemDiscovery(modemIp, logger).discover();
   const modem = modemFactory(discoveredModem, logger);
   try {
