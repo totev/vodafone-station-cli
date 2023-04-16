@@ -12,6 +12,7 @@ Access your Arris TG3442DE or Technicolor CGA4322DE, CGA6444VF (aka Vodafone Sta
 * [Features](#features)
 * [Demo](#demo)
 * [Supported hardware](#supported-hardware)
+* [Software requirements](#software-requirements)
 * [Notes](#notes)
 * [Useful related projects:](#useful-related-projects)
 * [Running from source](#running-from-source)
@@ -506,6 +507,11 @@ Currently the following hardware/software is supported:
     +----+----------+------------+-------+-----------+-------------+-----+
 ```
 </details>
+
+
+# Software requirements
+
+- Node.js 16.x or higher
 
 # Notes
 
