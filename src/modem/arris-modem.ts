@@ -45,16 +45,18 @@ export function normalizeChannelStatus(channelStatus: ArrisDocsisChannelStatus):
     frequency.frequencyStart = Number(ofdmaFrequency[0])
     frequency.frequencyEnd = Number(ofdmaFrequency[1])
   }
-
+  
+  const powerLevel = parseFloat(channelStatus.PowerLevel.split("/")[0]);
+  const snr = parseInt(`${channelStatus.SNRLevel ?? 0}`, 10);
   return {
     channelId: channelStatus.ChannelID,
     channelType: channelStatus.ChannelType,
     modulation: channelStatus.Modulation,
-    powerLevel: parseFloat(channelStatus.PowerLevel.split('/')[0]),
+    powerLevel: isNaN(powerLevel) ? -100 : powerLevel,
     lockStatus: channelStatus.LockStatus,
-    snr: parseInt(`${channelStatus.SNRLevel ?? 0}`, 10),
-    ...frequency
-  } as HumanizedDocsisChannelStatus | HumanizedDocsis31ChannelStatus
+    snr: isNaN(snr) ? 0 : snr,
+    ...frequency,
+  } as HumanizedDocsisChannelStatus | HumanizedDocsis31ChannelStatus;
 }
 
 export function normalizeDocsisStatus(arrisDocsisStatus: ArrisDocsisStatus): DocsisStatus {
