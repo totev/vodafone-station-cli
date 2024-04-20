@@ -1,5 +1,5 @@
 import {Log} from '../logger'
-import {DocsisStatus, HumanizedDocsis31ChannelStatus, HumanizedDocsisChannelStatus, Modem, DocsisChannelType} from './modem'
+import {DocsisStatus, HumanizedDocsis31ChannelStatus, HumanizedDocsisChannelStatus, Modem, DocsisChannelType, ExposedHostSettings, HostExposureSettings, Protocol} from './modem'
 import {decrypt, deriveKey, encrypt} from './tools/crypto'
 import {CryptoVars, extractCredentialString, extractCryptoVars, extractDocsisStatus} from './tools/html-parser'
 
@@ -20,6 +20,21 @@ export interface ArrisDocsisChannelStatus {
   PowerLevel: string;
   SNRLevel?: string | number;
   LockStatus: string;
+}
+
+export interface ArrisHostExposureSettings {
+  hostExposure: ArrisExposedHostSettings[];
+  dhcpclient: any;
+}
+
+export interface ArrisExposedHostSettings {
+  ServiceName: string;
+  MAC: string;
+  Protocol: Protocol;
+  StartPort: number;
+  EndPort: number;
+  Status: string;
+  Index: string;
 }
 
 export interface SetPasswordRequest {
@@ -234,6 +249,38 @@ export class Arris extends Modem {
       return data
     } catch (error) {
       this.logger.error('Could not restart router.', error)
+      throw error
+    }
+  }
+
+  convertExposedHostSettings(settings: ArrisExposedHostSettings): ExposedHostSettings {
+    return {
+      serviceName: settings.ServiceName,
+      mac: settings.MAC,
+      protocol: settings.Protocol,
+      startPort: settings.StartPort,
+      endPort: settings.EndPort,
+      enabled: settings.Status === "Enabled" ? true : false,
+      index: Number.parseInt(settings.Index),
+    } as ExposedHostSettings
+  }
+
+  async getHostExposure(): Promise<HostExposureSettings> {
+    try {
+      const {data} = await this.httpClient.get(
+        'php/net_ipv6_host_exposure_data.php?{"hostExposure":{},"dhcpclient":{}}',
+        {
+          headers: {
+            csrfNonce: this.csrfNonce,
+            Referer: `http://${this.modemIp}/?net_ipv6_host_exposure&mid=NetIPv6HostExposure`,
+            Connection: 'keep-alive',
+          },
+        }
+      )
+      return {hosts: data.hostExposure.map(this.convertExposedHostSettings)} as HostExposureSettings
+    }
+    catch (error) {
+      this.logger.error("Could not get host exposure data:\n", error)
       throw error
     }
   }
