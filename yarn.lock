@@ -1209,10 +1209,10 @@
   resolved "https://registry.yarnpkg.com/@types/prettier/-/prettier-2.7.0.tgz#ea03e9f0376a4446f44797ca19d9c46c36e352dc"
   integrity sha512-RI1L7N4JnW5gQw2spvL7Sllfuf1SaHdrZpCHiBlCXjIlufi1SMNnbu2teze3/QE67Fg2tBlH7W+mi4hVNk4p0A==
 
-"@types/sjcl@^1.0.30":
-  version "1.0.30"
-  resolved "https://registry.yarnpkg.com/@types/sjcl/-/sjcl-1.0.30.tgz#c1db866622ef4da56af081fa2e258d76fb255b89"
-  integrity sha512-4ebBtj1rx3Kh3To5RnPua+U4JzVwH2MxUmHQvAlxWpzmfmupBRyyXAIEQceon+e5tW9aBeOApTYA6EXfBysRyQ==
+"@types/sjcl@^1.0.34":
+  version "1.0.34"
+  resolved "https://registry.yarnpkg.com/@types/sjcl/-/sjcl-1.0.34.tgz#e4c46092208578d2d0e4e28284f241ef164cd078"
+  integrity sha512-bQHEeK5DTQRunIfQeUMgtpPsNNCcZyQ9MJuAfW1I7iN0LDunTc78Fu17STbLMd7KiEY/g2zHVApippa70h6HoQ==
 
 "@types/stack-utils@^2.0.0":
   version "2.0.1"
