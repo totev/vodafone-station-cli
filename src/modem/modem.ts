@@ -104,6 +104,10 @@ export abstract class Modem implements GenericModem {
     throw new Error('Method not implemented.')
   }
 
+  setHostExposure(_: HostExposureSettings): Promise<void> {
+    throw new Error('Method not implemented.')
+  }
+
   private initAxios(): AxiosInstance {
     return wrapper(axios.create({
       withCredentials: true,

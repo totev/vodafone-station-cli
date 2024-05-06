@@ -22,21 +22,6 @@ export interface ArrisDocsisChannelStatus {
   LockStatus: string;
 }
 
-export interface ArrisHostExposureSettings {
-  hostExposure: ArrisExposedHostSettings[];
-  dhcpclient: any;
-}
-
-export interface ArrisExposedHostSettings {
-  ServiceName: string;
-  MAC: string;
-  Protocol: Protocol;
-  StartPort: number;
-  EndPort: number;
-  Status: string;
-  Index: string;
-}
-
 export interface SetPasswordRequest {
   AuthData: string;
   EncryptData: string;
@@ -47,6 +32,35 @@ export interface SetPasswordResponse {
   p_status: string;
   encryptData: string;
   p_waitTime?: number;
+}
+
+interface ArrisGetHostExposureSettings {
+  hostExposure: ArrisGetExposedHostSettings[];
+  dhcpclient: any;
+}
+
+interface ArrisGetExposedHostSettings {
+  ServiceName: string;
+  MAC: string;
+  Protocol: Protocol;
+  StartPort: number;
+  EndPort: number;
+  Status: string;
+  Index: string;
+}
+
+interface ArrisSetHostExposureSettings {
+  hEditRule: ArrisSetExposedHostSettings[];
+}
+
+interface ArrisSetExposedHostSettings {
+  name: string;
+  macAddress: string;
+  protocol: Protocol;
+  startPort: number;
+  endPort: number;
+  enable: string;
+  index: string;
 }
 
 export function normalizeChannelStatus(channelStatus: ArrisDocsisChannelStatus): HumanizedDocsisChannelStatus | HumanizedDocsis31ChannelStatus {
@@ -60,7 +74,7 @@ export function normalizeChannelStatus(channelStatus: ArrisDocsisChannelStatus):
     frequency.frequencyStart = Number(ofdmaFrequency[0])
     frequency.frequencyEnd = Number(ofdmaFrequency[1])
   }
-  
+
   const powerLevel = parseFloat(channelStatus.PowerLevel.split("/")[0]);
   const snr = parseInt(`${channelStatus.SNRLevel ?? 0}`, 10);
   return {
@@ -253,7 +267,7 @@ export class Arris extends Modem {
     }
   }
 
-  convertExposedHostSettings(settings: ArrisExposedHostSettings): ExposedHostSettings {
+  _convertGetExposedHostSettings(settings: ArrisGetExposedHostSettings): ExposedHostSettings {
     return {
       serviceName: settings.ServiceName,
       mac: settings.MAC,
@@ -277,10 +291,47 @@ export class Arris extends Modem {
           },
         }
       )
-      return {hosts: data.hostExposure.map(this.convertExposedHostSettings)} as HostExposureSettings
+      return {
+        hosts: (data as ArrisGetHostExposureSettings)
+          .hostExposure.map(this._convertGetExposedHostSettings)
+      } as HostExposureSettings
     }
     catch (error) {
       this.logger.error("Could not get host exposure data:\n", error)
+      throw error
+    }
+  }
+
+  _convertSetExposedHostSettings(settings: ExposedHostSettings): ArrisSetExposedHostSettings {
+    return {
+      name: settings.serviceName,
+      macAddress: settings.mac,
+      protocol: settings.protocol,
+      startPort: settings.startPort,
+      endPort: settings.endPort,
+      enable: settings.enabled ? "Enabled" : "Disabled",
+      index: settings.index.toString(),
+    }
+  }
+
+  async setHostExposure(settings: HostExposureSettings): Promise<void> {
+    const convertedSettings =
+      {hEditRule: settings.hosts.map(this._convertSetExposedHostSettings)} as ArrisSetHostExposureSettings
+    try {
+      await this.httpClient.post(
+        'php/ajaxSet_net_ipv6_host_exposure_data.php',
+        convertedSettings,
+        {
+          headers: {
+            csrfNonce: this.csrfNonce,
+            Referer: `http://${this.modemIp}/?net_ipv6_host_exposure&mid=NetIPv6HostExposure`,
+            Connection: 'keep-alive',
+          }
+        }
+      )
+    }
+    catch (error) {
+      console.error("Could not set host exposure data:\n", error)
       throw error
     }
   }
