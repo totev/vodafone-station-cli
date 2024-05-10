@@ -62,7 +62,10 @@
     "commands": "./lib/commands",
     "plugins": [
       "@oclif/plugin-help"
-    ]
+    ],
+    "topics": {
+      "host-exposure": { "description": "Manage IPv6 host exposure settings." }
+    }
   },
   "scripts": {
     "build": "shx rm -rf lib && tsc -b",
