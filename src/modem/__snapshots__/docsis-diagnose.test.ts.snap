@@ -1,11 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`checkDownstream 1`] = `
-Array [
-  Object {
+[
+  {
     "channelId": "1",
     "channelType": "SC-QAM",
-    "diagnose": Object {
+    "diagnose": {
       "color": "red",
       "description": "Fix immediately",
       "deviation": true,
@@ -16,10 +16,10 @@ Array [
     "powerLevel": 55.1,
     "snr": 35,
   },
-  Object {
+  {
     "channelId": "2",
     "channelType": "SC-QAM",
-    "diagnose": Object {
+    "diagnose": {
       "color": "red",
       "description": "Fix immediately",
       "deviation": true,
@@ -30,10 +30,10 @@ Array [
     "powerLevel": 54.7,
     "snr": 35,
   },
-  Object {
+  {
     "channelId": "3",
     "channelType": "SC-QAM",
-    "diagnose": Object {
+    "diagnose": {
       "color": "red",
       "description": "Fix immediately",
       "deviation": true,
@@ -44,10 +44,10 @@ Array [
     "powerLevel": 54.8,
     "snr": 36,
   },
-  Object {
+  {
     "channelId": "4",
     "channelType": "SC-QAM",
-    "diagnose": Object {
+    "diagnose": {
       "color": "red",
       "description": "Fix immediately",
       "deviation": true,
@@ -58,10 +58,10 @@ Array [
     "powerLevel": 54.6,
     "snr": 36,
   },
-  Object {
+  {
     "channelId": "5",
     "channelType": "SC-QAM",
-    "diagnose": Object {
+    "diagnose": {
       "color": "red",
       "description": "Fix immediately",
       "deviation": true,
@@ -72,10 +72,10 @@ Array [
     "powerLevel": 57,
     "snr": 38,
   },
-  Object {
+  {
     "channelId": "6",
     "channelType": "SC-QAM",
-    "diagnose": Object {
+    "diagnose": {
       "color": "red",
       "description": "Fix immediately",
       "deviation": true,
@@ -86,10 +86,10 @@ Array [
     "powerLevel": 57.3,
     "snr": 39,
   },
-  Object {
+  {
     "channelId": "7",
     "channelType": "SC-QAM",
-    "diagnose": Object {
+    "diagnose": {
       "color": "red",
       "description": "Fix immediately",
       "deviation": true,
@@ -100,10 +100,10 @@ Array [
     "powerLevel": 57.7,
     "snr": 38,
   },
-  Object {
+  {
     "channelId": "8",
     "channelType": "SC-QAM",
-    "diagnose": Object {
+    "diagnose": {
       "color": "red",
       "description": "Fix immediately",
       "deviation": true,
@@ -114,10 +114,10 @@ Array [
     "powerLevel": 58.5,
     "snr": 39,
   },
-  Object {
+  {
     "channelId": "9",
     "channelType": "SC-QAM",
-    "diagnose": Object {
+    "diagnose": {
       "color": "red",
       "description": "Fix immediately",
       "deviation": true,
@@ -128,10 +128,10 @@ Array [
     "powerLevel": 58.3,
     "snr": 39,
   },
-  Object {
+  {
     "channelId": "10",
     "channelType": "SC-QAM",
-    "diagnose": Object {
+    "diagnose": {
       "color": "red",
       "description": "Fix immediately",
       "deviation": true,
@@ -142,10 +142,10 @@ Array [
     "powerLevel": 58.3,
     "snr": 39,
   },
-  Object {
+  {
     "channelId": "11",
     "channelType": "SC-QAM",
-    "diagnose": Object {
+    "diagnose": {
       "color": "red",
       "description": "Fix immediately",
       "deviation": true,
@@ -156,10 +156,10 @@ Array [
     "powerLevel": 58.1,
     "snr": 38,
   },
-  Object {
+  {
     "channelId": "12",
     "channelType": "SC-QAM",
-    "diagnose": Object {
+    "diagnose": {
       "color": "red",
       "description": "Fix immediately",
       "deviation": true,
@@ -170,10 +170,10 @@ Array [
     "powerLevel": 58.8,
     "snr": 39,
   },
-  Object {
+  {
     "channelId": "13",
     "channelType": "SC-QAM",
-    "diagnose": Object {
+    "diagnose": {
       "color": "red",
       "description": "Fix immediately",
       "deviation": true,
@@ -184,10 +184,10 @@ Array [
     "powerLevel": 58.8,
     "snr": 39,
   },
-  Object {
+  {
     "channelId": "14",
     "channelType": "SC-QAM",
-    "diagnose": Object {
+    "diagnose": {
       "color": "red",
       "description": "Fix immediately",
       "deviation": true,
@@ -198,10 +198,10 @@ Array [
     "powerLevel": 59.4,
     "snr": 39,
   },
-  Object {
+  {
     "channelId": "15",
     "channelType": "SC-QAM",
-    "diagnose": Object {
+    "diagnose": {
       "color": "red",
       "description": "Fix immediately",
       "deviation": true,
@@ -212,10 +212,10 @@ Array [
     "powerLevel": 53,
     "snr": 35,
   },
-  Object {
+  {
     "channelId": "16",
     "channelType": "SC-QAM",
-    "diagnose": Object {
+    "diagnose": {
       "color": "red",
       "description": "Fix immediately",
       "deviation": true,
@@ -226,10 +226,10 @@ Array [
     "powerLevel": 54.1,
     "snr": 35,
   },
-  Object {
+  {
     "channelId": "17",
     "channelType": "SC-QAM",
-    "diagnose": Object {
+    "diagnose": {
       "color": "red",
       "description": "Fix immediately",
       "deviation": true,
@@ -240,10 +240,10 @@ Array [
     "powerLevel": 54.2,
     "snr": 34,
   },
-  Object {
+  {
     "channelId": "18",
     "channelType": "SC-QAM",
-    "diagnose": Object {
+    "diagnose": {
       "color": "red",
       "description": "Fix immediately",
       "deviation": true,
@@ -254,10 +254,10 @@ Array [
     "powerLevel": 53.8,
     "snr": 35,
   },
-  Object {
+  {
     "channelId": "19",
     "channelType": "SC-QAM",
-    "diagnose": Object {
+    "diagnose": {
       "color": "red",
       "description": "Fix immediately",
       "deviation": true,
@@ -268,10 +268,10 @@ Array [
     "powerLevel": 53.9,
     "snr": 35,
   },
-  Object {
+  {
     "channelId": "20",
     "channelType": "SC-QAM",
-    "diagnose": Object {
+    "diagnose": {
       "color": "red",
       "description": "Fix immediately",
       "deviation": true,
@@ -282,10 +282,10 @@ Array [
     "powerLevel": 54.9,
     "snr": 35,
   },
-  Object {
+  {
     "channelId": "21",
     "channelType": "SC-QAM",
-    "diagnose": Object {
+    "diagnose": {
       "color": "red",
       "description": "Fix immediately",
       "deviation": true,
@@ -296,10 +296,10 @@ Array [
     "powerLevel": 55.3,
     "snr": 35,
   },
-  Object {
+  {
     "channelId": "22",
     "channelType": "SC-QAM",
-    "diagnose": Object {
+    "diagnose": {
       "color": "red",
       "description": "Fix immediately",
       "deviation": true,
@@ -310,10 +310,10 @@ Array [
     "powerLevel": 54.5,
     "snr": 35,
   },
-  Object {
+  {
     "channelId": "23",
     "channelType": "SC-QAM",
-    "diagnose": Object {
+    "diagnose": {
       "color": "red",
       "description": "Fix immediately",
       "deviation": true,
@@ -324,10 +324,10 @@ Array [
     "powerLevel": 54.5,
     "snr": 35,
   },
-  Object {
+  {
     "channelId": "24",
     "channelType": "SC-QAM",
-    "diagnose": Object {
+    "diagnose": {
       "color": "red",
       "description": "Fix immediately",
       "deviation": true,
@@ -338,10 +338,10 @@ Array [
     "powerLevel": 54.5,
     "snr": 35,
   },
-  Object {
+  {
     "channelId": "25",
     "channelType": "SC-QAM",
-    "diagnose": Object {
+    "diagnose": {
       "color": "red",
       "description": "Fix immediately",
       "deviation": true,
@@ -352,10 +352,10 @@ Array [
     "powerLevel": 55,
     "snr": 35,
   },
-  Object {
+  {
     "channelId": "26",
     "channelType": "SC-QAM",
-    "diagnose": Object {
+    "diagnose": {
       "color": "red",
       "description": "Fix immediately",
       "deviation": true,
@@ -366,10 +366,10 @@ Array [
     "powerLevel": 55,
     "snr": 35,
   },
-  Object {
+  {
     "channelId": "27",
     "channelType": "SC-QAM",
-    "diagnose": Object {
+    "diagnose": {
       "color": "red",
       "description": "Fix immediately",
       "deviation": true,
@@ -380,10 +380,10 @@ Array [
     "powerLevel": 54.9,
     "snr": 34,
   },
-  Object {
+  {
     "channelId": "28",
     "channelType": "SC-QAM",
-    "diagnose": Object {
+    "diagnose": {
       "color": "red",
       "description": "Fix immediately",
       "deviation": true,
@@ -394,10 +394,10 @@ Array [
     "powerLevel": 54.4,
     "snr": 35,
   },
-  Object {
+  {
     "channelId": "29",
     "channelType": "SC-QAM",
-    "diagnose": Object {
+    "diagnose": {
       "color": "red",
       "description": "Fix immediately",
       "deviation": true,
@@ -408,10 +408,10 @@ Array [
     "powerLevel": 54.1,
     "snr": 35,
   },
-  Object {
+  {
     "channelId": "30",
     "channelType": "SC-QAM",
-    "diagnose": Object {
+    "diagnose": {
       "color": "red",
       "description": "Fix immediately",
       "deviation": true,
@@ -422,10 +422,10 @@ Array [
     "powerLevel": 54.5,
     "snr": 35,
   },
-  Object {
+  {
     "channelId": "31",
     "channelType": "SC-QAM",
-    "diagnose": Object {
+    "diagnose": {
       "color": "red",
       "description": "Fix immediately",
       "deviation": true,
@@ -436,10 +436,10 @@ Array [
     "powerLevel": 54.5,
     "snr": 35,
   },
-  Object {
+  {
     "channelId": "32",
     "channelType": "SC-QAM",
-    "diagnose": Object {
+    "diagnose": {
       "color": "red",
       "description": "Fix immediately",
       "deviation": true,
@@ -454,11 +454,11 @@ Array [
 `;
 
 exports[`checkOfdmDownstream 1`] = `
-Array [
-  Object {
+[
+  {
     "channelId": "33",
     "channelType": "OFDM",
-    "diagnose": Object {
+    "diagnose": {
       "color": "red",
       "description": "Fix immediately",
       "deviation": true,
@@ -474,11 +474,11 @@ Array [
 `;
 
 exports[`checkOfdmaUpstream 1`] = `
-Array [
-  Object {
+[
+  {
     "channelId": "9",
     "channelType": "OFDMA",
-    "diagnose": Object {
+    "diagnose": {
       "color": "red",
       "description": "Fix immediately",
       "deviation": true,
@@ -494,11 +494,11 @@ Array [
 `;
 
 exports[`checkUpstream 1`] = `
-Array [
-  Object {
+[
+  {
     "channelId": "3",
     "channelType": "SC-QAM",
-    "diagnose": Object {
+    "diagnose": {
       "color": "red",
       "description": "Fix immediately",
       "deviation": true,
@@ -509,10 +509,10 @@ Array [
     "powerLevel": 110.3,
     "snr": 0,
   },
-  Object {
+  {
     "channelId": "4",
     "channelType": "SC-QAM",
-    "diagnose": Object {
+    "diagnose": {
       "color": "red",
       "description": "Fix immediately",
       "deviation": true,
@@ -523,10 +523,10 @@ Array [
     "powerLevel": 110.3,
     "snr": 0,
   },
-  Object {
+  {
     "channelId": "1",
     "channelType": "SC-QAM",
-    "diagnose": Object {
+    "diagnose": {
       "color": "red",
       "description": "Fix immediately",
       "deviation": true,
@@ -537,10 +537,10 @@ Array [
     "powerLevel": 110.3,
     "snr": 0,
   },
-  Object {
+  {
     "channelId": "2",
     "channelType": "SC-QAM",
-    "diagnose": Object {
+    "diagnose": {
       "color": "red",
       "description": "Fix immediately",
       "deviation": true,
