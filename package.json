@@ -41,7 +41,7 @@
   },
   "devDependencies": {
     "@types/jest": "^29.5.12",
-    "@types/node": "^17.0.42",
+    "@types/node": "^18.0.0",
     "@types/sjcl": "^1.0.30",
     "@types/tough-cookie": "^4.0.5",
     "@typescript-eslint/eslint-plugin": "^7.15.0",
@@ -77,7 +77,7 @@
     "version": "oclif readme && git add README.md"
   },
   "engines": {
-    "node": ">=16.0.0"
+    "node": ">=18.0.0"
   },
   "types": "lib/index.d.ts"
 }
