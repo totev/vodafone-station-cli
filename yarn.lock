@@ -1351,6 +1351,13 @@ agent-base@6, agent-base@^6.0.2:
   dependencies:
     debug "4"
 
+agent-base@^7.1.0:
+  version "7.1.1"
+  resolved "https://registry.yarnpkg.com/agent-base/-/agent-base-7.1.1.tgz#bdbded7dfb096b751a2a087eeeb9664725b2e317"
+  integrity sha512-H0TSyFNDMomMNJQBn8wFV5YC/2eJ+VXECwOadZJT554xP6cODZHPX3H9QMQECxvrgiSOP1pHjy1sMWQVYJOUOA==
+  dependencies:
+    debug "^4.3.4"
+
 agentkeepalive@^4.1.3, agentkeepalive@^4.2.1:
   version "4.2.1"
   resolved "https://registry.yarnpkg.com/agentkeepalive/-/agentkeepalive-4.2.1.tgz#a7975cbb9f83b367f06c90cc51ff28fe7d499717"
@@ -1536,12 +1543,12 @@ aws-sdk@^2.1116.0:
     uuid "8.0.0"
     xml2js "0.4.19"
 
-axios-cookiejar-support@^4.0.3:
-  version "4.0.3"
-  resolved "https://registry.yarnpkg.com/axios-cookiejar-support/-/axios-cookiejar-support-4.0.3.tgz#c906029d76c7c185224ab00f97c64ce5e241ac4f"
-  integrity sha512-fMQc0mPR1CikWZEwVC6Av+sD4cJuV2eo06HFA+DfhY54uRcO43ILGxaq7YAMTiM0V0SdJCV4NhE1bOsQYlfSkg==
+axios-cookiejar-support@^4.0.7:
+  version "4.0.7"
+  resolved "https://registry.yarnpkg.com/axios-cookiejar-support/-/axios-cookiejar-support-4.0.7.tgz#2b92c87bda13e765c63b745f50b38dc2c21fd083"
+  integrity sha512-9vpE3y/a2l2Vs2XEJE4L2z0GWnlpJ4Xj+kDaoCtrpPfS1J3oikXBrxRJX6H62/ZcelOGe+519yW7mqXCIoPXuw==
   dependencies:
-    http-cookie-agent "^4.0.2"
+    http-cookie-agent "^5.0.4"
 
 axios@^0.27.2:
   version "0.27.2"
@@ -3038,12 +3045,12 @@ http-call@^5.1.2, http-call@^5.2.2:
     parse-json "^4.0.0"
     tunnel-agent "^0.6.0"
 
-http-cookie-agent@^4.0.2:
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/http-cookie-agent/-/http-cookie-agent-4.0.2.tgz#dcdaae18ed1f7452d81ae4d5cd80b227d6831b69"
-  integrity sha512-noTmxdH5CuytTnLj/Qv3Z84e/YFq8yLXAw3pqIYZ25Edhb9pQErIAC+ednw40Cic6Le/h9ryph5/TqsvkOaUCw==
+http-cookie-agent@^5.0.4:
+  version "5.0.4"
+  resolved "https://registry.yarnpkg.com/http-cookie-agent/-/http-cookie-agent-5.0.4.tgz#b2dd3ba44f54f5c49387baac042c00ebba1216ae"
+  integrity sha512-OtvikW69RvfyP6Lsequ0fN5R49S+8QcS9zwd58k6VSr6r57T8G29BkPdyrBcSwLq6ExLs9V+rBlfxu7gDstJag==
   dependencies:
-    agent-base "^6.0.2"
+    agent-base "^7.1.0"
 
 http-proxy-agent@^4.0.1:
   version "4.0.1"
