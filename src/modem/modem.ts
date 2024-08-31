@@ -70,6 +70,7 @@ export interface HostExposureSettings {
 export interface GenericModem {
   logout(): Promise<void>;
   login(password: string): Promise<void>;
+  firewall(status?: boolean): Promise<void>;
   docsis(): Promise<DocsisStatus>;
   restart(): Promise<unknown>;
   getHostExposure(): Promise<HostExposureSettings>;
@@ -93,6 +94,10 @@ export abstract class Modem implements GenericModem {
   }
 
   login(_password: string): Promise<void> {
+    throw new Error('Method not implemented.')
+  }
+
+  firewall(_status: boolean = true): Promise<void> {
     throw new Error('Method not implemented.')
   }
 

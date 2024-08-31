@@ -202,7 +202,7 @@ export class Technicolor extends Modem {
         'Referer': `http://${this.modemIp}`,
       }
     })
-    
+
     this.logger.debug('Token response: ', tokenResponse)
     const {data: restartResponse} = await this.httpClient.post<TechnicolorBaseResponse>('api/v1/sta_restart',
       'restart=Router%2CWifi%2CVoIP%2CDect%2CMoCA&ui_access=reboot_device', {
@@ -218,6 +218,29 @@ export class Technicolor extends Modem {
       throw new Error(`Could not restart router: ${restartResponse.message}`)
     }
     return restartResponse
+  }
+
+  async firewall(status: boolean = true): Promise<void> {
+    const action = status ? 'on' : 'off'
+    const { data: tokenResponse } = await this.httpClient.get<TechnicolorTokenResponse>('api/v1/session/init_page', {
+      headers: {
+        'Referer': `http://${this.modemIp}`,
+      }
+    })
+    this.logger.debug('Token response: ', tokenResponse)
+    const {data: restartResponse} = await this.httpClient.post<TechnicolorBaseResponse>('api/v1/firewall',
+      `FirewallLevel=${action}&FirewallLevelV6=${action}`, {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+          'X-CSRF-TOKEN': tokenResponse.token,
+          'Referer': `http://${this.modemIp}`,
+        },
+      })
+
+    if (restartResponse?.error === 'error') {
+      this.logger.debug(restartResponse)
+      throw new Error(`Could not restart router: ${restartResponse.message}`)
+    }
   }
 }
 
