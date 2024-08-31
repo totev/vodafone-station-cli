@@ -9,15 +9,22 @@ Access your Arris TG3442DE or Technicolor CGA4322DE, CGA6444VF (aka Vodafone Sta
 [![npm](https://img.shields.io/npm/v/vodafone-station-cli)](https://www.npmjs.com/package/vodafone-station-cli)
 
 <!-- toc -->
-* [Features](#features)
-* [Demo](#demo)
-* [Supported hardware](#supported-hardware)
-* [Software requirements](#software-requirements)
-* [Notes](#notes)
-* [Useful related projects:](#useful-related-projects)
-* [Running from source](#running-from-source)
-* [Usage](#usage)
-* [Commands](#commands)
+- [vodafone-station-cli](#vodafone-station-cli)
+- [Features](#features)
+- [Demo](#demo)
+- [Supported hardware](#supported-hardware)
+- [Software requirements](#software-requirements)
+- [Notes](#notes)
+- [Useful related projects:](#useful-related-projects)
+- [Running from source](#running-from-source)
+- [Usage](#usage)
+- [Commands](#commands)
+  - [`vodafone-station-cli diagnose`](#vodafone-station-cli-diagnose)
+  - [`vodafone-station-cli discover`](#vodafone-station-cli-discover)
+  - [`vodafone-station-cli docsis`](#vodafone-station-cli-docsis)
+  - [`vodafone-station-cli firewall`](#vodafone-station-cli-firewall)
+  - [`vodafone-station-cli help [COMMAND]`](#vodafone-station-cli-help-command)
+  - [`vodafone-station-cli restart`](#vodafone-station-cli-restart)
 <!-- tocstop -->
 
 # Features
@@ -551,11 +558,22 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`vodafone-station-cli diagnose`](#vodafone-station-cli-diagnose)
-* [`vodafone-station-cli discover`](#vodafone-station-cli-discover)
-* [`vodafone-station-cli docsis`](#vodafone-station-cli-docsis)
-* [`vodafone-station-cli help [COMMAND]`](#vodafone-station-cli-help-command)
-* [`vodafone-station-cli restart`](#vodafone-station-cli-restart)
+- [vodafone-station-cli](#vodafone-station-cli)
+- [Features](#features)
+- [Demo](#demo)
+- [Supported hardware](#supported-hardware)
+- [Software requirements](#software-requirements)
+- [Notes](#notes)
+- [Useful related projects:](#useful-related-projects)
+- [Running from source](#running-from-source)
+- [Usage](#usage)
+- [Commands](#commands)
+  - [`vodafone-station-cli diagnose`](#vodafone-station-cli-diagnose)
+  - [`vodafone-station-cli discover`](#vodafone-station-cli-discover)
+  - [`vodafone-station-cli docsis`](#vodafone-station-cli-docsis)
+  - [`vodafone-station-cli firewall`](#vodafone-station-cli-firewall)
+  - [`vodafone-station-cli help [COMMAND]`](#vodafone-station-cli-help-command)
+  - [`vodafone-station-cli restart`](#vodafone-station-cli-restart)
 
 ## `vodafone-station-cli diagnose`
 
@@ -576,7 +594,7 @@ EXAMPLES
   $ vodafone-station-cli diagnose
 ```
 
-_See code: [src/commands/diagnose.ts](https://github.com/totev/vodafone-station-cli/blob/v1.2.8/src/commands/diagnose.ts)_
+_See code: [src/commands/diagnose.ts](./src/commands/diagnose.ts)_
 
 ## `vodafone-station-cli discover`
 
@@ -593,7 +611,7 @@ EXAMPLES
   $ vodafone-station-cli discover
 ```
 
-_See code: [src/commands/discover.ts](https://github.com/totev/vodafone-station-cli/blob/v1.2.8/src/commands/discover.ts)_
+_See code: [src/commands/discover.ts](./src/commands/discover.ts)_
 
 ## `vodafone-station-cli docsis`
 
@@ -616,7 +634,28 @@ EXAMPLES
   {JSON data}
 ```
 
-_See code: [src/commands/docsis.ts](https://github.com/totev/vodafone-station-cli/blob/v1.2.8/src/commands/docsis.ts)_
+_See code: [src/commands/docsis.ts](./src/commands/docsis.ts)_
+
+## `vodafone-station-cli firewall`
+
+turn on/off the firewall
+
+```
+USAGE
+  $ vodafone-station-cli firewall [-a on|off] [-p <value>]
+
+FLAGS
+  -a, --action=(on|off)   firewall action
+  -p, --password=<value>  router/modem password
+
+DESCRIPTION
+  turn on/off the firewall
+
+EXAMPLES
+  $ vodafone-station-cli firewall -a off -p PASSWORD
+```
+
+_See code: [src/commands/firewall.ts](./src/commands/firewall.ts)_
 
 ## `vodafone-station-cli help [COMMAND]`
 
@@ -656,5 +695,5 @@ EXAMPLES
   $ vodafone-station-cli restart -p PASSWORD
 ```
 
-_See code: [src/commands/restart.ts](https://github.com/totev/vodafone-station-cli/blob/v1.2.8/src/commands/restart.ts)_
+_See code: [src/commands/restart.ts](./src/commands/restart.ts)_
 <!-- commandsstop -->

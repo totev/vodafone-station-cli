@@ -267,6 +267,31 @@ export class Arris extends Modem {
     }
   }
 
+  async firewall(status:boolean = true): Promise<void> {
+    const action = status ? 'on' : 'off'
+    try {
+      const {data} = await this.httpClient.post(
+        'api/v1/firewall',
+        {
+          FirewallLevel: action,
+          FirewallLevelV6: action
+        },
+        {
+          headers: {
+            csrfNonce: this.csrfNonce,
+            Referer: `http://${this.modemIp}/?status_docsis&mid=StatusDocsis`,
+            Connection: 'keep-alive',
+          },
+        }
+      )
+      this.logger.log('Firewall is enabled')
+      return data
+    } catch (error) {
+      this.logger.error('Could not enable firewall.', error)
+      throw error
+    }
+  }
+
   _convertGetExposedHostSettings(settings: ArrisGetExposedHostSettings): ExposedHostSettings {
     return {
       serviceName: settings.ServiceName,
