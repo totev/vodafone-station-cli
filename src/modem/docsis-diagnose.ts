@@ -1,3 +1,4 @@
+import { BAD_MODEM_POWER_LEVEL } from "./constants";
 import type { Diagnose, DiagnosedDocsis31ChannelStatus, DiagnosedDocsisChannelStatus, DiagnosedDocsisStatus, DocsisChannelType, DocsisStatus, Modulation } from "./modem";
 
 export interface Deviation{
@@ -164,6 +165,9 @@ export class UpstreamDeviationOFDMA implements Deviation{
     if (48 < powerLevel && powerLevel <= 50)
       return FixWithinOneMonth;
     if ( 50 < powerLevel)
+      return FixImmediately
+
+    if (powerLevel === BAD_MODEM_POWER_LEVEL)
       return FixImmediately
     
     throw new Error(`PowerLevel is not within supported range. PowerLevel: ${powerLevel}`);

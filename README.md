@@ -542,7 +542,7 @@ $ npm install -g vodafone-station-cli
 $ vodafone-station-cli COMMAND
 running command...
 $ vodafone-station-cli (--version)
-vodafone-station-cli/1.2.8 darwin-arm64 node-v18.3.0
+vodafone-station-cli/1.2.8 darwin-arm64 node-v22.6.0
 $ vodafone-station-cli --help [COMMAND]
 USAGE
   $ vodafone-station-cli COMMAND
@@ -555,6 +555,20 @@ USAGE
 * [`vodafone-station-cli discover`](#vodafone-station-cli-discover)
 * [`vodafone-station-cli docsis`](#vodafone-station-cli-docsis)
 * [`vodafone-station-cli help [COMMAND]`](#vodafone-station-cli-help-command)
+* [`vodafone-station-cli host-exposure disable [ENTRIES]`](#vodafone-station-cli-host-exposure-disable-entries)
+* [`vodafone-station-cli host-exposure enable [ENTRIES]`](#vodafone-station-cli-host-exposure-enable-entries)
+* [`vodafone-station-cli host-exposure get`](#vodafone-station-cli-host-exposure-get)
+* [`vodafone-station-cli host-exposure set FILE`](#vodafone-station-cli-host-exposure-set-file)
+* [`vodafone-station-cli plugins`](#vodafone-station-cli-plugins)
+* [`vodafone-station-cli plugins add PLUGIN`](#vodafone-station-cli-plugins-add-plugin)
+* [`vodafone-station-cli plugins:inspect PLUGIN...`](#vodafone-station-cli-pluginsinspect-plugin)
+* [`vodafone-station-cli plugins install PLUGIN`](#vodafone-station-cli-plugins-install-plugin)
+* [`vodafone-station-cli plugins link PATH`](#vodafone-station-cli-plugins-link-path)
+* [`vodafone-station-cli plugins remove [PLUGIN]`](#vodafone-station-cli-plugins-remove-plugin)
+* [`vodafone-station-cli plugins reset`](#vodafone-station-cli-plugins-reset)
+* [`vodafone-station-cli plugins uninstall [PLUGIN]`](#vodafone-station-cli-plugins-uninstall-plugin)
+* [`vodafone-station-cli plugins unlink [PLUGIN]`](#vodafone-station-cli-plugins-unlink-plugin)
+* [`vodafone-station-cli plugins update`](#vodafone-station-cli-plugins-update)
 * [`vodafone-station-cli restart`](#vodafone-station-cli-restart)
 
 ## `vodafone-station-cli diagnose`
@@ -624,10 +638,10 @@ Display help for vodafone-station-cli.
 
 ```
 USAGE
-  $ vodafone-station-cli help [COMMAND] [-n]
+  $ vodafone-station-cli help [COMMAND...] [-n]
 
 ARGUMENTS
-  COMMAND  Command to show help for.
+  COMMAND...  Command to show help for.
 
 FLAGS
   -n, --nested-commands  Include all nested commands in the output.
@@ -636,7 +650,386 @@ DESCRIPTION
   Display help for vodafone-station-cli.
 ```
 
-_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v5.1.12/src/commands/help.ts)_
+_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v6.2.13/src/commands/help.ts)_
+
+## `vodafone-station-cli host-exposure disable [ENTRIES]`
+
+Disable a set of host exposure entries
+
+```
+USAGE
+  $ vodafone-station-cli host-exposure disable [ENTRIES...] [-p <value>]
+
+ARGUMENTS
+  ENTRIES...  Host exposure entries to disable. Pass no names to disable every existing entry.
+
+FLAGS
+  -p, --password=<value>  router/modem password
+
+DESCRIPTION
+  Disable a set of host exposure entries
+
+EXAMPLES
+  $ vodafone-station-cli host-exposure:disable -p PASSWORD [ENTRY NAME | [ENTRY NAME...]]
+```
+
+_See code: [src/commands/host-exposure/disable.ts](https://github.com/totev/vodafone-station-cli/blob/v1.2.8/src/commands/host-exposure/disable.ts)_
+
+## `vodafone-station-cli host-exposure enable [ENTRIES]`
+
+Enable a set of host exposure entries
+
+```
+USAGE
+  $ vodafone-station-cli host-exposure enable [ENTRIES...] [-p <value>]
+
+ARGUMENTS
+  ENTRIES...  Host exposure entries to enable. Pass no names to enable every existing entry.
+
+FLAGS
+  -p, --password=<value>  router/modem password
+
+DESCRIPTION
+  Enable a set of host exposure entries
+
+EXAMPLES
+  $ vodafone-station-cli host-exposure:enable -p PASSWORD [ENTRY NAME | [ENTRY NAME...]]
+```
+
+_See code: [src/commands/host-exposure/enable.ts](https://github.com/totev/vodafone-station-cli/blob/v1.2.8/src/commands/host-exposure/enable.ts)_
+
+## `vodafone-station-cli host-exposure get`
+
+Get the current IPV6 host exposure settings
+
+```
+USAGE
+  $ vodafone-station-cli host-exposure get [-p <value>]
+
+FLAGS
+  -p, --password=<value>  router/modem password
+
+DESCRIPTION
+  Get the current IPV6 host exposure settings
+
+EXAMPLES
+  $ vodafone-station-cli host-exposure:get -p PASSWORD
+  {JSON data}
+```
+
+_See code: [src/commands/host-exposure/get.ts](https://github.com/totev/vodafone-station-cli/blob/v1.2.8/src/commands/host-exposure/get.ts)_
+
+## `vodafone-station-cli host-exposure set FILE`
+
+Set the current IPV6 host exposure settings from a JSON file
+
+```
+USAGE
+  $ vodafone-station-cli host-exposure set FILE [-p <value>]
+
+ARGUMENTS
+  FILE  input JSON file
+
+FLAGS
+  -p, --password=<value>  router/modem password
+
+DESCRIPTION
+  Set the current IPV6 host exposure settings from a JSON file
+
+EXAMPLES
+  $ vodafone-station-cli host-exposure:set -p PASSWORD <FILE>
+```
+
+_See code: [src/commands/host-exposure/set.ts](https://github.com/totev/vodafone-station-cli/blob/v1.2.8/src/commands/host-exposure/set.ts)_
+
+## `vodafone-station-cli plugins`
+
+List installed plugins.
+
+```
+USAGE
+  $ vodafone-station-cli plugins [--json] [--core]
+
+FLAGS
+  --core  Show core plugins.
+
+GLOBAL FLAGS
+  --json  Format output as json.
+
+DESCRIPTION
+  List installed plugins.
+
+EXAMPLES
+  $ vodafone-station-cli plugins
+```
+
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v5.4.10/src/commands/plugins/index.ts)_
+
+## `vodafone-station-cli plugins add PLUGIN`
+
+Installs a plugin into vodafone-station-cli.
+
+```
+USAGE
+  $ vodafone-station-cli plugins add PLUGIN... [--json] [-f] [-h] [-s | -v]
+
+ARGUMENTS
+  PLUGIN...  Plugin to install.
+
+FLAGS
+  -f, --force    Force npm to fetch remote resources even if a local copy exists on disk.
+  -h, --help     Show CLI help.
+  -s, --silent   Silences npm output.
+  -v, --verbose  Show verbose npm output.
+
+GLOBAL FLAGS
+  --json  Format output as json.
+
+DESCRIPTION
+  Installs a plugin into vodafone-station-cli.
+
+  Uses npm to install plugins.
+
+  Installation of a user-installed plugin will override a core plugin.
+
+  Use the VODAFONE_STATION_CLI_NPM_LOG_LEVEL environment variable to set the npm loglevel.
+  Use the VODAFONE_STATION_CLI_NPM_REGISTRY environment variable to set the npm registry.
+
+ALIASES
+  $ vodafone-station-cli plugins add
+
+EXAMPLES
+  Install a plugin from npm registry.
+
+    $ vodafone-station-cli plugins add myplugin
+
+  Install a plugin from a github url.
+
+    $ vodafone-station-cli plugins add https://github.com/someuser/someplugin
+
+  Install a plugin from a github slug.
+
+    $ vodafone-station-cli plugins add someuser/someplugin
+```
+
+## `vodafone-station-cli plugins:inspect PLUGIN...`
+
+Displays installation properties of a plugin.
+
+```
+USAGE
+  $ vodafone-station-cli plugins inspect PLUGIN...
+
+ARGUMENTS
+  PLUGIN...  [default: .] Plugin to inspect.
+
+FLAGS
+  -h, --help     Show CLI help.
+  -v, --verbose
+
+GLOBAL FLAGS
+  --json  Format output as json.
+
+DESCRIPTION
+  Displays installation properties of a plugin.
+
+EXAMPLES
+  $ vodafone-station-cli plugins inspect myplugin
+```
+
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v5.4.10/src/commands/plugins/inspect.ts)_
+
+## `vodafone-station-cli plugins install PLUGIN`
+
+Installs a plugin into vodafone-station-cli.
+
+```
+USAGE
+  $ vodafone-station-cli plugins install PLUGIN... [--json] [-f] [-h] [-s | -v]
+
+ARGUMENTS
+  PLUGIN...  Plugin to install.
+
+FLAGS
+  -f, --force    Force npm to fetch remote resources even if a local copy exists on disk.
+  -h, --help     Show CLI help.
+  -s, --silent   Silences npm output.
+  -v, --verbose  Show verbose npm output.
+
+GLOBAL FLAGS
+  --json  Format output as json.
+
+DESCRIPTION
+  Installs a plugin into vodafone-station-cli.
+
+  Uses npm to install plugins.
+
+  Installation of a user-installed plugin will override a core plugin.
+
+  Use the VODAFONE_STATION_CLI_NPM_LOG_LEVEL environment variable to set the npm loglevel.
+  Use the VODAFONE_STATION_CLI_NPM_REGISTRY environment variable to set the npm registry.
+
+ALIASES
+  $ vodafone-station-cli plugins add
+
+EXAMPLES
+  Install a plugin from npm registry.
+
+    $ vodafone-station-cli plugins install myplugin
+
+  Install a plugin from a github url.
+
+    $ vodafone-station-cli plugins install https://github.com/someuser/someplugin
+
+  Install a plugin from a github slug.
+
+    $ vodafone-station-cli plugins install someuser/someplugin
+```
+
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v5.4.10/src/commands/plugins/install.ts)_
+
+## `vodafone-station-cli plugins link PATH`
+
+Links a plugin into the CLI for development.
+
+```
+USAGE
+  $ vodafone-station-cli plugins link PATH [-h] [--install] [-v]
+
+ARGUMENTS
+  PATH  [default: .] path to plugin
+
+FLAGS
+  -h, --help          Show CLI help.
+  -v, --verbose
+      --[no-]install  Install dependencies after linking the plugin.
+
+DESCRIPTION
+  Links a plugin into the CLI for development.
+  Installation of a linked plugin will override a user-installed or core plugin.
+
+  e.g. If you have a user-installed or core plugin that has a 'hello' command, installing a linked plugin with a 'hello'
+  command will override the user-installed or core plugin implementation. This is useful for development work.
+
+
+EXAMPLES
+  $ vodafone-station-cli plugins link myplugin
+```
+
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v5.4.10/src/commands/plugins/link.ts)_
+
+## `vodafone-station-cli plugins remove [PLUGIN]`
+
+Removes a plugin from the CLI.
+
+```
+USAGE
+  $ vodafone-station-cli plugins remove [PLUGIN...] [-h] [-v]
+
+ARGUMENTS
+  PLUGIN...  plugin to uninstall
+
+FLAGS
+  -h, --help     Show CLI help.
+  -v, --verbose
+
+DESCRIPTION
+  Removes a plugin from the CLI.
+
+ALIASES
+  $ vodafone-station-cli plugins unlink
+  $ vodafone-station-cli plugins remove
+
+EXAMPLES
+  $ vodafone-station-cli plugins remove myplugin
+```
+
+## `vodafone-station-cli plugins reset`
+
+Remove all user-installed and linked plugins.
+
+```
+USAGE
+  $ vodafone-station-cli plugins reset [--hard] [--reinstall]
+
+FLAGS
+  --hard       Delete node_modules and package manager related files in addition to uninstalling plugins.
+  --reinstall  Reinstall all plugins after uninstalling.
+```
+
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v5.4.10/src/commands/plugins/reset.ts)_
+
+## `vodafone-station-cli plugins uninstall [PLUGIN]`
+
+Removes a plugin from the CLI.
+
+```
+USAGE
+  $ vodafone-station-cli plugins uninstall [PLUGIN...] [-h] [-v]
+
+ARGUMENTS
+  PLUGIN...  plugin to uninstall
+
+FLAGS
+  -h, --help     Show CLI help.
+  -v, --verbose
+
+DESCRIPTION
+  Removes a plugin from the CLI.
+
+ALIASES
+  $ vodafone-station-cli plugins unlink
+  $ vodafone-station-cli plugins remove
+
+EXAMPLES
+  $ vodafone-station-cli plugins uninstall myplugin
+```
+
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v5.4.10/src/commands/plugins/uninstall.ts)_
+
+## `vodafone-station-cli plugins unlink [PLUGIN]`
+
+Removes a plugin from the CLI.
+
+```
+USAGE
+  $ vodafone-station-cli plugins unlink [PLUGIN...] [-h] [-v]
+
+ARGUMENTS
+  PLUGIN...  plugin to uninstall
+
+FLAGS
+  -h, --help     Show CLI help.
+  -v, --verbose
+
+DESCRIPTION
+  Removes a plugin from the CLI.
+
+ALIASES
+  $ vodafone-station-cli plugins unlink
+  $ vodafone-station-cli plugins remove
+
+EXAMPLES
+  $ vodafone-station-cli plugins unlink myplugin
+```
+
+## `vodafone-station-cli plugins update`
+
+Update installed plugins.
+
+```
+USAGE
+  $ vodafone-station-cli plugins update [-h] [-v]
+
+FLAGS
+  -h, --help     Show CLI help.
+  -v, --verbose
+
+DESCRIPTION
+  Update installed plugins.
+```
+
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v5.4.10/src/commands/plugins/update.ts)_
 
 ## `vodafone-station-cli restart`
 

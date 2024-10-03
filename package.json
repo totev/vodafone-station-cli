@@ -82,7 +82,6 @@
     "postpack": "shx rm -f oclif.manifest.json",
     "prepack": "yarn build && oclif manifest && oclif readme",
     "test": "jest",
-    "posttest": "yarn lint",
     "version": "oclif readme && git add README.md"
   },
   "engines": {
