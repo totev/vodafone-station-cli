@@ -542,7 +542,7 @@ $ npm install -g vodafone-station-cli
 $ vodafone-station-cli COMMAND
 running command...
 $ vodafone-station-cli (--version)
-vodafone-station-cli/1.2.8 darwin-arm64 node-v22.6.0
+vodafone-station-cli/1.2.9 darwin-arm64 node-v22.6.0
 $ vodafone-station-cli --help [COMMAND]
 USAGE
   $ vodafone-station-cli COMMAND
@@ -551,14 +551,7 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`vodafone-station-cli diagnose`](#vodafone-station-cli-diagnose)
-* [`vodafone-station-cli discover`](#vodafone-station-cli-discover)
-* [`vodafone-station-cli docsis`](#vodafone-station-cli-docsis)
 * [`vodafone-station-cli help [COMMAND]`](#vodafone-station-cli-help-command)
-* [`vodafone-station-cli host-exposure disable [ENTRIES]`](#vodafone-station-cli-host-exposure-disable-entries)
-* [`vodafone-station-cli host-exposure enable [ENTRIES]`](#vodafone-station-cli-host-exposure-enable-entries)
-* [`vodafone-station-cli host-exposure get`](#vodafone-station-cli-host-exposure-get)
-* [`vodafone-station-cli host-exposure set FILE`](#vodafone-station-cli-host-exposure-set-file)
 * [`vodafone-station-cli plugins`](#vodafone-station-cli-plugins)
 * [`vodafone-station-cli plugins add PLUGIN`](#vodafone-station-cli-plugins-add-plugin)
 * [`vodafone-station-cli plugins:inspect PLUGIN...`](#vodafone-station-cli-pluginsinspect-plugin)
@@ -569,68 +562,6 @@ USAGE
 * [`vodafone-station-cli plugins uninstall [PLUGIN]`](#vodafone-station-cli-plugins-uninstall-plugin)
 * [`vodafone-station-cli plugins unlink [PLUGIN]`](#vodafone-station-cli-plugins-unlink-plugin)
 * [`vodafone-station-cli plugins update`](#vodafone-station-cli-plugins-update)
-* [`vodafone-station-cli restart`](#vodafone-station-cli-restart)
-
-## `vodafone-station-cli diagnose`
-
-Diagnose the quality of the docsis connection.
-
-```
-USAGE
-  $ vodafone-station-cli diagnose [-p <value>] [-w]
-
-FLAGS
-  -p, --password=<value>  router/modem password
-  -w, --web               review the docsis values in a webapp
-
-DESCRIPTION
-  Diagnose the quality of the docsis connection.
-
-EXAMPLES
-  $ vodafone-station-cli diagnose
-```
-
-_See code: [src/commands/diagnose.ts](https://github.com/totev/vodafone-station-cli/blob/v1.2.8/src/commands/diagnose.ts)_
-
-## `vodafone-station-cli discover`
-
-Try to discover a cable modem in the network
-
-```
-USAGE
-  $ vodafone-station-cli discover
-
-DESCRIPTION
-  Try to discover a cable modem in the network
-
-EXAMPLES
-  $ vodafone-station-cli discover
-```
-
-_See code: [src/commands/discover.ts](https://github.com/totev/vodafone-station-cli/blob/v1.2.8/src/commands/discover.ts)_
-
-## `vodafone-station-cli docsis`
-
-Get the current docsis status as reported by the modem in a JSON format.
-
-```
-USAGE
-  $ vodafone-station-cli docsis [-p <value>] [-f] [-w]
-
-FLAGS
-  -f, --file              write out a report file under ./reports/${CURRENT_UNIX_TIMESTAMP}_docsisStatus.json
-  -p, --password=<value>  router/modem password
-  -w, --web               review the docsis values in a webapp
-
-DESCRIPTION
-  Get the current docsis status as reported by the modem in a JSON format.
-
-EXAMPLES
-  $ vodafone-station-cli docsis -p PASSWORD
-  {JSON data}
-```
-
-_See code: [src/commands/docsis.ts](https://github.com/totev/vodafone-station-cli/blob/v1.2.8/src/commands/docsis.ts)_
 
 ## `vodafone-station-cli help [COMMAND]`
 
@@ -651,96 +582,6 @@ DESCRIPTION
 ```
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v6.2.13/src/commands/help.ts)_
-
-## `vodafone-station-cli host-exposure disable [ENTRIES]`
-
-Disable a set of host exposure entries
-
-```
-USAGE
-  $ vodafone-station-cli host-exposure disable [ENTRIES...] [-p <value>]
-
-ARGUMENTS
-  ENTRIES...  Host exposure entries to disable. Pass no names to disable every existing entry.
-
-FLAGS
-  -p, --password=<value>  router/modem password
-
-DESCRIPTION
-  Disable a set of host exposure entries
-
-EXAMPLES
-  $ vodafone-station-cli host-exposure:disable -p PASSWORD [ENTRY NAME | [ENTRY NAME...]]
-```
-
-_See code: [src/commands/host-exposure/disable.ts](https://github.com/totev/vodafone-station-cli/blob/v1.2.8/src/commands/host-exposure/disable.ts)_
-
-## `vodafone-station-cli host-exposure enable [ENTRIES]`
-
-Enable a set of host exposure entries
-
-```
-USAGE
-  $ vodafone-station-cli host-exposure enable [ENTRIES...] [-p <value>]
-
-ARGUMENTS
-  ENTRIES...  Host exposure entries to enable. Pass no names to enable every existing entry.
-
-FLAGS
-  -p, --password=<value>  router/modem password
-
-DESCRIPTION
-  Enable a set of host exposure entries
-
-EXAMPLES
-  $ vodafone-station-cli host-exposure:enable -p PASSWORD [ENTRY NAME | [ENTRY NAME...]]
-```
-
-_See code: [src/commands/host-exposure/enable.ts](https://github.com/totev/vodafone-station-cli/blob/v1.2.8/src/commands/host-exposure/enable.ts)_
-
-## `vodafone-station-cli host-exposure get`
-
-Get the current IPV6 host exposure settings
-
-```
-USAGE
-  $ vodafone-station-cli host-exposure get [-p <value>]
-
-FLAGS
-  -p, --password=<value>  router/modem password
-
-DESCRIPTION
-  Get the current IPV6 host exposure settings
-
-EXAMPLES
-  $ vodafone-station-cli host-exposure:get -p PASSWORD
-  {JSON data}
-```
-
-_See code: [src/commands/host-exposure/get.ts](https://github.com/totev/vodafone-station-cli/blob/v1.2.8/src/commands/host-exposure/get.ts)_
-
-## `vodafone-station-cli host-exposure set FILE`
-
-Set the current IPV6 host exposure settings from a JSON file
-
-```
-USAGE
-  $ vodafone-station-cli host-exposure set FILE [-p <value>]
-
-ARGUMENTS
-  FILE  input JSON file
-
-FLAGS
-  -p, --password=<value>  router/modem password
-
-DESCRIPTION
-  Set the current IPV6 host exposure settings from a JSON file
-
-EXAMPLES
-  $ vodafone-station-cli host-exposure:set -p PASSWORD <FILE>
-```
-
-_See code: [src/commands/host-exposure/set.ts](https://github.com/totev/vodafone-station-cli/blob/v1.2.8/src/commands/host-exposure/set.ts)_
 
 ## `vodafone-station-cli plugins`
 
@@ -1030,24 +871,4 @@ DESCRIPTION
 ```
 
 _See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v5.4.10/src/commands/plugins/update.ts)_
-
-## `vodafone-station-cli restart`
-
-Restart the router/modem
-
-```
-USAGE
-  $ vodafone-station-cli restart [-p <value>]
-
-FLAGS
-  -p, --password=<value>  router/modem password
-
-DESCRIPTION
-  Restart the router/modem
-
-EXAMPLES
-  $ vodafone-station-cli restart -p PASSWORD
-```
-
-_See code: [src/commands/restart.ts](https://github.com/totev/vodafone-station-cli/blob/v1.2.8/src/commands/restart.ts)_
 <!-- commandsstop -->
