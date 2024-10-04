@@ -3,6 +3,11 @@
   "plugins": [
     "@typescript-eslint"
   ],
+  "ignorePatterns": [
+    "node_modules/",
+    "dist/",
+    "test/"
+  ],
   "rules": {
     "no-useless-constructor": "off",
     "indent": [

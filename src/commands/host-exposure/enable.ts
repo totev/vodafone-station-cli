@@ -1,29 +1,25 @@
-import {Flags} from '@oclif/core'
+import {Args, Flags} from '@oclif/core'
 import Command from '../../base-command'
-import {toggleHostExposureEntries} from '../../modem/host-exposure';
+import {toggleHostExposureEntries} from '../../modem/host-exposure'
 
 export default class EnableHostExposureEntries extends Command {
-  static description =
-    'Enable a set of host exposure entries';
+  static description = 'Enable a set of host exposure entries'
 
-  static examples = [
-    `$ vodafone-station-cli host-exposure:enable -p PASSWORD [ENTRY NAME | [ENTRY NAME...]]`,
-  ];
+  static examples = [`$ vodafone-station-cli host-exposure:enable -p PASSWORD [ENTRY NAME | [ENTRY NAME...]]`]
 
-  static args = [
-    {
-      name: "entries",
+  static args = {
+    entries: Args.string({
       description: 'Host exposure entries to enable. Pass no names to enable every existing entry.',
       required: false,
-    }
-  ];
+    }),
+  }
 
   static flags = {
     password: Flags.string({
       char: 'p',
       description: 'router/modem password',
     }),
-  };
+  }
 
   static strict = false
 
@@ -33,18 +29,16 @@ export default class EnableHostExposureEntries extends Command {
     const password = flags.password ?? process.env.VODAFONE_ROUTER_PASSWORD
     if (!password || password === '') {
       this.log(
-        'You must provide a password either using -p or by setting the environment variable VODAFONE_ROUTER_PASSWORD'
+        'You must provide a password either using -p or by setting the environment variable VODAFONE_ROUTER_PASSWORD',
       )
       this.exit()
     }
 
     try {
       await toggleHostExposureEntries(true, argv as string[], password!, this.logger)
-    }
-    catch (error) {
+    } catch (error) {
       this.error(error as Error, {message: 'Something went wrong.'})
     }
-
 
     this.exit()
   }

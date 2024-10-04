@@ -1,4 +1,5 @@
 import {Log} from '../logger'
+import { BAD_MODEM_POWER_LEVEL } from "./constants";
 import {DocsisStatus, HumanizedDocsis31ChannelStatus, HumanizedDocsisChannelStatus, Modem, DocsisChannelType, ExposedHostSettings, HostExposureSettings, Protocol} from './modem'
 import {decrypt, deriveKey, encrypt} from './tools/crypto'
 import {CryptoVars, extractCredentialString, extractCryptoVars, extractDocsisStatus} from './tools/html-parser'
@@ -81,11 +82,11 @@ export function normalizeChannelStatus(channelStatus: ArrisDocsisChannelStatus):
     channelId: channelStatus.ChannelID,
     channelType: channelStatus.ChannelType,
     modulation: channelStatus.Modulation,
-    powerLevel: isNaN(powerLevel) ? -100 : powerLevel,
+    powerLevel: isNaN(powerLevel) ? BAD_MODEM_POWER_LEVEL : powerLevel,
     lockStatus: channelStatus.LockStatus,
     snr: isNaN(snr) ? 0 : snr,
     ...frequency,
-  } as HumanizedDocsisChannelStatus | HumanizedDocsis31ChannelStatus;
+  } as HumanizedDocsisChannelStatus | HumanizedDocsis31ChannelStatus
 }
 
 export function normalizeDocsisStatus(arrisDocsisStatus: ArrisDocsisStatus): DocsisStatus {
