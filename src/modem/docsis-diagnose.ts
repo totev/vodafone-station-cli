@@ -240,6 +240,13 @@ export class DownstreamDeviation4096QAM implements Deviation {
   }
 }
 
+export class DownstreamDeviationUnknown implements Deviation {
+  modulation = "UNKNOWN" as any
+  check(powerLevel: number): Diagnose {
+    return FixImmediately;
+  }
+}
+
 export const FixImmediately: Diagnose = {
   description : "Fix immediately",
   deviation: true,
@@ -261,7 +268,7 @@ export const FixWithinOneMonth: Diagnose = {
   color:"yellow"
 }
 
-export function downstreamDeviationFactory(modulation: Modulation): Deviation {
+export function downstreamDeviationFactory(modulation: Modulation | "UNKNOWN"): Deviation {
   switch (modulation) {
   case "64QAM":
     return new DownstreamDeviation64QAM();
@@ -273,6 +280,8 @@ export function downstreamDeviationFactory(modulation: Modulation): Deviation {
     return new DownstreamDeviation2048QAM();
   case "4096QAM":
     return new DownstreamDeviation4096QAM();
+  case "UNKNOWN":
+    return new DownstreamDeviationUnknown();
   default:
     throw new Error(`Unsupported modulation ${modulation}`)
   }

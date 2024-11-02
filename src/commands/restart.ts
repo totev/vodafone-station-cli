@@ -28,6 +28,7 @@ export default class Restart extends Command {
       return restart
     } catch (error) {
       this.log('Something went wrong.', error)
+      this.error(error as Error)
     } finally {
       await modem.logout()
     }

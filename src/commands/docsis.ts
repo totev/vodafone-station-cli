@@ -1,13 +1,13 @@
-import { Flags} from '@oclif/core'
+import {Flags} from '@oclif/core'
 import {promises as fsp} from 'fs'
 import Command from '../base-command'
 import {discoverModemIp, ModemDiscovery} from '../modem/discovery'
-import { DocsisStatus} from '../modem/modem'
+import {DocsisStatus} from '../modem/modem'
 import {modemFactory} from '../modem/factory'
-import {Log } from '../logger'
-import { webDiagnoseLink } from "../modem/web-diagnose"
+import {Log} from '../logger'
+import {webDiagnoseLink} from '../modem/web-diagnose'
 
-export async function getDocsisStatus(password: string, logger:Log): Promise<DocsisStatus> {
+export async function getDocsisStatus(password: string, logger: Log): Promise<DocsisStatus> {
   const modemIp = await discoverModemIp()
   const discoveredModem = await new ModemDiscovery(modemIp, logger).discover()
   const modem = modemFactory(discoveredModem, logger)
@@ -16,22 +16,22 @@ export async function getDocsisStatus(password: string, logger:Log): Promise<Doc
     const docsisData = await modem.docsis()
     return docsisData
   } catch (error) {
-    logger.error(`Could not fetch docsis status from modem.`,error)
-    throw error;
+    logger.warn(`Could not fetch docsis status from modem.`)
+    logger.error(error)
+    throw error
   } finally {
     await modem.logout()
   }
 }
 
 export default class Docsis extends Command {
-  static description =
-    'Get the current docsis status as reported by the modem in a JSON format.';
+  static description = 'Get the current docsis status as reported by the modem in a JSON format.'
 
   static examples = [
     `$ vodafone-station-cli docsis -p PASSWORD
 {JSON data}
 `,
-  ];
+  ]
 
   static flags = {
     password: Flags.string({
@@ -46,7 +46,7 @@ export default class Docsis extends Command {
       char: 'w',
       description: 'review the docsis values in a webapp',
     }),
-  };
+  }
 
   async writeDocsisStatus(docsisStatusJson: string): Promise<void> {
     const reportFile = `./reports/${Date.now()}_docsisStatus.json`
@@ -56,11 +56,11 @@ export default class Docsis extends Command {
   }
 
   async run(): Promise<void> {
-    const { flags } = await this.parse(Docsis)
+    const {flags} = await this.parse(Docsis)
     const password = flags.password ?? process.env.VODAFONE_ROUTER_PASSWORD
     if (!password || password === '') {
       this.log(
-        'You must provide a password either using -p or by setting the environment variable VODAFONE_ROUTER_PASSWORD'
+        'You must provide a password either using -p or by setting the environment variable VODAFONE_ROUTER_PASSWORD',
       )
       this.exit()
     }
@@ -81,7 +81,7 @@ export default class Docsis extends Command {
 
       this.exit()
     } catch (error) {
-      this.error(error as Error,{message:"Something went wrong"})
+      this.error(error as Error, {message: 'Something went wrong'})
     }
   }
 }
