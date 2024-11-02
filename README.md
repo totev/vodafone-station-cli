@@ -542,7 +542,7 @@ $ npm install -g vodafone-station-cli
 $ vodafone-station-cli COMMAND
 running command...
 $ vodafone-station-cli (--version)
-vodafone-station-cli/1.2.10 darwin-arm64 node-v22.6.0
+vodafone-station-cli/1.2.11 darwin-arm64 node-v22.6.0
 $ vodafone-station-cli --help [COMMAND]
 USAGE
   $ vodafone-station-cli COMMAND
@@ -590,7 +590,7 @@ EXAMPLES
   $ vodafone-station-cli diagnose
 ```
 
-_See code: [src/commands/diagnose.ts](https://github.com/totev/vodafone-station-cli/blob/v1.2.10/src/commands/diagnose.ts)_
+_See code: [src/commands/diagnose.ts](https://github.com/totev/vodafone-station-cli/blob/v1.2.11/src/commands/diagnose.ts)_
 
 ## `vodafone-station-cli discover`
 
@@ -607,7 +607,7 @@ EXAMPLES
   $ vodafone-station-cli discover
 ```
 
-_See code: [src/commands/discover.ts](https://github.com/totev/vodafone-station-cli/blob/v1.2.10/src/commands/discover.ts)_
+_See code: [src/commands/discover.ts](https://github.com/totev/vodafone-station-cli/blob/v1.2.11/src/commands/discover.ts)_
 
 ## `vodafone-station-cli docsis`
 
@@ -630,7 +630,7 @@ EXAMPLES
   {JSON data}
 ```
 
-_See code: [src/commands/docsis.ts](https://github.com/totev/vodafone-station-cli/blob/v1.2.10/src/commands/docsis.ts)_
+_See code: [src/commands/docsis.ts](https://github.com/totev/vodafone-station-cli/blob/v1.2.11/src/commands/docsis.ts)_
 
 ## `vodafone-station-cli help [COMMAND]`
 
@@ -650,7 +650,7 @@ DESCRIPTION
   Display help for vodafone-station-cli.
 ```
 
-_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v6.2.13/src/commands/help.ts)_
+_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v6.2.16/src/commands/help.ts)_
 
 ## `vodafone-station-cli host-exposure disable [ENTRIES]`
 
@@ -673,7 +673,7 @@ EXAMPLES
   $ vodafone-station-cli host-exposure:disable -p PASSWORD [ENTRY NAME | [ENTRY NAME...]]
 ```
 
-_See code: [src/commands/host-exposure/disable.ts](https://github.com/totev/vodafone-station-cli/blob/v1.2.10/src/commands/host-exposure/disable.ts)_
+_See code: [src/commands/host-exposure/disable.ts](https://github.com/totev/vodafone-station-cli/blob/v1.2.11/src/commands/host-exposure/disable.ts)_
 
 ## `vodafone-station-cli host-exposure enable [ENTRIES]`
 
@@ -696,7 +696,7 @@ EXAMPLES
   $ vodafone-station-cli host-exposure:enable -p PASSWORD [ENTRY NAME | [ENTRY NAME...]]
 ```
 
-_See code: [src/commands/host-exposure/enable.ts](https://github.com/totev/vodafone-station-cli/blob/v1.2.10/src/commands/host-exposure/enable.ts)_
+_See code: [src/commands/host-exposure/enable.ts](https://github.com/totev/vodafone-station-cli/blob/v1.2.11/src/commands/host-exposure/enable.ts)_
 
 ## `vodafone-station-cli host-exposure get`
 
@@ -717,7 +717,7 @@ EXAMPLES
   {JSON data}
 ```
 
-_See code: [src/commands/host-exposure/get.ts](https://github.com/totev/vodafone-station-cli/blob/v1.2.10/src/commands/host-exposure/get.ts)_
+_See code: [src/commands/host-exposure/get.ts](https://github.com/totev/vodafone-station-cli/blob/v1.2.11/src/commands/host-exposure/get.ts)_
 
 ## `vodafone-station-cli host-exposure set FILE`
 
@@ -740,7 +740,7 @@ EXAMPLES
   $ vodafone-station-cli host-exposure:set -p PASSWORD <FILE>
 ```
 
-_See code: [src/commands/host-exposure/set.ts](https://github.com/totev/vodafone-station-cli/blob/v1.2.10/src/commands/host-exposure/set.ts)_
+_See code: [src/commands/host-exposure/set.ts](https://github.com/totev/vodafone-station-cli/blob/v1.2.11/src/commands/host-exposure/set.ts)_
 
 ## `vodafone-station-cli plugins`
 
@@ -763,7 +763,7 @@ EXAMPLES
   $ vodafone-station-cli plugins
 ```
 
-_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v5.4.10/src/commands/plugins/index.ts)_
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v5.4.15/src/commands/plugins/index.ts)_
 
 ## `vodafone-station-cli plugins add PLUGIN`
 
@@ -837,7 +837,7 @@ EXAMPLES
   $ vodafone-station-cli plugins inspect myplugin
 ```
 
-_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v5.4.10/src/commands/plugins/inspect.ts)_
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v5.4.15/src/commands/plugins/inspect.ts)_
 
 ## `vodafone-station-cli plugins install PLUGIN`
 
@@ -886,7 +886,7 @@ EXAMPLES
     $ vodafone-station-cli plugins install someuser/someplugin
 ```
 
-_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v5.4.10/src/commands/plugins/install.ts)_
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v5.4.15/src/commands/plugins/install.ts)_
 
 ## `vodafone-station-cli plugins link PATH`
 
@@ -906,6 +906,7 @@ FLAGS
 
 DESCRIPTION
   Links a plugin into the CLI for development.
+
   Installation of a linked plugin will override a user-installed or core plugin.
 
   e.g. If you have a user-installed or core plugin that has a 'hello' command, installing a linked plugin with a 'hello'
@@ -916,7 +917,7 @@ EXAMPLES
   $ vodafone-station-cli plugins link myplugin
 ```
 
-_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v5.4.10/src/commands/plugins/link.ts)_
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v5.4.15/src/commands/plugins/link.ts)_
 
 ## `vodafone-station-cli plugins remove [PLUGIN]`
 
@@ -957,7 +958,7 @@ FLAGS
   --reinstall  Reinstall all plugins after uninstalling.
 ```
 
-_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v5.4.10/src/commands/plugins/reset.ts)_
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v5.4.15/src/commands/plugins/reset.ts)_
 
 ## `vodafone-station-cli plugins uninstall [PLUGIN]`
 
@@ -985,7 +986,7 @@ EXAMPLES
   $ vodafone-station-cli plugins uninstall myplugin
 ```
 
-_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v5.4.10/src/commands/plugins/uninstall.ts)_
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v5.4.15/src/commands/plugins/uninstall.ts)_
 
 ## `vodafone-station-cli plugins unlink [PLUGIN]`
 
@@ -1029,7 +1030,7 @@ DESCRIPTION
   Update installed plugins.
 ```
 
-_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v5.4.10/src/commands/plugins/update.ts)_
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v5.4.15/src/commands/plugins/update.ts)_
 
 ## `vodafone-station-cli restart`
 
@@ -1049,5 +1050,5 @@ EXAMPLES
   $ vodafone-station-cli restart -p PASSWORD
 ```
 
-_See code: [src/commands/restart.ts](https://github.com/totev/vodafone-station-cli/blob/v1.2.10/src/commands/restart.ts)_
+_See code: [src/commands/restart.ts](https://github.com/totev/vodafone-station-cli/blob/v1.2.11/src/commands/restart.ts)_
 <!-- commandsstop -->
