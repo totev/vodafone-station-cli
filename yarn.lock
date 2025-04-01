@@ -1559,21 +1559,21 @@
     which "^5.0.0"
 
 "@oclif/core@^4", "@oclif/core@^4.0.28", "@oclif/core@^4.0.30":
-  version "4.0.31"
-  resolved "https://registry.yarnpkg.com/@oclif/core/-/core-4.0.31.tgz#3f7ac806f27de6a87a7ee7caab8826687ce50412"
-  integrity sha512-7oyIZv/C1TP+fPc2tSzVPYqG1zU+nel1QvJxjAWyVhud0J8B5SpKZnryedxs3nlSVPJ6K1MT31C9esupCBYgZw==
+  version "4.2.10"
+  resolved "https://registry.yarnpkg.com/@oclif/core/-/core-4.2.10.tgz#31dfb7481c79887c3e672e10c981fcc01fcbaeb3"
+  integrity sha512-fAqcXgqkUm4v5FYy7qWP4w1HaOlVSVJveah+yVTo5Nm5kTiXhmD5mQQ7+knGeBaStyrtQy6WardoC2xSic9rlQ==
   dependencies:
     ansi-escapes "^4.3.2"
-    ansis "^3.3.2"
+    ansis "^3.17.0"
     clean-stack "^3.0.1"
     cli-spinners "^2.9.2"
-    debug "^4.3.7"
+    debug "^4.4.0"
     ejs "^3.1.10"
     get-package-type "^0.1.0"
     globby "^11.1.0"
     indent-string "^4.0.0"
     is-wsl "^2.2.0"
-    lilconfig "^3.1.2"
+    lilconfig "^3.1.3"
     minimatch "^9.0.5"
     semver "^7.6.3"
     string-width "^4.2.3"
@@ -2918,10 +2918,10 @@ ansi-styles@^6.1.0:
   resolved "https://registry.yarnpkg.com/ansi-styles/-/ansi-styles-6.2.1.tgz#0e62320cf99c21afff3b3012192546aacbfb05c5"
   integrity sha512-bN798gFfQX+viw3R7yrGWRqnrN2oRkEkUjjl4JNn4E8GxxbjtG3FbrEIIY3l8/hrwUwIeCZvi4QuOTP4MErVug==
 
-ansis@^3.3.1, ansis@^3.3.2, ansis@^3.5.2:
-  version "3.5.2"
-  resolved "https://registry.yarnpkg.com/ansis/-/ansis-3.5.2.tgz#d7a1f95a23f6becc5ee16fab85cda41c898fad96"
-  integrity sha512-5uGcUZRbORJeEppVdWfZOSybTMz+Ou+84HepgK081Yk5+pPMMzWf/XGxiAT6bfBqCghRB4MwBtYn0CHqINRVag==
+ansis@^3.17.0, ansis@^3.3.1, ansis@^3.3.2, ansis@^3.5.2:
+  version "3.17.0"
+  resolved "https://registry.yarnpkg.com/ansis/-/ansis-3.17.0.tgz#fa8d9c2a93fe7d1177e0c17f9eeb562a58a832d7"
+  integrity sha512-0qWUglt9JEqLFr3w1I1pbrChn1grhaiAR2ocX1PP/flRmxgtwTzPFFFnfIlD6aMOLQZgSuCRlidD70lvx8yhzg==
 
 anymatch@^3.0.3:
   version "3.1.3"
@@ -5767,10 +5767,10 @@ libnpmversion@^7.0.0:
     proc-log "^5.0.0"
     semver "^7.3.7"
 
-lilconfig@^3.1.2:
-  version "3.1.2"
-  resolved "https://registry.yarnpkg.com/lilconfig/-/lilconfig-3.1.2.tgz#e4a7c3cb549e3a606c8dcc32e5ae1005e62c05cb"
-  integrity sha512-eop+wDAvpItUys0FWkHIKeC9ybYrTGbU41U5K7+bttZZeohvnY7M9dZ5kB21GNWiFT2q1OoPTvncPCgSOVO5ow==
+lilconfig@^3.1.3:
+  version "3.1.3"
+  resolved "https://registry.yarnpkg.com/lilconfig/-/lilconfig-3.1.3.tgz#a1bcfd6257f9585bf5ae14ceeebb7b559025e4c4"
+  integrity sha512-/vlFKAoH5Cgt3Ie+JLhRbwOsCQePABiU3tJ1egGvyQ+33R/vcwM2Zl2QR/LzjsBeItPt3oSVXapn+m4nQDvpzw==
 
 lines-and-columns@^1.1.6:
   version "1.2.4"
