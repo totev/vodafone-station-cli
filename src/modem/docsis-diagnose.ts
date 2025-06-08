@@ -2,7 +2,7 @@ import type {
   Diagnose, DiagnosedDocsis31ChannelStatus, DiagnosedDocsisChannelStatus, DiagnosedDocsisStatus, DocsisChannelType, DocsisStatus, Modulation,
 } from './modem';
 
-import { BAD_MODEM_POWER_LEVEL } from './constants';
+import {BAD_MODEM_POWER_LEVEL} from './constants';
 
 export interface Deviation {
   channelType?: DocsisChannelType

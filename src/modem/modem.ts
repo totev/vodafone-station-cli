@@ -1,10 +1,10 @@
-import axios, { AxiosInstance, AxiosRequestConfig } from 'axios'
-import { HttpCookieAgent, HttpsCookieAgent } from 'http-cookie-agent/http'
-import { CookieJar } from 'tough-cookie'
+import axios, {AxiosInstance, AxiosRequestConfig} from 'axios'
+import {HttpCookieAgent, HttpsCookieAgent} from 'http-cookie-agent/http'
+import {CookieJar} from 'tough-cookie'
 
-import type { Protocol as HttpProtocol } from './discovery'
+import type {Protocol as HttpProtocol} from './discovery'
 
-import { Log } from '../logger'
+import {Log} from '../logger'
 
 export type DocsisChannelType = 'OFDM' | 'OFDMA' | 'SC-QAM'
 
