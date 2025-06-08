@@ -1,26 +1,23 @@
 import {Args, Flags} from '@oclif/core'
+
 import Command from '../../base-command'
 import {toggleHostExposureEntries} from '../../modem/host-exposure'
 
 export default class DisableHostExposureEntries extends Command {
-  static description = 'Disable a set of host exposure entries'
-
-  static examples = [`$ vodafone-station-cli host-exposure:disable -p PASSWORD [ENTRY NAME | [ENTRY NAME...]]`]
-
   static args = {
     entries: Args.string({
       description: 'Host exposure entries to disable. Pass no names to disable every existing entry.',
       required: false,
     }),
   }
-
+  static description = 'Disable a set of host exposure entries'
+  static examples = ['$ vodafone-station-cli host-exposure:disable -p PASSWORD [ENTRY NAME | [ENTRY NAME...]]']
   static flags = {
     password: Flags.string({
       char: 'p',
       description: 'router/modem password',
     }),
   }
-
   static strict = false
 
   async run(): Promise<void> {
@@ -28,9 +25,7 @@ export default class DisableHostExposureEntries extends Command {
 
     const password = flags.password ?? process.env.VODAFONE_ROUTER_PASSWORD
     if (!password || password === '') {
-      this.log(
-        'You must provide a password either using -p or by setting the environment variable VODAFONE_ROUTER_PASSWORD',
-      )
+      this.log('You must provide a password either using -p or by setting the environment variable VODAFONE_ROUTER_PASSWORD')
       this.exit()
     }
 

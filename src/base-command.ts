@@ -1,5 +1,6 @@
 import {Command} from '@oclif/core'
 import {config} from 'dotenv'
+
 import {Log, OclifLogger} from './logger'
 config()
 

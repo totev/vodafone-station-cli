@@ -1,6 +1,6 @@
+import {Log} from '../logger'
 import {discoverModemIp, ModemDiscovery} from './discovery'
 import {modemFactory} from './factory'
-import {Log} from '../logger'
 
 export async function toggleHostExposureEntries(toggle: boolean, entries: string[], password: string, logger: Log): Promise<void> {
   const modemIp = await discoverModemIp()
@@ -8,15 +8,15 @@ export async function toggleHostExposureEntries(toggle: boolean, entries: string
   const modem = modemFactory(discoveredModem, logger)
   try {
     await modem.login(password)
-    let settings = await modem.getHostExposure()
+    const settings = await modem.getHostExposure()
 
     let names = entries
     if (names.length === 0) {
-      names = settings.hosts.map((host) => host.serviceName)
+      names = settings.hosts.map(host => host.serviceName)
     }
 
     for (const name of names) {
-      const index = settings.hosts.findIndex((host) => host.serviceName === name)
+      const index = settings.hosts.findIndex(host => host.serviceName === name)
       if (index === -1) {
         logger.warn(`Entry with the name '${name}' does not exist.`)
       } else {

@@ -1,18 +1,17 @@
-import { Flags } from '@oclif/core';
+import {Flags} from '@oclif/core';
+
 import Command from '../base-command';
-import DocsisDiagnose from "../modem/docsis-diagnose";
-import { TablePrinter } from "../modem/printer";
-import { webDiagnoseLink } from "../modem/web-diagnose";
-import { getDocsisStatus } from "./docsis";
+import DocsisDiagnose from '../modem/docsis-diagnose';
+import {TablePrinter} from '../modem/printer';
+import {webDiagnoseLink} from '../modem/web-diagnose';
+import {getDocsisStatus} from './docsis';
 
 export default class Diagnose extends Command {
-  static description =
-    'Diagnose the quality of the docsis connection.';
-
+  static description
+    = 'Diagnose the quality of the docsis connection.';
   static examples = [
     '$ vodafone-station-cli diagnose',
   ];
-
   static flags = {
     password: Flags.string({
       char: 'p',
@@ -25,13 +24,11 @@ export default class Diagnose extends Command {
   };
 
   async run(): Promise<void> {
-    const { flags } = await this.parse(Diagnose)
+    const {flags} = await this.parse(Diagnose)
 
     const password = flags.password ?? process.env.VODAFONE_ROUTER_PASSWORD
     if (!password || password === '') {
-      this.log(
-        'You must provide a password either using -p or by setting the environment variable VODAFONE_ROUTER_PASSWORD'
-      )
+      this.log('You must provide a password either using -p or by setting the environment variable VODAFONE_ROUTER_PASSWORD')
       this.exit()
     }
 
@@ -42,7 +39,7 @@ export default class Diagnose extends Command {
       this.log(tablePrinter.print())
 
       if (diagnoser.hasDeviations()) {
-        this.logger.warn("Docsis connection connection quality deviation found!")
+        this.logger.warn('Docsis connection connection quality deviation found!')
       }
 
       if (flags.web) {
@@ -51,7 +48,7 @@ export default class Diagnose extends Command {
 
       this.log(diagnoser.printDeviationsConsole())
     } catch (error) {
-      this.error(error as Error, { message: "Something went wrong" })
+      this.error(error as Error, {message: 'Something went wrong'})
     }
   }
 }
