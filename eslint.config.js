@@ -46,7 +46,7 @@ export default [
   {
     rules: {
       'no-useless-constructor': 'off',
-      indent: ['warn', 2],
+      'indent': 'off', // Disable base indent rule to avoid conflicts with @stylistic/indent
       'lines-between-class-members': 'off',
       'comma-dangle': 'off',
       '@typescript-eslint/camelcase': 'off'

@@ -34,8 +34,8 @@ export class TablePrinter {
       channelStatus.lockStatus,
       channelStatus.snr,
     ])
-      .map(rowValues => this.tableRow(...rowValues))
-      .join('\n') ?? ''
+    .map(rowValues => this.tableRow(...rowValues))
+    .join('\n') ?? ''
   }
 
   docsisStatusToRow(rowObjects: HumanizedDocsisChannelStatus[]): string {
@@ -48,8 +48,8 @@ export class TablePrinter {
       channelStatus.lockStatus,
       channelStatus.snr,
     ])
-      .map(rowValues => this.tableRow(...rowValues))
-      .join('\n') ?? ''
+    .map(rowValues => this.tableRow(...rowValues))
+    .join('\n') ?? ''
   }
 
   lineText(...words: Array<number | string>): string {
