@@ -1,8 +1,8 @@
-import { Log } from '../logger';
+import {Log} from '../logger';
 import {
-    DocsisChannelType, DocsisStatus, HumanizedDocsis31ChannelStatus, HumanizedDocsisChannelStatus, Modem, normalizeModulation,
+  DocsisChannelType, DocsisStatus, HumanizedDocsis31ChannelStatus, HumanizedDocsisChannelStatus, Modem, normalizeModulation,
 } from './modem';
-import { deriveKeyTechnicolor } from './tools/crypto';
+import {deriveKeyTechnicolor} from './tools/crypto';
 
 export interface TechnicolorBaseResponse {
   data?: {[key: string]: unknown};

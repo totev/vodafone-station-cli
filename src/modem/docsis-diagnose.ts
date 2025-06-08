@@ -1,8 +1,8 @@
 import type {
-    Diagnose, DiagnosedDocsis31ChannelStatus, DiagnosedDocsisChannelStatus, DiagnosedDocsisStatus, DocsisChannelType, DocsisStatus, Modulation,
+  Diagnose, DiagnosedDocsis31ChannelStatus, DiagnosedDocsisChannelStatus, DiagnosedDocsisStatus, DocsisChannelType, DocsisStatus, Modulation,
 } from './modem';
 
-import { BAD_MODEM_POWER_LEVEL } from './constants';
+import {BAD_MODEM_POWER_LEVEL} from './constants';
 
 export interface Deviation {
   channelType?: DocsisChannelType
@@ -26,32 +26,32 @@ export default class DocsisDiagnose {
 
   checkDownstream(): DiagnosedDocsisChannelStatus[] {
     return this.docsisStatus.downstream
-    .map(channel => ({...channel, diagnose: downstreamDeviation(channel)}))
+      .map(channel => ({...channel, diagnose: downstreamDeviation(channel)}))
   }
 
   checkDownstreamSNR(): DiagnosedDocsisChannelStatus[] {
     return this.docsisStatus.downstream
-    .map(channel => ({...channel, diagnose: checkSignalToNoise(channel)}))
+      .map(channel => ({...channel, diagnose: checkSignalToNoise(channel)}))
   }
 
   checkOfdmaUpstream(): DiagnosedDocsis31ChannelStatus[] {
     return this.docsisStatus.upstreamOfdma
-    .map(channel => ({...channel, diagnose: upstreamDeviation(channel)}))
+      .map(channel => ({...channel, diagnose: upstreamDeviation(channel)}))
   }
 
   checkOfdmDownstream(): DiagnosedDocsis31ChannelStatus[] {
     return this.docsisStatus.downstreamOfdm
-    .map(channel => ({...channel, diagnose: downstreamDeviation(channel)}))
+      .map(channel => ({...channel, diagnose: downstreamDeviation(channel)}))
   }
 
   checkOfdmDownstreamSNR(): DiagnosedDocsis31ChannelStatus[] {
     return this.docsisStatus.downstreamOfdm
-    .map(channel => ({...channel, diagnose: checkSignalToNoise(channel)}))
+      .map(channel => ({...channel, diagnose: checkSignalToNoise(channel)}))
   }
 
   checkUpstream(): DiagnosedDocsisChannelStatus[] {
     return this.docsisStatus.upstream
-    .map(channel => ({...channel, diagnose: upstreamDeviation(channel)}))
+      .map(channel => ({...channel, diagnose: upstreamDeviation(channel)}))
   }
 
   hasDeviations(): boolean {
@@ -63,8 +63,8 @@ export default class DocsisDiagnose {
       this.checkUpstream(),
       this.checkOfdmaUpstream(),
     ]
-    .flat()
-    .some(({diagnose}) => diagnose.deviation)
+      .flat()
+      .some(({diagnose}) => diagnose.deviation)
   }
 
   printDeviationsConsole(): string {
@@ -72,22 +72,22 @@ export default class DocsisDiagnose {
       return colorize('green', 'Hooray no deviations found!')
     }
 
-        const down
+    const down
       = [...this.checkDownstream(), ...this.checkOfdmDownstream()]
-        .filter(downstream => downstream.diagnose.deviation)
-        .map(down =>
-          colorize(down.diagnose.color, `ch${down.channelId}pl`))
+      .filter(downstream => downstream.diagnose.deviation)
+      .map(down =>
+        colorize(down.diagnose.color, `ch${down.channelId}pl`))
     const downSnr
       = [...this.checkDownstreamSNR(),
         ...this.checkOfdmDownstreamSNR()]
-        .filter(downstream => downstream.diagnose.deviation)
-        .map(down =>
-          colorize(down.diagnose.color, `ch${down.channelId}snr`))
+      .filter(downstream => downstream.diagnose.deviation)
+      .map(down =>
+        colorize(down.diagnose.color, `ch${down.channelId}snr`))
     const up
       = [...this.diagnose.upstream, ...this.diagnose.upstreamOfdma]
-        .filter(upstream => upstream.diagnose.deviation)
-        .map(upstream =>
-          colorize(upstream.diagnose.color, `ch${upstream.channelId}pl`)).join(', ')
+      .filter(upstream => upstream.diagnose.deviation)
+      .map(upstream =>
+        colorize(upstream.diagnose.color, `ch${upstream.channelId}pl`)).join(', ')
 
     return [
       'Legend: pl = power level | snr = signal to noise ration',
