@@ -7,7 +7,12 @@ export interface Log {
 }
 
 export class OclifLogger implements Log {
-  constructor(private delegateLog: Function, private delegateWarn: Function, private delegateDebug: Function, private delegateError: Function) {}
+  constructor(
+    private delegateLog: (message?: string, ...args: unknown[]) => void,
+    private delegateWarn: (input: Error | string | unknown) => void,
+    private delegateDebug: (...args: unknown[]) => void,
+    private delegateError: (input: Error | string | unknown, ...options: unknown[]) => void,
+  ) {}
 
   debug(...args: unknown[]): void {
     this.delegateDebug(args)

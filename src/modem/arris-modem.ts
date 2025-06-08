@@ -1,12 +1,12 @@
-import {Log} from '../logger'
+import {Log} from '../logger';
 import {BAD_MODEM_POWER_LEVEL} from './constants';
 import {
   DocsisChannelType, DocsisStatus, ExposedHostSettings, HostExposureSettings, HumanizedDocsis31ChannelStatus, HumanizedDocsisChannelStatus, Modem, Protocol,
-} from './modem'
-import {decrypt, deriveKey, encrypt} from './tools/crypto'
+} from './modem';
+import {decrypt, deriveKey, encrypt} from './tools/crypto';
 import {
   CryptoVars, extractCredentialString, extractCryptoVars, extractDocsisStatus,
-} from './tools/html-parser'
+} from './tools/html-parser';
 
 export interface ArrisDocsisStatus {
   downstream: ArrisDocsisChannelStatus[];
@@ -40,7 +40,7 @@ export interface SetPasswordResponse {
 }
 
 interface ArrisGetHostExposureSettings {
-  dhcpclient: any;
+  dhcpclient: unknown;
   hostExposure: ArrisGetExposedHostSettings[];
 }
 
@@ -87,8 +87,8 @@ export function normalizeChannelStatus(channelStatus: ArrisDocsisChannelStatus):
     channelType: channelStatus.ChannelType,
     lockStatus: channelStatus.LockStatus,
     modulation: channelStatus.Modulation,
-    powerLevel: isNaN(powerLevel) ? BAD_MODEM_POWER_LEVEL : powerLevel,
-    snr: isNaN(snr) ? 0 : snr,
+    powerLevel: Number.isNaN(powerLevel) ? BAD_MODEM_POWER_LEVEL : powerLevel,
+    snr: Number.isNaN(snr) ? 0 : snr,
     ...frequency,
   } as HumanizedDocsis31ChannelStatus | HumanizedDocsisChannelStatus
 }
@@ -102,20 +102,20 @@ export function normalizeDocsisStatus(arrisDocsisStatus: ArrisDocsisStatus): Doc
     upstreamOfdma: [],
   }
   result.downstream = arrisDocsisStatus.downstream
-    .filter(downstream => downstream.ChannelType === 'SC-QAM')
-    .map(normalizeChannelStatus) as HumanizedDocsisChannelStatus[]
+  .filter(downstream => downstream.ChannelType === 'SC-QAM')
+  .map(channel => normalizeChannelStatus(channel)) as HumanizedDocsisChannelStatus[]
 
   result.downstreamOfdm = arrisDocsisStatus.downstream
-    .filter(downstream => downstream.ChannelType === 'OFDM')
-    .map(normalizeChannelStatus) as HumanizedDocsis31ChannelStatus[]
+  .filter(downstream => downstream.ChannelType === 'OFDM')
+  .map(channel => normalizeChannelStatus(channel)) as HumanizedDocsis31ChannelStatus[]
 
   result.upstream = arrisDocsisStatus.upstream
-    .filter(upstream => upstream.ChannelType === 'SC-QAM')
-    .map(normalizeChannelStatus) as HumanizedDocsisChannelStatus[]
+  .filter(upstream => upstream.ChannelType === 'SC-QAM')
+  .map(channel => normalizeChannelStatus(channel)) as HumanizedDocsisChannelStatus[]
 
   result.upstreamOfdma = arrisDocsisStatus.upstream
-    .filter(upstream => upstream.ChannelType === 'OFDMA')
-    .map(normalizeChannelStatus) as HumanizedDocsis31ChannelStatus[]
+  .filter(upstream => upstream.ChannelType === 'OFDMA')
+  .map(channel => normalizeChannelStatus(channel)) as HumanizedDocsis31ChannelStatus[]
   return result
 }
 
@@ -130,7 +130,7 @@ export class Arris extends Modem {
     return {
       enabled: settings.Status === 'Enabled',
       endPort: settings.EndPort,
-      index: Number.parseInt(settings.Index),
+      index: Number.parseInt(settings.Index, 10),
       mac: settings.MAC,
       protocol: settings.Protocol,
       serviceName: settings.ServiceName,
@@ -251,7 +251,7 @@ export class Arris extends Modem {
       )
       return {
         hosts: (data as ArrisGetHostExposureSettings)
-        .hostExposure.map(this._convertGetExposedHostSettings),
+        .hostExposure.map(setting => this._convertGetExposedHostSettings(setting)),
       } as HostExposureSettings
     } catch (error) {
       this.logger.error('Could not get host exposure data:\n', error)
@@ -321,7 +321,7 @@ export class Arris extends Modem {
 
   async setHostExposure(settings: HostExposureSettings): Promise<void> {
     const convertedSettings
-      = {hEditRule: settings.hosts.map(this._convertSetExposedHostSettings)} as ArrisSetHostExposureSettings
+      = {hEditRule: settings.hosts.map(setting => this._convertSetExposedHostSettings(setting))} as ArrisSetHostExposureSettings
     try {
       await this.httpClient.post(
         'php/ajaxSet_net_ipv6_host_exposure_data.php',

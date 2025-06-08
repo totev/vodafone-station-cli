@@ -1,4 +1,4 @@
-import type {DocsisStatus, HumanizedDocsis31ChannelStatus, HumanizedDocsisChannelStatus} from './modem';
+import type { DocsisStatus, HumanizedDocsis31ChannelStatus, HumanizedDocsisChannelStatus } from './modem';
 
 export class TablePrinter {
   head = [
@@ -25,13 +25,29 @@ export class TablePrinter {
   }
 
   docsis31StatusToRow(rowObjects: HumanizedDocsis31ChannelStatus[]): string {
-    return rowObjects?.map(channelStatus => [channelStatus.channelId, channelStatus.channelType, channelStatus.modulation, channelStatus.powerLevel, `${channelStatus.frequencyStart}-${channelStatus.frequencyEnd}`, channelStatus.lockStatus, channelStatus.snr])
+    return rowObjects?.map(channelStatus => [
+      channelStatus.channelId,
+      channelStatus.channelType,
+      channelStatus.modulation,
+      channelStatus.powerLevel,
+      `${channelStatus.frequencyStart}-${channelStatus.frequencyEnd}`,
+      channelStatus.lockStatus,
+      channelStatus.snr,
+    ])
     .map(rowValues => this.tableRow(...rowValues))
     .join('\n') ?? ''
   }
 
   docsisStatusToRow(rowObjects: HumanizedDocsisChannelStatus[]): string {
-    return rowObjects?.map(channelStatus => [channelStatus.channelId, channelStatus.channelType, channelStatus.modulation, channelStatus.powerLevel, channelStatus.frequency, channelStatus.lockStatus, channelStatus.snr])
+    return rowObjects?.map(channelStatus => [
+      channelStatus.channelId,
+      channelStatus.channelType,
+      channelStatus.modulation,
+      channelStatus.powerLevel,
+      channelStatus.frequency,
+      channelStatus.lockStatus,
+      channelStatus.snr,
+    ])
     .map(rowValues => this.tableRow(...rowValues))
     .join('\n') ?? ''
   }

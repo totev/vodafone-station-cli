@@ -4,7 +4,7 @@ import {config} from 'dotenv'
 import {Log, OclifLogger} from './logger'
 config()
 
-export default abstract class extends Command {
+export default abstract class BaseCommand extends Command {
   get logger(): Log {
     return new OclifLogger(this.log, this.warn, this.debug, this.error)
   }

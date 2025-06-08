@@ -1,8 +1,8 @@
-import {Log} from '../logger'
+import { Log } from '../logger';
 import {
-  DocsisChannelType, DocsisStatus, HumanizedDocsis31ChannelStatus, HumanizedDocsisChannelStatus, Modem, normalizeModulation,
-} from './modem'
-import {deriveKeyTechnicolor} from './tools/crypto'
+    DocsisChannelType, DocsisStatus, HumanizedDocsis31ChannelStatus, HumanizedDocsisChannelStatus, Modem, normalizeModulation,
+} from './modem';
+import { deriveKeyTechnicolor } from './tools/crypto';
 
 export interface TechnicolorBaseResponse {
   data?: {[key: string]: unknown};
@@ -137,11 +137,11 @@ export function normalizeOfdmChannelStatus(channelStatus: TechnicolorDocsis31Cha
 
 export function normalizeDocsisStatus(channelStatus: TechnicolorDocsisStatus): DocsisStatus {
   return {
-    downstream: channelStatus.data.downstream.map(normalizeChannelStatus),
-    downstreamOfdm: channelStatus.data.ofdm_downstream.map(normalizeOfdmChannelStatus),
+    downstream: channelStatus.data.downstream.map(channel => normalizeChannelStatus(channel)),
+    downstreamOfdm: channelStatus.data.ofdm_downstream.map(channel => normalizeOfdmChannelStatus(channel)),
     time: new Date().toISOString(),
-    upstream: channelStatus.data.upstream.map(normalizeUpstreamChannelStatus),
-    upstreamOfdma: channelStatus.data.ofdma_upstream.map(normalizeUpstreamOfdmaChannelStatus),
+    upstream: channelStatus.data.upstream.map(channel => normalizeUpstreamChannelStatus(channel)),
+    upstreamOfdma: channelStatus.data.ofdma_upstream.map(channel => normalizeUpstreamOfdmaChannelStatus(channel)),
   }
 }
 

@@ -17,7 +17,7 @@ export async function discoverModemIp(): Promise<string> {
       return maybeResult?.request?.host;
     }
 
-    throw new Error();
+    throw new Error('Could not determine modem IP address');
   } catch (error) {
     console.error('Could not find a router/modem under the known addresses.');
     throw error;

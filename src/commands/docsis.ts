@@ -35,7 +35,7 @@ export default class Docsis extends Command {
   static flags = {
     file: Flags.boolean({
       char: 'f',
-      description: 'write out a report file under ./reports/${CURRENT_UNIX_TIMESTAMP}_docsisStatus.json',
+      description: 'write out a report file under ./reports/{CURRENT_UNIX_TIMESTAMP}_docsisStatus.json',
     }),
     password: Flags.string({
       char: 'p',

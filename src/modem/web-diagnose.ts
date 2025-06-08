@@ -4,7 +4,7 @@ import type {DocsisStatus} from './modem';
 
 export function compressDocsisStatus(docsisStatus: DocsisStatus): string {
   const json  = JSON.stringify(docsisStatus)
-  const compressed = brotliCompressSync(Buffer.from(json, 'utf-8'))
+  const compressed = brotliCompressSync(Buffer.from(json, 'utf8'))
   return compressed.toString('base64url')
 }
 

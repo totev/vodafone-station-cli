@@ -1,13 +1,13 @@
 import type {
-  Diagnose, DiagnosedDocsis31ChannelStatus, DiagnosedDocsisChannelStatus, DiagnosedDocsisStatus, DocsisChannelType, DocsisStatus, Modulation,
+    Diagnose, DiagnosedDocsis31ChannelStatus, DiagnosedDocsisChannelStatus, DiagnosedDocsisStatus, DocsisChannelType, DocsisStatus, Modulation,
 } from './modem';
 
-import {BAD_MODEM_POWER_LEVEL} from './constants';
+import { BAD_MODEM_POWER_LEVEL } from './constants';
 
 export interface Deviation {
   channelType?: DocsisChannelType
   check(powerLevel: number):Diagnose;
-  modulation: Modulation;
+  modulation: 'UNKNOWN' | Modulation;
 }
 
 // based on https://www.vodafonekabelforum.de/viewtopic.php?t=32353
@@ -36,26 +36,26 @@ export default class DocsisDiagnose {
 
   checkOfdmaUpstream(): DiagnosedDocsis31ChannelStatus[] {
     return this.docsisStatus.upstreamOfdma
-      .map(channel => ({...channel, diagnose: upstreamDeviation(channel)}))
+    .map(channel => ({...channel, diagnose: upstreamDeviation(channel)}))
   }
 
   checkOfdmDownstream(): DiagnosedDocsis31ChannelStatus[] {
     return this.docsisStatus.downstreamOfdm
-      .map(channel => ({...channel, diagnose: downstreamDeviation(channel)}))
+    .map(channel => ({...channel, diagnose: downstreamDeviation(channel)}))
   }
 
   checkOfdmDownstreamSNR(): DiagnosedDocsis31ChannelStatus[] {
     return this.docsisStatus.downstreamOfdm
-      .map(channel => ({...channel, diagnose: checkSignalToNoise(channel)}))
+    .map(channel => ({...channel, diagnose: checkSignalToNoise(channel)}))
   }
 
   checkUpstream(): DiagnosedDocsisChannelStatus[] {
     return this.docsisStatus.upstream
-      .map(channel => ({...channel, diagnose: upstreamDeviation(channel)}))
+    .map(channel => ({...channel, diagnose: upstreamDeviation(channel)}))
   }
 
   hasDeviations(): boolean {
-    return Boolean([
+    return [
       this.checkDownstream(),
       this.checkDownstreamSNR(),
       this.checkOfdmDownstream(),
@@ -63,31 +63,31 @@ export default class DocsisDiagnose {
       this.checkUpstream(),
       this.checkOfdmaUpstream(),
     ]
-      .flat()
-      .find(({diagnose}) => diagnose.deviation))
+    .flat()
+    .some(({diagnose}) => diagnose.deviation)
   }
 
-  printDeviationsConsole(): any {
+  printDeviationsConsole(): string {
     if (this.hasDeviations() === false) {
       return colorize('green', 'Hooray no deviations found!')
     }
 
-    const down
+        const down
       = [...this.checkDownstream(), ...this.checkOfdmDownstream()]
-      .filter(downstream => downstream.diagnose.deviation)
-      .map(down =>
-        colorize(down.diagnose.color, `ch${down.channelId}pl`))
+        .filter(downstream => downstream.diagnose.deviation)
+        .map(down =>
+          colorize(down.diagnose.color, `ch${down.channelId}pl`))
     const downSnr
       = [...this.checkDownstreamSNR(),
         ...this.checkOfdmDownstreamSNR()]
-      .filter(downstream => downstream.diagnose.deviation)
-      .map(down =>
-        colorize(down.diagnose.color, `ch${down.channelId}snr`))
+        .filter(downstream => downstream.diagnose.deviation)
+        .map(down =>
+          colorize(down.diagnose.color, `ch${down.channelId}snr`))
     const up
       = [...this.diagnose.upstream, ...this.diagnose.upstreamOfdma]
-      .filter(upstream => upstream.diagnose.deviation)
-      .map(upstream =>
-        colorize(upstream.diagnose.color, `ch${upstream.channelId}pl`)).join(', ')
+        .filter(upstream => upstream.diagnose.deviation)
+        .map(upstream =>
+          colorize(upstream.diagnose.color, `ch${upstream.channelId}pl`)).join(', ')
 
     return [
       'Legend: pl = power level | snr = signal to noise ration',
@@ -229,9 +229,9 @@ export class DownstreamDeviation4096QAM implements Deviation {
 }
 
 export class DownstreamDeviationUnknown implements Deviation {
-  modulation = 'UNKNOWN' as any
+  modulation = 'UNKNOWN' as const
 
-  check(powerLevel: number): Diagnose {
+  check(_powerLevel: number): Diagnose {
     return FixImmediately;
   }
 }
