@@ -7,7 +7,7 @@ import {BAD_MODEM_POWER_LEVEL} from './constants';
 export interface Deviation {
   channelType?: DocsisChannelType
   check(powerLevel: number):Diagnose;
-  modulation: 'UNKNOWN' | Modulation;
+  modulation: 'Unknown' | Modulation;
 }
 
 // based on https://www.vodafonekabelforum.de/viewtopic.php?t=32353
@@ -229,7 +229,7 @@ export class DownstreamDeviation4096QAM implements Deviation {
 }
 
 export class DownstreamDeviationUnknown implements Deviation {
-  modulation = 'UNKNOWN' as const
+  modulation = 'Unknown' as const
 
   check(_powerLevel: number): Diagnose {
     return FixImmediately;
@@ -257,7 +257,7 @@ export const FixWithinOneMonth: Diagnose = {
   deviation: true,
 }
 
-export function downstreamDeviationFactory(modulation: 'UNKNOWN' | Modulation): Deviation {
+export function downstreamDeviationFactory(modulation: 'Unknown' | Modulation): Deviation {
   switch (modulation) {
   case '64QAM': {
     return new DownstreamDeviation64QAM();
@@ -279,7 +279,7 @@ export function downstreamDeviationFactory(modulation: 'UNKNOWN' | Modulation): 
     return new DownstreamDeviation4096QAM();
   }
 
-  case 'UNKNOWN': {
+  case 'Unknown': {
     return new DownstreamDeviationUnknown();
   }
 
@@ -336,6 +336,12 @@ export function checkSignalToNoise({modulation, snr}:{modulation: Modulation; sn
   case '4096QAM': {
     snrOffsetForModulation = 18;
     break;
+  }
+
+  case 'Unknown': {
+    // For unknown modulation, we can't determine proper SNR deviation
+    // so we return FixImmediately to indicate a problem
+    return FixImmediately;
   }
 
   default: {

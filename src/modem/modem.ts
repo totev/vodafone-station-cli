@@ -1,5 +1,5 @@
-import axios, {AxiosInstance} from 'axios'
-import {HttpsCookieAgent} from 'http-cookie-agent/http'
+import axios, {AxiosInstance, AxiosRequestConfig} from 'axios'
+import {HttpCookieAgent, HttpsCookieAgent} from 'http-cookie-agent/http'
 import {CookieJar} from 'tough-cookie'
 
 import type {Protocol as HttpProtocol} from './discovery'
@@ -8,7 +8,7 @@ import {Log} from '../logger'
 
 export type DocsisChannelType = 'OFDM' | 'OFDMA' | 'SC-QAM'
 
-export type Modulation = '16QAM' | '32QAM' | '64QAM' | '256QAM' | '1024QAM' | '2048QAM' | '4096QAM' | 'QPSK'
+export type Modulation = '16QAM' | '32QAM' | '64QAM' | '256QAM' | '1024QAM' | '2048QAM' | '4096QAM' | 'QPSK' | 'Unknown'
 
 export type Protocol = 'TCP' | 'UDP'
 
@@ -123,29 +123,39 @@ export abstract class Modem implements GenericModem {
   }
 
   private initAxios(): AxiosInstance {
-    return axios.create({
+    const config: AxiosRequestConfig = {
       baseURL: this.baseUrl,
       headers: {
         'X-Requested-With': 'XMLHttpRequest',
       },
-      httpAgent: new HttpsCookieAgent({
-        cookies: {jar: this.cookieJar},
-        keepAlive: true,
-        rejectUnauthorized: false, // disable CA checks
-      }),
-      httpsAgent: new HttpsCookieAgent({
+      timeout: 45_000,
+      withCredentials: true,
+    }
+
+    if (this.protocol === 'https') {
+      config.httpsAgent = new HttpsCookieAgent({
         cookies: {jar: this.cookieJar},
         keepAlive: true,
         rejectUnauthorized: false, // the modems have a self signed ssl certificate
-      }),
-      timeout: 45_000,
-      withCredentials: true,
-    })
+      })
+    } else {
+      config.httpAgent = new HttpCookieAgent({
+        cookies: {jar: this.cookieJar},
+        keepAlive: true,
+      })
+    }
+
+    return axios.create(config)
   }
 }
 
 export function normalizeModulation(modulation: string): Modulation {
   let normalizedModulation = modulation
+
+  // Handle empty or undefined modulation
+  if (!modulation || modulation.trim() === '') {
+    throw new Error(`Empty modulation value received: "${modulation}"`)
+  }
 
   // Handle slash-separated values by taking the first one
   if (modulation.includes('/')) {
@@ -164,6 +174,11 @@ export function normalizeModulation(modulation: string): Modulation {
   // Convert to uppercase
   normalizedModulation = normalizedModulation.toUpperCase()
 
+  // Handle "Unknown" case
+  if (normalizedModulation === 'UNKNOWN') {
+    return 'Unknown'
+  }
+
   // Handle formats like "QAM256" -> "256QAM"
   if (normalizedModulation.startsWith('QAM') && normalizedModulation.length > 3) {
     const number = normalizedModulation.slice(3)
@@ -171,11 +186,11 @@ export function normalizeModulation(modulation: string): Modulation {
   }
 
   // Validate against known modulations
-  const validModulations: Modulation[] = ['16QAM', '32QAM', '64QAM', '256QAM', '1024QAM', '2048QAM', '4096QAM', 'QPSK']
+  const validModulations: Modulation[] = ['16QAM', '32QAM', '64QAM', '256QAM', '1024QAM', '2048QAM', '4096QAM', 'QPSK', 'Unknown']
 
   if (validModulations.includes(normalizedModulation as Modulation)) {
     return normalizedModulation as Modulation
   }
 
-  throw new Error(`Unknown modulation ${modulation}`)
+  throw new Error(`Unknown modulation "${modulation}" (normalized: "${normalizedModulation}")`)
 }
