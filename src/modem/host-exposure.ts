@@ -1,10 +1,10 @@
 import {Log} from '../logger'
-import {discoverModemIp, ModemDiscovery} from './discovery'
+import {discoverModemLocation, ModemDiscovery} from './discovery'
 import {modemFactory} from './factory'
 
 export async function toggleHostExposureEntries(toggle: boolean, entries: string[], password: string, logger: Log): Promise<void> {
-  const modemIp = await discoverModemIp()
-  const discoveredModem = await new ModemDiscovery(modemIp, logger).discover()
+  const modemLocation = await discoverModemLocation()
+  const discoveredModem = await new ModemDiscovery(modemLocation, logger).discover()
   const modem = modemFactory(discoveredModem, logger)
   try {
     await modem.login(password)

@@ -1,3 +1,20 @@
+v1.4.0
+---
+- **🔐 HTTPS Support**: Added comprehensive HTTPS support for secure modem communication
+- **Automatic Protocol Detection**: Smart discovery automatically tries both HTTP and HTTPS endpoints
+- **HTTPS Cookie Management**: Integrated `HttpsCookieAgent` for secure cookie handling in HTTPS sessions
+- **Protocol-Aware URLs**: Dynamic URL construction based on detected protocol support
+- **Secure Authentication**: Login credentials transmitted over encrypted connections when HTTPS is available
+- **Graceful Fallback**: Automatically falls back to HTTP when HTTPS is not supported
+**New Dependencies**:
+- Added `http-cookie-agent` for HTTPS cookie management
+
+**Security Benefits**:
+- Encrypted API communication when HTTPS is available
+- Secure session management with encrypted cookies
+
+**Full Changelog**: https://github.com/totev/vodafone-station-cli/compare/v1.3.0...v1.4.0
+
 v1.3.0
 ---
 - **Major dependency updates**: Updated all dependencies to their latest versions

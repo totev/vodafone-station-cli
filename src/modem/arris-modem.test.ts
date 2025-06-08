@@ -18,7 +18,7 @@ describe('Arris', () => {
       sessionId: '01a91cedd129fd8c6f18e3a1b58d096f',
       nonce: 'WslSZgE7NuQr+1BMqiYEOBMzQlo=',
     }
-    const arrisModem = new Arris('0.0.0.0', new ConsoleLogger())
+    const arrisModem = new Arris("0.0.0.0", "http", new ConsoleLogger());
     expect(arrisModem.encryptPassword('test', given)).toEqual(expected)
   })
 

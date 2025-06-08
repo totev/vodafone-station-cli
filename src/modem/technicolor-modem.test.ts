@@ -1,6 +1,6 @@
-import { normalizeChannelStatus, normalizeDocsisStatus, normalizeOfdmChannelStatus, normalizeUpstreamChannelStatus, normalizeUpstreamOfdmaChannelStatus, TechnicolorDocsisStatus } from './technicolor-modem'
 import fixtureDocsis31Status from './__fixtures__/docsisStatus_ofdma_technicolor.json'
 import fixtureDocsisStatus from './__fixtures__/docsisStatus_technicolor.json'
+import { normalizeChannelStatus, normalizeDocsisStatus, normalizeOfdmChannelStatus, normalizeUpstreamChannelStatus, normalizeUpstreamOfdmaChannelStatus, TechnicolorDocsisStatus } from './technicolor-modem'
 
 
 test('normalizeChannelStatus with SC-QAM channel', () => {
@@ -50,7 +50,7 @@ test('normalizeOfdmChannelStatus with OFDM channel', () => {
     {
       channelId: '33',
       channelType: 'OFDM',
-      modulation: 'QAM256',
+      modulation: '256QAM',
       powerLevel: -3.2,
       lockStatus: 'Locked',
       snr: 39.55,

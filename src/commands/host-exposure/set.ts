@@ -3,7 +3,7 @@ import {readFile} from 'node:fs/promises'
 
 import Command from '../../base-command'
 import {Log} from '../../logger'
-import {discoverModemIp, ModemDiscovery} from '../../modem/discovery'
+import {discoverModemLocation, ModemDiscovery} from '../../modem/discovery'
 import {modemFactory} from '../../modem/factory'
 import {HostExposureSettings} from '../../modem/modem'
 
@@ -12,8 +12,8 @@ export async function setHostExposureSettings(
   password: string,
   logger: Log,
 ): Promise<HostExposureSettings> {
-  const modemIp = await discoverModemIp()
-  const discoveredModem = await new ModemDiscovery(modemIp, logger).discover()
+  const modemLocation = await discoverModemLocation()
+  const discoveredModem = await new ModemDiscovery(modemLocation, logger).discover()
   const modem = modemFactory(discoveredModem, logger)
   try {
     await modem.login(password)

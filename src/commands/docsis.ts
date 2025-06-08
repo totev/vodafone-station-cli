@@ -3,14 +3,14 @@ import {promises as fsp} from 'node:fs'
 
 import Command from '../base-command'
 import {Log} from '../logger'
-import {discoverModemIp, ModemDiscovery} from '../modem/discovery'
+import {discoverModemLocation, ModemDiscovery} from '../modem/discovery'
 import {modemFactory} from '../modem/factory'
 import {DocsisStatus} from '../modem/modem'
 import {webDiagnoseLink} from '../modem/web-diagnose'
 
 export async function getDocsisStatus(password: string, logger: Log): Promise<DocsisStatus> {
-  const modemIp = await discoverModemIp()
-  const discoveredModem = await new ModemDiscovery(modemIp, logger).discover()
+  const modemLocation = await discoverModemLocation()
+  const discoveredModem = await new ModemDiscovery(modemLocation, logger).discover()
   const modem = modemFactory(discoveredModem, logger)
   try {
     await modem.login(password)

@@ -1,25 +1,28 @@
 import {Flags} from '@oclif/core'
 
 import Command from '../base-command'
-import {discoverModemIp, ModemDiscovery} from '../modem/discovery'
+import {discoverModemLocation, ModemDiscovery} from '../modem/discovery'
 import {modemFactory} from '../modem/factory'
 
 export default class Restart extends Command {
   static description
-    = 'Restart the router/modem';
+    = 'Restart the router/modem'
   static examples = [
     '$ vodafone-station-cli restart -p PASSWORD',
-  ];
+  ]
   static flags = {
     password: Flags.string({
       char: 'p',
       description: 'router/modem password',
     }),
-  };
+  }
 
   async restartRouter(password: string): Promise<unknown> {
-    const modemIp = await discoverModemIp()
-    const discoveredModem = await new ModemDiscovery(modemIp, this.logger).discover()
+    const modemLocation = await discoverModemLocation()
+    const discoveredModem = await new ModemDiscovery(
+      modemLocation,
+      this.logger,
+    ).discover()
     const modem = modemFactory(discoveredModem, this.logger)
     try {
       await modem.login(password)

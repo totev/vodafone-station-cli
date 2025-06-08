@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, {AxiosResponse} from 'axios';
 
 import {Log} from '../logger';
 import {TechnicolorConfiguration} from './technicolor-modem';
@@ -7,31 +7,50 @@ const BRIDGED_MODEM_IP = '192.168.100.1';
 const ROUTER_IP = '192.168.0.1';
 axios.defaults.timeout = 10_000;
 
-export async function discoverModemIp(): Promise<string> {
+interface ModemLocation {
+  ipAddress: string;
+  protocol: Protocol;
+}
+
+export async function discoverModemLocation(): Promise<ModemLocation> {
   try {
-    const maybeResult = await Promise.any([
-      axios.get(`http://${BRIDGED_MODEM_IP}`),
-      axios.get(`http://${ROUTER_IP}`),
+    const results = await Promise.allSettled([
+      axios.head(`http://${BRIDGED_MODEM_IP}`),
+      axios.head(`https://${BRIDGED_MODEM_IP}`),
+      axios.head(`http://${ROUTER_IP}`),
+      axios.head(`https://${ROUTER_IP}`),
     ]);
-    if (maybeResult?.request?.host) {
-      return maybeResult?.request?.host;
+    const maybeResult = results.find(result => result.status === 'fulfilled') as undefined | {value: AxiosResponse};
+    if (maybeResult?.value.request?.host) {
+      console.warn('maybeResult');
+      console.warn(maybeResult);
+      return {
+        ipAddress: maybeResult?.value.request?.host,
+        protocol: maybeResult?.value.request?.protocol.replace(':', '') as Protocol,
+      };
     }
 
-    throw new Error('Could not determine modem IP address');
+    throw new Error('Could not find a router/modem under the known addresses.');
   } catch (error) {
     console.error('Could not find a router/modem under the known addresses.');
     throw error;
   }
 }
 
+export type Protocol = 'http' | 'https';
+
 export interface ModemInformation {
   deviceType: 'Arris' | 'Technicolor';
   firmwareVersion: string;
   ipAddress: string;
+  protocol: Protocol;
 }
 
 export class ModemDiscovery {
-  constructor(private readonly modemIp: string, private readonly logger: Log) {}
+  constructor(
+    private readonly modemLocation: ModemLocation,
+    private readonly logger: Log,
+  ) {}
 
   async discover(): Promise<ModemInformation> {
     try {
@@ -51,7 +70,9 @@ export class ModemDiscovery {
   }
 
   async tryArris(): Promise<ModemInformation> {
-    const {data} = await axios.get(`http://${this.modemIp}/index.php`, {
+    const {ipAddress, protocol} = this.modemLocation;
+
+    const {data} = await axios.get(`${protocol}://${ipAddress}/index.php`, {
       headers: {
         Accept: 'text/html,application/xhtml+xml,application/xml',
       },
@@ -64,18 +85,21 @@ export class ModemDiscovery {
     return {
       deviceType: 'Arris',
       firmwareVersion,
-      ipAddress: this.modemIp,
+      ipAddress,
+      protocol,
     };
   }
 
   async tryTechnicolor(): Promise<ModemInformation> {
-    const {data} = await axios.get<TechnicolorConfiguration>(`http://${this.modemIp}/api/v1/login_conf`);
+    const {ipAddress, protocol} = this.modemLocation;
+    const {data} = await axios.get<TechnicolorConfiguration>(`${protocol}://${ipAddress}/api/v1/login_conf`);
     this.logger.debug(`Technicolor login configuration: ${JSON.stringify(data)}`);
     if (data.error === 'ok' && data.data?.firmwareversion) {
       return {
         deviceType: 'Technicolor',
         firmwareVersion: data.data.firmwareversion,
-        ipAddress: this.modemIp,
+        ipAddress,
+        protocol,
       };
     }
 
