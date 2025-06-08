@@ -11,7 +11,7 @@ export default class Discover extends Command {
   async discoverModem(): Promise<void> {
     try {
       const modemLocation = await discoverModemLocation();
-      this.log(`Possibly found modem under the following location: ${modemLocation}`);
+      this.log(`Possibly found modem under the following location: ${JSON.stringify(modemLocation)}`);
       const modem = new ModemDiscovery(modemLocation, this.logger);
       const discoveredModem = await modem.discover();
       this.log(`Discovered modem: ${JSON.stringify(discoveredModem)}`);

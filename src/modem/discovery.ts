@@ -1,8 +1,8 @@
-import axios, {AxiosResponse} from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
-import {Log} from '../logger';
-import {TechnicolorConfiguration} from './technicolor-modem';
-import {extractFirmwareVersion} from './tools/html-parser';
+import { Log } from '../logger';
+import { TechnicolorConfiguration } from './technicolor-modem';
+import { extractFirmwareVersion } from './tools/html-parser';
 const BRIDGED_MODEM_IP = '192.168.100.1';
 const ROUTER_IP = '192.168.0.1';
 axios.defaults.timeout = 10_000;
@@ -26,7 +26,7 @@ export async function discoverModemLocation(): Promise<ModemLocation> {
       console.warn(maybeResult);
       return {
         ipAddress: maybeResult?.value.request?.host,
-        protocol: maybeResult?.value.request?.protocol,
+        protocol: maybeResult?.value.request?.protocol.replace(':', '') as Protocol,
       };
     }
 
