@@ -1,3 +1,17 @@
+v1.3.0
+---
+- **Major dependency updates**: Updated all dependencies to their latest versions
+- **ESLint 9 migration**: Migrated from legacy `.eslintrc` to modern `eslint.config.js` flat config format
+- **Enhanced ES module support**: Updated Jest configuration to properly handle ES modules from updated dependencies
+- **Security improvements**: Fixed security vulnerabilities in dependencies with `npm audit fix`
+- **Removed deprecated packages**: Replaced deprecated `eslint-config-oclif-typescript` with modern alternatives
+- **Improved linting**: Enhanced ESLint configuration to only lint source code, excluding tests and build artifacts
+- **Build system modernization**: Updated build tools and configurations for better compatibility
+
+**Breaking Changes**: None - this is a maintenance update that maintains backward compatibility
+
+**Full Changelog**: https://github.com/totev/vodafone-station-cli/compare/v1.2.11...v1.3.0
+
 v1.2.8
 ---
 - Updated dependencies
