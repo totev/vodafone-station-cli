@@ -1,10 +1,10 @@
-import axios, { AxiosInstance } from 'axios'
-import { HttpsCookieAgent } from 'http-cookie-agent/http'
-import { CookieJar } from 'tough-cookie'
+import axios, {AxiosInstance} from 'axios'
+import {HttpsCookieAgent} from 'http-cookie-agent/http'
+import {CookieJar} from 'tough-cookie'
 
-import type { Protocol as HttpProtocol } from './discovery'
+import type {Protocol as HttpProtocol} from './discovery'
 
-import { Log } from '../logger'
+import {Log} from '../logger'
 
 export type DocsisChannelType = 'OFDM' | 'OFDMA' | 'SC-QAM'
 
@@ -172,7 +172,7 @@ export function normalizeModulation(modulation: string): Modulation {
 
   // Validate against known modulations
   const validModulations: Modulation[] = ['16QAM', '32QAM', '64QAM', '256QAM', '1024QAM', '2048QAM', '4096QAM', 'QPSK']
-  
+
   if (validModulations.includes(normalizedModulation as Modulation)) {
     return normalizedModulation as Modulation
   }

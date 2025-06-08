@@ -1,9 +1,9 @@
-import { Log } from '../logger';
-import { Protocol } from './discovery';
+import {Log} from '../logger';
+import {Protocol} from './discovery';
 import {
   DocsisChannelType, DocsisStatus, HumanizedDocsis31ChannelStatus, HumanizedDocsisChannelStatus, Modem,
 } from './modem';
-import { decrypt, deriveKey, encrypt } from './tools/crypto';
+import {decrypt, deriveKey, encrypt} from './tools/crypto';
 import {
   CryptoVars, extractCredentialString, extractCryptoVars, extractDocsisStatus,
 } from './tools/html-parser';
