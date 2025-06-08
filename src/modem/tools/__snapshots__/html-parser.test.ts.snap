@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`htmlParser extractDocsisStatus 1`] = `
-Object {
-  "downstream": Array [
-    Object {
+{
+  "downstream": [
+    {
       "ChannelID": "33",
       "ChannelType": "OFDM",
       "Frequency": "151~324",
@@ -12,7 +12,7 @@ Object {
       "PowerLevel": "-3.5/56.5",
       "SNRLevel": "40",
     },
-    Object {
+    {
       "ChannelID": "2",
       "ChannelType": "SC-QAM",
       "Frequency": 130,
@@ -21,7 +21,7 @@ Object {
       "PowerLevel": "-5.2/54.8",
       "SNRLevel": 36.4,
     },
-    Object {
+    {
       "ChannelID": "3",
       "ChannelType": "SC-QAM",
       "Frequency": 138,
@@ -30,7 +30,7 @@ Object {
       "PowerLevel": "-5/55",
       "SNRLevel": 36.6,
     },
-    Object {
+    {
       "ChannelID": "4",
       "ChannelType": "SC-QAM",
       "Frequency": 146,
@@ -39,7 +39,7 @@ Object {
       "PowerLevel": "-5.4/54.6",
       "SNRLevel": 36.6,
     },
-    Object {
+    {
       "ChannelID": "5",
       "ChannelType": "SC-QAM",
       "Frequency": 602,
@@ -48,7 +48,7 @@ Object {
       "PowerLevel": "-3/57",
       "SNRLevel": 38.6,
     },
-    Object {
+    {
       "ChannelID": "6",
       "ChannelType": "SC-QAM",
       "Frequency": 618,
@@ -57,7 +57,7 @@ Object {
       "PowerLevel": "-2.8/57.2",
       "SNRLevel": 38.6,
     },
-    Object {
+    {
       "ChannelID": "7",
       "ChannelType": "SC-QAM",
       "Frequency": 626,
@@ -66,7 +66,7 @@ Object {
       "PowerLevel": "-2.3/57.7",
       "SNRLevel": 39,
     },
-    Object {
+    {
       "ChannelID": "8",
       "ChannelType": "SC-QAM",
       "Frequency": 642,
@@ -75,7 +75,7 @@ Object {
       "PowerLevel": "-1.7/58.3",
       "SNRLevel": 39,
     },
-    Object {
+    {
       "ChannelID": "9",
       "ChannelType": "SC-QAM",
       "Frequency": 650,
@@ -84,7 +84,7 @@ Object {
       "PowerLevel": "-1.7/58.3",
       "SNRLevel": 40.4,
     },
-    Object {
+    {
       "ChannelID": "10",
       "ChannelType": "SC-QAM",
       "Frequency": 658,
@@ -93,7 +93,7 @@ Object {
       "PowerLevel": "-1.5/58.5",
       "SNRLevel": 40.4,
     },
-    Object {
+    {
       "ChannelID": "11",
       "ChannelType": "SC-QAM",
       "Frequency": 666,
@@ -102,7 +102,7 @@ Object {
       "PowerLevel": "-2/58",
       "SNRLevel": 39,
     },
-    Object {
+    {
       "ChannelID": "12",
       "ChannelType": "SC-QAM",
       "Frequency": 674,
@@ -111,7 +111,7 @@ Object {
       "PowerLevel": "-1.2/58.8",
       "SNRLevel": 39,
     },
-    Object {
+    {
       "ChannelID": "13",
       "ChannelType": "SC-QAM",
       "Frequency": 682,
@@ -120,7 +120,7 @@ Object {
       "PowerLevel": "-1.2/58.8",
       "SNRLevel": 39,
     },
-    Object {
+    {
       "ChannelID": "14",
       "ChannelType": "SC-QAM",
       "Frequency": 690,
@@ -129,7 +129,7 @@ Object {
       "PowerLevel": "-0.8/59.2",
       "SNRLevel": 40.4,
     },
-    Object {
+    {
       "ChannelID": "15",
       "ChannelType": "SC-QAM",
       "Frequency": 698,
@@ -138,7 +138,7 @@ Object {
       "PowerLevel": "-7.1/52.9",
       "SNRLevel": 35,
     },
-    Object {
+    {
       "ChannelID": "16",
       "ChannelType": "SC-QAM",
       "Frequency": 706,
@@ -147,7 +147,7 @@ Object {
       "PowerLevel": "-6.1/53.9",
       "SNRLevel": 35.7,
     },
-    Object {
+    {
       "ChannelID": "17",
       "ChannelType": "SC-QAM",
       "Frequency": 714,
@@ -156,7 +156,7 @@ Object {
       "PowerLevel": "-6.1/53.9",
       "SNRLevel": 35,
     },
-    Object {
+    {
       "ChannelID": "18",
       "ChannelType": "SC-QAM",
       "Frequency": 722,
@@ -165,7 +165,7 @@ Object {
       "PowerLevel": "-6.3/53.7",
       "SNRLevel": 35.5,
     },
-    Object {
+    {
       "ChannelID": "19",
       "ChannelType": "SC-QAM",
       "Frequency": 730,
@@ -174,7 +174,7 @@ Object {
       "PowerLevel": "-6.5/53.5",
       "SNRLevel": 35,
     },
-    Object {
+    {
       "ChannelID": "20",
       "ChannelType": "SC-QAM",
       "Frequency": 738,
@@ -183,7 +183,7 @@ Object {
       "PowerLevel": "-5.5/54.5",
       "SNRLevel": 35.7,
     },
-    Object {
+    {
       "ChannelID": "21",
       "ChannelType": "SC-QAM",
       "Frequency": 746,
@@ -192,7 +192,7 @@ Object {
       "PowerLevel": "-5/55",
       "SNRLevel": 35.7,
     },
-    Object {
+    {
       "ChannelID": "22",
       "ChannelType": "SC-QAM",
       "Frequency": 754,
@@ -201,7 +201,7 @@ Object {
       "PowerLevel": "-5.7/54.3",
       "SNRLevel": 35,
     },
-    Object {
+    {
       "ChannelID": "23",
       "ChannelType": "SC-QAM",
       "Frequency": 762,
@@ -210,7 +210,7 @@ Object {
       "PowerLevel": "-5.5/54.5",
       "SNRLevel": 34.9,
     },
-    Object {
+    {
       "ChannelID": "24",
       "ChannelType": "SC-QAM",
       "Frequency": 770,
@@ -219,7 +219,7 @@ Object {
       "PowerLevel": "-5.6/54.4",
       "SNRLevel": 34.9,
     },
-    Object {
+    {
       "ChannelID": "25",
       "ChannelType": "SC-QAM",
       "Frequency": 778,
@@ -228,7 +228,7 @@ Object {
       "PowerLevel": "-5.2/54.8",
       "SNRLevel": 35.7,
     },
-    Object {
+    {
       "ChannelID": "26",
       "ChannelType": "SC-QAM",
       "Frequency": 786,
@@ -237,7 +237,7 @@ Object {
       "PowerLevel": "-5.1/54.9",
       "SNRLevel": 35.7,
     },
-    Object {
+    {
       "ChannelID": "27",
       "ChannelType": "SC-QAM",
       "Frequency": 794,
@@ -246,7 +246,7 @@ Object {
       "PowerLevel": "-5.2/54.8",
       "SNRLevel": 35,
     },
-    Object {
+    {
       "ChannelID": "28",
       "ChannelType": "SC-QAM",
       "Frequency": 802,
@@ -255,7 +255,7 @@ Object {
       "PowerLevel": "-5.5/54.5",
       "SNRLevel": 35.5,
     },
-    Object {
+    {
       "ChannelID": "29",
       "ChannelType": "SC-QAM",
       "Frequency": 810,
@@ -264,7 +264,7 @@ Object {
       "PowerLevel": "-5.5/54.5",
       "SNRLevel": 35.5,
     },
-    Object {
+    {
       "ChannelID": "30",
       "ChannelType": "SC-QAM",
       "Frequency": 818,
@@ -273,7 +273,7 @@ Object {
       "PowerLevel": "-5.3/54.7",
       "SNRLevel": 35.5,
     },
-    Object {
+    {
       "ChannelID": "31",
       "ChannelType": "SC-QAM",
       "Frequency": 826,
@@ -282,7 +282,7 @@ Object {
       "PowerLevel": "-5.6/54.4",
       "SNRLevel": 35.7,
     },
-    Object {
+    {
       "ChannelID": "32",
       "ChannelType": "SC-QAM",
       "Frequency": 834,
@@ -291,7 +291,7 @@ Object {
       "PowerLevel": "-6.5/53.5",
       "SNRLevel": 34.9,
     },
-    Object {
+    {
       "ChannelID": "1",
       "ChannelType": "SC-QAM",
       "Frequency": 114,
@@ -304,8 +304,8 @@ Object {
   "downstreamChannels": 33,
   "ofdmChannels": 1,
   "time": "2021-02-26T09:19:56.042Z",
-  "upstream": Array [
-    Object {
+  "upstream": [
+    {
       "ChannelID": "4",
       "ChannelType": "SC-QAM",
       "Frequency": 36,
@@ -313,7 +313,7 @@ Object {
       "Modulation": "64QAM",
       "PowerLevel": "49/109",
     },
-    Object {
+    {
       "ChannelID": "1",
       "ChannelType": "SC-QAM",
       "Frequency": 59,
@@ -321,7 +321,7 @@ Object {
       "Modulation": "32QAM",
       "PowerLevel": "47/107",
     },
-    Object {
+    {
       "ChannelID": "3",
       "ChannelType": "SC-QAM",
       "Frequency": 46,
@@ -329,7 +329,7 @@ Object {
       "Modulation": "64QAM",
       "PowerLevel": "49/109",
     },
-    Object {
+    {
       "ChannelID": "2",
       "ChannelType": "SC-QAM",
       "Frequency": 52,
