@@ -511,7 +511,7 @@ Currently the following hardware/software is supported:
 
 # Software requirements
 
-- Node.js 18.x or higher
+- Node.js 20.x or higher
 
 # Notes
 

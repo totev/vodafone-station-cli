@@ -8,7 +8,9 @@ v1.3.0
 - **Improved linting**: Enhanced ESLint configuration to only lint source code, excluding tests and build artifacts
 - **Build system modernization**: Updated build tools and configurations for better compatibility
 
-**Breaking Changes**: None - this is a maintenance update that maintains backward compatibility
+**Breaking Changes**: 
+- **Node.js 20+ required**: Updated minimum Node.js requirement from 18.x to 20.x due to updated dependencies
+- Updated CI to use Node.js 20
 
 **Full Changelog**: https://github.com/totev/vodafone-station-cli/compare/v1.2.11...v1.3.0
 

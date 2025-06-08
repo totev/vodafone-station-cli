@@ -84,7 +84,7 @@
     "version": "oclif readme && git add README.md"
   },
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=20.0.0"
   },
   "types": "dist/index.d.ts"
 }
