@@ -2,9 +2,8 @@ import Command from '../base-command'
 import {discoverModemIp, ModemDiscovery} from '../modem/discovery'
 
 export default class Discover extends Command {
-  static description =
-    'Try to discover a cable modem in the network';
-
+  static description
+    = 'Try to discover a cable modem in the network';
   static examples = [
     '$ vodafone-station-cli discover',
   ];

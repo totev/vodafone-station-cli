@@ -5,20 +5,20 @@ const SJCL_KEYSIZEBITS = 128
 const SJCL_TAGLENGTH = 128
 
 export interface BitParams {
-    prf: sjcl.SjclCipher;
-    iv: sjcl.BitArray;
-    authData: sjcl.BitArray;
+  authData: sjcl.BitArray;
+  iv: sjcl.BitArray;
+  prf: sjcl.SjclCipher;
 }
 
 export function prepareParameters(
   derivedKey: string,
   ivHex: string,
-  authData: string
+  authData: string,
 ): BitParams {
   return {
-    prf: new sjcl.cipher.aes(sjcl.codec.hex.toBits(derivedKey)),
-    iv: sjcl.codec.hex.toBits(ivHex),
     authData: sjcl.codec.utf8String.toBits(authData),
+    iv: sjcl.codec.hex.toBits(ivHex),
+    prf: new sjcl.cipher.aes(sjcl.codec.hex.toBits(derivedKey)),
   }
 }
 
@@ -27,15 +27,14 @@ export function deriveKey(password: string, salt: string): string {
     password,
     sjcl.codec.hex.toBits(salt),
     SJCL_ITERATIONS,
-    SJCL_KEYSIZEBITS
+    SJCL_KEYSIZEBITS,
   )
 
   return sjcl.codec.hex.fromBits(derivedKeyBits)
 }
 
 export function deriveKeyTechnicolor(password: string, salt: string): string {
-  const derivedKeyBits = sjcl.misc.pbkdf2(password, salt,     SJCL_ITERATIONS,
-    SJCL_KEYSIZEBITS)
+  const derivedKeyBits = sjcl.misc.pbkdf2(password, salt,     SJCL_ITERATIONS, SJCL_KEYSIZEBITS)
   return sjcl.codec.hex.fromBits(derivedKeyBits)
 }
 
@@ -43,7 +42,7 @@ export function encrypt(
   derivedKey: string,
   plainText: string,
   ivHex: string,
-  authData: string
+  authData: string,
 ): string {
   const bitParams = prepareParameters(derivedKey, ivHex, authData)
   const encryptedBits = sjcl.mode.ccm.encrypt(
@@ -51,7 +50,7 @@ export function encrypt(
     sjcl.codec.utf8String.toBits(plainText),
     bitParams.iv,
     bitParams.authData,
-    SJCL_TAGLENGTH
+    SJCL_TAGLENGTH,
   )
   return sjcl.codec.hex.fromBits(encryptedBits)
 }
@@ -60,7 +59,7 @@ export function decrypt(
   derivedKey: string,
   cipherTextHex: string,
   ivHex: string,
-  authData: string
+  authData: string,
 ): string {
   const bitParams = prepareParameters(derivedKey, ivHex, authData)
   const decryptedBits = sjcl.mode.ccm.decrypt(
@@ -68,7 +67,7 @@ export function decrypt(
     sjcl.codec.hex.toBits(cipherTextHex),
     bitParams.iv,
     bitParams.authData,
-    SJCL_TAGLENGTH
+    SJCL_TAGLENGTH,
   )
   return sjcl.codec.utf8String.fromBits(decryptedBits)
 }

@@ -1,16 +1,22 @@
+import type {Modem} from './modem'
+
+import {ConsoleLogger, Log} from '../logger'
 import {Arris} from './arris-modem'
 import {ModemInformation} from './discovery'
-import {ConsoleLogger, Log} from '../logger'
-import type {Modem} from './modem'
 import {Technicolor} from './technicolor-modem'
 
 export function modemFactory(modemInfo: ModemInformation, logger: Log = new ConsoleLogger()): Modem {
   switch (modemInfo.deviceType) {
-  case 'Arris':
+  case 'Arris': {
     return new Arris(modemInfo.ipAddress, logger)
-  case 'Technicolor':
+  }
+
+  case 'Technicolor': {
     return new Technicolor(modemInfo.ipAddress, logger)
-  default:
+  }
+
+  default: {
     throw new Error(`Unsupported modem ${modemInfo.deviceType}`)
+  }
   }
 }
