@@ -1,17 +1,17 @@
 
 export interface Log {
   debug(...args: unknown[]): void;
-  error(input: Error | string | unknown, ...options: unknown[]): void;
+  error(input: Error | string, ...options: unknown[]): void;
   log(message?: string, ...args: unknown[]): void;
-  warn(input: Error | string | unknown): void;
+  warn(input: Error | string): void;
 }
 
 export class OclifLogger implements Log {
   constructor(
     private delegateLog: (message?: string, ...args: unknown[]) => void,
-    private delegateWarn: (input: Error | string | unknown) => void,
+    private delegateWarn: (input: Error | string) => Error | string,
     private delegateDebug: (...args: unknown[]) => void,
-    private delegateError: (input: Error | string | unknown, ...options: unknown[]) => void,
+    private delegateError: (input: Error | string, ...options: unknown[]) => void,
   ) {}
 
   debug(...args: unknown[]): void {

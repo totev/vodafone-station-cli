@@ -18,7 +18,7 @@ export async function getDocsisStatus(password: string, logger: Log): Promise<Do
     return docsisData
   } catch (error) {
     logger.warn('Could not fetch docsis status from modem.')
-    logger.error(error)
+    logger.error(error as Error)
     throw error
   } finally {
     await modem.logout()
