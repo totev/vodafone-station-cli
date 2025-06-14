@@ -6,9 +6,8 @@ config()
 
 export const ipFlag = () => Flags.string({
   char: 'i',
-  description: 'IP address of the modem/router (default: try 192.168.100.1 and 192.168.0.1).',
+  description: 'IP address of the modem/router (default: try 192.168.100.1 and 192.168.0.1)',
   env: 'VODAFONE_ROUTER_IP',
-  multiple: false,
 })
 
 export default abstract class BaseCommand extends Command {

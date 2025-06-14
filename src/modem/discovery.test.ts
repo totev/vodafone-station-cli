@@ -86,12 +86,12 @@ describe('Discovery', () => {
         expect(result.ipAddress).toBe('192.168.100.1');
       });
 
-             it('should try multiple default IPs if first fails', async () => {
+      it('should try multiple default IPs if first fails', async () => {
          const mockResponse = {
            status: 200,
            request: { 
              host: '192.168.0.1',
-             protocol: 'http:' 
+             protocol: 'https:' 
            }
          };
 

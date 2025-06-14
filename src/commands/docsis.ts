@@ -1,15 +1,15 @@
-import {Flags} from '@oclif/core'
-import {promises as fsp} from 'node:fs'
+import { Flags } from '@oclif/core'
+import { promises as fsp } from 'node:fs'
 
-import Command from '../base-command'
-import {Log} from '../logger'
-import {discoverModemLocation, ModemDiscovery} from '../modem/discovery'
-import {modemFactory} from '../modem/factory'
-import {DocsisStatus} from '../modem/modem'
-import {webDiagnoseLink} from '../modem/web-diagnose'
+import Command, { ipFlag } from '../base-command'
+import { Log } from '../logger'
+import { discoverModemLocation, DiscoveryOptions, ModemDiscovery } from '../modem/discovery'
+import { modemFactory } from '../modem/factory'
+import { DocsisStatus } from '../modem/modem'
+import { webDiagnoseLink } from '../modem/web-diagnose'
 
-export async function getDocsisStatus(password: string, logger: Log): Promise<DocsisStatus> {
-  const modemLocation = await discoverModemLocation()
+export async function getDocsisStatus(password: string, logger: Log, discoveryOptions?: DiscoveryOptions): Promise<DocsisStatus> {
+  const modemLocation = await discoverModemLocation(discoveryOptions)
   const discoveredModem = await new ModemDiscovery(modemLocation, logger).discover()
   const modem = modemFactory(discoveredModem, logger)
   try {
@@ -31,8 +31,12 @@ export default class Docsis extends Command {
     `$ vodafone-station-cli docsis -p PASSWORD
 {JSON data}
 `,
+    `$ vodafone-station-cli docsis -p PASSWORD --ip 192.168.100.1
+{JSON data}
+`,
   ]
   static flags = {
+    ip: ipFlag(),
     file: Flags.boolean({
       char: 'f',
       description: 'write out a report file under ./reports/{CURRENT_UNIX_TIMESTAMP}_docsisStatus.json',
@@ -55,8 +59,12 @@ export default class Docsis extends Command {
       this.exit()
     }
 
+    const discoveryOptions: DiscoveryOptions = {
+      ip: flags.ip,
+    }
+
     try {
-      const docsisStatus = await getDocsisStatus(password!, this.logger)
+      const docsisStatus = await getDocsisStatus(password!, this.logger, discoveryOptions)
       const docsisStatusJSON = JSON.stringify(docsisStatus, undefined, 4)
 
       if (flags.file) {
