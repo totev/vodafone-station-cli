@@ -29,8 +29,10 @@ export async function discoverModemLocation(options: DiscoveryOptions = {}): Pro
   try {
     const headRequests = [];
     for (const ip of defaultIps) {
-      headRequests.push(axios.head(`http://${ip}`));
-      headRequests.push(axios.head(`https://${ip}`));
+      headRequests.push(
+        axios.head(`http://${ip}`),
+        axios.head(`https://${ip}`),
+      );
     }
 
     const results = await Promise.allSettled(headRequests);
