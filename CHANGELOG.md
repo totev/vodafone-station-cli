@@ -1,3 +1,11 @@
+v1.5.0
+---
+- **IP Flag Support**: Added IP flag support across all commands for flexible modem/router address specification
+- **Enhanced Discovery**: Improved modem discovery with support for custom IP addresses
+- **Documentation**: Updated help text and examples for IP flag usage
+
+**Full Changelog**: https://github.com/totev/vodafone-station-cli/compare/v1.4.0...v1.5.0
+
 v1.4.0
 ---
 - **🔐 HTTPS Support**: Added comprehensive HTTPS support for secure modem communication
