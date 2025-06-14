@@ -543,7 +543,7 @@ $ npm install -g vodafone-station-cli
 $ vodafone-station-cli COMMAND
 running command...
 $ vodafone-station-cli (--version)
-vodafone-station-cli/1.4.0 darwin-arm64 node-v23.7.0
+vodafone-station-cli/1.5.0 darwin-arm64 node-v23.7.0
 $ vodafone-station-cli --help [COMMAND]
 USAGE
   $ vodafone-station-cli COMMAND
@@ -557,7 +557,7 @@ USAGE
 * [`vodafone-station-cli docsis`](#vodafone-station-cli-docsis)
 * [`vodafone-station-cli help [COMMAND]`](#vodafone-station-cli-help-command)
 * [`vodafone-station-cli host-exposure disable [ENTRIES]`](#vodafone-station-cli-host-exposure-disable-entries)
-* [`vodafone-station-cli host-exposure enable [ENTRIES]`](#vodafone-station-cli-host-exposure-enable-entries)
+* [`vodafone-station-cli host-exposure enable`](#vodafone-station-cli-host-exposure-enable)
 * [`vodafone-station-cli host-exposure get`](#vodafone-station-cli-host-exposure-get)
 * [`vodafone-station-cli host-exposure set FILE`](#vodafone-station-cli-host-exposure-set-file)
 * [`vodafone-station-cli plugins`](#vodafone-station-cli-plugins)
@@ -578,9 +578,10 @@ Diagnose the quality of the docsis connection.
 
 ```
 USAGE
-  $ vodafone-station-cli diagnose [-p <value>] [-w]
+  $ vodafone-station-cli diagnose [-i <value>] [-p <value>] [-w]
 
 FLAGS
+  -i, --ip=<value>        IP address of the modem/router (default: try 192.168.100.1 and 192.168.0.1)
   -p, --password=<value>  router/modem password
   -w, --web               review the docsis values in a webapp
 
@@ -589,9 +590,11 @@ DESCRIPTION
 
 EXAMPLES
   $ vodafone-station-cli diagnose
+
+  $ vodafone-station-cli diagnose --ip 192.168.100.1
 ```
 
-_See code: [src/commands/diagnose.ts](https://github.com/totev/vodafone-station-cli/blob/v1.4.0/src/commands/diagnose.ts)_
+_See code: [src/commands/diagnose.ts](https://github.com/totev/vodafone-station-cli/blob/v1.5.0/src/commands/diagnose.ts)_
 
 ## `vodafone-station-cli discover`
 
@@ -599,16 +602,21 @@ Try to discover a cable modem in the network
 
 ```
 USAGE
-  $ vodafone-station-cli discover
+  $ vodafone-station-cli discover [-i <value>]
+
+FLAGS
+  -i, --ip=<value>  IP address of the modem/router (default: try 192.168.100.1 and 192.168.0.1)
 
 DESCRIPTION
   Try to discover a cable modem in the network
 
 EXAMPLES
   $ vodafone-station-cli discover
+
+  $ vodafone-station-cli discover --ip 192.168.100.1
 ```
 
-_See code: [src/commands/discover.ts](https://github.com/totev/vodafone-station-cli/blob/v1.4.0/src/commands/discover.ts)_
+_See code: [src/commands/discover.ts](https://github.com/totev/vodafone-station-cli/blob/v1.5.0/src/commands/discover.ts)_
 
 ## `vodafone-station-cli docsis`
 
@@ -616,10 +624,11 @@ Get the current docsis status as reported by the modem in a JSON format.
 
 ```
 USAGE
-  $ vodafone-station-cli docsis [-f] [-p <value>] [-w]
+  $ vodafone-station-cli docsis [-i <value>] [-f] [-p <value>] [-w]
 
 FLAGS
   -f, --file              write out a report file under ./reports/{CURRENT_UNIX_TIMESTAMP}_docsisStatus.json
+  -i, --ip=<value>        IP address of the modem/router (default: try 192.168.100.1 and 192.168.0.1)
   -p, --password=<value>  router/modem password
   -w, --web               review the docsis values in a webapp
 
@@ -629,9 +638,12 @@ DESCRIPTION
 EXAMPLES
   $ vodafone-station-cli docsis -p PASSWORD
   {JSON data}
+
+  $ vodafone-station-cli docsis -p PASSWORD --ip 192.168.100.1
+  {JSON data}
 ```
 
-_See code: [src/commands/docsis.ts](https://github.com/totev/vodafone-station-cli/blob/v1.4.0/src/commands/docsis.ts)_
+_See code: [src/commands/docsis.ts](https://github.com/totev/vodafone-station-cli/blob/v1.5.0/src/commands/docsis.ts)_
 
 ## `vodafone-station-cli help [COMMAND]`
 
@@ -659,12 +671,13 @@ Disable a set of host exposure entries
 
 ```
 USAGE
-  $ vodafone-station-cli host-exposure disable [ENTRIES...] [-p <value>]
+  $ vodafone-station-cli host-exposure disable [ENTRIES...] [-i <value>] [-p <value>]
 
 ARGUMENTS
   ENTRIES...  Host exposure entries to disable. Pass no names to disable every existing entry.
 
 FLAGS
+  -i, --ip=<value>        IP address of the modem/router (default: try 192.168.100.1 and 192.168.0.1)
   -p, --password=<value>  router/modem password
 
 DESCRIPTION
@@ -672,22 +685,22 @@ DESCRIPTION
 
 EXAMPLES
   $ vodafone-station-cli host-exposure:disable -p PASSWORD [ENTRY NAME | [ENTRY NAME...]]
+
+  $ vodafone-station-cli host-exposure:disable -p PASSWORD --ip 192.168.100.1 [ENTRY NAME | [ENTRY NAME...]]
 ```
 
-_See code: [src/commands/host-exposure/disable.ts](https://github.com/totev/vodafone-station-cli/blob/v1.4.0/src/commands/host-exposure/disable.ts)_
+_See code: [src/commands/host-exposure/disable.ts](https://github.com/totev/vodafone-station-cli/blob/v1.5.0/src/commands/host-exposure/disable.ts)_
 
-## `vodafone-station-cli host-exposure enable [ENTRIES]`
+## `vodafone-station-cli host-exposure enable`
 
 Enable a set of host exposure entries
 
 ```
 USAGE
-  $ vodafone-station-cli host-exposure enable [ENTRIES...] [-p <value>]
-
-ARGUMENTS
-  ENTRIES...  Host exposure entries to enable. Pass no names to enable every existing entry.
+  $ vodafone-station-cli host-exposure enable [-i <value>] [-p <value>]
 
 FLAGS
+  -i, --ip=<value>        IP address of the modem/router (default: try 192.168.100.1 and 192.168.0.1)
   -p, --password=<value>  router/modem password
 
 DESCRIPTION
@@ -695,9 +708,11 @@ DESCRIPTION
 
 EXAMPLES
   $ vodafone-station-cli host-exposure:enable -p PASSWORD [ENTRY NAME | [ENTRY NAME...]]
+
+  $ vodafone-station-cli host-exposure:enable -p PASSWORD --ip 192.168.100.1 [ENTRY NAME | [ENTRY NAME...]]
 ```
 
-_See code: [src/commands/host-exposure/enable.ts](https://github.com/totev/vodafone-station-cli/blob/v1.4.0/src/commands/host-exposure/enable.ts)_
+_See code: [src/commands/host-exposure/enable.ts](https://github.com/totev/vodafone-station-cli/blob/v1.5.0/src/commands/host-exposure/enable.ts)_
 
 ## `vodafone-station-cli host-exposure get`
 
@@ -705,9 +720,10 @@ Get the current IPV6 host exposure settings
 
 ```
 USAGE
-  $ vodafone-station-cli host-exposure get [-p <value>]
+  $ vodafone-station-cli host-exposure get [-i <value>] [-p <value>]
 
 FLAGS
+  -i, --ip=<value>        IP address of the modem/router (default: try 192.168.100.1 and 192.168.0.1)
   -p, --password=<value>  router/modem password
 
 DESCRIPTION
@@ -716,9 +732,12 @@ DESCRIPTION
 EXAMPLES
   $ vodafone-station-cli host-exposure:get -p PASSWORD
   {JSON data}
+
+  $ vodafone-station-cli host-exposure:get -p PASSWORD --ip 192.168.100.1
+  {JSON data}
 ```
 
-_See code: [src/commands/host-exposure/get.ts](https://github.com/totev/vodafone-station-cli/blob/v1.4.0/src/commands/host-exposure/get.ts)_
+_See code: [src/commands/host-exposure/get.ts](https://github.com/totev/vodafone-station-cli/blob/v1.5.0/src/commands/host-exposure/get.ts)_
 
 ## `vodafone-station-cli host-exposure set FILE`
 
@@ -726,12 +745,13 @@ Set the current IPV6 host exposure settings from a JSON file
 
 ```
 USAGE
-  $ vodafone-station-cli host-exposure set FILE [-p <value>]
+  $ vodafone-station-cli host-exposure set FILE [-i <value>] [-p <value>]
 
 ARGUMENTS
   FILE  input JSON file
 
 FLAGS
+  -i, --ip=<value>        IP address of the modem/router (default: try 192.168.100.1 and 192.168.0.1)
   -p, --password=<value>  router/modem password
 
 DESCRIPTION
@@ -739,9 +759,11 @@ DESCRIPTION
 
 EXAMPLES
   $ vodafone-station-cli host-exposure:set -p PASSWORD <FILE>
+
+  $ vodafone-station-cli host-exposure:set -p PASSWORD --ip 192.168.100.1 <FILE>
 ```
 
-_See code: [src/commands/host-exposure/set.ts](https://github.com/totev/vodafone-station-cli/blob/v1.4.0/src/commands/host-exposure/set.ts)_
+_See code: [src/commands/host-exposure/set.ts](https://github.com/totev/vodafone-station-cli/blob/v1.5.0/src/commands/host-exposure/set.ts)_
 
 ## `vodafone-station-cli plugins`
 
@@ -1035,21 +1057,24 @@ _See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/
 
 ## `vodafone-station-cli restart`
 
-Restart the router/modem
+restart the modem/router
 
 ```
 USAGE
-  $ vodafone-station-cli restart [-p <value>]
+  $ vodafone-station-cli restart [-i <value>] [-p <value>]
 
 FLAGS
+  -i, --ip=<value>        IP address of the modem/router (default: try 192.168.100.1 and 192.168.0.1)
   -p, --password=<value>  router/modem password
 
 DESCRIPTION
-  Restart the router/modem
+  restart the modem/router
 
 EXAMPLES
-  $ vodafone-station-cli restart -p PASSWORD
+  $ vodafone-station-cli restart
+
+  $ vodafone-station-cli restart --ip 192.168.100.1
 ```
 
-_See code: [src/commands/restart.ts](https://github.com/totev/vodafone-station-cli/blob/v1.4.0/src/commands/restart.ts)_
+_See code: [src/commands/restart.ts](https://github.com/totev/vodafone-station-cli/blob/v1.5.0/src/commands/restart.ts)_
 <!-- commandsstop -->

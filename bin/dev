@@ -8,7 +8,14 @@ const project = path.join(__dirname, '..', 'tsconfig.json')
 // In dev mode -> use ts-node and dev plugins
 process.env.NODE_ENV = 'development'
 
-require('ts-node').register({project})
+// Clear ts-node's cache to ensure using the latest code
+require('ts-node').register({
+  project,
+  transpileOnly: true,
+  compilerOptions: {
+    module: 'commonjs'
+  }
+})
 
 // In dev mode, always show stack traces
 oclif.settings.debug = true;

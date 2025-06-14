@@ -1,9 +1,9 @@
 import {Args, Flags} from '@oclif/core'
 import {readFile} from 'node:fs/promises'
 
-import Command from '../../base-command'
+import Command, {ipFlag} from '../../base-command'
 import {Log} from '../../logger'
-import {discoverModemLocation, ModemDiscovery} from '../../modem/discovery'
+import {discoverModemLocation, DiscoveryOptions, ModemDiscovery} from '../../modem/discovery'
 import {modemFactory} from '../../modem/factory'
 import {HostExposureSettings} from '../../modem/modem'
 
@@ -11,8 +11,9 @@ export async function setHostExposureSettings(
   settings: HostExposureSettings,
   password: string,
   logger: Log,
+  discoveryOptions?: DiscoveryOptions,
 ): Promise<HostExposureSettings> {
-  const modemLocation = await discoverModemLocation()
+  const modemLocation = await discoverModemLocation(discoveryOptions)
   const discoveredModem = await new ModemDiscovery(modemLocation, logger).discover()
   const modem = modemFactory(discoveredModem, logger)
   try {
@@ -35,8 +36,12 @@ export default class SetHostExposure extends Command {
     }),
   }
   static description = 'Set the current IPV6 host exposure settings from a JSON file'
-  static examples = ['$ vodafone-station-cli host-exposure:set -p PASSWORD <FILE>']
+  static examples = [
+    '$ vodafone-station-cli host-exposure:set -p PASSWORD <FILE>',
+    '$ vodafone-station-cli host-exposure:set -p PASSWORD --ip 192.168.100.1 <FILE>',
+  ]
   static flags = {
+    ip: ipFlag(),
     password: Flags.string({
       char: 'p',
       description: 'router/modem password',
@@ -52,10 +57,14 @@ export default class SetHostExposure extends Command {
       this.exit()
     }
 
+    const discoveryOptions: DiscoveryOptions = {
+      ip: flags.ip,
+    }
+
     try {
       const newSettingsJSON = await readFile(args.file, {encoding: 'utf8'})
       const newSettings = JSON.parse(newSettingsJSON) as HostExposureSettings
-      await setHostExposureSettings(newSettings, password!, this.logger)
+      await setHostExposureSettings(newSettings, password!, this.logger, discoveryOptions)
       this.log('New host exposure settings set.')
     } catch (error) {
       this.error(error as Error, {message: 'Something went wrong.'})

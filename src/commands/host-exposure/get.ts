@@ -1,13 +1,13 @@
 import {Flags} from '@oclif/core'
 
-import Command from '../../base-command'
+import Command, {ipFlag} from '../../base-command'
 import {Log} from '../../logger'
-import {discoverModemLocation, ModemDiscovery} from '../../modem/discovery'
+import {discoverModemLocation, DiscoveryOptions, ModemDiscovery} from '../../modem/discovery'
 import {modemFactory} from '../../modem/factory'
 import {HostExposureSettings} from '../../modem/modem'
 
-export async function getHostExposureSettings(password: string, logger: Log): Promise<HostExposureSettings> {
-  const modemLocation = await discoverModemLocation()
+export async function getHostExposureSettings(password: string, logger: Log, discoveryOptions?: DiscoveryOptions): Promise<HostExposureSettings> {
+  const modemLocation = await discoverModemLocation(discoveryOptions)
   const discoveredModem = await new ModemDiscovery(modemLocation, logger).discover()
   const modem = modemFactory(discoveredModem, logger)
   try {
@@ -23,14 +23,17 @@ export async function getHostExposureSettings(password: string, logger: Log): Pr
 }
 
 export default class GetHostExposure extends Command {
-  static description
-    = 'Get the current IPV6 host exposure settings';
+  static description = 'Get the current IPV6 host exposure settings';
   static examples = [
     `$ vodafone-station-cli host-exposure:get -p PASSWORD
 {JSON data}
 `,
+    `$ vodafone-station-cli host-exposure:get -p PASSWORD --ip 192.168.100.1
+{JSON data}
+`,
   ];
   static flags = {
+    ip: ipFlag(),
     password: Flags.string({
       char: 'p',
       description: 'router/modem password',
@@ -46,8 +49,12 @@ export default class GetHostExposure extends Command {
       this.exit()
     }
 
+    const discoveryOptions: DiscoveryOptions = {
+      ip: flags.ip,
+    }
+
     try {
-      const settings = await getHostExposureSettings(password!, this.logger)
+      const settings = await getHostExposureSettings(password!, this.logger, discoveryOptions)
       const settingsJSON = JSON.stringify(settings, undefined, 4)
       this.log(settingsJSON)
     } catch (error) {

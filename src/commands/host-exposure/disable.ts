@@ -1,6 +1,7 @@
 import {Args, Flags} from '@oclif/core'
 
-import Command from '../../base-command'
+import Command, {ipFlag} from '../../base-command'
+import {DiscoveryOptions} from '../../modem/discovery'
 import {toggleHostExposureEntries} from '../../modem/host-exposure'
 
 export default class DisableHostExposureEntries extends Command {
@@ -11,8 +12,12 @@ export default class DisableHostExposureEntries extends Command {
     }),
   }
   static description = 'Disable a set of host exposure entries'
-  static examples = ['$ vodafone-station-cli host-exposure:disable -p PASSWORD [ENTRY NAME | [ENTRY NAME...]]']
+  static examples = [
+    '$ vodafone-station-cli host-exposure:disable -p PASSWORD [ENTRY NAME | [ENTRY NAME...]]',
+    '$ vodafone-station-cli host-exposure:disable -p PASSWORD --ip 192.168.100.1 [ENTRY NAME | [ENTRY NAME...]]',
+  ]
   static flags = {
+    ip: ipFlag(),
     password: Flags.string({
       char: 'p',
       description: 'router/modem password',
@@ -29,8 +34,12 @@ export default class DisableHostExposureEntries extends Command {
       this.exit()
     }
 
+    const discoveryOptions: DiscoveryOptions = {
+      ip: flags.ip,
+    }
+
     try {
-      await toggleHostExposureEntries(false, argv as string[], password!, this.logger)
+      await toggleHostExposureEntries(false, argv as string[], password!, this.logger, discoveryOptions)
     } catch (error) {
       this.error(error as Error, {message: 'Something went wrong.'})
     }

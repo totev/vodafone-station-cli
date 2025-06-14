@@ -1,18 +1,17 @@
-import {Args, Flags} from '@oclif/core'
+import {Flags} from '@oclif/core'
 
-import Command from '../../base-command'
+import Command, {ipFlag} from '../../base-command'
+import {DiscoveryOptions} from '../../modem/discovery'
 import {toggleHostExposureEntries} from '../../modem/host-exposure'
 
 export default class EnableHostExposureEntries extends Command {
-  static args = {
-    entries: Args.string({
-      description: 'Host exposure entries to enable. Pass no names to enable every existing entry.',
-      required: false,
-    }),
-  }
   static description = 'Enable a set of host exposure entries'
-  static examples = ['$ vodafone-station-cli host-exposure:enable -p PASSWORD [ENTRY NAME | [ENTRY NAME...]]']
+  static examples = [
+    '$ vodafone-station-cli host-exposure:enable -p PASSWORD [ENTRY NAME | [ENTRY NAME...]]',
+    '$ vodafone-station-cli host-exposure:enable -p PASSWORD --ip 192.168.100.1 [ENTRY NAME | [ENTRY NAME...]]',
+  ]
   static flags = {
+    ip: ipFlag(),
     password: Flags.string({
       char: 'p',
       description: 'router/modem password',
@@ -29,8 +28,12 @@ export default class EnableHostExposureEntries extends Command {
       this.exit()
     }
 
+    const discoveryOptions: DiscoveryOptions = {
+      ip: flags.ip,
+    }
+
     try {
-      await toggleHostExposureEntries(true, argv as string[], password!, this.logger)
+      await toggleHostExposureEntries(true, argv as string[], password!, this.logger, discoveryOptions)
     } catch (error) {
       this.error(error as Error, {message: 'Something went wrong.'})
     }

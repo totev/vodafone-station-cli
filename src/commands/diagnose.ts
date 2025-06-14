@@ -1,6 +1,7 @@
 import {Flags} from '@oclif/core';
 
-import Command from '../base-command';
+import Command, {ipFlag} from '../base-command';
+import {DiscoveryOptions} from '../modem/discovery';
 import DocsisDiagnose from '../modem/docsis-diagnose';
 import {TablePrinter} from '../modem/printer';
 import {webDiagnoseLink} from '../modem/web-diagnose';
@@ -11,8 +12,10 @@ export default class Diagnose extends Command {
     = 'Diagnose the quality of the docsis connection.';
   static examples = [
     '$ vodafone-station-cli diagnose',
+    '$ vodafone-station-cli diagnose --ip 192.168.100.1',
   ];
   static flags = {
+    ip: ipFlag(),
     password: Flags.string({
       char: 'p',
       description: 'router/modem password',
@@ -32,8 +35,12 @@ export default class Diagnose extends Command {
       this.exit()
     }
 
+    const discoveryOptions: DiscoveryOptions = {
+      ip: flags.ip,
+    }
+
     try {
-      const docsisStatus = await getDocsisStatus(password!, this.logger)
+      const docsisStatus = await getDocsisStatus(password!, this.logger, discoveryOptions)
       const diagnoser = new DocsisDiagnose(docsisStatus)
       const tablePrinter = new TablePrinter(docsisStatus);
       this.log(tablePrinter.print())
