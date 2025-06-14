@@ -1,4 +1,3 @@
-import { Flags } from '@oclif/core';
 import { ipFlag } from './base-command';
 
 describe('Base Command', () => {
