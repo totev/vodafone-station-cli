@@ -1,8 +1,8 @@
-import axios, { AxiosResponse } from 'axios';
+import axios, {AxiosResponse} from 'axios';
 
-import { Log } from '../logger';
-import { TechnicolorConfiguration } from './technicolor-modem';
-import { extractFirmwareVersion } from './tools/html-parser';
+import {Log} from '../logger';
+import {TechnicolorConfiguration} from './technicolor-modem';
+import {extractFirmwareVersion} from './tools/html-parser';
 
 // Default IP addresses - can be overridden via CLI flags or environment variables
 const DEFAULT_BRIDGED_MODEM_IP = '192.168.100.1';
@@ -21,10 +21,11 @@ export interface DiscoveryOptions {
 
 export async function discoverModemLocation(options: DiscoveryOptions = {}): Promise<ModemLocation> {
   let defaultIps = [DEFAULT_BRIDGED_MODEM_IP, DEFAULT_ROUTER_IP];
-    // If specific IP is provided, only try that IP
+  // If specific IP is provided, only try that IP
   if (options.ip) {
     defaultIps = [options.ip];
   }
+
   try {
     const headRequests = [];
     for (const ip of defaultIps) {

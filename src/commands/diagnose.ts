@@ -1,11 +1,11 @@
-import { Flags } from '@oclif/core';
+import {Flags} from '@oclif/core';
 
-import Command, { ipFlag } from '../base-command';
-import { DiscoveryOptions } from '../modem/discovery';
+import Command, {ipFlag} from '../base-command';
+import {DiscoveryOptions} from '../modem/discovery';
 import DocsisDiagnose from '../modem/docsis-diagnose';
-import { TablePrinter } from '../modem/printer';
-import { webDiagnoseLink } from '../modem/web-diagnose';
-import { getDocsisStatus } from './docsis';
+import {TablePrinter} from '../modem/printer';
+import {webDiagnoseLink} from '../modem/web-diagnose';
+import {getDocsisStatus} from './docsis';
 
 export default class Diagnose extends Command {
   static description

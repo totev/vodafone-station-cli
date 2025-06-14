@@ -1,5 +1,5 @@
-import Command, { ipFlag } from '../base-command';
-import { discoverModemLocation, DiscoveryOptions, ModemDiscovery } from '../modem/discovery';
+import Command, {ipFlag} from '../base-command';
+import {discoverModemLocation, DiscoveryOptions, ModemDiscovery} from '../modem/discovery';
 
 export default class Discover extends Command {
   static description
@@ -8,7 +8,6 @@ export default class Discover extends Command {
     '$ vodafone-station-cli discover',
     '$ vodafone-station-cli discover --ip 192.168.100.1',
   ];
-
   static flags = {
     ip: ipFlag(),
   }
@@ -19,7 +18,7 @@ export default class Discover extends Command {
       const discoveryOptions: DiscoveryOptions = {
         ip: flags.ip,
       }
-      
+
       const modemLocation = await discoverModemLocation(discoveryOptions);
       this.log(`Possibly found modem under the following location: ${JSON.stringify(modemLocation)}`);
       const modem = new ModemDiscovery(modemLocation, this.logger);

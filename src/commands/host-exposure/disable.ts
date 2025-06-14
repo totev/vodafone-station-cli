@@ -1,8 +1,8 @@
-import { Args, Flags } from '@oclif/core'
+import {Args, Flags} from '@oclif/core'
 
-import Command, { ipFlag } from '../../base-command'
-import { DiscoveryOptions } from '../../modem/discovery'
-import { toggleHostExposureEntries } from '../../modem/host-exposure'
+import Command, {ipFlag} from '../../base-command'
+import {DiscoveryOptions} from '../../modem/discovery'
+import {toggleHostExposureEntries} from '../../modem/host-exposure'
 
 export default class DisableHostExposureEntries extends Command {
   static args = {

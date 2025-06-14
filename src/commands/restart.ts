@@ -1,8 +1,8 @@
-import { Flags } from '@oclif/core';
+import {Flags} from '@oclif/core';
 
-import Command, { ipFlag } from '../base-command';
-import { discoverModemLocation, DiscoveryOptions, ModemDiscovery } from '../modem/discovery';
-import { modemFactory } from '../modem/factory';
+import Command, {ipFlag} from '../base-command';
+import {discoverModemLocation, DiscoveryOptions, ModemDiscovery} from '../modem/discovery';
+import {modemFactory} from '../modem/factory';
 
 export default class Restart extends Command {
   static description = 'restart the modem/router';
@@ -10,7 +10,6 @@ export default class Restart extends Command {
     '$ vodafone-station-cli restart',
     '$ vodafone-station-cli restart --ip 192.168.100.1',
   ];
-
   static flags = {
     ip: ipFlag(),
     password: Flags.string({

@@ -1,8 +1,8 @@
-import { Flags } from '@oclif/core'
+import {Flags} from '@oclif/core'
 
-import Command, { ipFlag } from '../../base-command'
-import { DiscoveryOptions } from '../../modem/discovery'
-import { toggleHostExposureEntries } from '../../modem/host-exposure'
+import Command, {ipFlag} from '../../base-command'
+import {DiscoveryOptions} from '../../modem/discovery'
+import {toggleHostExposureEntries} from '../../modem/host-exposure'
 
 export default class EnableHostExposureEntries extends Command {
   static description = 'Enable a set of host exposure entries'
@@ -20,7 +20,7 @@ export default class EnableHostExposureEntries extends Command {
   static strict = false
 
   async run(): Promise<void> {
-    const { argv, flags } = await this.parse(EnableHostExposureEntries)
+    const {argv, flags} = await this.parse(EnableHostExposureEntries)
 
     const password = flags.password ?? process.env.VODAFONE_ROUTER_PASSWORD
     if (!password || password === '') {
@@ -35,7 +35,7 @@ export default class EnableHostExposureEntries extends Command {
     try {
       await toggleHostExposureEntries(true, argv as string[], password!, this.logger, discoveryOptions)
     } catch (error) {
-      this.error(error as Error, { message: 'Something went wrong.' })
+      this.error(error as Error, {message: 'Something went wrong.'})
     }
 
     this.exit()

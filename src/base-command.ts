@@ -1,7 +1,7 @@
-import { Command, Flags } from '@oclif/core'
-import { config } from 'dotenv'
+import {Command, Flags} from '@oclif/core'
+import {config} from 'dotenv'
 
-import { Log, OclifLogger } from './logger'
+import {Log, OclifLogger} from './logger'
 config()
 
 export const ipFlag = () => Flags.string({

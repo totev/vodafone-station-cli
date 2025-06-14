@@ -1,10 +1,10 @@
-import { Flags } from '@oclif/core'
+import {Flags} from '@oclif/core'
 
-import Command, { ipFlag } from '../../base-command'
-import { Log } from '../../logger'
-import { discoverModemLocation, DiscoveryOptions, ModemDiscovery } from '../../modem/discovery'
-import { modemFactory } from '../../modem/factory'
-import { HostExposureSettings } from '../../modem/modem'
+import Command, {ipFlag} from '../../base-command'
+import {Log} from '../../logger'
+import {discoverModemLocation, DiscoveryOptions, ModemDiscovery} from '../../modem/discovery'
+import {modemFactory} from '../../modem/factory'
+import {HostExposureSettings} from '../../modem/modem'
 
 export async function getHostExposureSettings(password: string, logger: Log, discoveryOptions?: DiscoveryOptions): Promise<HostExposureSettings> {
   const modemLocation = await discoverModemLocation(discoveryOptions)
@@ -32,7 +32,6 @@ export default class GetHostExposure extends Command {
 {JSON data}
 `,
   ];
-
   static flags = {
     ip: ipFlag(),
     password: Flags.string({

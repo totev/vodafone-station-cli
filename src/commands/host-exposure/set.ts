@@ -1,11 +1,11 @@
-import { Args, Flags } from '@oclif/core'
-import { readFile } from 'node:fs/promises'
+import {Args, Flags} from '@oclif/core'
+import {readFile} from 'node:fs/promises'
 
-import Command, { ipFlag } from '../../base-command'
-import { Log } from '../../logger'
-import { discoverModemLocation, DiscoveryOptions, ModemDiscovery } from '../../modem/discovery'
-import { modemFactory } from '../../modem/factory'
-import { HostExposureSettings } from '../../modem/modem'
+import Command, {ipFlag} from '../../base-command'
+import {Log} from '../../logger'
+import {discoverModemLocation, DiscoveryOptions, ModemDiscovery} from '../../modem/discovery'
+import {modemFactory} from '../../modem/factory'
+import {HostExposureSettings} from '../../modem/modem'
 
 export async function setHostExposureSettings(
   settings: HostExposureSettings,

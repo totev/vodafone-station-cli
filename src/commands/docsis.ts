@@ -1,12 +1,12 @@
-import { Flags } from '@oclif/core'
-import { promises as fsp } from 'node:fs'
+import {Flags} from '@oclif/core'
+import {promises as fsp} from 'node:fs'
 
-import Command, { ipFlag } from '../base-command'
-import { Log } from '../logger'
-import { discoverModemLocation, DiscoveryOptions, ModemDiscovery } from '../modem/discovery'
-import { modemFactory } from '../modem/factory'
-import { DocsisStatus } from '../modem/modem'
-import { webDiagnoseLink } from '../modem/web-diagnose'
+import Command, {ipFlag} from '../base-command'
+import {Log} from '../logger'
+import {discoverModemLocation, DiscoveryOptions, ModemDiscovery} from '../modem/discovery'
+import {modemFactory} from '../modem/factory'
+import {DocsisStatus} from '../modem/modem'
+import {webDiagnoseLink} from '../modem/web-diagnose'
 
 export async function getDocsisStatus(password: string, logger: Log, discoveryOptions?: DiscoveryOptions): Promise<DocsisStatus> {
   const modemLocation = await discoverModemLocation(discoveryOptions)
@@ -36,11 +36,11 @@ export default class Docsis extends Command {
 `,
   ]
   static flags = {
-    ip: ipFlag(),
     file: Flags.boolean({
       char: 'f',
       description: 'write out a report file under ./reports/{CURRENT_UNIX_TIMESTAMP}_docsisStatus.json',
     }),
+    ip: ipFlag(),
     password: Flags.string({
       char: 'p',
       description: 'router/modem password',
