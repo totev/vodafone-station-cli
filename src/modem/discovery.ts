@@ -1,10 +1,13 @@
-import axios, {AxiosResponse} from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
-import {Log} from '../logger';
-import {TechnicolorConfiguration} from './technicolor-modem';
-import {extractFirmwareVersion} from './tools/html-parser';
-const BRIDGED_MODEM_IP = '192.168.100.1';
-const ROUTER_IP = '192.168.0.1';
+import { Log } from '../logger';
+import { TechnicolorConfiguration } from './technicolor-modem';
+import { extractFirmwareVersion } from './tools/html-parser';
+
+// Default IP addresses - can be overridden via CLI flags or environment variables
+const DEFAULT_BRIDGED_MODEM_IP = '192.168.100.1';
+const DEFAULT_ROUTER_IP = '192.168.0.1';
+
 axios.defaults.timeout = 10_000;
 
 interface ModemLocation {
@@ -12,14 +15,24 @@ interface ModemLocation {
   protocol: Protocol;
 }
 
-export async function discoverModemLocation(): Promise<ModemLocation> {
+export interface DiscoveryOptions {
+  ip?: string;
+}
+
+export async function discoverModemLocation(options: DiscoveryOptions = {}): Promise<ModemLocation> {
+  let defaultIps = [DEFAULT_BRIDGED_MODEM_IP, DEFAULT_ROUTER_IP];
+    // If specific IP is provided, only try that IP
+  if (options.ip) {
+    defaultIps = [options.ip];
+  }
   try {
-    const results = await Promise.allSettled([
-      axios.head(`http://${BRIDGED_MODEM_IP}`),
-      axios.head(`https://${BRIDGED_MODEM_IP}`),
-      axios.head(`http://${ROUTER_IP}`),
-      axios.head(`https://${ROUTER_IP}`),
-    ]);
+    const headRequests = [];
+    for (const ip of defaultIps) {
+      headRequests.push(axios.head(`http://${ip}`));
+      headRequests.push(axios.head(`https://${ip}`));
+    }
+
+    const results = await Promise.allSettled(headRequests);
     const maybeResult = results.find(result => result.status === 'fulfilled') as undefined | {value: AxiosResponse};
     if (maybeResult?.value.request?.host) {
       console.warn('maybeResult');
