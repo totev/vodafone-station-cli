@@ -38,8 +38,8 @@ test('checkOfdmaUpstream', () => {
 });
 
 test('deviationFactory unsupported modulation/type', () => {
-  expect(()=>downstreamDeviationFactory("8192AM" as Modulation)).toThrowError()
-  expect(()=>upstreamDeviationFactory("OFDM" as DocsisChannelType)).toThrowError()
+  expect(()=>downstreamDeviationFactory("8192AM" as Modulation)).toThrow()
+  expect(()=>upstreamDeviationFactory("OFDM" as DocsisChannelType)).toThrow()
 });
 test('deviationFactory supported modulation/type', () => {
   expect(downstreamDeviationFactory("64QAM" as Modulation)).toStrictEqual(new DownstreamDeviation64QAM())
