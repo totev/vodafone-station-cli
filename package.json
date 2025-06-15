@@ -28,8 +28,8 @@
     "cable-modem"
   ],
   "dependencies": {
-    "@oclif/core": "^4.3.2",
-    "@oclif/plugin-help": "^6.2.28",
+    "@oclif/core": "^4.3.3",
+    "@oclif/plugin-help": "^6.2.29",
     "@oclif/plugin-plugins": "^5.4.40",
     "axios": "^1.9.0",
     "axios-cookiejar-support": "^6.0.2",
@@ -47,18 +47,18 @@
     "@types/sjcl": "^1.0.34",
     "@types/tough-cookie": "^4.0.5",
     "@typescript-eslint/eslint-plugin": "^8.33.1",
-    "eslint": "^9.28.0",
+    "eslint": "^9.29.0",
     "eslint-config-oclif": "^6.0.68",
     "eslint-config-prettier": "^10.1.5",
     "globby": "^14.1.0",
-    "jest": "^29.7.0",
+    "jest": "^30.0.0",
     "oclif": "^4.18.1",
     "shx": "^0.4.0",
-    "ts-jest": "^29.3.4",
+    "ts-jest": "^29.4.0",
     "ts-node": "^10.9.2",
     "tslib": "^2.8.1",
     "typescript": "^5.8.3",
-    "typescript-eslint": "^8.33.1"
+    "typescript-eslint": "^8.34.0"
   },
   "oclif": {
     "bin": "vodafone-station-cli",
