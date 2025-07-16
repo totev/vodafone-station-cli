@@ -38,8 +38,6 @@ export async function discoverModemLocation(options: DiscoveryOptions = {}): Pro
     const results = await Promise.allSettled(headRequests);
     const maybeResult = results.find(result => result.status === 'fulfilled') as undefined | {value: AxiosResponse};
     if (maybeResult?.value.request?.host) {
-      console.warn('maybeResult');
-      console.warn(maybeResult);
       return {
         ipAddress: maybeResult?.value.request?.host,
         protocol: maybeResult?.value.request?.protocol.replace(':', '') as Protocol,
