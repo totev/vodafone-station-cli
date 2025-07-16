@@ -1,9 +1,13 @@
-v1.5.1
+v1.5.2
 ---
 - **🚨 Critical Fix**: Fixed "Cannot find module 'tslib'" runtime error by moving `tslib` from devDependencies to dependencies
-- **Documentation updates**: Updated README.md with latest dependency versions
 
-**Note**: This release fixes a critical packaging issue that prevented the CLI from running after npm installation due to missing TypeScript runtime helpers.
+
+**Full Changelog**: https://github.com/totev/vodafone-station-cli/compare/v1.5.1...v1.5.2
+
+v1.5.1
+---
+- **Documentation updates**: Updated README.md with latest dependency versions  
 
 **Full Changelog**: https://github.com/totev/vodafone-station-cli/compare/v1.5.0...v1.5.1
 
