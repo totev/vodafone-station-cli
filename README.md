@@ -543,7 +543,7 @@ $ npm install -g vodafone-station-cli
 $ vodafone-station-cli COMMAND
 running command...
 $ vodafone-station-cli (--version)
-vodafone-station-cli/1.5.0 darwin-arm64 node-v23.7.0
+vodafone-station-cli/1.5.0 darwin-arm64 node-v24.2.0
 $ vodafone-station-cli --help [COMMAND]
 USAGE
   $ vodafone-station-cli COMMAND
@@ -624,7 +624,7 @@ Get the current docsis status as reported by the modem in a JSON format.
 
 ```
 USAGE
-  $ vodafone-station-cli docsis [-i <value>] [-f] [-p <value>] [-w]
+  $ vodafone-station-cli docsis [-f] [-i <value>] [-p <value>] [-w]
 
 FLAGS
   -f, --file              write out a report file under ./reports/{CURRENT_UNIX_TIMESTAMP}_docsisStatus.json
@@ -663,7 +663,7 @@ DESCRIPTION
   Display help for vodafone-station-cli.
 ```
 
-_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v6.2.28/src/commands/help.ts)_
+_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v6.2.29/src/commands/help.ts)_
 
 ## `vodafone-station-cli host-exposure disable [ENTRIES]`
 

@@ -1,3 +1,9 @@
+v1.5.1
+---
+- **Documentation updates**: Updated README.md with latest dependency versions  
+
+**Full Changelog**: https://github.com/totev/vodafone-station-cli/compare/v1.5.0...v1.5.1
+
 v1.5.0
 ---
 - **IP Flag Support**: Added IP flag support across all commands for flexible modem/router address specification
