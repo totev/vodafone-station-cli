@@ -1,3 +1,10 @@
+v1.5.3
+---
+- **🔧 Fix**: Fixed discover command throwing unnecessary ExitError by removing explicit `this.exit()` call
+
+**Full Changelog**: https://github.com/totev/vodafone-station-cli/compare/v1.5.2...v1.5.3
+
+
 v1.5.2
 ---
 - **🚨 Critical Fix**: Fixed "Cannot find module 'tslib'" runtime error by moving `tslib` from devDependencies to dependencies

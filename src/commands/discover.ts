@@ -31,6 +31,5 @@ export default class Discover extends Command {
 
   async run(): Promise<void> {
     await this.discoverModem();
-    this.exit();
   }
 }
