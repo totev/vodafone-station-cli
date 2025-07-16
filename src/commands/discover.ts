@@ -20,7 +20,7 @@ export default class Discover extends Command {
       }
 
       const modemLocation = await discoverModemLocation(discoveryOptions);
-      this.log(`Possibly found modem under the following location: ${JSON.stringify(modemLocation)}`);
+      this.log(`Possibly found modem under the following location: ${modemLocation.protocol}://${modemLocation.ipAddress}`);
       const modem = new ModemDiscovery(modemLocation, this.logger);
       const discoveredModem = await modem.discover();
       this.log(`Discovered modem: ${JSON.stringify(discoveredModem)}`);
