@@ -1,4 +1,5 @@
 import axios, {AxiosResponse} from 'axios';
+import {debug} from 'node:console';
 
 import {Log} from '../logger';
 import {TechnicolorConfiguration} from './technicolor-modem';
@@ -25,6 +26,8 @@ export async function discoverModemLocation(options: DiscoveryOptions = {}): Pro
   if (options.ip) {
     defaultIps = [options.ip];
   }
+
+  debug(`Probing for modem at IPs: ${defaultIps.join(', ')}`);
 
   try {
     const headRequests = [];
