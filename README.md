@@ -543,7 +543,7 @@ $ npm install -g vodafone-station-cli
 $ vodafone-station-cli COMMAND
 running command...
 $ vodafone-station-cli (--version)
-vodafone-station-cli/1.5.2 darwin-arm64 node-v24.2.0
+vodafone-station-cli/1.5.3 darwin-arm64 node-v24.2.0
 $ vodafone-station-cli --help [COMMAND]
 USAGE
   $ vodafone-station-cli COMMAND
@@ -594,7 +594,7 @@ EXAMPLES
   $ vodafone-station-cli diagnose --ip 192.168.100.1
 ```
 
-_See code: [src/commands/diagnose.ts](https://github.com/totev/vodafone-station-cli/blob/v1.5.1/src/commands/diagnose.ts)_
+_See code: [src/commands/diagnose.ts](https://github.com/totev/vodafone-station-cli/blob/v1.5.3/src/commands/diagnose.ts)_
 
 ## `vodafone-station-cli discover`
 
@@ -616,7 +616,7 @@ EXAMPLES
   $ vodafone-station-cli discover --ip 192.168.100.1
 ```
 
-_See code: [src/commands/discover.ts](https://github.com/totev/vodafone-station-cli/blob/v1.5.1/src/commands/discover.ts)_
+_See code: [src/commands/discover.ts](https://github.com/totev/vodafone-station-cli/blob/v1.5.3/src/commands/discover.ts)_
 
 ## `vodafone-station-cli docsis`
 
@@ -643,7 +643,7 @@ EXAMPLES
   {JSON data}
 ```
 
-_See code: [src/commands/docsis.ts](https://github.com/totev/vodafone-station-cli/blob/v1.5.1/src/commands/docsis.ts)_
+_See code: [src/commands/docsis.ts](https://github.com/totev/vodafone-station-cli/blob/v1.5.3/src/commands/docsis.ts)_
 
 ## `vodafone-station-cli help [COMMAND]`
 
@@ -689,7 +689,7 @@ EXAMPLES
   $ vodafone-station-cli host-exposure:disable -p PASSWORD --ip 192.168.100.1 [ENTRY NAME | [ENTRY NAME...]]
 ```
 
-_See code: [src/commands/host-exposure/disable.ts](https://github.com/totev/vodafone-station-cli/blob/v1.5.1/src/commands/host-exposure/disable.ts)_
+_See code: [src/commands/host-exposure/disable.ts](https://github.com/totev/vodafone-station-cli/blob/v1.5.3/src/commands/host-exposure/disable.ts)_
 
 ## `vodafone-station-cli host-exposure enable`
 
@@ -712,7 +712,7 @@ EXAMPLES
   $ vodafone-station-cli host-exposure:enable -p PASSWORD --ip 192.168.100.1 [ENTRY NAME | [ENTRY NAME...]]
 ```
 
-_See code: [src/commands/host-exposure/enable.ts](https://github.com/totev/vodafone-station-cli/blob/v1.5.1/src/commands/host-exposure/enable.ts)_
+_See code: [src/commands/host-exposure/enable.ts](https://github.com/totev/vodafone-station-cli/blob/v1.5.3/src/commands/host-exposure/enable.ts)_
 
 ## `vodafone-station-cli host-exposure get`
 
@@ -737,7 +737,7 @@ EXAMPLES
   {JSON data}
 ```
 
-_See code: [src/commands/host-exposure/get.ts](https://github.com/totev/vodafone-station-cli/blob/v1.5.1/src/commands/host-exposure/get.ts)_
+_See code: [src/commands/host-exposure/get.ts](https://github.com/totev/vodafone-station-cli/blob/v1.5.3/src/commands/host-exposure/get.ts)_
 
 ## `vodafone-station-cli host-exposure set FILE`
 
@@ -763,7 +763,7 @@ EXAMPLES
   $ vodafone-station-cli host-exposure:set -p PASSWORD --ip 192.168.100.1 <FILE>
 ```
 
-_See code: [src/commands/host-exposure/set.ts](https://github.com/totev/vodafone-station-cli/blob/v1.5.1/src/commands/host-exposure/set.ts)_
+_See code: [src/commands/host-exposure/set.ts](https://github.com/totev/vodafone-station-cli/blob/v1.5.3/src/commands/host-exposure/set.ts)_
 
 ## `vodafone-station-cli plugins`
 
@@ -1076,5 +1076,5 @@ EXAMPLES
   $ vodafone-station-cli restart --ip 192.168.100.1
 ```
 
-_See code: [src/commands/restart.ts](https://github.com/totev/vodafone-station-cli/blob/v1.5.1/src/commands/restart.ts)_
+_See code: [src/commands/restart.ts](https://github.com/totev/vodafone-station-cli/blob/v1.5.3/src/commands/restart.ts)_
 <!-- commandsstop -->
