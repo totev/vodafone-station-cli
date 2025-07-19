@@ -23,7 +23,7 @@ export default class Restart extends Command {
     const password = flags.password ?? process.env.VODAFONE_ROUTER_PASSWORD
     if (!password || password === '') {
       this.log('You must provide a password either using -p or by setting the environment variable VODAFONE_ROUTER_PASSWORD')
-      this.exit()
+      return
     }
 
     const discoveryOptions: DiscoveryOptions = {
@@ -43,6 +43,6 @@ export default class Restart extends Command {
       await modem.logout()
     }
 
-    this.exit()
+    return
   }
 }

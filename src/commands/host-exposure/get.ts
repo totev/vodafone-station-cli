@@ -46,7 +46,7 @@ export default class GetHostExposure extends Command {
     const password = flags.password ?? process.env.VODAFONE_ROUTER_PASSWORD
     if (!password || password === '') {
       this.log('You must provide a password either using -p or by setting the environment variable VODAFONE_ROUTER_PASSWORD')
-      this.exit()
+      return
     }
 
     const discoveryOptions: DiscoveryOptions = {
@@ -61,6 +61,6 @@ export default class GetHostExposure extends Command {
       this.error(error as Error, {message: 'Something went wrong.'})
     }
 
-    this.exit()
+    return
   }
 }
