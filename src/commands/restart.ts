@@ -42,7 +42,5 @@ export default class Restart extends Command {
     } finally {
       await modem.logout()
     }
-
-    return
   }
 }

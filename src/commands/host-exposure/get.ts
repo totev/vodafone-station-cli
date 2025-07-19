@@ -60,7 +60,5 @@ export default class GetHostExposure extends Command {
     } catch (error) {
       this.error(error as Error, {message: 'Something went wrong.'})
     }
-
-    return
   }
 }

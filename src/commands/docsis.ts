@@ -77,8 +77,6 @@ export default class Docsis extends Command {
       if (flags.web) {
         this.log(`Review your docsis state online -> ${webDiagnoseLink(docsisStatus)}`)
       }
-
-      return
     } catch (error) {
       this.error(error as Error, {message: 'Something went wrong'})
     }
