@@ -4,6 +4,7 @@ import {promises as fsp} from 'node:fs'
 import Command, {ipFlag} from '../base-command'
 import {Log} from '../logger'
 import {discoverModemLocation, DiscoveryOptions, ModemDiscovery} from '../modem/discovery'
+import {colorize} from '../modem/docsis-diagnose'
 import {modemFactory} from '../modem/factory'
 import {DocsisStatus} from '../modem/modem'
 import {webDiagnoseLink} from '../modem/web-diagnose'
@@ -17,7 +18,7 @@ export async function getDocsisStatus(password: string, logger: Log, discoveryOp
     const docsisData = await modem.docsis()
     return docsisData
   } catch (error) {
-    logger.warn('Could not fetch docsis status from modem.')
+    logger.log(colorize('red', 'Could not fetch docsis status from modem.'))
     logger.error(error as Error)
     throw error
   } finally {
