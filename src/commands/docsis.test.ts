@@ -10,6 +10,7 @@ const mockLogger = {
   debug: jest.fn(),
   warn: jest.fn(),
   error: jest.fn(),
+  log: jest.fn(),
 };
 
 const mockModem = {
