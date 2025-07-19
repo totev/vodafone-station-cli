@@ -2,7 +2,7 @@ import {Flags} from '@oclif/core';
 
 import Command, {ipFlag} from '../base-command';
 import {DiscoveryOptions} from '../modem/discovery';
-import DocsisDiagnose from '../modem/docsis-diagnose';
+import DocsisDiagnose, {colorize} from '../modem/docsis-diagnose';
 import {TablePrinter} from '../modem/printer';
 import {webDiagnoseLink} from '../modem/web-diagnose';
 import {getDocsisStatus} from './docsis';
@@ -46,7 +46,7 @@ export default class Diagnose extends Command {
       this.log(tablePrinter.print())
 
       if (diagnoser.hasDeviations()) {
-        this.logger.warn('Docsis connection connection quality deviation found!')
+        this.log(colorize('yellow', 'Warning: Docsis connection quality deviation found!'));
       }
 
       if (flags.web) {

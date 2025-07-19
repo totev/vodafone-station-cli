@@ -1,5 +1,6 @@
 import {Log} from '../logger'
 import {discoverModemLocation, DiscoveryOptions, ModemDiscovery} from './discovery'
+import {colorize} from './docsis-diagnose'
 import {modemFactory} from './factory'
 
 export async function toggleHostExposureEntries(toggle: boolean, entries: string[], password: string, logger: Log, discoveryOptions?: DiscoveryOptions): Promise<void> {
@@ -18,7 +19,7 @@ export async function toggleHostExposureEntries(toggle: boolean, entries: string
     for (const name of names) {
       const index = settings.hosts.findIndex(host => host.serviceName === name)
       if (index === -1) {
-        logger.warn(`Entry with the name '${name}' does not exist.`)
+        logger.log(colorize('yellow', `Entry with the name '${name}' does not exist.`))
       } else {
         settings.hosts[index].enabled = toggle
       }

@@ -78,7 +78,7 @@ export class ModemDiscovery {
 
       return maybeModem;
     } catch (error) {
-      this.logger.warn('Could not find a router/modem under the known addresses');
+      this.logger.log('yellow', 'Could not find a router/modem under the known addresses');
       throw error;
     }
   }
