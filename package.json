@@ -50,7 +50,7 @@
     "@typescript-eslint/eslint-plugin": "^8.33.1",
     "eslint": "^9.31.0",
     "eslint-config-oclif": "^6.0.68",
-    "eslint-config-prettier": "^10.1.5",
+    "eslint-config-prettier": "^10.1.8",
     "globby": "^14.1.0",
     "jest": "^30.0.0",
     "oclif": "^4.18.1",
