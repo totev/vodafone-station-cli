@@ -42,7 +42,7 @@
   },
   "devDependencies": {
     "@oclif/prettier-config": "^0.2.1",
-    "@oclif/test": "^4.1.13",
+    "@oclif/test": "^4.1.15",
     "@types/jest": "^29.5.14",
     "@types/node": "^22.19.1",
     "@types/sjcl": "^1.0.34",
