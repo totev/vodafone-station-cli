@@ -53,7 +53,7 @@
     "eslint-config-prettier": "^10.1.8",
     "globby": "^14.1.0",
     "jest": "^30.0.0",
-    "oclif": "^4.18.1",
+    "oclif": "^4.22.54",
     "shx": "^0.4.0",
     "ts-jest": "^29.4.5",
     "ts-node": "^10.9.2",
