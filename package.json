@@ -58,7 +58,7 @@
     "ts-jest": "^29.4.5",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.3",
-    "typescript-eslint": "^8.34.0"
+    "typescript-eslint": "^8.51.0"
   },
   "oclif": {
     "bin": "vodafone-station-cli",
