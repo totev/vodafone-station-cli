@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.1](https://github.com/totev/vodafone-station-cli/compare/v1.6.0...v1.6.1) (2026-01-30)
+
+
+### Bug Fixes
+
+* npm publish with release please ([0eb9ed6](https://github.com/totev/vodafone-station-cli/commit/0eb9ed60311e06e9cb7d3f5998c74dc07ce5e22f))
+
 ## [1.6.0](https://github.com/totev/vodafone-station-cli/compare/v1.5.3...v1.6.0) (2026-01-30)
 
 
