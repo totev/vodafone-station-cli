@@ -90,7 +90,7 @@ export default class DocsisDiagnose {
         colorize(upstream.diagnose.color, `ch${upstream.channelId}pl`)).join(', ')
 
     return [
-      'Legend: pl = power level | snr = signal to noise ration',
+      'Legend: pl = power level | snr = signal to noise ratio',
       `Colors:  ${colorize(FixWithinOneMonth.color, FixWithinOneMonth.description)} | ${colorize(FixImmediately.color, FixImmediately.description)}`,
       `DOWN: ${[...down, ...downSnr].join(', ')}`,
       `UP: ${up}`,
