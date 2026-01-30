@@ -1,3 +1,22 @@
+# Changelog
+
+## [1.6.0](https://github.com/totev/vodafone-station-cli/compare/v1.5.3...v1.6.0) (2026-01-30)
+
+
+### Features
+
+* add Dockerfile and script for testing vodafone-station-cli ([11c903f](https://github.com/totev/vodafone-station-cli/commit/11c903fa85f502b8df4d530113cc3476a838412c))
+* add release-please workflow for automated releases ([487483f](https://github.com/totev/vodafone-station-cli/commit/487483ffc1405acc11343445de4286072d72f15b))
+* cleaner program termination with return instead of exit with error ([80d4734](https://github.com/totev/vodafone-station-cli/commit/80d4734491284b50ac2f788ce047cb41108749db))
+* print out probed ips ([2a766ea](https://github.com/totev/vodafone-station-cli/commit/2a766eab09c14f50133a07aa25419e4b3c8c164c))
+
+
+### Bug Fixes
+
+* enhance logging with colorized messages for modem diagnostics ([#266](https://github.com/totev/vodafone-station-cli/issues/266)) ([5054b3c](https://github.com/totev/vodafone-station-cli/commit/5054b3c201e17acdc152ac8378f5e57bac58abe1))
+* linting ([4a68f59](https://github.com/totev/vodafone-station-cli/commit/4a68f59f988ab550233a76b92da6e37cedbc8bf4))
+* typo ([0156bf3](https://github.com/totev/vodafone-station-cli/commit/0156bf374e34dc964dfc60b87795a598568bcb4c))
+
 v1.5.3
 ---
 - **🔧 Fix**: Fixed discover command throwing unnecessary ExitError by removing explicit `this.exit()` call
