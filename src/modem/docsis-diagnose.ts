@@ -99,11 +99,11 @@ export default class DocsisDiagnose {
 }
 
 export const SEVERITY_COLORS
-= {
-  green: '\u001B[32m',
-  red: '\u001B[31m',
-  yellow: '\u001B[33m',
-}
+  = {
+    green: '\u001B[32m',
+    red: '\u001B[31m',
+    yellow: '\u001B[33m',
+  }
 
 export function colorize(severity: 'green' | 'red' | 'yellow', message: string): string {
   const color = SEVERITY_COLORS[severity] ?? SEVERITY_COLORS.green
