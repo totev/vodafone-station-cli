@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.6.4](https://github.com/totev/vodafone-station-cli/compare/v1.6.3...v1.6.4) (2026-01-31)
+
+
+### Miscellaneous Chores
+
+* release 1.6.3 ([dd965fd](https://github.com/totev/vodafone-station-cli/commit/dd965fd0d8b68574d389138ea14fca5afb9d54d8))
+* release 1.6.4 ([12d20b8](https://github.com/totev/vodafone-station-cli/commit/12d20b8350f3e3a6e38a12d478a0d620b3b945e3))
+
 ## [1.6.3](https://github.com/totev/vodafone-station-cli/compare/v1.6.3...v1.6.3) (2026-01-31)
 
 
