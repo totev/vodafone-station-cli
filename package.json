@@ -1,7 +1,7 @@
 {
   "name": "vodafone-station-cli",
   "description": "Access your Vodafone Station from the comfort of the command line.",
-  "version": "1.6.4",
+  "version": "1.7.0",
   "author": "Dobroslav Totev",
   "bin": {
     "vodafone-station-cli": "./bin/run"
