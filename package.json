@@ -47,7 +47,7 @@
     "@oclif/prettier-config": "^0.2.1",
     "@oclif/test": "^4.1.16",
     "@types/jest": "^29.5.14",
-    "@types/node": "^22.19.1",
+    "@types/node": "^24",
     "@types/sjcl": "^1.0.34",
     "@types/tough-cookie": "^4.0.5",
     "@typescript-eslint/eslint-plugin": "^8.33.1",
@@ -88,7 +88,7 @@
     "version": "oclif readme && git add README.md"
   },
   "engines": {
-    "node": ">=22.0.0"
+    "node": ">=24.0.0"
   },
   "types": "dist/index.d.ts"
 }
