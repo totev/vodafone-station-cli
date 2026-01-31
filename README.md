@@ -512,7 +512,7 @@ Currently the following hardware/software is supported:
 
 # Software requirements
 
-- Node.js 20.x or higher
+- Node.js 22.x or higher
 
 # Notes
 
