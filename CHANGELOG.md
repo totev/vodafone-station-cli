@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.0](https://github.com/totev/vodafone-station-cli/compare/v1.6.4...v1.7.0) (2026-01-31)
+
+
+### Features
+
+* update Node.js version to 24.x ([#343](https://github.com/totev/vodafone-station-cli/issues/343)) ([29660b7](https://github.com/totev/vodafone-station-cli/commit/29660b7f19474e68cfc356602a66382903087f87))
+
 ## [1.6.4](https://github.com/totev/vodafone-station-cli/compare/v1.6.3...v1.6.4) (2026-01-31)
 
 
