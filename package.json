@@ -10,7 +10,10 @@
   "license": "MIT",
   "main": "dist/index.js",
   "bugs": "https://github.com/totev/vodafone-station-cli/issues",
-  "repository": "totev/vodafone-station-cli",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/totev/vodafone-station-cli.git"
+  },
   "files": [
     "/bin",
     "/dist",

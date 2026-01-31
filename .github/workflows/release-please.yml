@@ -43,7 +43,7 @@ jobs:
         run: yarn build
 
       - name: Publish to npm
-        run: npm publish
+        run: npm publish --access public
 
       - name: Build standalone tarballs
         run: yarn build:standalone
