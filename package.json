@@ -46,7 +46,7 @@
   "devDependencies": {
     "@oclif/prettier-config": "^0.2.1",
     "@oclif/test": "^4.1.16",
-    "@types/jest": "^29.5.14",
+    "@types/jest": "^30.0.0",
     "@types/node": "^24",
     "@types/sjcl": "^1.0.34",
     "@types/tough-cookie": "^4.0.5",
@@ -55,7 +55,7 @@
     "eslint-config-oclif": "^6.0.135",
     "eslint-config-prettier": "^10.1.8",
     "globby": "^14.1.0",
-    "jest": "^30.0.0",
+    "jest": "^30.3.0",
     "oclif": "^4.22.70",
     "shx": "^0.4.0",
     "ts-jest": "^29.4.5",
