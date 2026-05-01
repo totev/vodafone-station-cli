@@ -194,6 +194,28 @@ describe('Discovery', () => {
         });
       });
 
+      it('should successfully discover Arris modem with swVer pattern', async () => {
+        const mockArrisResponse = {
+          data: '<html><script>var _ga = {}; _ga.swVer = "AR01.05.063.15_082825_735.PC20.20.VF";</script></html>',
+        };
+
+        mockedExtractFirmwareVersion.mockReturnValue('AR01.05.063.15_082825_735.PC20.20.VF');
+
+        mockedAxios.get = jest.fn()
+          .mockResolvedValueOnce(mockArrisResponse)         // tryArris succeeds
+          .mockRejectedValueOnce(new Error('Technicolor failed')); // tryTechnicolor fails
+
+        const discovery = new ModemDiscovery(mockModemLocation, mockLogger as any);
+        const result = await discovery.discover();
+
+        expect(result).toEqual({
+          deviceType: 'Arris',
+          firmwareVersion: 'AR01.05.063.15_082825_735.PC20.20.VF',
+          ipAddress: '192.168.1.1',
+          protocol: 'http',
+        });
+      });
+
       it('should throw error when both modem types fail', async () => {
         mockedAxios.get = jest.fn().mockRejectedValue(new Error('Connection failed'));
 
