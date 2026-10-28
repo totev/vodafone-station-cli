@@ -57,7 +57,7 @@ export function normalizeChannelStatus(channelStatus: ArrisDocsisChannelStatus):
     lockStatus: channelStatus.LockStatus,
     modulation: channelStatus.Modulation,
     powerLevel: Number.parseFloat(channelStatus.PowerLevel.split('/')[0]),
-    snr: Number.parseInt(`${channelStatus.SNRLevel ?? 0}`, 10),
+    snr: Number.parseFloat(`${channelStatus.SNRLevel ?? 0}`),
     ...frequency,
   } as HumanizedDocsis31ChannelStatus | HumanizedDocsisChannelStatus
 }
