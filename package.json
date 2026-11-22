@@ -31,7 +31,7 @@
     "cable-modem"
   ],
   "dependencies": {
-    "@oclif/core": "^4.8.0",
+    "@oclif/core": "^4.11.0",
     "@oclif/plugin-help": "^6.2.37",
     "@oclif/plugin-plugins": "^5.4.55",
     "axios": "^1.9.0",
