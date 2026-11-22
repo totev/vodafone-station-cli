@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.7.1](https://github.com/totev/vodafone-station-cli/compare/v1.7.0...v1.7.1) (2026-11-22)
+
+
+### Bug Fixes
+
+* accept any HTTP status when probing the modem ([#379](https://github.com/totev/vodafone-station-cli/issues/379)) ([4d73041](https://github.com/totev/vodafone-station-cli/commit/4d730417f7b3d240dd85084ffe8e226b09e194fc))
+* keep decimals in Arris SNR values ([#380](https://github.com/totev/vodafone-station-cli/issues/380)) ([07828f8](https://github.com/totev/vodafone-station-cli/commit/07828f86e272904fae0030e2ffc35fa4524042e3))
+
 ## [1.7.0](https://github.com/totev/vodafone-station-cli/compare/v1.6.4...v1.7.0) (2026-01-31)
 
 
