@@ -10,7 +10,7 @@ exports[`Arris normalizeDocsisStatus should work with ofdm in download 1`] = `
       "lockStatus": "Locked",
       "modulation": "256QAM",
       "powerLevel": -6.7,
-      "snr": 35,
+      "snr": 35.1,
     },
     {
       "channelId": "3",
@@ -19,7 +19,7 @@ exports[`Arris normalizeDocsisStatus should work with ofdm in download 1`] = `
       "lockStatus": "Locked",
       "modulation": "256QAM",
       "powerLevel": -6.4,
-      "snr": 35,
+      "snr": 35.1,
     },
     {
       "channelId": "4",
@@ -28,7 +28,7 @@ exports[`Arris normalizeDocsisStatus should work with ofdm in download 1`] = `
       "lockStatus": "Locked",
       "modulation": "256QAM",
       "powerLevel": -6.7,
-      "snr": 35,
+      "snr": 35.8,
     },
     {
       "channelId": "5",
@@ -37,7 +37,7 @@ exports[`Arris normalizeDocsisStatus should work with ofdm in download 1`] = `
       "lockStatus": "Locked",
       "modulation": "256QAM",
       "powerLevel": -3.7,
-      "snr": 38,
+      "snr": 38.6,
     },
     {
       "channelId": "6",
@@ -46,7 +46,7 @@ exports[`Arris normalizeDocsisStatus should work with ofdm in download 1`] = `
       "lockStatus": "Locked",
       "modulation": "256QAM",
       "powerLevel": -3.8,
-      "snr": 38,
+      "snr": 38.6,
     },
     {
       "channelId": "7",
@@ -55,7 +55,7 @@ exports[`Arris normalizeDocsisStatus should work with ofdm in download 1`] = `
       "lockStatus": "Locked",
       "modulation": "256QAM",
       "powerLevel": -3.6,
-      "snr": 38,
+      "snr": 38.6,
     },
     {
       "channelId": "8",
@@ -64,7 +64,7 @@ exports[`Arris normalizeDocsisStatus should work with ofdm in download 1`] = `
       "lockStatus": "Locked",
       "modulation": "256QAM",
       "powerLevel": -4.2,
-      "snr": 38,
+      "snr": 38.6,
     },
     {
       "channelId": "9",
@@ -73,7 +73,7 @@ exports[`Arris normalizeDocsisStatus should work with ofdm in download 1`] = `
       "lockStatus": "Locked",
       "modulation": "256QAM",
       "powerLevel": -4.8,
-      "snr": 38,
+      "snr": 38.6,
     },
     {
       "channelId": "10",
@@ -91,7 +91,7 @@ exports[`Arris normalizeDocsisStatus should work with ofdm in download 1`] = `
       "lockStatus": "Locked",
       "modulation": "256QAM",
       "powerLevel": -4.4,
-      "snr": 37,
+      "snr": 37.6,
     },
     {
       "channelId": "12",
@@ -100,7 +100,7 @@ exports[`Arris normalizeDocsisStatus should work with ofdm in download 1`] = `
       "lockStatus": "Locked",
       "modulation": "256QAM",
       "powerLevel": -3.1,
-      "snr": 38,
+      "snr": 38.6,
     },
     {
       "channelId": "13",
@@ -127,7 +127,7 @@ exports[`Arris normalizeDocsisStatus should work with ofdm in download 1`] = `
       "lockStatus": "Locked",
       "modulation": "64QAM",
       "powerLevel": -8,
-      "snr": 34,
+      "snr": 34.9,
     },
     {
       "channelId": "16",
@@ -136,7 +136,7 @@ exports[`Arris normalizeDocsisStatus should work with ofdm in download 1`] = `
       "lockStatus": "Locked",
       "modulation": "64QAM",
       "powerLevel": -7,
-      "snr": 35,
+      "snr": 35.5,
     },
     {
       "channelId": "17",
@@ -154,7 +154,7 @@ exports[`Arris normalizeDocsisStatus should work with ofdm in download 1`] = `
       "lockStatus": "Locked",
       "modulation": "64QAM",
       "powerLevel": -7.1,
-      "snr": 34,
+      "snr": 34.9,
     },
     {
       "channelId": "19",
@@ -172,7 +172,7 @@ exports[`Arris normalizeDocsisStatus should work with ofdm in download 1`] = `
       "lockStatus": "Locked",
       "modulation": "64QAM",
       "powerLevel": -6.1,
-      "snr": 35,
+      "snr": 35.7,
     },
     {
       "channelId": "21",
@@ -181,7 +181,7 @@ exports[`Arris normalizeDocsisStatus should work with ofdm in download 1`] = `
       "lockStatus": "Locked",
       "modulation": "64QAM",
       "powerLevel": -5.6,
-      "snr": 36,
+      "snr": 36.3,
     },
     {
       "channelId": "22",
@@ -190,7 +190,7 @@ exports[`Arris normalizeDocsisStatus should work with ofdm in download 1`] = `
       "lockStatus": "Locked",
       "modulation": "64QAM",
       "powerLevel": -6.2,
-      "snr": 35,
+      "snr": 35.5,
     },
     {
       "channelId": "23",
@@ -199,7 +199,7 @@ exports[`Arris normalizeDocsisStatus should work with ofdm in download 1`] = `
       "lockStatus": "Locked",
       "modulation": "64QAM",
       "powerLevel": -5.9,
-      "snr": 35,
+      "snr": 35.5,
     },
     {
       "channelId": "24",
@@ -217,7 +217,7 @@ exports[`Arris normalizeDocsisStatus should work with ofdm in download 1`] = `
       "lockStatus": "Locked",
       "modulation": "64QAM",
       "powerLevel": -5.9,
-      "snr": 36,
+      "snr": 36.3,
     },
     {
       "channelId": "26",
@@ -226,7 +226,7 @@ exports[`Arris normalizeDocsisStatus should work with ofdm in download 1`] = `
       "lockStatus": "Locked",
       "modulation": "64QAM",
       "powerLevel": -5.7,
-      "snr": 35,
+      "snr": 35.5,
     },
     {
       "channelId": "27",
@@ -235,7 +235,7 @@ exports[`Arris normalizeDocsisStatus should work with ofdm in download 1`] = `
       "lockStatus": "Locked",
       "modulation": "64QAM",
       "powerLevel": -5.9,
-      "snr": 35,
+      "snr": 35.5,
     },
     {
       "channelId": "28",
@@ -244,7 +244,7 @@ exports[`Arris normalizeDocsisStatus should work with ofdm in download 1`] = `
       "lockStatus": "Locked",
       "modulation": "64QAM",
       "powerLevel": -6.4,
-      "snr": 35,
+      "snr": 35.5,
     },
     {
       "channelId": "29",
@@ -253,7 +253,7 @@ exports[`Arris normalizeDocsisStatus should work with ofdm in download 1`] = `
       "lockStatus": "Locked",
       "modulation": "64QAM",
       "powerLevel": -6.5,
-      "snr": 35,
+      "snr": 35.7,
     },
     {
       "channelId": "30",
@@ -271,7 +271,7 @@ exports[`Arris normalizeDocsisStatus should work with ofdm in download 1`] = `
       "lockStatus": "Locked",
       "modulation": "64QAM",
       "powerLevel": -6.8,
-      "snr": 35,
+      "snr": 35.5,
     },
     {
       "channelId": "32",
@@ -280,7 +280,7 @@ exports[`Arris normalizeDocsisStatus should work with ofdm in download 1`] = `
       "lockStatus": "Locked",
       "modulation": "64QAM",
       "powerLevel": -7.9,
-      "snr": 34,
+      "snr": 34.9,
     },
     {
       "channelId": "1",
@@ -289,7 +289,7 @@ exports[`Arris normalizeDocsisStatus should work with ofdm in download 1`] = `
       "lockStatus": "Locked",
       "modulation": "256QAM",
       "powerLevel": -6.5,
-      "snr": 34,
+      "snr": 34.3,
     },
   ],
   "downstreamOfdm": [
@@ -357,7 +357,7 @@ exports[`Arris normalizeDocsisStatus should work with ofdm in download and in up
       "lockStatus": "Locked",
       "modulation": "256QAM",
       "powerLevel": -3.4,
-      "snr": 38,
+      "snr": 38.6,
     },
     {
       "channelId": "1",
@@ -366,7 +366,7 @@ exports[`Arris normalizeDocsisStatus should work with ofdm in download and in up
       "lockStatus": "Locked",
       "modulation": "256QAM",
       "powerLevel": -4.7,
-      "snr": 35,
+      "snr": 35.8,
     },
     {
       "channelId": "2",
@@ -375,7 +375,7 @@ exports[`Arris normalizeDocsisStatus should work with ofdm in download and in up
       "lockStatus": "Locked",
       "modulation": "256QAM",
       "powerLevel": -5,
-      "snr": 36,
+      "snr": 36.4,
     },
     {
       "channelId": "3",
@@ -384,7 +384,7 @@ exports[`Arris normalizeDocsisStatus should work with ofdm in download and in up
       "lockStatus": "Locked",
       "modulation": "256QAM",
       "powerLevel": -4.9,
-      "snr": 36,
+      "snr": 36.4,
     },
     {
       "channelId": "31",
@@ -402,7 +402,7 @@ exports[`Arris normalizeDocsisStatus should work with ofdm in download and in up
       "lockStatus": "Locked",
       "modulation": "64QAM",
       "powerLevel": -7.2,
-      "snr": 34,
+      "snr": 34.4,
     },
     {
       "channelId": "30",
@@ -411,7 +411,7 @@ exports[`Arris normalizeDocsisStatus should work with ofdm in download and in up
       "lockStatus": "Locked",
       "modulation": "64QAM",
       "powerLevel": -5.9,
-      "snr": 35,
+      "snr": 35.5,
     },
     {
       "channelId": "29",
@@ -429,7 +429,7 @@ exports[`Arris normalizeDocsisStatus should work with ofdm in download and in up
       "lockStatus": "Locked",
       "modulation": "256QAM",
       "powerLevel": -2.9,
-      "snr": 38,
+      "snr": 38.6,
     },
     {
       "channelId": "6",
@@ -447,7 +447,7 @@ exports[`Arris normalizeDocsisStatus should work with ofdm in download and in up
       "lockStatus": "Locked",
       "modulation": "64QAM",
       "powerLevel": -5.6,
-      "snr": 34,
+      "snr": 34.9,
     },
     {
       "channelId": "27",
@@ -456,7 +456,7 @@ exports[`Arris normalizeDocsisStatus should work with ofdm in download and in up
       "lockStatus": "Locked",
       "modulation": "64QAM",
       "powerLevel": -5.6,
-      "snr": 35,
+      "snr": 35.5,
     },
     {
       "channelId": "28",
@@ -465,7 +465,7 @@ exports[`Arris normalizeDocsisStatus should work with ofdm in download and in up
       "lockStatus": "Locked",
       "modulation": "64QAM",
       "powerLevel": -6,
-      "snr": 34,
+      "snr": 34.9,
     },
     {
       "channelId": "4",
@@ -474,7 +474,7 @@ exports[`Arris normalizeDocsisStatus should work with ofdm in download and in up
       "lockStatus": "Locked",
       "modulation": "256QAM",
       "powerLevel": -5.2,
-      "snr": 36,
+      "snr": 36.4,
     },
     {
       "channelId": "25",
@@ -483,7 +483,7 @@ exports[`Arris normalizeDocsisStatus should work with ofdm in download and in up
       "lockStatus": "Locked",
       "modulation": "64QAM",
       "powerLevel": -5.7,
-      "snr": 35,
+      "snr": 35.5,
     },
     {
       "channelId": "9",
@@ -510,7 +510,7 @@ exports[`Arris normalizeDocsisStatus should work with ofdm in download and in up
       "lockStatus": "Locked",
       "modulation": "256QAM",
       "powerLevel": -2.7,
-      "snr": 38,
+      "snr": 38.6,
     },
     {
       "channelId": "22",
@@ -555,7 +555,7 @@ exports[`Arris normalizeDocsisStatus should work with ofdm in download and in up
       "lockStatus": "Locked",
       "modulation": "64QAM",
       "powerLevel": -5.4,
-      "snr": 35,
+      "snr": 35.7,
     },
     {
       "channelId": "12",
@@ -582,7 +582,7 @@ exports[`Arris normalizeDocsisStatus should work with ofdm in download and in up
       "lockStatus": "Locked",
       "modulation": "64QAM",
       "powerLevel": -7.8,
-      "snr": 34,
+      "snr": 34.9,
     },
     {
       "channelId": "16",
@@ -591,7 +591,7 @@ exports[`Arris normalizeDocsisStatus should work with ofdm in download and in up
       "lockStatus": "Locked",
       "modulation": "64QAM",
       "powerLevel": -6.8,
-      "snr": 35,
+      "snr": 35.5,
     },
     {
       "channelId": "18",
@@ -627,7 +627,7 @@ exports[`Arris normalizeDocsisStatus should work with ofdm in download and in up
       "lockStatus": "Locked",
       "modulation": "64QAM",
       "powerLevel": -6.9,
-      "snr": 34,
+      "snr": 34.9,
     },
     {
       "channelId": "20",
@@ -636,7 +636,7 @@ exports[`Arris normalizeDocsisStatus should work with ofdm in download and in up
       "lockStatus": "Locked",
       "modulation": "64QAM",
       "powerLevel": -6,
-      "snr": 35,
+      "snr": 35.7,
     },
   ],
   "downstreamOfdm": [
