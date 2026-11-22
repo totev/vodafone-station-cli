@@ -5,6 +5,8 @@ import { extractFirmwareVersion } from './tools/html-parser';
 // Mock axios
 jest.mock('axios');
 const mockedAxios = axios as jest.Mocked<typeof axios>;
+// Discovery accepts any HTTP status: some firmware answers HEAD with 403.
+const headOptions = { validateStatus: expect.any(Function) };
 
 // Mock html-parser
 jest.mock('./tools/html-parser');
@@ -30,7 +32,7 @@ describe('Discovery', () => {
 
         const result = await discoverModemLocation({ ip: '192.168.1.100' });
 
-        expect(mockedAxios.head).toHaveBeenCalledWith('http://192.168.1.100');
+        expect(mockedAxios.head).toHaveBeenCalledWith('http://192.168.1.100', headOptions);
         expect(result).toEqual({
           ipAddress: '192.168.1.100',
           protocol: 'http',
@@ -52,12 +54,24 @@ describe('Discovery', () => {
         const result = await discoverModemLocation({ ip: '192.168.1.100' });
 
         expect(mockedAxios.head).toHaveBeenCalledTimes(2);
-        expect(mockedAxios.head).toHaveBeenNthCalledWith(1, 'http://192.168.1.100');
-        expect(mockedAxios.head).toHaveBeenNthCalledWith(2, 'https://192.168.1.100');
+        expect(mockedAxios.head).toHaveBeenNthCalledWith(1, 'http://192.168.1.100', headOptions);
+        expect(mockedAxios.head).toHaveBeenNthCalledWith(2, 'https://192.168.1.100', headOptions);
         expect(result).toEqual({
           ipAddress: '192.168.1.100',
           protocol: 'https',
         });
+      });
+
+      it('should accept a modem that answers HEAD with 403 (TG3442DE firmware 01.05.069.14)', async () => {
+        mockedAxios.head = jest.fn().mockResolvedValue({
+          status: 403,
+          request: { host: '192.168.0.1', protocol: 'http:' },
+        });
+
+        await discoverModemLocation({ ip: '192.168.0.1' });
+
+        const { validateStatus } = mockedAxios.head.mock.calls[0][1] as { validateStatus: (status: number) => boolean };
+        expect(validateStatus(403)).toBe(true);
       });
 
       it('should throw error if both HTTP and HTTPS fail with provided IP', async () => {
@@ -82,7 +96,7 @@ describe('Discovery', () => {
         const result = await discoverModemLocation();
 
         // Should try first default IP
-        expect(mockedAxios.head).toHaveBeenCalledWith('http://192.168.100.1');
+        expect(mockedAxios.head).toHaveBeenCalledWith('http://192.168.100.1', headOptions);
         expect(result.ipAddress).toBe('192.168.100.1');
       });
 
@@ -104,10 +118,10 @@ describe('Discovery', () => {
          const result = await discoverModemLocation();
 
          expect(mockedAxios.head).toHaveBeenCalledTimes(4);
-         expect(mockedAxios.head).toHaveBeenNthCalledWith(1, 'http://192.168.100.1');
-         expect(mockedAxios.head).toHaveBeenNthCalledWith(2, 'https://192.168.100.1');
-         expect(mockedAxios.head).toHaveBeenNthCalledWith(3, 'http://192.168.0.1');
-         expect(mockedAxios.head).toHaveBeenNthCalledWith(4, 'https://192.168.0.1');
+         expect(mockedAxios.head).toHaveBeenNthCalledWith(1, 'http://192.168.100.1', headOptions);
+         expect(mockedAxios.head).toHaveBeenNthCalledWith(2, 'https://192.168.100.1', headOptions);
+         expect(mockedAxios.head).toHaveBeenNthCalledWith(3, 'http://192.168.0.1', headOptions);
+         expect(mockedAxios.head).toHaveBeenNthCalledWith(4, 'https://192.168.0.1', headOptions);
          expect(result.ipAddress).toBe('192.168.0.1');
          expect(result.protocol).toBe('https');
        });

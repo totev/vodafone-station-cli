@@ -30,11 +30,13 @@ export async function discoverModemLocation(options: DiscoveryOptions = {}): Pro
   debug(`Probing for modem at IPs: ${defaultIps.join(', ')}`);
 
   try {
+    // Any HTTP answer means a web server is there: TG3442DE firmware 01.05.069.14 answers HEAD with 403.
+    const validateStatus = () => true;
     const headRequests = [];
     for (const ip of defaultIps) {
       headRequests.push(
-        axios.head(`http://${ip}`),
-        axios.head(`https://${ip}`),
+        axios.head(`http://${ip}`, {validateStatus}),
+        axios.head(`https://${ip}`, {validateStatus}),
       );
     }
 
