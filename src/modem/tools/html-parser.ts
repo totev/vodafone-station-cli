@@ -4,7 +4,7 @@ const nonceMatcher = /var csp_nonce = "(?<nonce>.*?)";/gm
 const ivMatcher = /var myIv = ["|'](?<iv>.*?)["|'];/gm
 const saltMatcher = /var mySalt = ["|'](?<salt>.*?)["|'];/gm
 const sessionIdMatcher = /var currentSessionId = ["|'](?<sessionId>.*?)["|'];/gm
-const swVersionMatcher = /_ga.swVersion = ["|'](?<swVersion>.*?)["|'];/gm
+const swVersionMatcher = /_ga\.swVersion = ["|'](?<swVersion>.*?)["|'](?:;|$)|_ga\.swVer = ["|'](?<swVersion2>.*?)["|'](?:;|$)/gm
 
 export interface CryptoVars {
   iv: string;
@@ -24,7 +24,11 @@ export function extractCryptoVars(html: string): CryptoVars {
 }
 
 export function extractFirmwareVersion(html: string): string | undefined {
-  return swVersionMatcher.exec(html)?.groups?.swVersion
+  const match = swVersionMatcher.exec(html)
+  if (!match?.groups?.swVersion && !match?.groups?.swVersion2) {
+    return undefined
+  }
+  return match?.groups?.swVersion || match?.groups?.swVersion2
 }
 
 export function extractDocsisStatus(

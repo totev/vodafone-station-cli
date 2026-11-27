@@ -29,6 +29,8 @@ export async function discoverModemLocation(options: DiscoveryOptions = {}): Pro
 
   debug(`Probing for modem at IPs: ${defaultIps.join(', ')}`);
 
+  // Try HEAD requests first
+  let maybeResult: undefined | {value: AxiosResponse} = undefined;
   try {
     // Any HTTP answer means a web server is there: TG3442DE firmware 01.05.069.14 answers HEAD with 403.
     const validateStatus = () => true;
@@ -41,19 +43,39 @@ export async function discoverModemLocation(options: DiscoveryOptions = {}): Pro
     }
 
     const results = await Promise.allSettled(headRequests);
-    const maybeResult = results.find(result => result.status === 'fulfilled') as undefined | {value: AxiosResponse};
-    if (maybeResult?.value.request?.host) {
-      return {
-        ipAddress: maybeResult?.value.request?.host,
-        protocol: maybeResult?.value.request?.protocol.replace(':', '') as Protocol,
-      };
+    maybeResult = results.find(result => result.status === 'fulfilled') as undefined | {value: AxiosResponse};
+  } catch (error) {
+    // HEAD failed, will try GET below
+  }
+
+  // If HEAD failed, try GET requests to /index.php
+  if (!maybeResult) {
+    const getRequests = [];
+    for (const ip of defaultIps) {
+      getRequests.push(
+        axios.get(`http://${ip}/index.php`, {
+          headers: {Accept: 'text/html,application/xhtml+xml,application/xml'},
+          validateStatus: () => true, // Accept any status code
+        }),
+        axios.get(`https://${ip}/index.php`, {
+          headers: {Accept: 'text/html,application/xhtml+xml,application/xml'},
+          validateStatus: () => true,
+        }),
+      );
     }
 
-    throw new Error('Could not find a router/modem under the known addresses.');
-  } catch (error) {
-    console.error('Could not find a router/modem under the known addresses.');
-    throw error;
+    const results = await Promise.allSettled(getRequests);
+    maybeResult = results.find(result => result.status === 'fulfilled') as undefined | {value: AxiosResponse};
   }
+
+  if (maybeResult?.value?.request?.host) {
+    return {
+      ipAddress: maybeResult?.value?.request?.host,
+      protocol: maybeResult?.value?.request?.protocol.replace(':', '') as Protocol,
+    };
+  }
+
+  throw new Error('Could not find a router/modem under the known addresses.');
 }
 
 export type Protocol = 'http' | 'https';
